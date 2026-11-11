@@ -7,10 +7,10 @@
 <meta name="description" content="Stop repeating yourself. Put project rules in AGENTS.md and preferences in config.toml.">
 
 <link rel="icon" href="/codex-navigator/latest/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.4.2-mwcdiycz">
-<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.4.2","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"practical-workflows/agents-md"}}</script>
+<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.5.0-mwce88uu">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.5.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"practical-workflows/agents-md"}}</script>
 <script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),m=document.documentElement,h=!1;try{h=window.self!==window.top}catch(e){h=!0}(h||/[?&]embed=1/.test(location.search))&&m.classList.add("lx-embedded");function I(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(o){return null}}var i=I("localStorage"),r=I("sessionStorage"),v=new URLSearchParams(location.search),l=v.get("uid")||r&&r.getItem("lx:uid")||"",u=v.get("cid")||r&&r.getItem("lx:cid")||"";r&&(l&&r.setItem("lx:uid",l),u&&r.setItem("lx:cid",u)),n.uid=l,n.cid=u;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,f=function(e){return e==="light"||e==="dark"||e==="auto"},c="auto";function g(e){c=f(e)?e:"auto";var t=c==="dark"||c==="auto"&&d&&d.matches;m.setAttribute("data-theme",t?"dark":"light"),m.setAttribute("data-theme-mode",c);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:c,theme:t?"dark":"light"}}))}catch(o){}}var w=v.get("theme"),T=f(w)?w:h?r&&r.getItem("lx:moodle-theme")||"auto":i&&i.getItem("lx:theme")||"auto";if(g(T),d){var L=function(){c==="auto"&&g("auto")};d.addEventListener?d.addEventListener("change",L):d.addListener(L)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!f(t.theme)||f(w)||(r&&r.setItem("lx:moodle-theme",t.theme),g(t.theme))}),window.LXTheme={get mode(){return c},set:function(e){i&&!h&&i.setItem("lx:theme",e),g(e)}};var b=n.version.split(".").slice(0,2).join("."),p="lx:"+n.course+":pin:"+(u||"-")+":"+(l||"-");n.pinKey=p;function y(e){i&&l&&!i.getItem(p)&&i.setItem(p,e)}if(n.channel==="version"){y(b);return}if(n.channel!=="latest"||v.get("nopin"))return;function M(e,t){for(var o=e.split(".").map(Number),s=t.split(".").map(Number),a=0;a<3;a++)if((o[a]||0)!==(s[a]||0))return(o[a]||0)-(s[a]||0);return 0}function j(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var o=t.filter(function(s){return s===e||s.indexOf(e+".")===0});return o.sort(M),o.length?o[o.length-1]:null}m.classList.add("lx-pinning");var k=function(){m.classList.remove("lx-pinning")},P=setTimeout(k,2500),E=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([E("pins.json"),E("versions.json")]).then(function(e){for(var t=e[0]||{},o=((e[1]||{}).versions||[]).map(function(N){return N.version}),s=[v.get("v"),t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],i&&i.getItem(p),t.default],a=null,x=0;x<s.length&&!a;x++)a=j(s[x],o);if(a&&a!==n.version){var S=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+a+"/"+S+location.search+location.hash);return}y(b),clearTimeout(P),k()})})();</script>
-<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.4.2-mwcdiycz"></script>
+<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.5.0-mwce88uu"></script>
 </head>
 <body>
 <header class="lx-header">
@@ -27,7 +27,7 @@
     <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
     </button>
-    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.4.2</a>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.5.0</a>
   </div>
 </header>
 <div class="lx-layout">
@@ -45,7 +45,7 @@
     <div class="lx-crumbs">Module 2 · <a href="/codex-navigator/latest/#practical-workflows">Practical workflows</a></div>
     <h1>Make guidance durable: AGENTS.md and config</h1>
     <p class="lx-lead">Stop repeating yourself. Put project rules in AGENTS.md and preferences in config.toml.</p>
-    <div class="lx-meta"><span class="lx-chip">⏱ 35 min</span><span class="lx-chip lx-chip--official">Navigates: Codex 102: Practical Workflows (OpenAI Academy)</span><span class="lx-chip lx-chip--graded">Graded · 3 pt</span></div>
+    <div class="lx-meta"><span class="lx-chip">⏱ ~1.5 h (incl. a 1-h recording)</span><span class="lx-chip lx-chip--official">Navigates: Codex bootcamp 201: Team workflows (OpenAI Academy recording)</span><span class="lx-chip lx-chip--graded">Graded · 3 pt</span></div>
   </div>
   <div class="lx-slides" data-slides>
   <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">What to put in AGENTS.md</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Configuration layers</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Check yourself</span></button></nav>
@@ -53,38 +53,25 @@
 <h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
 <p>If you type the same instruction twice (&quot;use pnpm&quot;, &quot;run lint before you finish&quot;, &quot;never touch
 <code>migrations/</code>&quot;), it belongs in a file, not in a prompt. <strong>AGENTS.md</strong> is an open format, a
-README for agents that Codex loads automatically. <strong>config.toml</strong> holds your preferences
-for model, reasoning effort, sandbox, approvals, profiles and MCP servers.</p>
+README for agents that Codex loads automatically. <strong>config.toml</strong> holds your preferences: model,
+reasoning effort, sandbox, approvals, profiles, MCP servers.</p>
 <aside class="lx-block lx-resource" aria-label="Official resource">
   <div class="lx-resource__top">
     <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
     <div>
       <div class="lx-resource__provider">OpenAI Docs</div>
       <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md" target="_blank" rel="noopener">AGENTS.md</a></div>
-      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span><span class="lx-chip">intermediate</span></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span><span class="lx-chip">intermediate</span></div>
     </div>
   </div>
-  <p class="lx-resource__why">How Codex discovers AGENTS.md files and which one wins when there are several.</p>
-  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The three levels: global (<code>~/.codex</code>), repository root, and subdirectories. The file nearest your working directory takes precedence.</li><li><code>/init</code> generates a starter file. Treat it as a draft and edit it.</li></ul></div>
+  <p class="lx-resource__why">Exactly how Codex finds AGENTS.md files and combines them.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Discovery: one global file in <code>~/.codex</code>, then files from the project root down to your current directory. Folders below it are not read.</li><li>Files closer to your current directory override earlier guidance, because they come later in the combined prompt.</li><li><code>AGENTS.override.md</code> takes precedence over <code>AGENTS.md</code> in the same folder.</li><li>There&#39;s a size limit (32 KiB combined by default), so keep it short or split it into nested folders.</li></ul></div>
   <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/agent-configuration/agents-md" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-</aside>
-<aside class="lx-block lx-resource" aria-label="Official resource">
-  <div class="lx-resource__top">
-    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
-    <div>
-      <div class="lx-resource__provider">OpenAI Academy</div>
-      <div class="lx-resource__title"><a href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-102-practical-workflows-2026-03-18" target="_blank" rel="noopener">Codex 102: Practical Workflows</a></div>
-      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">course</span><span class="lx-chip">intermediate</span></div>
-    </div>
-  </div>
-  <p class="lx-resource__why">The official session on understanding codebases, refactoring and shipping features with Codex. Watch it with this module open.</p>
-  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>How the presenters keep the agent on track over long tasks. Much of it comes from good AGENTS.md files.</li><li>Any moment where the agent repeats a mistake. That is exactly what AGENTS.md should prevent.</li></ul></div>
-  <a class="lx-resource__cta" href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-102-practical-workflows-2026-03-18" target="_blank" rel="noopener">Open the course <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
 </aside>
 </section>
 <section class="lx-slide" id="lx-slide-2" data-label="What to put in AGENTS.md" aria-label="What to put in AGENTS.md" hidden>
 <h2 id="what-to-put-in-agentsmd">What to put in AGENTS.md<a class="lx-anchor" href="#what-to-put-in-agentsmd" aria-hidden="true">#</a></h2>
-<p>A useful AGENTS.md is <strong>short and accurate</strong>. Cover:</p>
+<p>The best practices guide recommends a <strong>short and accurate</strong> file covering:</p>
 <ul>
 <li>repository layout (where things live);</li>
 <li>how to run the project, and the exact <strong>build / test / lint</strong> commands;</li>
@@ -92,6 +79,7 @@ for model, reasoning effort, sandbox, approvals, profiles and MCP servers.</p>
 <li>constraints and &quot;do-not&quot; rules;</li>
 <li>how to verify that work is done.</li>
 </ul>
+<p>In the CLI, <code>/init</code> generates a starter AGENTS.md. Treat it as a draft and edit it.</p>
 <article class="lx-block lx-usecase">
   <div class="lx-usecase__head">
     <div class="lx-usecase__label">Use case</div>
@@ -107,11 +95,11 @@ for model, reasoning effort, sandbox, approvals, profiles and MCP servers.</p>
 - never edit files under db/migrations/ — propose a new migration instead.
 Keep it under 40 lines.</code></pre></div>
     <div class="lx-usecase__step"><h4>Good outcome</h4><p>A short AGENTS.md checked into the repo. Every teammate&#39;s Codex now follows the same rules.</p></div>
-    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>When Codex repeats a mistake, ask it to review what went wrong and propose an AGENTS.md update.</li><li>Link longer docs (e.g. <code>docs/code_review.md</code>) from AGENTS.md instead of pasting them in.</li></ul></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>When Codex repeats a mistake, ask it to review what went wrong and propose an AGENTS.md update.</li><li>Link longer docs from AGENTS.md instead of pasting them in.</li></ul></div>
   </div>
 </article>
 <div class="lx-callout lx-callout--important" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>Best practice</div><p>Durable rules go in AGENTS.md (or skills, later). One-off details go in the prompt. Mixing these up is
-one of the most common mistakes the official guide lists.</p>
+one of the common mistakes the official guide lists.</p>
 </div>
 </section>
 <section class="lx-slide" id="lx-slide-3" data-label="Configuration layers" aria-label="Configuration layers" hidden>
@@ -130,14 +118,19 @@ one of the most common mistakes the official guide lists.</p>
 <td>Your preferred model, effort, approvals</td>
 </tr>
 <tr>
-<td>Repository</td>
-<td><code>.codex/config.toml</code></td>
-<td>Settings the whole team should share for this repo</td>
+<td>Project</td>
+<td><code>.codex/config.toml</code> in the repo</td>
+<td>Settings the team shares for this project (loaded <strong>only if you trust the project</strong>)</td>
+</tr>
+<tr>
+<td>Profile</td>
+<td><code>--profile name</code></td>
+<td>Switching between setups, e.g. a careful &quot;review&quot; profile</td>
 </tr>
 <tr>
 <td>One-off</td>
-<td>CLI flags</td>
-<td>Trying something for a single run</td>
+<td><code>-c key=value</code> / <code>--config</code></td>
+<td>Trying something for a single run (highest precedence)</td>
 </tr>
 </tbody></table>
 <aside class="lx-block lx-resource" aria-label="Official resource">
@@ -145,18 +138,31 @@ one of the most common mistakes the official guide lists.</p>
     <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
     <div>
       <div class="lx-resource__provider">OpenAI Docs</div>
-      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/configuration" target="_blank" rel="noopener">Configuration</a></div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/config-file/config-basic" target="_blank" rel="noopener">Config basics</a></div>
       <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span></div>
     </div>
   </div>
   
-  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Profiles, so you can switch between, say, a careful &quot;review&quot; setup and a fast &quot;spike&quot; setup.</li><li>The docs note that many quality problems are really environment problems (wrong directory, missing tools, no write access).</li></ul></div>
-  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/configuration" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The precedence order, from CLI overrides at the top down to built-in defaults.</li><li>Project <code>.codex/</code> layers load only for trusted projects. This is a security feature, not a bug.</li><li>Profiles: <code>--profile name</code> loads <code>~/.codex/name.config.toml</code>. Keep only the differences there.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/config-file/config-basic" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Academy</div>
+      <div class="lx-resource__title"><a href="https://academy.openai.com/public/videos/september-30-codex-bootcamp-201-2026-10-01" target="_blank" rel="noopener">Codex bootcamp 201: Team workflows (recording)</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ ~1 h</span><span class="lx-chip">intermediate</span><span class="lx-chip lx-chip--access">🔑 Free OpenAI Academy account</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">OpenAI&#39;s live session on using Codex in team workflows. Watch it with this module open.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Which rules the presenters keep in files rather than in prompts.</li><li>Any moment where the agent repeats a mistake. That&#39;s exactly what AGENTS.md should prevent.</li></ul></div>
+  <a class="lx-resource__cta" href="https://academy.openai.com/public/videos/september-30-codex-bootcamp-201-2026-10-01" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
 </aside>
 </section>
 <section class="lx-slide" id="lx-slide-4" data-label="Check yourself" aria-label="Check yourself" hidden>
 <h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
-<lx-quiz id="agents-md"><script type="application/json">{"id":"agents-md","shuffle":false,"graded":true,"questions":[{"q":"You have a global AGENTS.md and one in \u003ccode>services/api/\u003c/code>. You are working inside \u003ccode>services/api/\u003c/code>. Which guidance takes precedence?","options":["The global one","The one in services/api/","Whichever is longer"],"answer":1,"explain":"The file closest to your working directory wins."},{"q":"Which of these belong in AGENTS.md?","options":["The exact test and lint commands","&quot;Never edit db/migrations/&quot;","Today&#39;s bug description","Repository layout"],"answer":[0,1,3],"explain":"Today&#39;s bug is a one-off detail. It belongs in the prompt."},{"q":"Where do settings live that the whole team should share for one repository?","options":["\u003ccode>~/.codex/config.toml\u003c/code>","\u003ccode>.codex/config.toml\u003c/code> in the repo","A CLI flag"],"answer":1,"explain":"The repository-level config is committed together with the code."}]}</script></lx-quiz>
+<lx-quiz id="agents-md"><script type="application/json">{"id":"agents-md","shuffle":false,"graded":true,"questions":[{"q":"Your repo has AGENTS.md at the root and another one in \u003ccode>services/api/\u003c/code>. You run Codex from \u003ccode>services/api/\u003c/code>. What does Codex do?","options":["Reads only the root file, because it&#39;s the project file","Reads only \u003ccode>services/api/AGENTS.md\u003c/code>, the nearest one","Combines both, and on conflicts the \u003ccode>services/api/\u003c/code> guidance wins","Asks you which file to use"],"answer":2,"explain":"Codex reads files from the root down to your current folder and combines them. Later (closer) files override earlier guidance."},{"q":"Which of these belong in AGENTS.md rather than in a prompt?","options":["The exact test and lint commands","&quot;Never edit \u003ccode>db/migrations/\u003c/code>&quot;","The stack trace of today&#39;s bug","Where the main modules live"],"answer":[0,1,3],"explain":"Durable rules and facts go in AGENTS.md. Today&#39;s stack trace is one-off context for the prompt."},{"q":"You committed \u003ccode>.codex/config.toml\u003c/code> with team settings, but a teammate says Codex ignores it. What&#39;s the most likely reason?","options":["Project config only works in the desktop app","Their copy of the project is not marked as trusted","Personal config always overrides project config","The file must be called \u003ccode>codex.toml\u003c/code>"],"answer":1,"explain":"Codex loads project \u003ccode>.codex/\u003c/code> layers only for trusted projects. Project config actually takes precedence over personal config."}]}</script></lx-quiz>
 
 </section>
   <div class="lx-slidenav">
@@ -179,7 +185,7 @@ one of the most common mistakes the official guide lists.</p>
 </div>
 <footer class="lx-footer">
   <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
-  <p>Codex Navigator v1.4.2 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+  <p>Codex Navigator v1.5.0 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
 </footer>
 
 </body>

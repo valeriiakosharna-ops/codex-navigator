@@ -1,6 +1,95 @@
 {
-  "latest": "1.4.2",
+  "latest": "1.5.0",
   "versions": [
+    {
+      "version": "1.5.0",
+      "builtAt": "2026-11-11T17:28:58.229Z",
+      "widgets": {
+        "checklist": "1.0.0",
+        "compare": "1.0.0",
+        "flashcards": "1.0.0",
+        "order": "1.0.0",
+        "quiz": "1.1.0",
+        "resource": "1.1.0",
+        "scenario": "1.2.0",
+        "spot": "1.2.0",
+        "usecase": "1.0.0"
+      },
+      "labs": [
+        {
+          "id": "lab1-l1",
+          "page": "getting-started/lab-first-session",
+          "widget": "scenario",
+          "title": "First task in a client repository",
+          "version": 1,
+          "fp": "d9e2bd4164"
+        },
+        {
+          "id": "lab1-l2",
+          "page": "getting-started/lab-first-session",
+          "widget": "scenario",
+          "title": "\"Make search faster\"",
+          "version": 1,
+          "fp": "6f3cd062cc"
+        },
+        {
+          "id": "lab1-l3",
+          "page": "getting-started/lab-first-session",
+          "widget": "scenario",
+          "title": "The lint fix that was too easy",
+          "version": 1,
+          "fp": "f26d4a4ecf"
+        },
+        {
+          "id": "lab2-l1",
+          "page": "practical-workflows/lab-review",
+          "widget": "spot",
+          "title": "\"Refactored the profile loader\"",
+          "version": 1,
+          "fp": "224ba32694"
+        },
+        {
+          "id": "lab2-l2",
+          "page": "practical-workflows/lab-review",
+          "widget": "spot",
+          "title": "\"Fixed the failing tests\"",
+          "version": 1,
+          "fp": "2044a7ae88"
+        },
+        {
+          "id": "lab2-l3",
+          "page": "practical-workflows/lab-review",
+          "widget": "scenario",
+          "title": "Flaky after the agent's refactor",
+          "version": 1,
+          "fp": "34ecb289c7"
+        },
+        {
+          "id": "lab3-l1",
+          "page": "advanced/lab-automation",
+          "widget": "scenario",
+          "title": "\"Let Codex fix lint every night\"",
+          "version": 1,
+          "fp": "dee6b853b7"
+        },
+        {
+          "id": "lab3-l2",
+          "page": "advanced/lab-automation",
+          "widget": "scenario",
+          "title": "Two agents, one deadline",
+          "version": 1,
+          "fp": "c7b456333d"
+        },
+        {
+          "id": "lab3-l3",
+          "page": "advanced/lab-automation",
+          "widget": "scenario",
+          "title": "The triage bot that saw nothing",
+          "version": 1,
+          "fp": "3b2fb490b7"
+        }
+      ]
+    },
     {
       "version": "1.4.2",
       "builtAt": "2026-11-11T17:09:18.229Z",
