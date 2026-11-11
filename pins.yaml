@@ -14,5 +14,6 @@
 #
 # Optional fallback for learners with no pin at all (otherwise: latest):
 # default: "1.1"
-courses: {}
+courses:
+  "10": "1.3"      # Codex Lab on mdls.nixdev.co (pilot cohort)
 users: {}
