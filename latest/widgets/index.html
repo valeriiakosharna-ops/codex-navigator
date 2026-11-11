@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Widget catalog · Codex Navigator</title>
+
+
+<link rel="icon" href="/codex-navigator/latest/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.0.0-mwc72ski">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.0.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"widgets"}}</script>
+<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),f=document.documentElement,v=!1;try{v=window.self!==window.top}catch(e){v=!0}(v||/[?&]embed=1/.test(location.search))&&f.classList.add("lx-embedded");function h(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(a){return null}}var l=h("localStorage"),o=h("sessionStorage"),u=new URLSearchParams(location.search),s=u.get("uid")||o&&o.getItem("lx:uid")||"",c=u.get("cid")||o&&o.getItem("lx:cid")||"";o&&(s&&o.setItem("lx:uid",s),c&&o.setItem("lx:cid",c)),n.uid=s,n.cid=c;var g=n.version.split(".").slice(0,2).join("."),m="lx:"+n.course+":pin:"+(c||"-")+":"+(s||"-");n.pinKey=m;function p(e){l&&s&&!l.getItem(m)&&l.setItem(m,e)}if(n.channel==="version"){p(g);return}if(n.channel!=="latest"||u.get("nopin"))return;function w(e,t){for(var a=e.split(".").map(Number),i=t.split(".").map(Number),r=0;r<3;r++)if((a[r]||0)!==(i[r]||0))return(a[r]||0)-(i[r]||0);return 0}function b(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var a=t.filter(function(i){return i===e||i.indexOf(e+".")===0});return a.sort(w),a.length?a[a.length-1]:null}f.classList.add("lx-pinning");var x=function(){f.classList.remove("lx-pinning")},y=setTimeout(x,2500),I=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([I("pins.json"),I("versions.json")]).then(function(e){for(var t=e[0]||{},a=((e[1]||{}).versions||[]).map(function(S){return S.version}),i=[u.get("v"),t.users&&s&&t.users[s],t.courses&&c&&t.courses[c],l&&l.getItem(m),t.default],r=null,d=0;d<i.length&&!r;d++)r=b(i[d],a);if(r&&r!==n.version){var L=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+r+"/"+L+location.search+location.hash);return}p(g),clearTimeout(y),x()})})();</script>
+<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.0.0-mwc72ski"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/latest/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/latest/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/latest/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/latest/">Course</a>
+      <a href="/codex-navigator/latest/widgets/" aria-current="page">Widget catalog</a>
+      <a href="/codex-navigator/latest/moodle/">Moodle setup</a>
+    </nav>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.0.0</a>
+  </div>
+</header>
+<div class="lx-layout lx-layout--wide">
+  
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <h1>Widget catalog</h1>
+  <p class="lx-lead">Every building block you can use in a page. Copy a snippet, change the text, done. Fields marked <strong>*</strong> are required — the build tells you exactly what is wrong if something is missing.</p>
+  <h2 id="callouts">Callouts</h2>
+  <p>Use GitHub-style alerts. An optional title can follow the marker.</p>
+  <pre><code>&gt; [!TIP] While watching the video
+&gt; Pause at the approvals part and try it yourself.</code></pre>
+  <div class="lx-callout lx-callout--note" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>Note</div><p>Extra context.</p>
+</div>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>While watching the video</div><p>Pause at the approvals part and try it yourself.</p>
+</div>
+<div class="lx-callout lx-callout--important" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>Best practice</div><p>Review every diff before you commit.</p>
+</div>
+<div class="lx-callout lx-callout--warning" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>Common pitfall</div><p>Granting full access before you understand the workflow.</p>
+</div>
+<div class="lx-callout lx-callout--caution" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.9 2 16.1 2 22 7.9 22 16.1 16.1 22 7.9 22 2 16.1 2 7.9"/><path d="M12 8v4M12 16h.01"/></svg>Caution</div><p>Never paste secrets into a prompt.</p>
+</div>
+
+  <section class="lx-catalog-item" id="checklist">
+  <h2>Checklist <code>checklist</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">interactive web component</span>
+    
+  </div>
+  <p>A personal to-do list for setup steps or readiness checks. Progress is remembered in the learner&#39;s browser. Not graded.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><lx-checklist id="catalog-checklist"><script type="application/json">{"title":"Before your first task","items":[{"text":"Open a Git repository and create a branch","hint":"Codex works best when you can diff and revert."},"Sign in with your ChatGPT account","Check permissions with \u003ccode>/status\u003c/code>"],"done":"You are ready to start."}</script></lx-checklist>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```checklist
+title: Before your first task
+items:
+  - text: Open a Git repository and create a branch
+    hint: Codex works best when you can diff and revert.
+  - Sign in with your ChatGPT account
+  - Check permissions with `/status`
+done: You are ready to start.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code></td><td>Stable id.</td></tr><tr><td><code>title</code></td><td>Heading.</td></tr><tr><td><code>items</code> <strong>*</strong></td><td>Plain strings, or `{ text, hint }`.</td></tr><tr><td><code>done</code></td><td>Message shown when everything is ticked.</td></tr></tbody></table>
+</section>
+<section class="lx-catalog-item" id="compare">
+  <h2>Weak vs strong prompt <code>compare</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">static block</span>
+    
+  </div>
+  <p>Two prompts side by side, a vague one and a specific one, with a note on the difference.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><section class="lx-block">
+  <div class="lx-compare__title">Asking for a fix</div>
+  <div class="lx-compare"><div class="lx-compare__col lx-compare__col--weak">
+      <div class="lx-compare__label">✗ Vague</div>
+      <pre><code>fix the login bug</code></pre>
+      <p class="lx-compare__note">No context, no constraints, no finish line.</p>
+    </div><div class="lx-compare__col lx-compare__col--strong">
+      <div class="lx-compare__label">✓ Specific</div>
+      <pre><code>Users with + in their email can&#39;t log in (see issue #214).
+Look at src/auth/validate.ts. Keep the public API unchanged.
+Add a regression test. Done when npm test passes.</code></pre>
+      <p class="lx-compare__note">Goal, context, constraints and done-when are all there.</p>
+    </div></div>
+</section>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```compare
+title: Asking for a fix
+weak:
+  prompt: fix the login bug
+  note: No context, no constraints, no finish line.
+strong:
+  prompt: |
+    Users with + in their email can&#39;t log in (see issue #214).
+    Look at src/auth/validate.ts. Keep the public API unchanged.
+    Add a regression test. Done when npm test passes.
+  note: Goal, context, constraints and done-when are all there.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>title</code></td><td>Heading.</td></tr><tr><td><code>weak</code> <strong>*</strong></td><td>The vague version.</td></tr><tr><td><code>strong</code> <strong>*</strong></td><td>The improved version.</td></tr></tbody></table>
+</section>
+<section class="lx-catalog-item" id="flashcards">
+  <h2>Flashcards <code>flashcards</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">interactive web component</span>
+    
+  </div>
+  <p>Flip cards for commands, terms and rules of thumb. Learners can mark the ones they know. Not graded.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><lx-flashcards id="catalog-flashcards"><script type="application/json">{"title":"Slash commands","cards":[{"front":"\u003ccode>/init\u003c/code>","back":"Creates a starter AGENTS.md for the current project."},{"front":"\u003ccode>/review\u003c/code>","back":"Reviews changes (uncommitted, a commit or against a base branch) without editing files."}]}</script></lx-flashcards>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```flashcards
+title: Slash commands
+cards:
+  - front: &quot;`/init`&quot;
+    back: Creates a starter AGENTS.md for the current project.
+  - front: &quot;`/review`&quot;
+    back: Reviews changes (uncommitted, a commit or against a base branch) without editing files.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code></td><td>Stable id.</td></tr><tr><td><code>title</code></td><td>Heading.</td></tr><tr><td><code>cards</code> <strong>*</strong></td><td>Cards.</td></tr></tbody></table>
+</section>
+<section class="lx-catalog-item" id="order">
+  <h2>Put in order <code>order</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">interactive web component</span>
+    <span class="lx-chip lx-chip--graded">counts towards the grade</span>
+  </div>
+  <p>Learners arrange steps into the right sequence (drag or arrow buttons). Write <code>items</code> in the <strong>correct</strong> order — they are shuffled for the learner. Worth 1 point; partial credit for items in the right place.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><lx-order id="catalog-order"><script type="application/json">{"title":"The agent work loop","prompt":"Arrange the steps of a healthy Codex task.","items":["Describe the goal, context, constraints and done-when","Let Codex plan, then approve the plan","Codex edits code and runs the checks","Review the diff yourself","Commit or ask for changes"],"explain":"Plan before code, verify before commit.","graded":true}</script></lx-order>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```order
+title: The agent work loop
+prompt: Arrange the steps of a healthy Codex task.
+items:
+  - Describe the goal, context, constraints and done-when
+  - Let Codex plan, then approve the plan
+  - Codex edits code and runs the checks
+  - Review the diff yourself
+  - Commit or ask for changes
+explain: Plan before code, verify before commit.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code></td><td>Stable id.</td></tr><tr><td><code>title</code></td><td>Heading.</td></tr><tr><td><code>prompt</code></td><td>Instruction shown above the list.</td></tr><tr><td><code>items</code> <strong>*</strong></td><td>Steps in the CORRECT order.</td></tr><tr><td><code>explain</code></td><td>Shown when the order is right.</td></tr><tr><td><code>graded</code></td><td>Set false for practice only. <span class="muted">Default: <code>true</code></span></td></tr></tbody></table>
+</section>
+<section class="lx-catalog-item" id="quiz">
+  <h2>Quiz <code>quiz</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">interactive web component</span>
+    <span class="lx-chip lx-chip--graded">counts towards the grade</span>
+  </div>
+  <p>Multiple-choice questions with instant feedback and an explanation. Single answer (<code>answer: 0</code>) or several (<code>answer: [0, 2]</code>). Counts towards the Moodle grade: one point per question.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><lx-quiz id="catalog-quiz"><script type="application/json">{"title":"Quick check","shuffle":false,"graded":true,"questions":[{"q":"Which file does Codex read automatically for project rules?","options":["README.md","AGENTS.md","CONTRIBUTING.md"],"answer":1,"explain":"\u003ccode>AGENTS.md\u003c/code> is loaded automatically; keep durable rules there."},{"q":"Which of these belong in a good task prompt?","options":["Goal","Context","Your favourite colour","Done-when criteria"],"answer":[0,1,3],"explain":"Goal, context, constraints and a clear finish line."}]}</script></lx-quiz>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```quiz
+title: Quick check
+questions:
+  - q: Which file does Codex read automatically for project rules?
+    options: [README.md, AGENTS.md, CONTRIBUTING.md]
+    answer: 1
+    explain: &quot;`AGENTS.md` is loaded automatically; keep durable rules there.&quot;
+  - q: Which of these belong in a good task prompt?
+    options: [Goal, Context, Your favourite colour, Done-when criteria]
+    answer: [0, 1, 3]
+    explain: Goal, context, constraints and a clear finish line.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code></td><td>Stable id; keeps saved answers if you reorder blocks.</td></tr><tr><td><code>title</code></td><td>Heading above the questions.</td></tr><tr><td><code>shuffle</code></td><td>Shuffle options (stable per learner). <span class="muted">Default: <code>false</code></span></td></tr><tr><td><code>graded</code></td><td>Set false for a practice-only quiz. <span class="muted">Default: <code>true</code></span></td></tr><tr><td><code>questions</code> <strong>*</strong></td><td>List of questions.</td></tr></tbody></table>
+</section>
+<section class="lx-catalog-item" id="resource">
+  <h2>Official resource card <code>resource</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">static block</span>
+    
+  </div>
+  <p>The heart of a navigator page: a card that sends the learner to the official material and tells them <strong>why</strong> it matters and <strong>what to pay attention to</strong> while studying it.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Academy</div>
+      <div class="lx-resource__title"><a href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-101-introduction-and-onboarding-2026-03-18" target="_blank" rel="noopener">Codex 101: Introduction and Onboarding</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">course</span><span class="lx-chip">⏱ ~1 h</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The official on-ramp. Watch it once end-to-end before you install anything.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>How the presenter phrases the <strong>first task</strong> — copy the structure.</li><li>Where approvals pop up and why.</li></ul></div>
+  <a class="lx-resource__cta" href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-101-introduction-and-onboarding-2026-03-18" target="_blank" rel="noopener">Open the course <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```resource
+title: &quot;Codex 101: Introduction and Onboarding&quot;
+url: https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-101-introduction-and-onboarding-2026-03-18
+provider: OpenAI Academy
+format: course
+duration: ~1 h
+level: beginner
+why: The official on-ramp. Watch it once end-to-end before you install anything.
+focus:
+  - How the presenter phrases the **first task** — copy the structure.
+  - Where approvals pop up and why.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>title</code> <strong>*</strong></td><td>Title of the official material.</td></tr><tr><td><code>url</code> <strong>*</strong></td><td>Link to the official page.</td></tr><tr><td><code>provider</code></td><td>Who publishes it, e.g. OpenAI Academy, OpenAI Docs. <span class="muted">Default: <code>&quot;OpenAI&quot;</code></span></td></tr><tr><td><code>format</code></td><td>One of: course, video, docs, live, repo, article. <span class="muted">Default: <code>&quot;docs&quot;</code></span></td></tr><tr><td><code>duration</code></td><td>Rough time, e.g. &quot;45 min&quot;.</td></tr><tr><td><code>level</code></td><td>One of: beginner, intermediate, advanced.</td></tr><tr><td><code>why</code></td><td>One or two sentences: why this resource, for this topic.</td></tr><tr><td><code>focus</code></td><td>While you study, pay attention to… (tips, timestamps, sections).</td></tr><tr><td><code>official</code></td><td>Shows the “Official” badge. <span class="muted">Default: <code>true</code></span></td></tr></tbody></table>
+</section>
+<section class="lx-catalog-item" id="usecase">
+  <h2>Use case <code>usecase</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">static block</span>
+    
+  </div>
+  <p>A realistic scenario: situation → the prompt you would give Codex → what a good outcome looks like → tips.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">Fix a flaky test</div>
+    <div class="lx-usecase__who">Backend developer</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p><code>test_checkout</code> fails about once in ten CI runs.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>Investigate why tests/test_checkout.py::test_total fails intermittently.
+Reproduce it first (run it 50 times). Find the root cause, fix it,
+and do not change the assertion. Done when 50 consecutive runs pass.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A short root-cause explanation, a minimal diff, and the loop output.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>Ask for the reproduction <strong>before</strong> the fix.</li></ul></div>
+  </div>
+</article>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```usecase
+title: Fix a flaky test
+who: Backend developer
+situation: &quot;`test_checkout` fails about once in ten CI runs.&quot;
+prompt: |
+  Investigate why tests/test_checkout.py::test_total fails intermittently.
+  Reproduce it first (run it 50 times). Find the root cause, fix it,
+  and do not change the assertion. Done when 50 consecutive runs pass.
+outcome: A short root-cause explanation, a minimal diff, and the loop output.
+tips:
+  - Ask for the reproduction **before** the fix.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>title</code> <strong>*</strong></td><td>Short name of the scenario.</td></tr><tr><td><code>who</code></td><td>Role, e.g. Backend developer, QA engineer.</td></tr><tr><td><code>situation</code> <strong>*</strong></td><td>What is going on.</td></tr><tr><td><code>prompt</code> <strong>*</strong></td><td>The prompt (kept verbatim, shown as code).</td></tr><tr><td><code>outcome</code></td><td>What a good result looks like.</td></tr><tr><td><code>tips</code></td><td>Practical hints.</td></tr></tbody></table>
+</section>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v1.0.0 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>
