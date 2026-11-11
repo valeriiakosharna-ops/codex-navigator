@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your first session, safely · Codex Navigator</title>
+<meta name="description" content="Install, sign in, understand sandbox and approvals, and finish a first real task without surprises.">
+
+<link rel="icon" href="/codex-navigator/v/1.2.0/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/1.2.0/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.2.0","channel":"version","base":"/codex-navigator/v/1.2.0/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"getting-started/first-session"}}</script>
+<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),f=document.documentElement,v=!1;try{v=window.self!==window.top}catch(e){v=!0}(v||/[?&]embed=1/.test(location.search))&&f.classList.add("lx-embedded");function h(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(a){return null}}var l=h("localStorage"),o=h("sessionStorage"),u=new URLSearchParams(location.search),s=u.get("uid")||o&&o.getItem("lx:uid")||"",c=u.get("cid")||o&&o.getItem("lx:cid")||"";o&&(s&&o.setItem("lx:uid",s),c&&o.setItem("lx:cid",c)),n.uid=s,n.cid=c;var g=n.version.split(".").slice(0,2).join("."),m="lx:"+n.course+":pin:"+(c||"-")+":"+(s||"-");n.pinKey=m;function p(e){l&&s&&!l.getItem(m)&&l.setItem(m,e)}if(n.channel==="version"){p(g);return}if(n.channel!=="latest"||u.get("nopin"))return;function w(e,t){for(var a=e.split(".").map(Number),i=t.split(".").map(Number),r=0;r<3;r++)if((a[r]||0)!==(i[r]||0))return(a[r]||0)-(i[r]||0);return 0}function b(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var a=t.filter(function(i){return i===e||i.indexOf(e+".")===0});return a.sort(w),a.length?a[a.length-1]:null}f.classList.add("lx-pinning");var x=function(){f.classList.remove("lx-pinning")},y=setTimeout(x,2500),I=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([I("pins.json"),I("versions.json")]).then(function(e){for(var t=e[0]||{},a=((e[1]||{}).versions||[]).map(function(S){return S.version}),i=[u.get("v"),t.users&&s&&t.users[s],t.courses&&c&&t.courses[c],l&&l.getItem(m),t.default],r=null,d=0;d<i.length&&!r;d++)r=b(i[d],a);if(r&&r!==n.version){var L=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+r+"/"+L+location.search+location.hash);return}p(g),clearTimeout(y),x()})})();</script>
+<script type="module" src="/codex-navigator/v/1.2.0/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/1.2.0/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/1.2.0/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/1.2.0/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/1.2.0/">Course</a>
+      <a href="/codex-navigator/v/1.2.0/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/1.2.0/moodle/">Moodle setup</a>
+    </nav>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.2.0</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2>1. Get started with Codex</h2>
+  <ol><li><a href="/codex-navigator/v/1.2.0/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/v/1.2.0/getting-started/first-session/" aria-current="page">Your first session, safely</a></li><li><a href="/codex-navigator/v/1.2.0/getting-started/prompting-basics/">Asking a coding agent for work</a></li><li><a href="/codex-navigator/v/1.2.0/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li></ol>
+<h2>2. Practical workflows</h2>
+  <ol><li><a href="/codex-navigator/v/1.2.0/practical-workflows/agents-md/">Make guidance durable: AGENTS.md and config</a></li><li><a href="/codex-navigator/v/1.2.0/practical-workflows/plan-test-review/">The plan → build → test → review loop</a></li><li><a href="/codex-navigator/v/1.2.0/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2>3. Advanced workflows and automation</h2>
+  <ol><li><a href="/codex-navigator/v/1.2.0/advanced/extend-codex/">Extend Codex with MCP and skills</a></li><li><a href="/codex-navigator/v/1.2.0/advanced/automate-and-scale/">Automate and scale</a></li><li><a href="/codex-navigator/v/1.2.0/advanced/lab-automation/">Lab: decisions about automation</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 1: <a href="/codex-navigator/v/1.2.0/#getting-started">Get started with Codex</a></div>
+    <h1>Your first session, safely</h1>
+    <p class="lx-lead">Install, sign in, understand sandbox and approvals, and finish a first real task without surprises.</p>
+    <div class="lx-meta"><span class="lx-chip">⏱ 40 min</span><span class="lx-chip lx-chip--official">Navigates: Codex 101: Introduction and Onboarding (OpenAI Academy)</span><span class="lx-chip lx-chip--graded">Graded · 4 pt</span></div>
+  </div>
+  <h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>The first hour with an agent shapes your habits. Two things decide whether that hour goes
+well: a <strong>clean starting point</strong>, meaning a Git repo you can diff and revert, and the right
+<strong>permissions</strong>, meaning what Codex may do without asking you. Get both right and you can
+let Codex move fast without worrying.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Academy</div>
+      <div class="lx-resource__title"><a href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-101-introduction-and-onboarding-2026-03-18" target="_blank" rel="noopener">Codex 101: Introduction and Onboarding</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">course</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The official onboarding session. It covers setup, writing code, navigating repositories and finishing real tasks, with prompting patterns along the way.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Pause after setup and do it yourself before watching further.</li><li>Notice <strong>when</strong> an approval prompt appears and what triggered it.</li><li>Write down the prompting patterns the presenter reuses. You will practise them in the next topic.</li></ul></div>
+  <a class="lx-resource__cta" href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-101-introduction-and-onboarding-2026-03-18" target="_blank" rel="noopener">Open the course <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<h2 id="install-and-sign-in">Install and sign in<a class="lx-anchor" href="#install-and-sign-in" aria-hidden="true">#</a></h2>
+<p>On macOS or Linux the docs give a one-line installer. npm also works on any OS with Node.js:</p>
+<pre><code class="language-bash"># official installer (macOS / Linux)
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+
+# or with npm
+npm install -g @openai/codex</code></pre>
+<p>Then open a project folder and run <code>codex</code>. On first run, choose <strong>Sign in with ChatGPT</strong>.
+For Windows options (native app, sandbox, WSL), follow the CLI page below.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/codex/cli" target="_blank" rel="noopener">Codex CLI</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The slash commands you will use daily: <code>/status</code>, <code>/permissions</code>, <code>/model</code>, <code>/review</code>, <code>/init</code>.</li><li>The advice to create <strong>Git checkpoints</strong> before and after a task.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/codex/cli" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<h2 id="sandbox-and-approvals-the-two-dials">Sandbox and approvals: the two dials<a class="lx-anchor" href="#sandbox-and-approvals-the-two-dials" aria-hidden="true">#</a></h2>
+<p>Codex has two separate settings. People often mix them up.</p>
+<ul>
+<li><strong>Sandbox mode</strong> decides <em>what Codex can touch</em>: <code>read-only</code>, <code>workspace-write</code> (edit inside the project) or <code>danger-full-access</code> (no sandbox).</li>
+<li><strong>Approval policy</strong> decides <em>when Codex must ask you</em>: <code>on-request</code> (asks before going outside the sandbox, e.g. network or files outside the workspace) or <code>never</code>.</li>
+</ul>
+<p>For a version-controlled project the recommended preset is <strong>Auto</strong>, which means <code>workspace-write</code> + <code>on-request</code>.
+For folders without Git, stay in <code>read-only</code>. Network access is <strong>off</strong> by default.</p>
+<div class="lx-callout lx-callout--warning" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>Common pitfall</div><p>Turning on full access &quot;just to stop the prompts&quot; on day one. The prompts tell you what the
+agent wants to do. Learn the workflow first, then loosen permissions <strong>per trusted repo</strong>.</p>
+</div>
+<div class="lx-callout lx-callout--caution" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.9 2 16.1 2 22 7.9 22 16.1 16.1 22 7.9 22 2 16.1 2 7.9"/><path d="M12 8v4M12 16h.01"/></svg>Caution</div><p>Treat web content the agent reads as untrusted. Prompt injection can make an agent follow instructions hidden in a page.</p>
+</div>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/agent-approvals-security" target="_blank" rel="noopener">Agent approvals &amp; security</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The authoritative list of sandbox modes, approval policies and safe defaults.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The table of common combinations (Auto, Read-only, CI).</li><li>How to switch during a session with <code>/permissions</code>.</li><li>Why <code>--yolo</code> exists and why the docs advise against it.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/agent-approvals-security" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<lx-checklist id="first-session"><script type="application/json">{"id":"first-session","title":"Before your first real task","items":[{"text":"Work in a Git repository, on a fresh branch","hint":"\u003ccode>git switch -c try-codex\u003c/code>. Now every change is a diff you can review or throw away."},{"text":"Commit or stash your own unfinished changes","hint":"So you can tell your edits apart from the agent&#39;s."},{"text":"Sign in and run \u003ccode>/status\u003c/code>","hint":"Check the workspace directories and the current permissions."},{"text":"Keep the default Auto permissions (workspace-write + on-request)"},{"text":"Start with a small, verifiable task","hint":"For example &quot;add a unit test for function X and run it&quot;."}],"done":"Ready. Next, learn how to phrase that task so Codex nails it."}</script></lx-checklist>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="first-session-quiz"><script type="application/json">{"id":"first-session-quiz","shuffle":false,"graded":true,"questions":[{"q":"Which setting controls \u003cstrong>when Codex asks you\u003c/strong> before acting?","options":["Sandbox mode","Approval policy","Model","Reasoning effort"],"answer":1,"explain":"Sandbox = what it can touch. Approval policy = when it must ask."},{"q":"What is the recommended default for a Git-tracked project?","options":["\u003ccode>danger-full-access\u003c/code> + \u003ccode>never\u003c/code>","\u003ccode>workspace-write\u003c/code> + \u003ccode>on-request\u003c/code> (Auto)","\u003ccode>read-only\u003c/code> + \u003ccode>never\u003c/code>"],"answer":1,"explain":"Auto lets Codex edit inside the project and asks before going beyond it."},{"q":"Why work on a branch with a clean working tree?","options":["Codex refuses to run otherwise","Every change becomes a reviewable, revertible diff","It makes Codex faster"],"answer":1,"explain":"Git is your safety net and your review tool."},{"q":"Which statements about network access are true?","options":["It is off by default in workspace-write","It is always on","Content fetched from the web should be treated as untrusted"],"answer":[0,2],"explain":"Off by default. When you enable it, remember the prompt-injection risk."}]}</script></lx-quiz>
+
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/v/1.2.0/getting-started/what-is-codex/"><small>← Previous</small><strong>What Codex is and where it runs</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/v/1.2.0/getting-started/prompting-basics/"><small>Next →</small><strong>Asking a coding agent for work</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v1.2.0 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>
