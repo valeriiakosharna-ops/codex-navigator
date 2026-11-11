@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moodle setup · Codex Navigator</title>
+
+
+<link rel="icon" href="/codex-navigator/v/1.3.0/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/1.3.0/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.3.0","channel":"version","base":"/codex-navigator/v/1.3.0/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"moodle"}}</script>
+<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),m=document.documentElement,h=!1;try{h=window.self!==window.top}catch(e){h=!0}(h||/[?&]embed=1/.test(location.search))&&m.classList.add("lx-embedded");function I(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(o){return null}}var i=I("localStorage"),r=I("sessionStorage"),v=new URLSearchParams(location.search),l=v.get("uid")||r&&r.getItem("lx:uid")||"",u=v.get("cid")||r&&r.getItem("lx:cid")||"";r&&(l&&r.setItem("lx:uid",l),u&&r.setItem("lx:cid",u)),n.uid=l,n.cid=u;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,f=function(e){return e==="light"||e==="dark"||e==="auto"},c="auto";function g(e){c=f(e)?e:"auto";var t=c==="dark"||c==="auto"&&d&&d.matches;m.setAttribute("data-theme",t?"dark":"light"),m.setAttribute("data-theme-mode",c);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:c,theme:t?"dark":"light"}}))}catch(o){}}var w=v.get("theme"),T=f(w)?w:h?r&&r.getItem("lx:moodle-theme")||"auto":i&&i.getItem("lx:theme")||"auto";if(g(T),d){var L=function(){c==="auto"&&g("auto")};d.addEventListener?d.addEventListener("change",L):d.addListener(L)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!f(t.theme)||f(w)||(r&&r.setItem("lx:moodle-theme",t.theme),g(t.theme))}),window.LXTheme={get mode(){return c},set:function(e){i&&!h&&i.setItem("lx:theme",e),g(e)}};var b=n.version.split(".").slice(0,2).join("."),p="lx:"+n.course+":pin:"+(u||"-")+":"+(l||"-");n.pinKey=p;function y(e){i&&l&&!i.getItem(p)&&i.setItem(p,e)}if(n.channel==="version"){y(b);return}if(n.channel!=="latest"||v.get("nopin"))return;function M(e,t){for(var o=e.split(".").map(Number),s=t.split(".").map(Number),a=0;a<3;a++)if((o[a]||0)!==(s[a]||0))return(o[a]||0)-(s[a]||0);return 0}function j(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var o=t.filter(function(s){return s===e||s.indexOf(e+".")===0});return o.sort(M),o.length?o[o.length-1]:null}m.classList.add("lx-pinning");var k=function(){m.classList.remove("lx-pinning")},P=setTimeout(k,2500),E=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([E("pins.json"),E("versions.json")]).then(function(e){for(var t=e[0]||{},o=((e[1]||{}).versions||[]).map(function(N){return N.version}),s=[v.get("v"),t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],i&&i.getItem(p),t.default],a=null,x=0;x<s.length&&!a;x++)a=j(s[x],o);if(a&&a!==n.version){var S=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+a+"/"+S+location.search+location.hash);return}y(b),clearTimeout(P),k()})})();</script>
+<script type="module" src="/codex-navigator/v/1.3.0/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/1.3.0/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/1.3.0/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/1.3.0/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/1.3.0/">Course</a>
+      <a href="/codex-navigator/v/1.3.0/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/1.3.0/moodle/" aria-current="page">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.3.0</a>
+  </div>
+</header>
+<div class="lx-layout lx-layout--wide">
+  
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <h1>Moodle setup</h1>
+  <p class="lx-lead">One Moodle activity (<em>External page with grades</em>) per page. Paste the URL from the table — always the <code>latest/</code> address; the page itself switches each learner to the right version.</p>
+  <h2>Activity settings</h2>
+  <ol>
+    <li><strong>External page URL</strong>: the URL from the table below.</li>
+    <li><strong>URL variables</strong>: <code>uid</code> = <em>User ID</em>, <code>cid</code> = <em>Course ID</em>. Nothing else is needed — do not pass names or e-mails.</li>
+    <li><strong>Maximum grade</strong>: any value (e.g. 100). The page sends <em>score / max</em>, Moodle scales it.</li>
+    <li><strong>Grading method</strong>: <em>Highest</em> is recommended (retries never lower the grade).</li>
+  </ol>
+  <h2>Pages</h2>
+  <table><thead><tr><th>#</th><th>Activity name</th><th>URL to paste</th><th>Points on page</th></tr></thead><tbody><tr><td>1.1</td><td>What Codex is and where it runs</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/getting-started/what-is-codex/</code></td><td>3</td></tr><tr><td>1.2</td><td>Your first session, safely</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/getting-started/first-session/</code></td><td>4</td></tr><tr><td>1.3</td><td>Asking a coding agent for work</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/getting-started/prompting-basics/</code></td><td>4</td></tr><tr><td>1.4</td><td>Lab: decisions in your first sessions</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/getting-started/lab-first-session/</code></td><td>6</td></tr><tr><td>2.1</td><td>Make guidance durable: AGENTS.md and config</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/practical-workflows/agents-md/</code></td><td>3</td></tr><tr><td>2.2</td><td>The plan → build → test → review loop</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/practical-workflows/plan-test-review/</code></td><td>4</td></tr><tr><td>2.3</td><td>Lab: reviewing the agent&#39;s work</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/practical-workflows/lab-review/</code></td><td>6</td></tr><tr><td>3.1</td><td>Extend Codex with MCP and skills</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/advanced/extend-codex/</code></td><td>3</td></tr><tr><td>3.2</td><td>Automate and scale</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/advanced/automate-and-scale/</code></td><td>4</td></tr><tr><td>3.3</td><td>Lab: decisions about automation</td>
+<td><code>https://valeriiakosharna-ops.github.io/codex-navigator/latest/advanced/lab-automation/</code></td><td>6</td></tr></tbody></table>
+  <h2>Which version does a learner see?</h2>
+  <p>Cohorts are pinned in <code>pins.yaml</code> by Moodle course id (see the repository docs, <em>docs/VERSIONING.md</em>). Without a cohort pin, each learner stays on the version they opened first.</p>
+  <script type="application/json" id="lx-pages">[{"id":"getting-started/what-is-codex","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/getting-started/what-is-codex/","max":3},{"id":"getting-started/first-session","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/getting-started/first-session/","max":4},{"id":"getting-started/prompting-basics","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/getting-started/prompting-basics/","max":4},{"id":"getting-started/lab-first-session","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/getting-started/lab-first-session/","max":6},{"id":"practical-workflows/agents-md","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/practical-workflows/agents-md/","max":3},{"id":"practical-workflows/plan-test-review","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/practical-workflows/plan-test-review/","max":4},{"id":"practical-workflows/lab-review","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/practical-workflows/lab-review/","max":6},{"id":"advanced/extend-codex","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/advanced/extend-codex/","max":3},{"id":"advanced/automate-and-scale","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/advanced/automate-and-scale/","max":4},{"id":"advanced/lab-automation","url":"https://valeriiakosharna-ops.github.io/codex-navigator/latest/advanced/lab-automation/","max":6}]</script>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v1.3.0 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>

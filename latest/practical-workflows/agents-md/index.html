@@ -7,10 +7,10 @@
 <meta name="description" content="Stop repeating yourself. Put project rules in AGENTS.md and preferences in config.toml.">
 
 <link rel="icon" href="/codex-navigator/latest/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.2.1-mwcbqkk3">
-<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.2.1","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"practical-workflows/agents-md"}}</script>
-<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),f=document.documentElement,v=!1;try{v=window.self!==window.top}catch(e){v=!0}(v||/[?&]embed=1/.test(location.search))&&f.classList.add("lx-embedded");function h(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(a){return null}}var l=h("localStorage"),o=h("sessionStorage"),u=new URLSearchParams(location.search),s=u.get("uid")||o&&o.getItem("lx:uid")||"",c=u.get("cid")||o&&o.getItem("lx:cid")||"";o&&(s&&o.setItem("lx:uid",s),c&&o.setItem("lx:cid",c)),n.uid=s,n.cid=c;var g=n.version.split(".").slice(0,2).join("."),m="lx:"+n.course+":pin:"+(c||"-")+":"+(s||"-");n.pinKey=m;function p(e){l&&s&&!l.getItem(m)&&l.setItem(m,e)}if(n.channel==="version"){p(g);return}if(n.channel!=="latest"||u.get("nopin"))return;function w(e,t){for(var a=e.split(".").map(Number),i=t.split(".").map(Number),r=0;r<3;r++)if((a[r]||0)!==(i[r]||0))return(a[r]||0)-(i[r]||0);return 0}function b(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var a=t.filter(function(i){return i===e||i.indexOf(e+".")===0});return a.sort(w),a.length?a[a.length-1]:null}f.classList.add("lx-pinning");var x=function(){f.classList.remove("lx-pinning")},y=setTimeout(x,2500),I=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([I("pins.json"),I("versions.json")]).then(function(e){for(var t=e[0]||{},a=((e[1]||{}).versions||[]).map(function(S){return S.version}),i=[u.get("v"),t.users&&s&&t.users[s],t.courses&&c&&t.courses[c],l&&l.getItem(m),t.default],r=null,d=0;d<i.length&&!r;d++)r=b(i[d],a);if(r&&r!==n.version){var L=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+r+"/"+L+location.search+location.hash);return}p(g),clearTimeout(y),x()})})();</script>
-<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.2.1-mwcbqkk3"></script>
+<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.3.0-mwccnsa8">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.3.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"practical-workflows/agents-md"}}</script>
+<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),m=document.documentElement,h=!1;try{h=window.self!==window.top}catch(e){h=!0}(h||/[?&]embed=1/.test(location.search))&&m.classList.add("lx-embedded");function I(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(o){return null}}var i=I("localStorage"),r=I("sessionStorage"),v=new URLSearchParams(location.search),l=v.get("uid")||r&&r.getItem("lx:uid")||"",u=v.get("cid")||r&&r.getItem("lx:cid")||"";r&&(l&&r.setItem("lx:uid",l),u&&r.setItem("lx:cid",u)),n.uid=l,n.cid=u;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,f=function(e){return e==="light"||e==="dark"||e==="auto"},c="auto";function g(e){c=f(e)?e:"auto";var t=c==="dark"||c==="auto"&&d&&d.matches;m.setAttribute("data-theme",t?"dark":"light"),m.setAttribute("data-theme-mode",c);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:c,theme:t?"dark":"light"}}))}catch(o){}}var w=v.get("theme"),T=f(w)?w:h?r&&r.getItem("lx:moodle-theme")||"auto":i&&i.getItem("lx:theme")||"auto";if(g(T),d){var L=function(){c==="auto"&&g("auto")};d.addEventListener?d.addEventListener("change",L):d.addListener(L)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!f(t.theme)||f(w)||(r&&r.setItem("lx:moodle-theme",t.theme),g(t.theme))}),window.LXTheme={get mode(){return c},set:function(e){i&&!h&&i.setItem("lx:theme",e),g(e)}};var b=n.version.split(".").slice(0,2).join("."),p="lx:"+n.course+":pin:"+(u||"-")+":"+(l||"-");n.pinKey=p;function y(e){i&&l&&!i.getItem(p)&&i.setItem(p,e)}if(n.channel==="version"){y(b);return}if(n.channel!=="latest"||v.get("nopin"))return;function M(e,t){for(var o=e.split(".").map(Number),s=t.split(".").map(Number),a=0;a<3;a++)if((o[a]||0)!==(s[a]||0))return(o[a]||0)-(s[a]||0);return 0}function j(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var o=t.filter(function(s){return s===e||s.indexOf(e+".")===0});return o.sort(M),o.length?o[o.length-1]:null}m.classList.add("lx-pinning");var k=function(){m.classList.remove("lx-pinning")},P=setTimeout(k,2500),E=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([E("pins.json"),E("versions.json")]).then(function(e){for(var t=e[0]||{},o=((e[1]||{}).versions||[]).map(function(N){return N.version}),s=[v.get("v"),t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],i&&i.getItem(p),t.default],a=null,x=0;x<s.length&&!a;x++)a=j(s[x],o);if(a&&a!==n.version){var S=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+a+"/"+S+location.search+location.hash);return}y(b),clearTimeout(P),k()})})();</script>
+<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.3.0-mwccnsa8"></script>
 </head>
 <body>
 <header class="lx-header">
@@ -24,22 +24,25 @@
       <a href="/codex-navigator/latest/widgets/">Widget catalog</a>
       <a href="/codex-navigator/latest/moodle/">Moodle setup</a>
     </nav>
-    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.2.1</a>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.3.0</a>
   </div>
 </header>
 <div class="lx-layout">
   <nav class="lx-sidebar" aria-label="Course contents">
-  <h2>1. Get started with Codex</h2>
+  <h2><span class="n">1</span>Get started with Codex</h2>
   <ol><li><a href="/codex-navigator/latest/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/latest/getting-started/first-session/">Your first session, safely</a></li><li><a href="/codex-navigator/latest/getting-started/prompting-basics/">Asking a coding agent for work</a></li><li><a href="/codex-navigator/latest/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li></ol>
-<h2>2. Practical workflows</h2>
+<h2><span class="n">2</span>Practical workflows</h2>
   <ol><li><a href="/codex-navigator/latest/practical-workflows/agents-md/" aria-current="page">Make guidance durable: AGENTS.md and config</a></li><li><a href="/codex-navigator/latest/practical-workflows/plan-test-review/">The plan → build → test → review loop</a></li><li><a href="/codex-navigator/latest/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
-<h2>3. Advanced workflows and automation</h2>
+<h2><span class="n">3</span>Advanced workflows and automation</h2>
   <ol><li><a href="/codex-navigator/latest/advanced/extend-codex/">Extend Codex with MCP and skills</a></li><li><a href="/codex-navigator/latest/advanced/automate-and-scale/">Automate and scale</a></li><li><a href="/codex-navigator/latest/advanced/lab-automation/">Lab: decisions about automation</a></li></ol>
 </nav>
   <main class="lx-main" id="main">
     <article class="lx-prose">
   <div class="lx-pagehead">
-    <div class="lx-crumbs">Module 2: <a href="/codex-navigator/latest/#practical-workflows">Practical workflows</a></div>
+    <div class="lx-crumbs">Module 2 · <a href="/codex-navigator/latest/#practical-workflows">Practical workflows</a></div>
     <h1>Make guidance durable: AGENTS.md and config</h1>
     <p class="lx-lead">Stop repeating yourself. Put project rules in AGENTS.md and preferences in config.toml.</p>
     <div class="lx-meta"><span class="lx-chip">⏱ 35 min</span><span class="lx-chip lx-chip--official">Navigates: Codex 102: Practical Workflows (OpenAI Academy)</span><span class="lx-chip lx-chip--graded">Graded · 3 pt</span></div>
@@ -160,7 +163,7 @@ one of the most common mistakes the official guide lists.</p>
 </div>
 <footer class="lx-footer">
   <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
-  <p>Codex Navigator v1.2.1 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+  <p>Codex Navigator v1.3.0 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
 </footer>
 
 </body>
