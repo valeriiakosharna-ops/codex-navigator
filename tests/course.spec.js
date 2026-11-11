@@ -48,6 +48,12 @@ test("graded page reports to Moodle with the plugin's message format", async ({ 
   await expect(frame.locator(".lx-sidebar")).toBeHidden();
 });
 
+test("inside Moodle, links to other course pages open in a new tab", async ({ page }) => {
+  await page.goto(`${BASE}/__moodle/?url=/getting-started/lab-first-session/&uid=1&cid=1`);
+  const link = page.frameLocator("#extpage-iframe").locator(".lx-callout a", { hasText: "Your first session, safely" });
+  await expect(link).toHaveAttribute("target", "_blank");
+});
+
 test("answers survive a reload", async ({ page }) => {
   await page.goto(`${BASE}/getting-started/what-is-codex/`);
   const q = page.locator("lx-quiz .q").first();

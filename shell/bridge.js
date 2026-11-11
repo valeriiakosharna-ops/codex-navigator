@@ -99,6 +99,18 @@ document.addEventListener("lx-progress", (e) => {
   update();
 });
 
+// ---------------------------------------------------------------- links inside Moodle
+// One Moodle activity = one page. A link to another course page must not replace this
+// activity's iframe, so internal links open the page in a new tab instead.
+if (inFrame) {
+  for (const a of document.querySelectorAll("a[href]")) {
+    const href = a.getAttribute("href");
+    if (!href || href.startsWith("#") || a.target === "_blank") continue;
+    a.target = "_blank";
+    a.rel = "noopener";
+  }
+}
+
 // ---------------------------------------------------------------- small page enhancements
 for (const pre of document.querySelectorAll(".lx-prose pre")) {
   const btn = document.createElement("button");
