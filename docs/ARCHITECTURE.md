@@ -37,6 +37,17 @@ of independently versioned widgets**, with one thin integration layer.
 - Grading: override `maxScore()` and `result() → {score, complete}`; set `static graded = true`.
 - Failure: render errors are caught and shown as a friendly box with a code (LX-R20x), so the rest of the page keeps working.
 
+## Practice-lab engines
+
+`scenario` and `spot` are deterministic assessment engines: no AI and no server. The schema carries the
+graph validation (`superRefine` in `widgets/scenario/widget.mjs`), so a broken scenario never reaches
+learners. Level progression uses the shared `unlock` contract in `base-element.js`. Widgets reveal
+`best` and `exhausted` through `lx-progress`, and dependants unlock themselves. Per-learner
+variants are seeded from `uid + widget id + attempt`.
+
+Client-side scoring can be tampered with by a determined learner. That's fine for formative labs.
+For high-stakes exams, move scoring to a server.
+
 ## Adding a widget
 
 1. `widgets/<name>/widget.mjs`: `name`, `title`, `version`, `kind` (`interactive` | `static`), `graded`, `description`, zod `schema` (use `.describe()` on fields, which feeds the catalog), `example`, and `render()` for static blocks.

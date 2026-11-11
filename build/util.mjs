@@ -18,12 +18,17 @@ inlineMd.use({
 export const inline = (s) => inlineMd.parseInline(String(s ?? ""));
 
 /** Fields that must stay as plain values (never treated as Markdown). */
-const RAW_KEYS = new Set(["id", "url", "type", "answer", "level", "format", "duration", "provider", "prompt", "code", "graded", "shuffle", "kind", "lang"]);
+const RAW_KEYS = new Set([
+  "id", "url", "type", "answer", "level", "format", "duration", "provider", "prompt", "code", "graded", "shuffle", "kind", "lang",
+  // scenario / spot
+  "output", "next", "start", "after", "rating", "severity", "needs", "sets", "vars", "if", "then", "else", "line", "to", "view", "feedback",
+]);
 
 /** Recursively convert string fields of a widget config to inline HTML. */
 export function richify(value, key = "") {
-  if (typeof value === "string") return RAW_KEYS.has(key) ? value : inline(value);
-  if (Array.isArray(value)) return value.map((v) => richify(v, key === "answer" ? "answer" : ""));
+  if (RAW_KEYS.has(key)) return value;
+  if (typeof value === "string") return inline(value);
+  if (Array.isArray(value)) return value.map((v) => richify(v, key));
   if (value && typeof value === "object") {
     return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, richify(v, k)]));
   }

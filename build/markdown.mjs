@@ -81,7 +81,7 @@ export function renderMarkdown(body, ctx) {
         }
         usedIds.add(id);
         const graded = def.graded && parsed.data.graded !== false;
-        const max = graded ? (lang === "quiz" ? parsed.data.questions.length : 1) : 0;
+        const max = graded ? (def.maxScore ? def.maxScore(parsed.data) : 1) : 0;
         widgets.push({ name: lang, id, graded, max });
         return `<lx-${lang} id="${esc(id)}"><script type="application/json">${jsonForScript(config)}</script></lx-${lang}>\n`;
       },

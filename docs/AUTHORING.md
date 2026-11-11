@@ -83,6 +83,8 @@ there.
 | `order` | Put steps in order (1 point, partial credit) | ✓ |
 | `checklist` | Personal to-do list, remembered in the browser | – |
 | `flashcards` | Flip cards for commands and terms | – |
+| `scenario` | Decision scenario: branching story, investigation budget, "stop the agent in time" | ✓ (1/2/3 pt by level) |
+| `spot` | Spot the problems in a diff, log or file, with severity from level 2 | ✓ (1/2/3 pt by level) |
 
 Callouts: `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]`, with an optional title
 after the marker.
@@ -101,6 +103,55 @@ Every page with `quiz` or `order` blocks is graded. The page adds up its points 
 block is practice only, add `graded: false` to it.
 
 Give interactive blocks an `id:` if you might reorder them later. Saved answers are tied to it.
+
+## Practice labs: `scenario` and `spot`
+
+Labs test **judgement**, not tool skills. No AI and no environment: everything is checked
+automatically by rules you write.
+
+### Levels
+
+| | Level 1 | Level 2 | Level 3 |
+|---|---|---|---|
+| Feedback | after every decision | at the end | at the end |
+| Attempts | unlimited | 2 | 1 |
+| Typical content | 2–3 clear options | 4–5 options, distractors, delayed consequences | ambiguity, investigation budget, live agent stream |
+| `spot` | number of problems shown | severity required, decoys | severity required, decoys, 1 attempt |
+
+Chain levels with `unlock: { after: <id of previous level> }`. The next level opens at ≥ 70% (`min:`)
+or once the previous level's attempts are used up, so nobody gets stuck.
+
+### Writing a scenario
+
+A scenario is a set of **steps**. Each step has a `situation` and exactly one of:
+
+- `choices`: each choice has a `rating` (`optimal`, `acceptable`, `risky` or `critical`), an `explain` (shown in the debrief), and either `next: <step>` or `end: true`;
+- `stream`: agent output shown line by line. Mark the first line where things go wrong with `red: true`. The learner should press **Stop** on that line or the next one;
+- `ending: true`: the final narrative.
+
+Optional tools for harder levels:
+
+| Field | Effect |
+|---|---|
+| `evidence` on a step + `budget` on the scenario | Investigation actions with a cost. Mark the essential ones `key: true`. |
+| `needs: [evidence-id]` on a choice | A correct decision taken *without* checking that evidence drops one rating level. This tests evidence-before-action. |
+| `sets: [flag]` + `extra: { flag: text }` or `next: { if: flag, then: a, else: b }` | Delayed consequences: an early choice changes what happens later. |
+| `vars: { name: [a, b, c] }` + `{{name}}` in any text | Each learner (and each attempt) gets a different variant. Makes answers hard to share. |
+
+**Scoring:** decision quality is the average over the path (optimal 1, acceptable 0.5, risky and critical 0).
+With investigation, the score is 60% decisions + 25% key evidence checked + 15% efficiency (budget not wasted).
+Any critical decision caps the attempt at 30%. The best attempt counts.
+
+The build checks the scenario for you: missing steps, loops, unreachable steps, undefined `{{vars}}`,
+and `needs` that point to non-existent evidence.
+
+### Writing a spot task
+
+Put the content in `code: |2`. The `2` keeps lines that start with a space, which matters for diffs.
+List each planted problem with its `line` (and `to` for a range), `severity`, `label` and `explain`.
+Add `decoys` for lines that look wrong but aren't, so learners learn from their false alarms.
+Scoring: found = 1, found with the wrong severity = 0.6, each false alarm −0.34, divided by the
+number of problems.
 
 ## Error codes
 

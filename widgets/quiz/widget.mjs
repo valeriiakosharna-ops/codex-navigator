@@ -6,6 +6,7 @@ export default {
   version: "1.0.0",
   kind: "interactive",
   graded: true,
+  maxScore: (d) => d.questions.length,
   description:
     "Multiple-choice questions with instant feedback and an explanation. Single answer (`answer: 0`) or several (`answer: [0, 2]`). Counts towards the Moodle grade: one point per question.",
   schema: z

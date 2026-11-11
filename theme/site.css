@@ -170,13 +170,13 @@ a:hover { color: var(--lx-accent); }
 .lx-compare__title { font-family: var(--lx-font-heading); color: var(--lx-heading); font-size: 19px; font-weight: 600; margin: 0 0 10px; }
 
 /* Placeholder while web components load */
-lx-quiz:not(:defined), lx-order:not(:defined), lx-checklist:not(:defined), lx-flashcards:not(:defined) {
+lx-quiz:not(:defined), lx-order:not(:defined), lx-checklist:not(:defined), lx-flashcards:not(:defined), lx-scenario:not(:defined), lx-spot:not(:defined) {
   display: block; min-height: 120px; margin: 0 0 24px; border-radius: var(--lx-radius-lg);
   background: linear-gradient(90deg, #f3f5f8, #fafbfc, #f3f5f8); background-size: 200% 100%;
   animation: lx-shimmer 1.4s infinite linear;
 }
 @keyframes lx-shimmer { to { background-position: -200% 0; } }
-lx-quiz, lx-order, lx-checklist, lx-flashcards { display: block; margin: 0 0 24px; }
+lx-quiz, lx-order, lx-checklist, lx-flashcards, lx-scenario, lx-spot { display: block; margin: 0 0 24px; }
 
 /* ---------- Pager & footer ---------- */
 .lx-pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--lx-border); }
