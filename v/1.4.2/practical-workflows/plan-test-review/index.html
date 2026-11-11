@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The plan → build → test → review loop · Codex Navigator</title>
+<meta name="description" content="Make Codex verify its own work, then review the diff yourself or with /review and GitHub code review.">
+
+<link rel="icon" href="/codex-navigator/v/1.4.2/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/1.4.2/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.4.2","channel":"version","base":"/codex-navigator/v/1.4.2/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"practical-workflows/plan-test-review"}}</script>
+<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),m=document.documentElement,h=!1;try{h=window.self!==window.top}catch(e){h=!0}(h||/[?&]embed=1/.test(location.search))&&m.classList.add("lx-embedded");function I(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(o){return null}}var i=I("localStorage"),r=I("sessionStorage"),v=new URLSearchParams(location.search),l=v.get("uid")||r&&r.getItem("lx:uid")||"",u=v.get("cid")||r&&r.getItem("lx:cid")||"";r&&(l&&r.setItem("lx:uid",l),u&&r.setItem("lx:cid",u)),n.uid=l,n.cid=u;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,f=function(e){return e==="light"||e==="dark"||e==="auto"},c="auto";function g(e){c=f(e)?e:"auto";var t=c==="dark"||c==="auto"&&d&&d.matches;m.setAttribute("data-theme",t?"dark":"light"),m.setAttribute("data-theme-mode",c);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:c,theme:t?"dark":"light"}}))}catch(o){}}var w=v.get("theme"),T=f(w)?w:h?r&&r.getItem("lx:moodle-theme")||"auto":i&&i.getItem("lx:theme")||"auto";if(g(T),d){var L=function(){c==="auto"&&g("auto")};d.addEventListener?d.addEventListener("change",L):d.addListener(L)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!f(t.theme)||f(w)||(r&&r.setItem("lx:moodle-theme",t.theme),g(t.theme))}),window.LXTheme={get mode(){return c},set:function(e){i&&!h&&i.setItem("lx:theme",e),g(e)}};var b=n.version.split(".").slice(0,2).join("."),p="lx:"+n.course+":pin:"+(u||"-")+":"+(l||"-");n.pinKey=p;function y(e){i&&l&&!i.getItem(p)&&i.setItem(p,e)}if(n.channel==="version"){y(b);return}if(n.channel!=="latest"||v.get("nopin"))return;function M(e,t){for(var o=e.split(".").map(Number),s=t.split(".").map(Number),a=0;a<3;a++)if((o[a]||0)!==(s[a]||0))return(o[a]||0)-(s[a]||0);return 0}function j(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var o=t.filter(function(s){return s===e||s.indexOf(e+".")===0});return o.sort(M),o.length?o[o.length-1]:null}m.classList.add("lx-pinning");var k=function(){m.classList.remove("lx-pinning")},P=setTimeout(k,2500),E=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([E("pins.json"),E("versions.json")]).then(function(e){for(var t=e[0]||{},o=((e[1]||{}).versions||[]).map(function(N){return N.version}),s=[v.get("v"),t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],i&&i.getItem(p),t.default],a=null,x=0;x<s.length&&!a;x++)a=j(s[x],o);if(a&&a!==n.version){var S=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+a+"/"+S+location.search+location.hash);return}y(b),clearTimeout(P),k()})})();</script>
+<script type="module" src="/codex-navigator/v/1.4.2/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/1.4.2/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/1.4.2/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/1.4.2/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/1.4.2/">Course</a>
+      <a href="/codex-navigator/v/1.4.2/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/1.4.2/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.4.2</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started with Codex</h2>
+  <ol><li><a href="/codex-navigator/v/1.4.2/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/v/1.4.2/getting-started/first-session/">Your first session, safely</a></li><li><a href="/codex-navigator/v/1.4.2/getting-started/prompting-basics/">Asking a coding agent for work</a></li><li><a href="/codex-navigator/v/1.4.2/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li></ol>
+<h2><span class="n">2</span>Practical workflows</h2>
+  <ol><li><a href="/codex-navigator/v/1.4.2/practical-workflows/agents-md/">Make guidance durable: AGENTS.md and config</a></li><li><a href="/codex-navigator/v/1.4.2/practical-workflows/plan-test-review/" aria-current="page">The plan → build → test → review loop</a></li><li><a href="/codex-navigator/v/1.4.2/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">3</span>Advanced workflows and automation</h2>
+  <ol><li><a href="/codex-navigator/v/1.4.2/advanced/extend-codex/">Extend Codex with MCP and skills</a></li><li><a href="/codex-navigator/v/1.4.2/advanced/automate-and-scale/">Automate and scale</a></li><li><a href="/codex-navigator/v/1.4.2/advanced/lab-automation/">Lab: decisions about automation</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 2 · <a href="/codex-navigator/v/1.4.2/#practical-workflows">Practical workflows</a></div>
+    <h1>The plan → build → test → review loop</h1>
+    <p class="lx-lead">Make Codex verify its own work, then review the diff yourself or with /review and GitHub code review.</p>
+    <div class="lx-meta"><span class="lx-chip">⏱ 35 min</span><span class="lx-chip lx-chip--official">Navigates: Codex 102: Practical Workflows (OpenAI Academy)</span><span class="lx-chip lx-chip--graded">Graded · 4 pt</span></div>
+  </div>
+  <div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">The loop</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Review tools</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Check yourself</span></button></nav>
+  <section class="lx-slide is-active" id="lx-slide-1" data-label="Why this matters" aria-label="Why this matters">
+<h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>An agent can produce a lot of code quickly. The bottleneck moves to <strong>verification</strong>. Teams
+that get value from Codex make &quot;done&quot; mean <em>tested and reviewed</em>, not just <em>written</em>.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/guides/best-practices#testing-and-review" target="_blank" rel="noopener">Codex best practices — Testing and review</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The official description of the verification loop and the review tools.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The loop: write or update tests → run checks → confirm behaviour → review the diff.</li><li>The <code>/review</code> targets: base branch, uncommitted changes, a specific commit, custom instructions.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/guides/best-practices#testing-and-review" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-2" data-label="The loop" aria-label="The loop" hidden>
+<h2 id="the-loop">The loop<a class="lx-anchor" href="#the-loop" aria-hidden="true">#</a></h2>
+<lx-order id="work-loop"><script type="application/json">{"id":"work-loop","title":"A healthy Codex task","prompt":"Put the loop in order.","items":["Describe goal, context, constraints and done-when","Review and approve Codex&#39;s plan","Codex implements the change","Codex writes or updates tests and runs lint, types and tests","You review the diff (or run /review) and give feedback","Commit or open a pull request"],"explain":"Plan before code, verify before commit. Codex runs the checks; a human still reads the diff.","graded":true}</script></lx-order>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>While you watch Codex 102</div><p>Count how often the presenters ask Codex to run the tests. Treat every task that ends without a check as a warning sign.</p>
+</div>
+</section>
+<section class="lx-slide" id="lx-slide-3" data-label="Review tools" aria-label="Review tools" hidden>
+<h2 id="review-tools">Review tools<a class="lx-anchor" href="#review-tools" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>In the desktop app</strong>, use the diff panel. Comment on specific lines, and your feedback goes into the next turn.</li>
+<li><strong><code>/review</code> in the CLI</strong> reviews changes without modifying your working tree: against a base branch, uncommitted changes or a commit.</li>
+<li><strong>GitHub code review</strong>: Codex can review pull requests automatically, or when someone mentions it.</li>
+</ul>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/code-review" target="_blank" rel="noopener">Code review with Codex</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span><span class="lx-chip">intermediate</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>How to trigger reviews on PRs automatically or by mention.</li><li>Adding team review rules (e.g. a <code>code_review.md</code> referenced from AGENTS.md).</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/code-review" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">Second pair of eyes before a PR</div>
+    <div class="lx-usecase__who">Developer finishing a feature branch</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>You wrote most of the feature yourself and want a quick independent review before asking colleagues.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>/review against main. Focus on error handling and on any behaviour
+change that is not covered by tests. List findings by severity; do not edit files.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A prioritised list of findings with file and line references. Your working tree is untouched.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>Ask for findings &quot;by severity&quot; so the important ones aren&#39;t buried.</li><li>Agent review supplements human review. It doesn&#39;t replace it.</li></ul></div>
+  </div>
+</article>
+<div class="lx-callout lx-callout--warning" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>Common pitfall</div><p>Watching Codex step by step instead of working in parallel. Give it a clear done-when, let it
+run the checks, and come back to review the result.</p>
+</div>
+</section>
+<section class="lx-slide" id="lx-slide-4" data-label="Check yourself" aria-label="Check yourself" hidden>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="loop"><script type="application/json">{"id":"loop","shuffle":false,"graded":true,"questions":[{"q":"What does \u003ccode>/review\u003c/code> do to your working tree?","options":["Applies fixes automatically","Nothing. It only reports findings","Creates a new branch"],"answer":1,"explain":"The CLI review reads changes and reports. It doesn&#39;t modify files."},{"q":"Which make a task &quot;done&quot; in a healthy loop?","options":["Code is written","Relevant checks pass","The diff has been reviewed","Codex says it is done"],"answer":[1,2],"explain":"Done means verified and reviewed, not just claimed."},{"q":"Where can Codex review pull requests automatically?","options":["Only in the CLI","In GitHub","Only in the IDE"],"answer":1,"explain":"Codex can review PRs automatically or when mentioned."}]}</script></lx-quiz>
+
+</section>
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 4</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/v/1.4.2/practical-workflows/agents-md/"><small>← Previous</small><strong>Make guidance durable: AGENTS.md and config</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/v/1.4.2/practical-workflows/lab-review/"><small>Next →</small><strong>Lab: reviewing the agent&#39;s work</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v1.4.2 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>
