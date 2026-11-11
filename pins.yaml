@@ -1,0 +1,18 @@
+# Which course version each cohort sees. Edit on the main branch; it takes effect on the
+# next deploy (a few minutes) without releasing a new version. See docs/VERSIONING.md.
+#
+# Moodle course id  ->  version.  "1.0" means "newest 1.0.x" (recommended: typo fixes still
+# reach learners, structural changes do not).
+#
+# courses:
+#   "12": "1.0"      # Spring 2027 cohort
+#   "15": "1.1"      # Autumn 2027 cohort
+#
+# Exceptions for single learners (Moodle user id), e.g. someone moved between cohorts:
+# users:
+#   "4711": "1.0"
+#
+# Optional fallback for learners with no pin at all (otherwise: latest):
+# default: "1.1"
+courses: {}
+users: {}

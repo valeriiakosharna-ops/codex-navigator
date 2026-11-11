@@ -1,0 +1,16 @@
+# Course settings. Authors rarely touch this file.
+id: codex-navigator            # never change after launch: progress & pins are keyed by it
+title: Codex Navigator
+tagline: A guided path through OpenAI's official Codex training — with use cases, best practices and the tips you wish someone had told you.
+description: Navigator course for OpenAI Codex that links to official OpenAI training and adds practical guidance.
+language: en
+gradeMode: on-complete         # on-complete: send the page score when all graded activities are done
+moodleOrigins: []              # e.g. ["https://moodle.example.com"] to only report grades to your Moodle
+footer: >-
+  This course is a navigator: it links to official OpenAI materials and adds NIX recommendations.
+  Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.
+intro: |
+  **How this navigator works.** Each page sends you to an official OpenAI resource and tells you
+  *why* it matters, *what to watch for* while studying it, and how teams actually use it.
+  Then you check yourself. Typical rhythm per page: read the brief → open the official material →
+  come back for the use cases and the quiz.

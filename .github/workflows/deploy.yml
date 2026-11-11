@@ -1,0 +1,54 @@
+# Publishes to GitHub Pages (branch gh-pages):
+#   push to main      -> /preview/          (unreleased, for reviewers)
+#   tag vX.Y.Z        -> /v/X.Y.Z/ and /latest/ (if it is the highest version)
+# Every run also refreshes /versions.json and /pins.json (pins always come from main).
+name: Deploy
+on:
+  push:
+    branches: [main]
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check out gh-pages into ./site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch origin gh-pages
+            git worktree add site origin/gh-pages
+            git -C site switch -C gh-pages
+          else
+            git worktree add --orphan -b gh-pages site
+          fi
+      - name: Take pins from main
+        run: git show origin/main:pins.yaml > "$RUNNER_TEMP/pins.yaml" 2>/dev/null || cp pins.yaml "$RUNNER_TEMP/pins.yaml"
+      - name: Build
+        env:
+          LX_PREVIEW_VERSION: 0.0.0-${{ github.sha }}
+        run: >
+          node scripts/deploy.mjs --site site --ref "$GITHUB_REF"
+          --pins "$RUNNER_TEMP/pins.yaml"
+          --site-url "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+      - name: Publish
+        run: |
+          cd site
+          git add -A
+          if git diff --cached --quiet; then echo "Nothing to publish"; exit 0; fi
+          git commit -m "deploy ${GITHUB_REF_NAME} (${GITHUB_SHA::7})"
+          git push origin gh-pages
