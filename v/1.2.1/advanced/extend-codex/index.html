@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extend Codex with MCP and skills · Codex Navigator</title>
+<meta name="description" content="Bring outside context in with MCP; package repeatable work as skills. Know which tool fits which job.">
+
+<link rel="icon" href="/codex-navigator/v/1.2.1/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/1.2.1/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.2.1","channel":"version","base":"/codex-navigator/v/1.2.1/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"advanced/extend-codex"}}</script>
+<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),f=document.documentElement,v=!1;try{v=window.self!==window.top}catch(e){v=!0}(v||/[?&]embed=1/.test(location.search))&&f.classList.add("lx-embedded");function h(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(a){return null}}var l=h("localStorage"),o=h("sessionStorage"),u=new URLSearchParams(location.search),s=u.get("uid")||o&&o.getItem("lx:uid")||"",c=u.get("cid")||o&&o.getItem("lx:cid")||"";o&&(s&&o.setItem("lx:uid",s),c&&o.setItem("lx:cid",c)),n.uid=s,n.cid=c;var g=n.version.split(".").slice(0,2).join("."),m="lx:"+n.course+":pin:"+(c||"-")+":"+(s||"-");n.pinKey=m;function p(e){l&&s&&!l.getItem(m)&&l.setItem(m,e)}if(n.channel==="version"){p(g);return}if(n.channel!=="latest"||u.get("nopin"))return;function w(e,t){for(var a=e.split(".").map(Number),i=t.split(".").map(Number),r=0;r<3;r++)if((a[r]||0)!==(i[r]||0))return(a[r]||0)-(i[r]||0);return 0}function b(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var a=t.filter(function(i){return i===e||i.indexOf(e+".")===0});return a.sort(w),a.length?a[a.length-1]:null}f.classList.add("lx-pinning");var x=function(){f.classList.remove("lx-pinning")},y=setTimeout(x,2500),I=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([I("pins.json"),I("versions.json")]).then(function(e){for(var t=e[0]||{},a=((e[1]||{}).versions||[]).map(function(S){return S.version}),i=[u.get("v"),t.users&&s&&t.users[s],t.courses&&c&&t.courses[c],l&&l.getItem(m),t.default],r=null,d=0;d<i.length&&!r;d++)r=b(i[d],a);if(r&&r!==n.version){var L=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+r+"/"+L+location.search+location.hash);return}p(g),clearTimeout(y),x()})})();</script>
+<script type="module" src="/codex-navigator/v/1.2.1/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/1.2.1/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/1.2.1/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/1.2.1/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/1.2.1/">Course</a>
+      <a href="/codex-navigator/v/1.2.1/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/1.2.1/moodle/">Moodle setup</a>
+    </nav>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.2.1</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2>1. Get started with Codex</h2>
+  <ol><li><a href="/codex-navigator/v/1.2.1/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/v/1.2.1/getting-started/first-session/">Your first session, safely</a></li><li><a href="/codex-navigator/v/1.2.1/getting-started/prompting-basics/">Asking a coding agent for work</a></li><li><a href="/codex-navigator/v/1.2.1/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li></ol>
+<h2>2. Practical workflows</h2>
+  <ol><li><a href="/codex-navigator/v/1.2.1/practical-workflows/agents-md/">Make guidance durable: AGENTS.md and config</a></li><li><a href="/codex-navigator/v/1.2.1/practical-workflows/plan-test-review/">The plan → build → test → review loop</a></li><li><a href="/codex-navigator/v/1.2.1/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2>3. Advanced workflows and automation</h2>
+  <ol><li><a href="/codex-navigator/v/1.2.1/advanced/extend-codex/" aria-current="page">Extend Codex with MCP and skills</a></li><li><a href="/codex-navigator/v/1.2.1/advanced/automate-and-scale/">Automate and scale</a></li><li><a href="/codex-navigator/v/1.2.1/advanced/lab-automation/">Lab: decisions about automation</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 3: <a href="/codex-navigator/v/1.2.1/#advanced">Advanced workflows and automation</a></div>
+    <h1>Extend Codex with MCP and skills</h1>
+    <p class="lx-lead">Bring outside context in with MCP; package repeatable work as skills. Know which tool fits which job.</p>
+    <div class="lx-meta"><span class="lx-chip">⏱ 35 min</span><span class="lx-chip lx-chip--official">Navigates: Codex 103: Advanced Workflows and Automation (OpenAI Academy)</span><span class="lx-chip lx-chip--graded">Graded · 3 pt</span></div>
+  </div>
+  <h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>Sooner or later the context Codex needs isn&#39;t in the repo: a ticket, a dashboard, internal
+docs. And sooner or later you notice you keep giving the same multi-step instruction. Codex has
+two extension mechanisms for these cases:</p>
+<ul>
+<li><strong>MCP</strong> (Model Context Protocol) connects Codex to <em>external tools and data</em>.</li>
+<li><strong>Skills</strong> package a <em>repeatable method</em>: a <code>SKILL.md</code> with instructions, plus optional scripts and context.</li>
+</ul>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Academy</div>
+      <div class="lx-resource__title"><a href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-103-advanced-workflows-and-automation-2026-03-18" target="_blank" rel="noopener">Codex 103: Advanced Workflows and Automation</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">course</span><span class="lx-chip">advanced</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The official session on long-horizon tasks, automation and scaling engineering systems with Codex.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Which integrations the presenters actually rely on, and how few of them there are.</li><li>How repeatable work gets turned into something reusable.</li></ul></div>
+  <a class="lx-resource__cta" href="https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-103-advanced-workflows-and-automation-2026-03-18" target="_blank" rel="noopener">Open the course <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<h2 id="which-mechanism">Which mechanism?<a class="lx-anchor" href="#which-mechanism" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>You keep…</th>
+<th>Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>…repeating project rules</td>
+<td><strong>AGENTS.md</strong></td>
+<td>&quot;Use pnpm; run lint before finishing&quot;</td>
+</tr>
+<tr>
+<td>…repeating a multi-step method</td>
+<td><strong>Skill</strong></td>
+<td>Release notes, log triage, PR checklist</td>
+</tr>
+<tr>
+<td>…copy-pasting from another system</td>
+<td><strong>MCP server</strong></td>
+<td>Issue tracker, docs portal, observability</td>
+</tr>
+</tbody></table>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/extend/mcp" target="_blank" rel="noopener">MCP in Codex</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span><span class="lx-chip">advanced</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Supported transports (STDIO and Streamable HTTP, with OAuth).</li><li>Setup: Settings → MCP servers in the app, or <code>codex mcp add</code> in the CLI.</li><li>The official advice is to start with <strong>one or two</strong> tools that remove a frequent manual step.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/extend/mcp" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/skills-and-plugins" target="_blank" rel="noopener">Skills and plugins</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span><span class="lx-chip">advanced</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>One job per skill, with a description that says <strong>what it does and when to use it</strong>. That is how Codex picks it.</li><li>Locations: <code>$HOME/.agents/skills</code> (personal) or <code>.agents/skills</code> in the repo (team).</li><li><code>$skill-creator</code> helps you write a first skill. Iterate locally, then package it as a plugin to share.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/skills-and-plugins" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">A release-notes skill</div>
+    <div class="lx-usecase__who">Team lead who writes release notes every two weeks</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>Each release you paste the same 10-line instruction to turn merged PRs into user-facing notes.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>Use $skill-creator to make a skill called release-notes:
+input: a git range (e.g. v1.4.0..HEAD);
+steps: list merged PRs, group by feature/fix/internal, drop internal ones,
+rewrite titles for end users, flag anything that needs a migration note;
+output: Markdown in docs/releases/&lt;version&gt;.md.
+Put it in .agents/skills so the whole team gets it.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A reusable skill checked into the repo. Next time, &quot;write release notes for v1.5.0&quot; is enough.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>If you keep correcting the same thing in the output, update the skill, not your prompt.</li></ul></div>
+  </div>
+</article>
+<lx-flashcards id="extend-cards"><script type="application/json">{"id":"extend-cards","title":"MCP, skill or AGENTS.md?","cards":[{"front":"Codex should read tickets from your issue tracker","back":"\u003cstrong>MCP.\u003c/strong> External, changing data."},{"front":"&quot;Always add a changelog entry&quot; for this repo","back":"\u003cstrong>AGENTS.md.\u003c/strong> A durable project rule."},{"front":"A 7-step incident-summary procedure you run weekly","back":"\u003cstrong>Skill.\u003c/strong> A repeatable method with clear input and output."},{"front":"Look up live metrics while debugging","back":"\u003cstrong>MCP.\u003c/strong> Context that lives outside the repo."}]}</script></lx-flashcards>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="extend-quiz"><script type="application/json">{"id":"extend-quiz","shuffle":false,"graded":true,"questions":[{"q":"The official rule of thumb for creating a skill is…","options":["Create one for every task","If you keep repeating the same prompt or correction, make it a skill","Only create skills for CI"],"answer":1,"explain":"Skills capture repetition. If you aren&#39;t repeating yourself, you don&#39;t need one yet."},{"q":"Where do team-shared skills live?","options":["\u003ccode>.agents/skills\u003c/code> in the repository","\u003ccode>~/Downloads\u003c/code>","Inside AGENTS.md"],"answer":0,"explain":"The repo folder means everyone who clones the project gets the skill."},{"q":"How many MCP integrations does the official guide suggest starting with?","options":["As many as possible","One or two that remove a frequent manual task","None"],"answer":1,"explain":"Start small. Each tool adds context and surface area."}]}</script></lx-quiz>
+
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/v/1.2.1/practical-workflows/lab-review/"><small>← Previous</small><strong>Lab: reviewing the agent&#39;s work</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/v/1.2.1/advanced/automate-and-scale/"><small>Next →</small><strong>Automate and scale</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v1.2.1 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>
