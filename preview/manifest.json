@@ -1,15 +1,15 @@
 {
   "course": "codex-navigator",
   "title": "Codex Navigator",
-  "version": "0.0.0-6ea222278617f5113be34247ccce3914dad1a03a",
+  "version": "0.0.0-b4665cfe35aaefcec4c56945960d0f4b5414d13f",
   "channel": "preview",
-  "builtAt": "2026-11-11T16:45:59.056Z",
+  "builtAt": "2026-11-11T17:02:05.893Z",
   "widgets": {
     "checklist": "1.0.0",
     "compare": "1.0.0",
     "flashcards": "1.0.0",
     "order": "1.0.0",
-    "quiz": "1.0.0",
+    "quiz": "1.1.0",
     "resource": "1.0.0",
     "scenario": "1.1.0",
     "spot": "1.1.0",
