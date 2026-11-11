@@ -19,7 +19,7 @@ const cmp = (a, b) => {
   return x[0] - y[0] || x[1] - y[1] || x[2] - y[2];
 };
 
-export async function deploy({ site, ref, siteUrl, pins = "pins.yaml", log = console.log }) {
+export async function deploy({ site, ref, siteUrl, pins = "pins.yaml", moodle, log = console.log }) {
   siteUrl = siteUrl.replace(/\/?$/, "/");
   const siteRoot = new URL(siteUrl).pathname;
   fs.mkdirSync(site, { recursive: true });
@@ -55,13 +55,13 @@ export async function deploy({ site, ref, siteUrl, pins = "pins.yaml", log = con
   } else {
     throw new Error(`Unsupported ref ${ref}`);
   }
-  const root = writeRootFiles(site, pins, { siteRoot });
+  const root = writeRootFiles(site, pins, { siteRoot, moodleFile: moodle });
   log(`✓ root files: versions [${root.versions.join(", ")}], latest ${root.latest}`);
   return root;
 }
 
 if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1]))) {
   const arg = (n) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : undefined; };
-  deploy({ site: arg("--site") || "site", ref: arg("--ref") || process.env.GITHUB_REF, siteUrl: arg("--site-url") || process.env.LX_SITE_URL, pins: arg("--pins") || "pins.yaml" })
+  deploy({ site: arg("--site") || "site", ref: arg("--ref") || process.env.GITHUB_REF, siteUrl: arg("--site-url") || process.env.LX_SITE_URL, pins: arg("--pins") || "pins.yaml", moodle: arg("--moodle") || "moodle.yaml" })
     .catch((e) => { if (e.lxErrors) printErrors(e.lxErrors); else console.error(e); process.exit(1); });
 }

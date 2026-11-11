@@ -67,7 +67,7 @@ test("level 3: acting without evidence is downgraded; stopping the agent on time
   await l3.getByRole("button", { name: "See results" }).click();
   await expect(l3.locator(".path li").first()).toContainText("downgraded");
   await expect(l3.locator(".path li").nth(1).locator(".rating")).toHaveText("optimal");
-  await expect(l3.getByText("No attempts left")).toBeVisible(); // level 3 = one attempt
+  await expect(l3.getByRole("button", { name: "Try again" })).toBeVisible(); // any practice can be retaken
 });
 
 test("spot level 2: severity is required and graded; decoys explained", async ({ page }) => {
@@ -110,4 +110,31 @@ test("lab page reports one combined grade to Moodle", async ({ page }) => {
   await l1.getByRole("button", { name: "See results" }).click();
   // L1 1/1 + L2 0.5*2 + L3 1*3 = 5 of 6
   await expect.poll(() => page.evaluate(() => window.__messages.filter((m) => m.type === "moodleSubmitGrade").pop())).toEqual({ type: "moodleSubmitGrade", score: 5, maxScore: 6 });
+});
+
+test("retakes: best result is kept, and the next level opens after two tries", async ({ page }) => {
+  await page.goto(LAB1);
+  const l1 = page.locator("#lab1-l1");
+  await showSlide(page, "#lab1-l1");
+  const lowRun = async () => {
+    await l1.getByRole("button", { name: /Start scenario|Try again/ }).click();
+    await choose(l1, "Commit or stash my changes"); await cont(l1);
+    await choose(l1, "Switch to full access"); await cont(l1); // critical -> capped at 30%
+  };
+  await lowRun();
+  await expect(l1.locator(".score b")).toHaveText("30%");
+  await showSlide(page, "#lab1-l2");
+  await expect(page.locator("#lab1-l2 .locked")).toBeVisible();
+  await showSlide(page, "#lab1-l1");
+  await lowRun();
+  await showSlide(page, "#lab1-l2");
+  await expect(page.locator("#lab1-l2 .locked")).toHaveCount(0); // two tries -> unlocked
+  // a better retake raises the best score
+  await showSlide(page, "#lab1-l1");
+  await l1.getByRole("button", { name: "Try again" }).click();
+  await choose(l1, "Commit or stash my changes"); await cont(l1);
+  await choose(l1, "approve this one request"); await cont(l1);
+  await choose(l1, "ask Codex why it changed the deploy workflow"); await cont(l1);
+  await l1.getByRole("button", { name: "See results" }).click();
+  await expect(l1.locator(".score .muted")).toContainText("best 100%");
 });

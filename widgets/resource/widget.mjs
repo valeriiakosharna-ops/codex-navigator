@@ -7,7 +7,7 @@ const LEVELS = ["beginner", "intermediate", "advanced"];
 export default {
   name: "resource",
   title: "Official resource card",
-  version: "1.0.0",
+  version: "1.1.0",
   kind: "static",
   graded: false,
   description:
@@ -23,6 +23,7 @@ export default {
       why: z.string().optional().describe("One or two sentences: why this resource, for this topic."),
       focus: z.array(z.string()).optional().describe("While you study, pay attention to… (tips, timestamps, sections)."),
       official: z.boolean().default(true).describe("Shows the “Official” badge."),
+      access: z.string().optional().describe('Access note shown as a badge, e.g. "Free OpenAI Academy account".'),
     })
     .strict(),
   render(c) {
@@ -31,6 +32,7 @@ export default {
       `<span class="lx-chip">${esc(c.format)}</span>`,
       c.duration ? `<span class="lx-chip">⏱ ${esc(c.duration)}</span>` : "",
       c.level ? `<span class="lx-chip">${esc(c.level)}</span>` : "",
+      c.access ? `<span class="lx-chip lx-chip--access">🔑 ${c.access}</span>` : "",
     ].join("");
     const focus = c.focus?.length
       ? `<div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul>${c.focus.map((f) => `<li>${f}</li>`).join("")}</ul></div>`

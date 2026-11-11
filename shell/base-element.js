@@ -161,7 +161,7 @@ export class LxElement extends LitElement {
       <div>
         ${this.config.level ? html`<span class="lvl lvl-${this.config.level}">Level ${this.config.level}</span>` : ""}
         <h3>${unsafeHTML(this.config.title || "Locked")}</h3>
-        <p class="muted">Unlocks when you score at least ${Math.round((u.min ?? 0.7) * 100)}% in “${unsafeHTML(name)}” (or use all its attempts).</p>
+        <p class="muted">Unlocks when you score at least ${Math.round((u.min ?? 0.7) * 100)}% in “${unsafeHTML(name)}” (or after two tries).</p>
       </div>
     </section>`;
   }

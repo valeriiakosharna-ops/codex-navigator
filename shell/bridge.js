@@ -102,12 +102,40 @@ document.addEventListener("lx-progress", (e) => {
 // ---------------------------------------------------------------- links inside Moodle
 // One Moodle activity = one page. A link to another course page must not replace this
 // activity's iframe, so internal links open the page in a new tab instead.
+// Links to other topics go to the matching Moodle activity (from moodle.yaml), replacing the
+// whole Moodle page; without a mapping they go to the Moodle course page. Never to this site.
 if (inFrame) {
+  const moodleOrigin = target !== "*" ? target : null;
+  const pageLinks = [...document.querySelectorAll("a[data-lx-page]")];
   for (const a of document.querySelectorAll("a[href]")) {
     const href = a.getAttribute("href");
-    if (!href || href.startsWith("#") || a.target === "_blank") continue;
-    a.target = "_blank";
+    if (!href || href.startsWith("#") || a.target === "_blank" || a.hasAttribute("data-lx-page")) continue;
+    a.target = "_blank"; // other internal links (rare): keep this activity intact
     a.rel = "noopener";
+  }
+  if (pageLinks.length) {
+    const courseUrl = moodleOrigin && LX.cid ? `${moodleOrigin}/course/view.php?id=${encodeURIComponent(LX.cid)}` : null;
+    const point = (map) => {
+      for (const a of pageLinks) {
+        const cm = map && map[a.dataset.lxPage];
+        const url = cm ? `${moodleOrigin}/mod/extpagewithgrades/view.php?id=${cm}` : courseUrl;
+        if (url) {
+          a.href = url;
+          a.target = "_top";
+          a.title = cm ? "Open this topic in Moodle" : "Open the Moodle course";
+        } else {
+          a.target = "_blank";
+          a.rel = "noopener";
+        }
+      }
+    };
+    point(null);
+    if (moodleOrigin && LX.cid) {
+      fetch(`${LX.siteRoot}moodle.json`, { cache: "no-cache" })
+        .then((r) => (r.ok ? r.json() : {}))
+        .then((m) => point(m.sites?.[moodleOrigin]?.courses?.[LX.cid] || null))
+        .catch(() => {});
+    }
   }
 }
 

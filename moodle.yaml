@@ -1,0 +1,20 @@
+# Moodle activity ids for each course page, per Moodle site and course.
+# Links between topics then open the right activity inside Moodle instead of this website.
+# Edit on main; it takes effect on the next deploy (no release needed). See docs/VERSIONING.md.
+#
+# Find the id in the activity URL: .../mod/extpagewithgrades/view.php?id=152  ->  152
+# Keys on the left are page ids as listed on the site's /moodle/ page.
+sites:
+  https://mdls.nixdev.co:
+    courses:
+      "10":                       # Codex Lab
+        getting-started/what-is-codex: 152
+        getting-started/first-session: 153
+        getting-started/prompting-basics: 154
+        getting-started/lab-first-session: 155
+        practical-workflows/agents-md: 156
+        practical-workflows/plan-test-review: 157
+        practical-workflows/lab-review: 158
+        advanced/extend-codex: 159
+        advanced/automate-and-scale: 160
+        advanced/lab-automation: 161

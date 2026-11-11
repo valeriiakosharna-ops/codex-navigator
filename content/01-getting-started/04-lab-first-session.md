@@ -11,10 +11,11 @@ up and no AI involved. The point is **how you decide**: what you check before ac
 let the agent do, and when you stop it.
 
 - **Level 1** gives feedback after every decision. Experiment freely.
-- **Level 2** gives feedback only at the end and allows 2 attempts.
-- **Level 3** gives one attempt and a limited investigation budget. The situation is ambiguous on purpose.
+- **Level 2** gives feedback only at the end.
+- **Level 3** adds a limited investigation budget and a live agent you may need to stop. The situation is ambiguous on purpose.
 
-Each level unlocks after you score at least 70% on the previous one, or use up its attempts.
+Retake any level as often as you like. Your best result counts, and every try gets a new variant.
+Each level unlocks after you score at least 70% on the previous one, or after two tries.
 
 > [!TIP] Before you start
 > Have the topics [Your first session, safely](02-first-session.md) and

@@ -120,12 +120,14 @@ export function renderMarkdown(body, ctx) {
         }
         if (/\.md(#.*)?$/.test(href)) {
           const [p, hash] = href.split("#");
-          const url = ctx.resolvePage(path.resolve(dir, decodeURI(p)));
+          const abs = path.resolve(dir, decodeURI(p));
+          const url = ctx.resolvePage(abs);
           if (!url) {
             ctx.report("LX-B104", `Link to "${href}" does not match any page.`, ctx.lineOffset);
             return text;
           }
-          return `<a href="${url}${hash ? "#" + hash : ""}"${t}>${text}</a>`;
+          const pid = ctx.pageIdFor ? ctx.pageIdFor(abs) : null;
+          return `<a href="${url}${hash ? "#" + hash : ""}"${pid ? ` data-lx-page="${esc(pid)}"` : ""}${t}>${text}</a>`;
         }
         return `<a href="${esc(href)}"${t}>${text}</a>`;
       },

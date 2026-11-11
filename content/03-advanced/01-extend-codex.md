@@ -1,7 +1,7 @@
 ---
 title: Extend Codex with MCP and skills
 summary: Bring outside context in with MCP; package repeatable work as skills. Know which tool fits which job.
-duration: 35 min
+duration: 45 min
 ---
 
 ## Why this matters
@@ -11,19 +11,7 @@ docs. And sooner or later you notice you keep giving the same multi-step instruc
 two extension mechanisms for these cases:
 
 - **MCP** (Model Context Protocol) connects Codex to *external tools and data*.
-- **Skills** package a *repeatable method*: a `SKILL.md` with instructions, plus optional scripts and context.
-
-```resource
-title: "Codex 103: Advanced Workflows and Automation"
-url: https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-103-advanced-workflows-and-automation-2026-03-18
-provider: OpenAI Academy
-format: course
-level: advanced
-why: The official session on long-horizon tasks, automation and scaling engineering systems with Codex.
-focus:
-  - Which integrations the presenters actually rely on, and how few of them there are.
-  - How repeatable work gets turned into something reusable.
-```
+- **Skills** package a *repeatable method*: a `SKILL.md` with instructions, plus optional scripts and references.
 
 ## Which mechanism?
 
@@ -33,30 +21,35 @@ focus:
 | …repeating a multi-step method | **Skill** | Release notes, log triage, PR checklist |
 | …copy-pasting from another system | **MCP server** | Issue tracker, docs portal, observability |
 
+> [!TIP] From the best practices guide
+> Start with one or two MCP tools that remove a frequent manual step. If you keep repeating the same
+> prompt or correction, turn it into a skill.
+
 ```resource
-title: MCP in Codex
+title: MCP
 url: https://learn.chatgpt.com/docs/extend/mcp
 provider: OpenAI Docs
 format: docs
 duration: 15 min
 level: advanced
 focus:
-  - Supported transports (STDIO and Streamable HTTP, with OAuth).
-  - "Setup: Settings → MCP servers in the app, or `codex mcp add` in the CLI."
-  - The official advice is to start with **one or two** tools that remove a frequent manual step.
+  - "Two kinds of servers: STDIO (a local process started by a command) and Streamable HTTP (a URL, with bearer token or OAuth)."
+  - "Adding one: `codex mcp add <name> -- <command>`, the MCP settings in the app or IDE, or `[mcp_servers.<name>]` in `config.toml`."
+  - "`enabled_tools` / `disabled_tools` limit what a server exposes to the agent."
 ```
 
 ```resource
-title: Skills and plugins
-url: https://learn.chatgpt.com/docs/skills-and-plugins
+title: Build skills
+url: https://learn.chatgpt.com/docs/build-skills
 provider: OpenAI Docs
 format: docs
 duration: 15 min
 level: advanced
 focus:
-  - "One job per skill, with a description that says **what it does and when to use it**. That is how Codex picks it."
-  - "Locations: `$HOME/.agents/skills` (personal) or `.agents/skills` in the repo (team)."
-  - "`$skill-creator` helps you write a first skill. Iterate locally, then package it as a plugin to share."
+  - "A skill is a folder with a required `SKILL.md`: `name`, `description`, then the instructions."
+  - "Locations: `$HOME/.agents/skills` (personal) and `.agents/skills` in the repository (shared with the team)."
+  - The description decides when the skill triggers. Keep each skill to one job and state when it should *not* be used.
+  - "`$skill-creator` drafts a skill for you. Share skills beyond one repo as plugins."
 ```
 
 ```usecase
@@ -70,7 +63,7 @@ prompt: |
   rewrite titles for end users, flag anything that needs a migration note;
   output: Markdown in docs/releases/<version>.md.
   Put it in .agents/skills so the whole team gets it.
-outcome: A reusable skill checked into the repo. Next time, "write release notes for v1.5.0" is enough.
+outcome: A reusable skill in the repo. Next time, "write release notes for v1.5.0" is enough.
 tips:
   - If you keep correcting the same thing in the output, update the skill, not your prompt.
 ```
@@ -80,7 +73,7 @@ id: extend-cards
 title: MCP, skill or AGENTS.md?
 cards:
   - front: Codex should read tickets from your issue tracker
-    back: "**MCP.** External, changing data."
+    back: "**MCP.** External data that changes over time."
   - front: '"Always add a changelog entry" for this repo'
     back: "**AGENTS.md.** A durable project rule."
   - front: A 7-step incident-summary procedure you run weekly
@@ -94,19 +87,24 @@ cards:
 ```quiz
 id: extend-quiz
 questions:
-  - q: The official rule of thumb for creating a skill is…
+  - q: For the third time this week you paste the same 12-line procedure for triaging error logs. What should you do?
     options:
-      - Create one for every task
-      - If you keep repeating the same prompt or correction, make it a skill
-      - Only create skills for CI
+      - Add the procedure to AGENTS.md
+      - Turn it into a skill
+      - Connect your log system through MCP
+      - Save it as a profile in config.toml
     answer: 1
-    explain: Skills capture repetition. If you aren't repeating yourself, you don't need one yet.
-  - q: Where do team-shared skills live?
-    options: ["`.agents/skills` in the repository", "`~/Downloads`", "Inside AGENTS.md"]
+    explain: A repeatable method with clear steps is a skill. MCP would bring the logs in, but it doesn't capture the procedure. AGENTS.md is for short durable rules.
+  - q: Where should a skill live so every teammate who clones the repo gets it?
+    options: ["`.agents/skills` in the repository", "`$HOME/.agents/skills`", "`~/.codex/config.toml`", "The root AGENTS.md"]
     answer: 0
-    explain: The repo folder means everyone who clones the project gets the skill.
-  - q: How many MCP integrations does the official guide suggest starting with?
-    options: [As many as possible, One or two that remove a frequent manual task, None]
-    answer: 1
-    explain: Start small. Each tool adds context and surface area.
+    explain: "`$HOME/.agents/skills` is personal. The repository folder is shared through Git."
+  - q: Your skill keeps triggering on unrelated requests. What do the docs suggest fixing first?
+    options:
+      - Add more steps to the instructions
+      - Move it to `$HOME/.agents/skills`
+      - Sharpen the description and say when it should not be used
+      - Convert it into an MCP server
+    answer: 2
+    explain: Skills are matched by their description. A clear scope with explicit boundaries prevents false triggers.
 ```

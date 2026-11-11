@@ -1,32 +1,34 @@
 ---
 title: Your first session, safely
 summary: Install, sign in, understand sandbox and approvals, and finish a first real task without surprises.
-duration: 40 min
+duration: ~1.5 h (incl. a 1-h recording)
 ---
 
 ## Why this matters
 
 The first hour with an agent shapes your habits. Two things decide whether that hour goes
-well: a **clean starting point**, meaning a Git repo you can diff and revert, and the right
-**permissions**, meaning what Codex may do without asking you. Get both right and you can
+well. The first is a **clean starting point**, a Git repo you can diff and revert. The second
+is the right **permissions**: what Codex may do without asking you. Get both right and you can
 let Codex move fast without worrying.
 
 ```resource
-title: "Codex 101: Introduction and Onboarding"
-url: https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-101-introduction-and-onboarding-2026-03-18
+title: "Codex bootcamp 101: Agentic coding (recording)"
+url: https://academy.openai.com/public/videos/september-23-codex-bootcamp-101-2026-09-24
 provider: OpenAI Academy
-format: course
+format: video
+duration: ~1 h
 level: beginner
-why: The official onboarding session. It covers setup, writing code, navigating repositories and finishing real tasks, with prompting patterns along the way.
+access: Free OpenAI Academy account
+why: The recording of OpenAI's live introductory session on agentic coding with Codex. Sign in to OpenAI Academy (it's free) to watch it.
 focus:
-  - Pause after setup and do it yourself before watching further.
-  - Notice **when** an approval prompt appears and what triggered it.
-  - Write down the prompting patterns the presenter reuses. You will practise them in the next topic.
+  - Pause after the setup part and repeat it yourself before watching further.
+  - Notice **when** Codex asks for approval and what triggered each request.
+  - Write down any prompt structure the presenters reuse. You'll practise it in the next topic.
 ```
 
 ## Install and sign in
 
-On macOS or Linux the docs give a one-line installer. npm also works on any OS with Node.js:
+On macOS or Linux the docs give a one-line installer. The npm package works on any OS with Node.js:
 
 ```bash
 # official installer (macOS / Linux)
@@ -46,19 +48,17 @@ provider: OpenAI Docs
 format: docs
 duration: 10 min
 focus:
-  - "The slash commands you will use daily: `/status`, `/permissions`, `/model`, `/review`, `/init`."
-  - The advice to create **Git checkpoints** before and after a task.
+  - "The slash commands you'll use daily: `/status`, `/permissions`, `/model`, `/review`, `/init`."
+  - The advice to make **Git checkpoints** before and after a task.
 ```
 
-## Sandbox and approvals: the two dials
-
-Codex has two separate settings. People often mix them up.
+## Sandbox and approvals: two separate dials
 
 - **Sandbox mode** decides *what Codex can touch*: `read-only`, `workspace-write` (edit inside the project) or `danger-full-access` (no sandbox).
-- **Approval policy** decides *when Codex must ask you*: `on-request` (asks before going outside the sandbox, e.g. network or files outside the workspace) or `never`.
+- **Approval policy** decides *when Codex must ask you*: `on-request` (it asks before going outside the sandbox, e.g. network access or files outside the workspace) or `never`.
 
-For a version-controlled project the recommended preset is **Auto**, which means `workspace-write` + `on-request`.
-For folders without Git, stay in `read-only`. Network access is **off** by default.
+For a version-controlled project the docs recommend **Auto**, which is `workspace-write` + `on-request`.
+For folders without Git they recommend `read-only`. Network access is **off** by default.
 
 > [!WARNING] Common pitfall
 > Turning on full access "just to stop the prompts" on day one. The prompts tell you what the
@@ -74,11 +74,11 @@ provider: OpenAI Docs
 format: docs
 duration: 15 min
 level: beginner
-why: The authoritative list of sandbox modes, approval policies and safe defaults.
+why: The authoritative list of sandbox modes, approval policies and recommended defaults.
 focus:
-  - The table of common combinations (Auto, Read-only, CI).
+  - The common combinations (Auto, Read-only, CI) and the flags for each.
   - "How to switch during a session with `/permissions`."
-  - Why `--yolo` exists and why the docs advise against it.
+  - Why the docs call `--dangerously-bypass-approvals-and-sandbox` (alias `--yolo`) "not recommended".
 ```
 
 ```checklist
@@ -93,8 +93,8 @@ items:
     hint: Check the workspace directories and the current permissions.
   - text: Keep the default Auto permissions (workspace-write + on-request)
   - text: Start with a small, verifiable task
-    hint: For example "add a unit test for function X and run it".
-done: Ready. Next, learn how to phrase that task so Codex nails it.
+    hint: For example, "add a unit test for function X and run it".
+done: Ready. Next, learn how to phrase that task so Codex gets it right.
 ```
 
 ## Check yourself
@@ -102,29 +102,32 @@ done: Ready. Next, learn how to phrase that task so Codex nails it.
 ```quiz
 id: first-session-quiz
 questions:
-  - q: Which setting controls **when Codex asks you** before acting?
-    options: [Sandbox mode, Approval policy, Model, Reasoning effort]
+  - q: Codex keeps asking before it runs `npm install`. Which setting controls whether it has to ask?
+    options: [Sandbox mode, Approval policy, The selected model, Reasoning effort]
     answer: 1
-    explain: Sandbox = what it can touch. Approval policy = when it must ask.
-  - q: What is the recommended default for a Git-tracked project?
+    explain: The sandbox defines what Codex may touch. The approval policy defines when it must ask first, and that's what you're seeing here.
+  - q: What do the docs recommend for a project that is under Git?
     options:
-      - "`danger-full-access` + `never`"
-      - "`workspace-write` + `on-request` (Auto)"
-      - "`read-only` + `never`"
+      - "`read-only` sandbox with `on-request` approvals"
+      - "`workspace-write` sandbox with `on-request` approvals (Auto)"
+      - "`workspace-write` sandbox with `never` approvals"
+      - "`danger-full-access` with `on-request` approvals"
     answer: 1
-    explain: Auto lets Codex edit inside the project and asks before going beyond it.
-  - q: Why work on a branch with a clean working tree?
+    explain: Auto lets Codex edit inside the project and asks before it goes beyond. `read-only` is what the docs recommend for folders *without* Git.
+  - q: Why start an agent task on a fresh branch with your own changes committed?
     options:
-      - Codex refuses to run otherwise
-      - Every change becomes a reviewable, revertible diff
-      - It makes Codex faster
+      - The CLI won't start on a dirty working tree
+      - So every agent change is a diff you can review or revert on its own
+      - Branches give Codex more context about the task
+      - It makes the sandbox stricter
     answer: 1
-    explain: Git is your safety net and your review tool.
-  - q: Which statements about network access are true?
+    explain: Git is your safety net and your review tool. Codex doesn't require a clean tree, but you'll want one.
+  - q: Which statements about network access are true by default?
     options:
-      - It is off by default in workspace-write
-      - It is always on
-      - Content fetched from the web should be treated as untrusted
+      - It is off in `workspace-write` mode
+      - It is on in `workspace-write` mode, but every request needs approval
+      - Content Codex fetches from the web should be treated as untrusted
+      - It can only be enabled through `--yolo`
     answer: [0, 2]
-    explain: Off by default. When you enable it, remember the prompt-injection risk.
+    explain: Network is off by default. You can turn it on in config without `--yolo`. And whatever the agent reads from the web may carry injected instructions.
 ```

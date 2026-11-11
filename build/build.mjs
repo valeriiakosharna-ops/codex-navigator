@@ -153,6 +153,7 @@ export async function build(opts = {}) {
       registry,
       report: report(p.file),
       resolvePage: (abs) => byFile.get(path.resolve(abs))?.url || null,
+      pageIdFor: (abs) => byFile.get(path.resolve(abs))?.id || null,
       assetUrl,
       counters: {},
     };
@@ -230,6 +231,7 @@ export async function build(opts = {}) {
   if (channel === "dev") {
     write("versions.json", JSON.stringify({ latest: version, versions: [{ version }] }));
     write("pins.json", "{}");
+    write("moodle.json", JSON.stringify({ sites: {} }));
   }
 
   return { out, pages: allPages.length, ms: Date.now() - t0, manifest, base };
@@ -319,6 +321,9 @@ function moodleBody(site, pages, latestUrl) {
   </ol>
   <h2>Pages</h2>
   <table><thead><tr><th>#</th><th>Activity name</th><th>URL to paste</th><th>Points on page</th></tr></thead><tbody>${rows}</tbody></table>
+  <p class="muted">Page ids for <code>moodle.yaml</code>: ${pages.map((p) => `<code>${esc(p.id)}</code>`).join(", ")}</p>
+  <h2>Links between topics</h2>
+  <p>Inside Moodle, a link from one topic to another opens the matching <em>Moodle activity</em>, not this website. After creating the activities, add their ids to <code>moodle.yaml</code> in the repository (page id → activity id from <code>view.php?id=…</code>). Without an entry, such links open the Moodle course page.</p>
   <h2>Which version does a learner see?</h2>
   <p>Cohorts are pinned in <code>pins.yaml</code> by Moodle course id (see the repository docs, <em>docs/VERSIONING.md</em>). Without a cohort pin, each learner stays on the version they opened first.</p>
   <script type="application/json" id="lx-pages">${jsonForScript(pages.map((p) => ({ id: p.id, url: latestUrl + p.path, max: p.maxScore })))}</script>

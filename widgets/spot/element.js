@@ -2,11 +2,13 @@ import { html, css, nothing } from "lit";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { LxElement, baseStyles } from "../../shell/base-element.js";
 
+// attempts: 0 = unlimited graded attempts (default); with a limit, learners can still practise.
 const LEVEL_DEFAULTS = {
   1: { attempts: 0, severity: false, showCount: true },
-  2: { attempts: 2, severity: true, showCount: false },
-  3: { attempts: 1, severity: true, showCount: false },
+  2: { attempts: 0, severity: true, showCount: false },
+  3: { attempts: 0, severity: true, showCount: false },
 };
+const TRIES_TO_UNLOCK_NEXT = 2;
 const SEVERITIES = ["critical", "major", "minor"];
 const FALSE_ALARM = 0.34; // each wrong flag costs a third of a found problem
 const WRONG_SEVERITY = 0.6; // found, but severity misjudged
@@ -111,11 +113,20 @@ class LxSpot extends LxElement {
     return { fraction, perIssue, falseLines };
   }
 
+  get limitReached() {
+    const lim = this.opts.attempts;
+    return lim > 0 && this.state.attemptsUsed >= lim;
+  }
+
   submit() {
     const g = this.grade();
+    if (this.limitReached) {
+      this.setState({ submitted: { ...g, practice: true } }); // practice: never changes the grade
+      return;
+    }
     const attemptsUsed = this.state.attemptsUsed + 1;
     const lim = this.opts.attempts;
-    this.setState({ submitted: g, attemptsUsed, best: Math.max(this.state.best, g.fraction), exhausted: lim > 0 && attemptsUsed >= lim });
+    this.setState({ submitted: g, attemptsUsed, best: Math.max(this.state.best, g.fraction), exhausted: (lim > 0 && attemptsUsed >= lim) || attemptsUsed >= TRIES_TO_UNLOCK_NEXT });
   }
 
   retry() { this.setState({ marks: {}, submitted: null }); }
@@ -151,9 +162,9 @@ class LxSpot extends LxElement {
   renderReport(sub) {
     const decoys = this.config.decoys || [];
     const { attempts } = this.opts;
-    const canRetry = attempts === 0 || this.state.attemptsUsed < attempts;
     const found = sub.perIssue.filter((p) => p.found).length;
-    return html`<div class="score" role="status"><b>${Math.round(sub.fraction * 100)}%</b>
+    return html`${sub.practice ? html`<div class="notice">Practice run: this result doesn't change your grade.</div>` : nothing}
+      <div class="score" role="status"><b>${Math.round(sub.fraction * 100)}%</b>
         <span class="muted">${found} of ${this.config.issues.length} found · ${sub.falseLines.length} false alarm${sub.falseLines.length === 1 ? "" : "s"} · best ${Math.round(this.state.best * 100)}%</span></div>
       <ul class="report">
         ${this.config.issues.map((it, i) => {
@@ -173,9 +184,9 @@ class LxSpot extends LxElement {
         })}
       </ul>
       <div class="actions">
-        ${canRetry
-          ? html`<button class="btn-primary" @click=${this.retry}>Try again${attempts ? ` (${attempts - this.state.attemptsUsed} left)` : ""}</button>`
-          : html`<span class="muted">No attempts left — your best result counts.</span>`}
+        ${this.limitReached
+          ? html`<button class="btn-ghost" @click=${this.retry}>Practise again (doesn't change your grade)</button>`
+          : html`<button class="btn-primary" @click=${this.retry}>Try again${attempts ? ` (${attempts - this.state.attemptsUsed} graded left)` : ""}</button>`}
       </div>`;
   }
 
@@ -195,7 +206,7 @@ class LxSpot extends LxElement {
       <p class="muted">
         Click every line that is a problem${severity ? ", then rate how serious it is" : ""}.
         ${showCount ? unsafeHTML(this.config.issues.length === 1 ? "There is <b>1</b> problem." : `There are <b>${this.config.issues.length}</b> problems.`) : "The number of problems is not revealed."}
-        False alarms cost points. ${attempts === 0 ? "Unlimited attempts." : `${attempts} attempt${attempts > 1 ? "s" : ""}.`}
+        False alarms cost points. ${attempts === 0 ? "Retake as often as you like; your best result counts." : `${attempts} graded attempt${attempts > 1 ? "s" : ""}, then practice.`}
       </p>
       ${this.config.filename ? html`<div class="file">${this.config.filename}</div>` : nothing}
       <div class="code ${this.config.filename ? "" : "nofile"}" role="list">

@@ -4,11 +4,14 @@ import { LxElement, baseStyles } from "../../shell/base-element.js";
 
 const POINTS = { optimal: 1, acceptable: 0.5, risky: 0, critical: 0 };
 const DOWNGRADE = { optimal: "acceptable", acceptable: "risky", risky: "risky", critical: "critical" };
+// attempts: 0 = unlimited graded attempts (default). Authors may set a limit; after it,
+// learners can still "practise again" without changing their grade.
 const LEVEL_DEFAULTS = {
   1: { attempts: 0, feedback: "step", autoplay: false },
-  2: { attempts: 2, feedback: "end", autoplay: false },
-  3: { attempts: 1, feedback: "end", autoplay: true },
+  2: { attempts: 0, feedback: "end", autoplay: false },
+  3: { attempts: 0, feedback: "end", autoplay: true },
 };
+const TRIES_TO_UNLOCK_NEXT = 2; // the next level also opens after this many tries, so nobody gets stuck
 const STREAM_RATING = { onTime: "optimal", late: "acceptable", early: "risky" };
 const STREAM_TEXT = {
   onTime: "You stopped the agent right when it went wrong.",
@@ -120,9 +123,14 @@ class LxScenario extends LxElement {
   }
 
   // ---- run lifecycle ---------------------------------------------------------------
+  get limitReached() {
+    const lim = this.opts.attempts;
+    return lim > 0 && this.state.attemptsUsed >= lim;
+  }
+
   start() {
     this.setState({
-      run: { attempt: this.state.attemptsUsed, step: this.config.start, path: [], evidence: [], flags: [], visited: [this.config.start], pending: null, shown: 1, stopped: null },
+      run: { practice: this.limitReached, attempt: this.state.attemptsUsed + (this.state.practiceRuns || 0), step: this.config.start, path: [], evidence: [], flags: [], visited: [this.config.start], pending: null, shown: 1, stopped: null },
     });
   }
 
@@ -214,15 +222,21 @@ class LxScenario extends LxElement {
     const critical = run.path.some((p) => p.rating === "critical");
     if (critical) final = Math.min(final, CRITICAL_CAP);
     final = r2(final);
-    const attemptsUsed = this.state.attemptsUsed + 1;
-    const lim = this.opts.attempts;
-    this.setState({
-      attemptsUsed,
-      best: Math.max(this.state.best, final),
-      exhausted: lim > 0 && attemptsUsed >= lim,
-      run: null,
-      last: { ...run, final, dims: { decisions: r2(decisions), process: r2(process), efficiency: r2(efficiency), investigative, critical } },
-    });
+    const last = { ...run, final, dims: { decisions: r2(decisions), process: r2(process), efficiency: r2(efficiency), investigative, critical } };
+    if (run.practice) {
+      // practice run after the author's attempt limit: shown, but never changes the grade
+      this.setState({ run: null, last, practiceRuns: (this.state.practiceRuns || 0) + 1 });
+    } else {
+      const attemptsUsed = this.state.attemptsUsed + 1;
+      const lim = this.opts.attempts;
+      this.setState({
+        attemptsUsed,
+        best: Math.max(this.state.best, final),
+        exhausted: (lim > 0 && attemptsUsed >= lim) || attemptsUsed >= TRIES_TO_UNLOCK_NEXT,
+        run: null,
+        last,
+      });
+    }
     this.updateComplete.then(() => this.renderRoot.querySelector(".score")?.scrollIntoView({ block: "nearest", behavior: "smooth" }));
   }
 
@@ -253,7 +267,7 @@ class LxScenario extends LxElement {
     return html`${this.config.intro ? html`<p>${this.rich(this.config.intro)}</p>` : nothing}
       <ul class="rules">
         <li>${feedback === "step" ? "You get feedback after every decision." : "Feedback only at the end — like in real life."}</li>
-        <li>${attempts === 0 ? "Unlimited attempts; your best result counts." : `${attempts} attempt${attempts > 1 ? "s" : ""}${used ? ` (${used} used)` : ""}; your best result counts.`}</li>
+        <li>${attempts === 0 ? "Retake it as often as you like; your best result counts, and each try gets a new variant." : `${attempts} graded attempt${attempts > 1 ? "s" : ""}${used ? ` (${used} used)` : ""}; after that you can still practise without changing your grade.`}</li>
         ${this.config.budget ? html`<li>You can investigate before deciding — but only <strong>${this.config.budget}</strong> actions in total. Choose what is worth checking.</li>` : nothing}
         <li>Critical mistakes cap the result at ${CRITICAL_CAP * 100}%.</li>
       </ul>
@@ -343,11 +357,11 @@ class LxScenario extends LxElement {
     const d = last.dims;
     const all = this.allEvidence();
     const { attempts } = this.opts;
-    const canRetry = attempts === 0 || this.state.attemptsUsed < attempts;
     const pct = (x) => `${Math.round(x * 100)}%`;
     const available = last.visited.flatMap((id) => (this.steps[id].evidence || []).map((e) => e.id));
-    return html`<div class="score" role="status"><b>${pct(last.final)}</b>
-        <span class="muted">this attempt · best ${pct(this.state.best)}${this.graded ? ` · ${r2(this.state.best * this.maxScore())} / ${this.maxScore()} pt` : ""}</span></div>
+    return html`${last.practice ? html`<div class="notice">Practice run: this result doesn't change your grade.</div>` : nothing}
+      <div class="score" role="status"><b>${pct(last.final)}</b>
+        <span class="muted">${last.practice ? "practice run" : "this attempt"} · best ${pct(this.state.best)}${this.graded ? ` · ${r2(this.state.best * this.maxScore())} / ${this.maxScore()} pt` : ""}</span></div>
       ${d.critical ? html`<div class="cap">A critical decision capped this attempt at ${CRITICAL_CAP * 100}%.</div>` : nothing}
       <div class="dims">
         <div class="dim"><strong>${pct(d.decisions)}</strong>Decision quality</div>
@@ -391,7 +405,9 @@ class LxScenario extends LxElement {
           </ul>`
         : nothing}
       <div class="actions">
-        ${canRetry ? html`<button class="btn-primary" @click=${this.start}>Try again${attempts ? ` (${attempts - this.state.attemptsUsed} left)` : ""}</button>` : html`<span class="muted">No attempts left — your best result counts.</span>`}
+        ${this.limitReached
+          ? html`<button class="btn-ghost" @click=${this.start}>Practise again (doesn't change your grade)</button>`
+          : html`<button class="btn-primary" @click=${this.start}>Try again${attempts ? ` (${attempts - this.state.attemptsUsed} graded left)` : ""}</button>`}
       </div>`;
   }
 

@@ -1,50 +1,42 @@
 ---
 title: "Make guidance durable: AGENTS.md and config"
 summary: Stop repeating yourself. Put project rules in AGENTS.md and preferences in config.toml.
-duration: 35 min
+duration: ~1.5 h (incl. a 1-h recording)
 ---
 
 ## Why this matters
 
 If you type the same instruction twice ("use pnpm", "run lint before you finish", "never touch
 `migrations/`"), it belongs in a file, not in a prompt. **AGENTS.md** is an open format, a
-README for agents that Codex loads automatically. **config.toml** holds your preferences
-for model, reasoning effort, sandbox, approvals, profiles and MCP servers.
+README for agents that Codex loads automatically. **config.toml** holds your preferences: model,
+reasoning effort, sandbox, approvals, profiles, MCP servers.
 
 ```resource
 title: AGENTS.md
 url: https://learn.chatgpt.com/docs/agent-configuration/agents-md
 provider: OpenAI Docs
 format: docs
-duration: 15 min
+duration: 10 min
 level: intermediate
-why: How Codex discovers AGENTS.md files and which one wins when there are several.
+why: Exactly how Codex finds AGENTS.md files and combines them.
 focus:
-  - "The three levels: global (`~/.codex`), repository root, and subdirectories. The file nearest your working directory takes precedence."
-  - "`/init` generates a starter file. Treat it as a draft and edit it."
-```
-
-```resource
-title: "Codex 102: Practical Workflows"
-url: https://academy.openai.com/public/clubs/builders-etkn1/resources/codex-102-practical-workflows-2026-03-18
-provider: OpenAI Academy
-format: course
-level: intermediate
-why: The official session on understanding codebases, refactoring and shipping features with Codex. Watch it with this module open.
-focus:
-  - How the presenters keep the agent on track over long tasks. Much of it comes from good AGENTS.md files.
-  - Any moment where the agent repeats a mistake. That is exactly what AGENTS.md should prevent.
+  - "Discovery: one global file in `~/.codex`, then files from the project root down to your current directory. Folders below it are not read."
+  - Files closer to your current directory override earlier guidance, because they come later in the combined prompt.
+  - "`AGENTS.override.md` takes precedence over `AGENTS.md` in the same folder."
+  - "There's a size limit (32 KiB combined by default), so keep it short or split it into nested folders."
 ```
 
 ## What to put in AGENTS.md
 
-A useful AGENTS.md is **short and accurate**. Cover:
+The best practices guide recommends a **short and accurate** file covering:
 
 - repository layout (where things live);
 - how to run the project, and the exact **build / test / lint** commands;
 - engineering conventions and PR expectations;
 - constraints and "do-not" rules;
 - how to verify that work is done.
+
+In the CLI, `/init` generates a starter AGENTS.md. Treat it as a draft and edit it.
 
 ```usecase
 title: Writing your team's first AGENTS.md
@@ -60,30 +52,46 @@ prompt: |
 outcome: A short AGENTS.md checked into the repo. Every teammate's Codex now follows the same rules.
 tips:
   - When Codex repeats a mistake, ask it to review what went wrong and propose an AGENTS.md update.
-  - Link longer docs (e.g. `docs/code_review.md`) from AGENTS.md instead of pasting them in.
+  - Link longer docs from AGENTS.md instead of pasting them in.
 ```
 
 > [!IMPORTANT] Best practice
 > Durable rules go in AGENTS.md (or skills, later). One-off details go in the prompt. Mixing these up is
-> one of the most common mistakes the official guide lists.
+> one of the common mistakes the official guide lists.
 
 ## Configuration layers
 
 | Layer | File | Use for |
 |---|---|---|
 | Personal defaults | `~/.codex/config.toml` | Your preferred model, effort, approvals |
-| Repository | `.codex/config.toml` | Settings the whole team should share for this repo |
-| One-off | CLI flags | Trying something for a single run |
+| Project | `.codex/config.toml` in the repo | Settings the team shares for this project (loaded **only if you trust the project**) |
+| Profile | `--profile name` | Switching between setups, e.g. a careful "review" profile |
+| One-off | `-c key=value` / `--config` | Trying something for a single run (highest precedence) |
 
 ```resource
-title: Configuration
-url: https://learn.chatgpt.com/docs/configuration
+title: Config basics
+url: https://learn.chatgpt.com/docs/config-file/config-basic
 provider: OpenAI Docs
 format: docs
 duration: 15 min
 focus:
-  - Profiles, so you can switch between, say, a careful "review" setup and a fast "spike" setup.
-  - The docs note that many quality problems are really environment problems (wrong directory, missing tools, no write access).
+  - The precedence order, from CLI overrides at the top down to built-in defaults.
+  - Project `.codex/` layers load only for trusted projects. This is a security feature, not a bug.
+  - "Profiles: `--profile name` loads `~/.codex/name.config.toml`. Keep only the differences there."
+```
+
+```resource
+title: "Codex bootcamp 201: Team workflows (recording)"
+url: https://academy.openai.com/public/videos/september-30-codex-bootcamp-201-2026-10-01
+provider: OpenAI Academy
+format: video
+duration: ~1 h
+level: intermediate
+access: Free OpenAI Academy account
+why: OpenAI's live session on using Codex in team workflows. Watch it with this module open.
+focus:
+  - Which rules the presenters keep in files rather than in prompts.
+  - Any moment where the agent repeats a mistake. That's exactly what AGENTS.md should prevent.
 ```
 
 ## Check yourself
@@ -91,20 +99,28 @@ focus:
 ```quiz
 id: agents-md
 questions:
-  - q: You have a global AGENTS.md and one in `services/api/`. You are working inside `services/api/`. Which guidance takes precedence?
-    options: [The global one, The one in services/api/, Whichever is longer]
-    answer: 1
-    explain: The file closest to your working directory wins.
-  - q: Which of these belong in AGENTS.md?
+  - q: "Your repo has AGENTS.md at the root and another one in `services/api/`. You run Codex from `services/api/`. What does Codex do?"
+    options:
+      - Reads only the root file, because it's the project file
+      - Reads only `services/api/AGENTS.md`, the nearest one
+      - Combines both, and on conflicts the `services/api/` guidance wins
+      - Asks you which file to use
+    answer: 2
+    explain: Codex reads files from the root down to your current folder and combines them. Later (closer) files override earlier guidance.
+  - q: Which of these belong in AGENTS.md rather than in a prompt?
     options:
       - The exact test and lint commands
-      - '"Never edit db/migrations/"'
-      - Today's bug description
-      - Repository layout
+      - '"Never edit `db/migrations/`"'
+      - The stack trace of today's bug
+      - Where the main modules live
     answer: [0, 1, 3]
-    explain: Today's bug is a one-off detail. It belongs in the prompt.
-  - q: Where do settings live that the whole team should share for one repository?
-    options: ["`~/.codex/config.toml`", "`.codex/config.toml` in the repo", "A CLI flag"]
+    explain: Durable rules and facts go in AGENTS.md. Today's stack trace is one-off context for the prompt.
+  - q: You committed `.codex/config.toml` with team settings, but a teammate says Codex ignores it. What's the most likely reason?
+    options:
+      - Project config only works in the desktop app
+      - Their copy of the project is not marked as trusted
+      - Personal config always overrides project config
+      - The file must be called `codex.toml`
     answer: 1
-    explain: The repository-level config is committed together with the code.
+    explain: Codex loads project `.codex/` layers only for trusted projects. Project config actually takes precedence over personal config.
 ```

@@ -117,12 +117,16 @@ automatically by rules you write.
 | | Level 1 | Level 2 | Level 3 |
 |---|---|---|---|
 | Feedback | after every decision | at the end | at the end |
-| Attempts | unlimited | 2 | 1 |
+| Retakes | unlimited, best counts | unlimited, best counts | unlimited, best counts |
 | Typical content | 2–3 clear options | 4–5 options, distractors, delayed consequences | ambiguity, investigation budget, live agent stream |
-| `spot` | number of problems shown | severity required, decoys | severity required, decoys, 1 attempt |
+| `spot` | number of problems shown | severity required, decoys | severity required, decoys |
+
+Every practice can be **retaken any number of times**. The best result counts, and each try gets a
+new variant when the scenario uses `vars`. If you set `attempts: N`, only the first N tries are graded,
+and after that learners can still practise without changing their grade.
 
 Chain levels with `unlock: { after: <id of previous level> }`. The next level opens at ≥ 70% (`min:`)
-or once the previous level's attempts are used up, so nobody gets stuck.
+or after two tries of the previous level, so nobody gets stuck.
 
 ### Writing a scenario
 
@@ -171,6 +175,24 @@ number of problems.
 | LX-B107 | Two pages have the same URL | Rename one file or set `slug:` |
 | LX-B109 | Two blocks on a page share the same `id` | Make the ids unique |
 | LX-R201/202 | A widget failed in the browser | Report to the maintainers with the page URL |
+
+## Linking to another topic
+
+Link with a relative path to the Markdown file, for example `[Your first session](02-first-session.md)`.
+On the website this opens the page. Inside Moodle it opens the matching **Moodle activity**,
+using the ids in `moodle.yaml`; without an entry it falls back to the Moodle course page.
+
+## Checking official resources
+
+Before adding or updating a `resource` card:
+
+- Open the link yourself and check where it really lands. Some Academy pages are PDFs, some redirect to YouTube, and some need a sign-in.
+- Set `format` and `duration` from the real material, for example `video` and `53 min`.
+- Add `access: Free OpenAI Academy account` when a sign-in is required.
+- In `focus`, only list things that are actually on that page.
+- Update the topic's `duration` to include the time for the official material.
+
+`node scripts/list-links.mjs` lists every link with its declared format and duration.
 
 ## Writing a good navigator page
 

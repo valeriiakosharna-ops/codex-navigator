@@ -61,10 +61,17 @@ test("slides: one section at a time, keyboard and buttons navigate", async ({ pa
   await expect(page.locator("[data-slide-next]")).toBeDisabled();
 });
 
-test("inside Moodle, links to other course pages open in a new tab", async ({ page }) => {
-  await page.goto(`${BASE}/__moodle/?url=/getting-started/lab-first-session/&uid=1&cid=1`);
-  const link = page.frameLocator("#extpage-iframe").locator(".lx-callout a", { hasText: "Your first session, safely" });
-  await expect(link).toHaveAttribute("target", "_blank");
+test("inside Moodle, links to other topics open the matching Moodle activity", async ({ page }) => {
+  // moodle.json maps page ids to activity ids for this Moodle site (the simulator) and course 7
+  await page.route("**/moodle.json", (route) => route.fulfill({ json: { sites: { [BASE]: { courses: { "7": { "getting-started/first-session": 153 } } } } } }));
+  await page.goto(`${BASE}/__moodle/?url=/getting-started/lab-first-session/&uid=1&cid=7`);
+  const frame = page.frameLocator("#extpage-iframe");
+  const mapped = frame.locator(".lx-callout a", { hasText: "Your first session, safely" });
+  await expect(mapped).toHaveAttribute("href", `${BASE}/mod/extpagewithgrades/view.php?id=153`);
+  await expect(mapped).toHaveAttribute("target", "_top");
+  // no mapping for this page -> the Moodle course page, never the standalone site
+  const unmapped = frame.locator(".lx-callout a", { hasText: "Asking a coding agent for work" });
+  await expect(unmapped).toHaveAttribute("href", `${BASE}/course/view.php?id=7`);
 });
 
 test("answers survive a reload", async ({ page }) => {

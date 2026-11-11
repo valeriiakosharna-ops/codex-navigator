@@ -49,7 +49,13 @@ function practicesTable(entries) {
 <table class="pr"><thead><tr><th>Practice</th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
 }
 
-export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot } = {}) {
+export const moodleSchema = z.object({
+  sites: z.record(z.string().url(), z.object({
+    courses: z.record(z.string(), z.record(z.string(), z.number().int().positive())).default({}),
+  }).strict()).default({}),
+}).strict();
+
+export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot, moodleFile } = {}) {
   const vDir = path.join(siteDir, "v");
   const versions = fs.existsSync(vDir) ? fs.readdirSync(vDir).filter((v) => semver.test(v)).sort(cmp).reverse() : [];
   const latest = versions[0] || null;
@@ -68,6 +74,13 @@ export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot } = {
   const raw = fs.existsSync(pinsFile) ? yaml.load(fs.readFileSync(pinsFile, "utf8")) || {} : {};
   const pins = pinsSchema.parse(raw);
   fs.writeFileSync(path.join(siteDir, "pins.json"), JSON.stringify(pins, null, 2));
+
+  // Moodle activity ids per page, so links between topics stay inside Moodle
+  const mFile = moodleFile || path.join(path.dirname(pinsFile), "moodle.yaml");
+  const mRaw = fs.existsSync(mFile) ? yaml.load(fs.readFileSync(mFile, "utf8")) || {} : {};
+  const moodle = moodleSchema.parse(mRaw);
+  const sites = Object.fromEntries(Object.entries(moodle.sites).map(([origin, v]) => [new URL(origin).origin, v]));
+  fs.writeFileSync(path.join(siteDir, "moodle.json"), JSON.stringify({ sites }, null, 2));
 
   // siteRoot = URL path of the site, e.g. /codex-navigator/
   const root = siteRoot || "./";

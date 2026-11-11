@@ -76,6 +76,7 @@ a:hover { color: var(--lx-accent); }
   padding: 7px 12px; border-radius: 999px; background: var(--lx-surface-3); color: var(--lx-text);
 }
 .lx-chip--official { background: var(--lx-accent-soft); color: var(--lx-accent-ink); }
+.lx-chip--access { background: var(--lx-warning-soft); color: var(--lx-warning-ink); }
 .lx-chip--graded { background: var(--lx-danger-soft); color: var(--lx-danger-ink); }
 
 /* ---------- Prose ---------- */

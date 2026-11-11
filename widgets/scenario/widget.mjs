@@ -83,7 +83,7 @@ export const scenarioSchema = z
     level: z.union([z.literal(1), z.literal(2), z.literal(3)]).describe("1 guided · 2 realistic · 3 expert."),
     intro: z.string().optional().describe("Briefing shown before starting."),
     budget: z.number().int().min(1).optional().describe("Investigation budget (number of evidence actions)."),
-    attempts: z.number().int().min(0).optional().describe("0 = unlimited. Defaults: L1 unlimited, L2 2, L3 1."),
+    attempts: z.number().int().min(0).optional().describe("Graded attempts; 0 = unlimited (default). After a limit, learners can still practise without changing the grade."),
     feedback: z.enum(["step", "end"]).optional().describe("Rating after each step, or only at the end. Default: L1 step, else end."),
     points: z.number().positive().optional().describe("Points in Moodle. Default = level (1/2/3)."),
     unlock: z.object({ after: z.string(), min: z.number().min(0).max(1).default(0.7) }).strict().optional()
@@ -149,7 +149,7 @@ export const scenarioSchema = z
 export default {
   name: "scenario",
   title: "Decision scenario",
-  version: "1.1.0",
+  version: "1.2.0",
   kind: "interactive",
   graded: true,
   maxScore: (d) => d.points ?? d.level,
@@ -165,7 +165,7 @@ export default {
     }])),
   }),
   description:
-    "A situation that unfolds step by step. The learner decides, investigates with a limited budget, or stops an agent at the right moment. Scoring looks at the **whole path**: decision quality, whether key evidence was checked first, wasted actions, and critical mistakes. A debrief compares the path with an expert's. Three levels: 1 guided (feedback every step, unlimited attempts), 2 realistic (feedback at the end, 2 attempts), 3 expert (budget, ambiguity, 1 attempt).",
+    "A situation that unfolds step by step. The learner decides, investigates with a limited budget, or stops an agent at the right moment. Scoring looks at the **whole path**: decision quality, whether key evidence was checked first, wasted actions, and critical mistakes. A debrief compares the path with an expert's. Three levels: 1 guided (feedback every step, unlimited attempts), 2 realistic (feedback at the end), 3 expert (budget, ambiguity, live agent stream). Practices can be retaken any number of times; the best result counts.",
   schema: scenarioSchema,
   example: `id: demo-scenario
 title: The agent wants network access

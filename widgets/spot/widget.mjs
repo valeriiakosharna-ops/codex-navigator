@@ -26,7 +26,7 @@ export const spotSchema = z
       .describe("Lines that look suspicious but are fine — explained if the learner flags them."),
     severity: z.boolean().optional().describe("Learner must also rate severity. Default: off on L1, on for L2/L3."),
     showCount: z.boolean().optional().describe("Tell how many problems there are. Default: only on L1."),
-    attempts: z.number().int().min(0).optional().describe("0 = unlimited. Defaults: L1 unlimited, L2 2, L3 1."),
+    attempts: z.number().int().min(0).optional().describe("Graded attempts; 0 = unlimited (default). After a limit, learners can still practise."),
     points: z.number().positive().optional().describe("Points in Moodle. Default = level."),
     unlock: z.object({ after: z.string(), min: z.number().min(0).max(1).default(0.7) }).strict().optional()
       .describe("Stay locked until widget `after` reaches `min`."),
@@ -56,7 +56,7 @@ export const spotSchema = z
 export default {
   name: "spot",
   title: "Spot the problems",
-  version: "1.1.0",
+  version: "1.2.0",
   kind: "interactive",
   graded: true,
   maxScore: (d) => d.points ?? d.level,

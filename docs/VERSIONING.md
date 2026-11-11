@@ -71,6 +71,10 @@ patch (`v1.1.1`). Learners pinned to `"1.1"` get it on their next page load.
 
 **Moving one learner:** add `users: { "4711": "1.1" }` to `pins.yaml`.
 
+**Linking topics inside Moodle:** after creating the activities for a course, add their ids to
+`moodle.yaml` on `main` (site → course id → page id → activity id). Like `pins.yaml`, it is published
+on every deploy without a release.
+
 ## Progress and grades across versions
 
 - Grades live in Moodle, so they are never lost.
