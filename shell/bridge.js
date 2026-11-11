@@ -111,6 +111,65 @@ if (inFrame) {
   }
 }
 
+// ---------------------------------------------------------------- slides
+const deck = document.querySelector("[data-slides]");
+if (deck) {
+  const slides = [...deck.querySelectorAll(".lx-slide")];
+  const steps = [...deck.querySelectorAll(".lx-step")];
+  const prev = deck.querySelector("[data-slide-prev]");
+  const next = deck.querySelector("[data-slide-next]");
+  const count = deck.querySelector(".lx-slidenav__count");
+  const last = slides.length - 1;
+  const memoKey = `lx:slide:${LX.course}:${(LX.page && LX.page.id) || location.pathname}`;
+  let current = 0;
+
+  const fromHash = () => { const m = location.hash.match(/^#lx-slide-(\d+)$/); return m ? Number(m[1]) - 1 : null; };
+  const remembered = () => { try { return Number(sessionStorage.getItem(memoKey)); } catch { return null; } };
+
+  function show(i, { scroll = false, focus = false } = {}) {
+    current = Math.max(0, Math.min(last, i));
+    slides.forEach((s, k) => { s.hidden = k !== current; s.classList.toggle("is-active", k === current); });
+    steps.forEach((b, k) => {
+      b.classList.toggle("is-active", k === current);
+      if (k === current) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+    });
+    steps[current]?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    prev.disabled = current === 0;
+    next.disabled = current === last;
+    next.textContent = current === last ? "Done ✓" : "Next →";
+    count.textContent = `${current + 1} / ${slides.length}`;
+    document.documentElement.classList.toggle("lx-slide-later", current > 0);
+    try { sessionStorage.setItem(memoKey, String(current)); } catch { /* ignore */ }
+    if (!inFrame) history.replaceState(null, "", `#lx-slide-${current + 1}`);
+    if (scroll) deck.scrollIntoView({ block: "start", behavior: "smooth" });
+    if (focus) slides[current].querySelector("h2, [tabindex], button, a")?.focus({ preventScroll: true });
+  }
+
+  prev.addEventListener("click", () => show(current - 1, { scroll: true }));
+  next.addEventListener("click", () => show(current + 1, { scroll: true }));
+  steps.forEach((b, k) => b.addEventListener("click", () => show(k, { scroll: true })));
+  document.addEventListener("keydown", (e) => {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const t = e.composedPath()[0];
+    if (t && t.closest && t.closest("input, textarea, select, [contenteditable], li")) return; // keep arrows for form controls & ordering
+    show(current + (e.key === "ArrowRight" ? 1 : -1), { scroll: true });
+  });
+
+  // A section is "done" when all graded activities in it are complete.
+  function markDone() {
+    slides.forEach((s, k) => {
+      const ids = [...s.querySelectorAll("lx-quiz, lx-order, lx-scenario, lx-spot")].map((el) => el.id);
+      const graded = ids.map((id) => widgets.get(id)).filter((w) => w && w.graded);
+      steps[k]?.classList.toggle("is-done", graded.length > 0 && graded.every((w) => w.complete));
+    });
+  }
+  document.addEventListener("lx-progress", () => queueMicrotask(markDone));
+
+  const start = fromHash() ?? remembered() ?? 0;
+  show(Number.isFinite(start) ? start : 0);
+}
+
 // ---------------------------------------------------------------- theme toggle (standalone site)
 const ICONS = {
   auto: '<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/>',

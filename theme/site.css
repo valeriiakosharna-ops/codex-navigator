@@ -233,13 +233,51 @@ lx-quiz:not(:defined), lx-order:not(:defined), lx-checklist:not(:defined), lx-fl
 
 .muted { color: var(--lx-text-muted); font-size: .92em; }
 
-/* ---------- Embedded in Moodle: transparent, blends into the Moodle page ---------- */
-html.lx-embedded body { background: transparent; overflow: hidden; }
+/* ---------- Slides: one section at a time instead of a long scroll ---------- */
+.lx-slides { position: relative; scroll-margin-top: 16px; }
+.lx-stepper { display: flex; gap: 6px; overflow-x: auto; padding: 4px; margin: 0 0 28px; background: var(--lx-surface-2); border: 1px solid var(--lx-border); border-radius: 16px; scrollbar-width: none; }
+.lx-stepper::-webkit-scrollbar { display: none; }
+.lx-step {
+  flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 9px; padding: 9px 12px; border: 0; border-radius: 12px; cursor: pointer;
+  background: transparent; color: var(--lx-text-muted); font: 700 13.5px var(--lx-font-body); text-align: left; transition: background .15s, color .15s;
+}
+.lx-step:hover { background: var(--lx-surface-3); color: var(--lx-heading); }
+.lx-step__n { flex: none; width: 24px; height: 24px; border-radius: 8px; display: grid; place-items: center; font-size: 12px; font-weight: 800; background: var(--lx-surface-3); color: var(--lx-text-muted); }
+.lx-step__label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lx-step.is-active { background: var(--lx-surface); color: var(--lx-heading); box-shadow: var(--lx-shadow); }
+.lx-step.is-active .lx-step__n { background: var(--lx-accent); color: #fff; }
+.lx-step.is-done .lx-step__n { background: var(--lx-success-soft); color: var(--lx-success-ink); font-size: 0; }
+.lx-step.is-done .lx-step__n::before { content: "✓"; font-size: 13px; }
+.lx-slide { animation: lx-slide-in .28s ease; }
+.lx-slide[hidden] { display: none; }
+.lx-slide > :first-child { margin-top: 0; }
+@keyframes lx-slide-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.lx-slidenav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--lx-border); }
+.lx-slidenav button {
+  font: 800 14.5px var(--lx-font-body); padding: 11px 20px; border-radius: 12px; cursor: pointer; border: 1px solid var(--lx-border);
+  background: var(--lx-surface); color: var(--lx-heading); transition: background .15s, transform .15s, border-color .15s;
+}
+.lx-slidenav button:hover:not(:disabled) { background: var(--lx-surface-3); border-color: var(--lx-border-strong); }
+.lx-slidenav .lx-slidenav__next { background: var(--lx-primary); color: var(--lx-on-primary); border-color: transparent; }
+.lx-slidenav .lx-slidenav__next:hover:not(:disabled) { background: var(--lx-primary-hover); transform: translateX(2px); }
+.lx-slidenav button:disabled { opacity: .4; cursor: default; }
+/* after the first slide, keep the page head compact */
+.lx-slide-later .lx-lead, .lx-slide-later .lx-meta { display: none; }
+.lx-slide-later .lx-pagehead h1 { font-size: clamp(24px, 3vw, 30px); margin-bottom: 0; }
+.lx-slide-later .lx-pagehead { padding-bottom: 16px; margin-bottom: 20px; }
+.lx-slidenav__count { font: 700 13px var(--lx-font-body); color: var(--lx-text-muted); }
+
+/* ---------- Embedded in Moodle: breathing room, Moodle-coloured background ---------- */
+/* An explicit background (not transparent): browsers paint an opaque backdrop behind a
+   transparent iframe whose colour scheme differs from the page around it. */
+html.lx-embedded body { background: var(--lx-bg); overflow: hidden; }
 html.lx-embedded .lx-header, html.lx-embedded .lx-sidebar, html.lx-embedded .lx-pager { display: none; }
-html.lx-embedded .lx-layout { display: block; padding: 4px 2px 8px; max-width: none; }
-html.lx-embedded .lx-main { max-width: none; }
+html.lx-embedded .lx-layout { display: block; padding: 32px 40px 104px; max-width: none; }
+html.lx-embedded .lx-main { max-width: 900px; margin: 0 auto; }
 html.lx-embedded .lx-crumbs a { pointer-events: none; text-decoration: none; }
-html.lx-embedded .lx-footer { padding: 0 2px 12px; }
+html.lx-embedded .lx-footer { display: none; }
+html.lx-embedded .lx-pagehead { padding-bottom: 20px; margin-bottom: 22px; }
+html.lx-embedded .lx-scorebar { bottom: auto; position: relative; margin-top: 24px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
@@ -252,6 +290,9 @@ html.lx-embedded .lx-footer { padding: 0 2px 12px; }
   .lx-module { grid-template-columns: 1fr; padding: 22px; }
   .lx-module > *, .lx-module__num { grid-column: 1 !important; }
   .lx-module__num { grid-row: auto; width: 44px; height: 44px; font-size: 17px; }
+  html.lx-embedded .lx-layout { padding: 20px 16px 96px; }
+  .lx-step { flex: 0 0 auto; }
+  .lx-step:not(.is-active) .lx-step__label { display: none; }
 }
 @media print {
   .lx-header, .lx-sidebar, .lx-pager, .lx-scorebar, .lx-copy { display: none !important; }

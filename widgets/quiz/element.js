@@ -29,12 +29,27 @@ class LxQuiz extends LxElement {
       .wrong .mark { color: var(--lx-error); }
       .summary { display: flex; align-items: center; gap: 14px; margin-top: 8px; padding-top: 14px; border-top: 1px solid var(--lx-border); }
       .summary .progress { flex: 1; }
+      /* paged mode (inside slides): one question at a time */
+      .dots { display: flex; gap: 6px; flex-wrap: wrap; margin: 2px 0 6px; }
+      .dot { width: 32px; height: 32px; padding: 0; border-radius: 10px; font: 800 13px var(--lx-font-body); background: var(--lx-surface-3); color: var(--lx-text-muted); border: 1px solid transparent; }
+      .dot.current { border-color: var(--lx-accent); color: var(--lx-heading); background: var(--lx-surface); }
+      .dot.right { background: var(--lx-success-soft); color: var(--lx-success-ink); }
+      .dot.wrong { background: var(--lx-error-soft); color: var(--lx-error-ink); }
+      .paged .q { border-top: 0; padding-top: 10px; }
+      .result { text-align: center; padding: 10px 0 4px; }
+      .result b { display: block; font: 800 44px var(--lx-font-heading); color: var(--lx-heading); letter-spacing: -.02em; }
+      .review { list-style: none; padding: 0; margin: 14px 0 0; text-align: left; }
+      .review li { display: flex; gap: 10px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--lx-border); }
+      .review button { background: none; border: 0; padding: 0; font: 600 15px var(--lx-font-body); color: var(--lx-link); text-align: left; cursor: pointer; }
     `,
   ];
 
   get questions() { return this.config.questions || []; }
 
-  initialState() { return { picks: {}, checked: {} }; }
+  initialState() { return { picks: {}, checked: {}, cur: 0, view: "question" }; }
+
+  /** Inside a slides page the quiz shows one question at a time (authors can force with `paged`). */
+  get paged() { return this.config.paged ?? !!this.closest("[data-slides]"); }
   maxScore() { return this.questions.length; }
 
   isRight(qi) {
@@ -97,15 +112,62 @@ class LxQuiz extends LxElement {
       </fieldset>
       ${checked
         ? html`<div class="feedback ${right ? "ok" : "bad"}" role="status">
-            <strong>${right ? "Correct." : "Not quite."}</strong> ${q.explain ? unsafeHTML(q.explain) : nothing}
-          </div>`
+              <strong>${right ? "Correct." : "Not quite."}</strong> ${q.explain ? unsafeHTML(q.explain) : nothing}
+            </div>
+            ${this.paged ? this.renderPagedNext(qi) : nothing}`
         : html`<div class="actions">
             <button class="btn-primary" ?disabled=${!picks.length} @click=${() => this.check(qi)}>Check answer</button>
           </div>`}
     </div>`;
   }
 
+  renderPagedNext(qi) {
+    const total = this.questions.length;
+    const nextOpen = [...Array(total).keys()].find((k) => k > qi && !this.state.checked[k]) ?? [...Array(total).keys()].find((k) => !this.state.checked[k]);
+    return html`<div class="actions">
+      ${nextOpen !== undefined
+        ? html`<button class="btn-primary" @click=${() => this.setState({ cur: nextOpen })}>Next question →</button>`
+        : html`<button class="btn-primary" @click=${() => this.setState({ view: "result" })}>See your result</button>`}
+    </div>`;
+  }
+
+  renderPaged() {
+    const { score, complete } = this.result();
+    const total = this.questions.length;
+    const cur = Math.min(this.state.cur || 0, total - 1);
+    if (complete && this.state.view === "result") {
+      return html`<div class="result" role="status">
+          <b>${score} / ${total}</b><span class="muted">correct answers</span>
+        </div>
+        <ul class="review">
+          ${this.questions.map((q, qi) => html`<li>
+            <span class="rating ${this.isRight(qi) ? "optimal" : "critical"}">${this.isRight(qi) ? "✓" : "✗"}</span>
+            <button @click=${() => this.setState({ cur: qi, view: "question" })}>${unsafeHTML(q.q)}</button>
+          </li>`)}
+        </ul>
+        <div class="actions" style="justify-content:center">
+          <button class="btn-ghost" @click=${() => this.resetState()}>Try again</button>
+        </div>`;
+    }
+    return html`<div class="dots" role="tablist" aria-label="Questions">
+        ${this.questions.map((_, qi) => {
+          const st = this.state.checked[qi] ? (this.isRight(qi) ? "right" : "wrong") : "";
+          return html`<button class="dot ${st} ${qi === cur ? "current" : ""}" role="tab" aria-selected=${qi === cur}
+            aria-label="Question ${qi + 1}${st ? (st === "right" ? ", correct" : ", incorrect") : ""}" @click=${() => this.setState({ cur: qi, view: "question" })}>${qi + 1}</button>`;
+        })}
+      </div>
+      <div class="paged">${this.renderQuestion(this.questions[cur], cur)}</div>
+      ${complete ? html`<div class="actions"><button class="btn-ghost" @click=${() => this.setState({ view: "result" })}>Back to result</button></div>` : nothing}`;
+  }
+
   renderWidget() {
+    if (this.paged) {
+      return html`<section class="card" aria-label=${this.config.title || "Quiz"}>
+        <div class="eyebrow">Check yourself ${this.graded ? html`<span class="graded">· graded</span>` : nothing}</div>
+        ${this.config.title ? html`<h3>${unsafeHTML(this.config.title)}</h3>` : nothing}
+        ${this.renderPaged()}
+      </section>`;
+    }
     const { score, complete } = this.result();
     const total = this.questions.length;
     const done = Object.values(this.state.checked).filter(Boolean).length;

@@ -48,6 +48,9 @@ npm run new -- practical-workflows "Debugging with Codex"
 
 ## A page
 
+Pages are shown as **slides**: a new slide starts at every `## heading`, at a `---` line, and at every `scenario` / `spot` block. Learners move with Back / Next, the section stepper or the arrow keys, and quizzes show one question at a time. Keep each section short (one idea, one resource or one activity). To show a page as one long scroll, set `layout: scroll` in its front matter.
+
+
 ````markdown
 ---
 title: Your first session, safely          # required

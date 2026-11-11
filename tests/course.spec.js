@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import fs from "node:fs";
+import { showSlide, answerQuiz } from "./helpers.js";
 
 const BASE = "http://localhost:4322";
 const SIM = "http://localhost:4401";
@@ -33,12 +34,10 @@ test("graded page reports to Moodle with the plugin's message format", async ({ 
   await page.goto(`${BASE}/__moodle/?url=/getting-started/what-is-codex/&uid=1&cid=1`);
   const frame = page.frameLocator("#extpage-iframe");
   const quiz = frame.locator("lx-quiz");
-  // answers in content: 1, 2, 0
-  for (const [qi, oi] of [[0, 1], [1, 2], [2, 0]]) {
-    const q = quiz.locator(".q").nth(qi);
-    await q.locator("label.opt").nth(oi).click();
-    await q.getByRole("button", { name: "Check answer" }).click();
-  }
+  await showSlide(frame, "lx-quiz");
+  await answerQuiz(quiz, [1, 2, 0]); // answers in content
+  await quiz.getByRole("button", { name: "See your result" }).click();
+  await expect(quiz.locator(".result b")).toHaveText("3 / 3");
   await expect.poll(() => page.evaluate(() => window.__messages.filter((m) => m.type === "moodleSubmitGrade"))).toEqual([
     { type: "moodleSubmitGrade", score: 3, maxScore: 3 },
   ]);
@@ -46,6 +45,20 @@ test("graded page reports to Moodle with the plugin's message format", async ({ 
   expect(resizes).toBeGreaterThan(0);
   // embedded mode hides the site chrome
   await expect(frame.locator(".lx-sidebar")).toBeHidden();
+});
+
+test("slides: one section at a time, keyboard and buttons navigate", async ({ page }) => {
+  await page.goto(`${BASE}/getting-started/what-is-codex/`);
+  await expect(page.locator(".lx-slide")).toHaveCount(4);
+  await expect(page.locator(".lx-slide:visible")).toHaveCount(1);
+  await page.locator("[data-slide-next]").click();
+  await expect(page.locator(".lx-slide").nth(1)).toBeVisible();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator(".lx-slide").nth(2)).toBeVisible();
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.locator(".lx-slidenav__count")).toHaveText("2 / 4");
+  await page.locator(".lx-step").nth(3).click();
+  await expect(page.locator("[data-slide-next]")).toBeDisabled();
 });
 
 test("inside Moodle, links to other course pages open in a new tab", async ({ page }) => {
@@ -56,11 +69,12 @@ test("inside Moodle, links to other course pages open in a new tab", async ({ pa
 
 test("answers survive a reload", async ({ page }) => {
   await page.goto(`${BASE}/getting-started/what-is-codex/`);
-  const q = page.locator("lx-quiz .q").first();
-  await q.locator("label.opt").nth(1).click();
-  await q.getByRole("button", { name: "Check answer" }).click();
-  await page.reload();
-  await expect(page.locator("lx-quiz .q").first().locator(".feedback.ok")).toBeVisible();
+  await showSlide(page, "lx-quiz");
+  const quiz = page.locator("lx-quiz");
+  await quiz.locator(".paged label.opt").nth(1).click();
+  await quiz.getByRole("button", { name: "Check answer" }).click();
+  await page.reload(); // stays on the same slide and keeps the answer
+  await expect(quiz.locator(".paged .feedback.ok")).toBeVisible();
 });
 
 test.describe("version pinning", () => {

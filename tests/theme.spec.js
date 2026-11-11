@@ -31,8 +31,8 @@ test("inside Moodle: page follows the theme Moodle sends, live", async ({ page }
   await frame.locator("h1").waitFor();
   await page.evaluate(() => window.__setMoodleTheme("dark"));
   await expect.poll(() => theme(frame)).toBe("dark");
-  // transparent background so the Moodle page shows through
-  expect(await frame.locator("body").evaluate((b) => getComputedStyle(b).backgroundColor)).toBe("rgba(0, 0, 0, 0)");
+  // background matches Moodle's dark page colour (#0F1220)
+  await expect.poll(() => frame.locator("body").evaluate((b) => getComputedStyle(b).backgroundColor)).toBe("rgb(15, 18, 32)");
   await page.evaluate(() => window.__setMoodleTheme("light"));
   await expect.poll(() => theme(frame)).toBe("light");
 });

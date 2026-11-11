@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import fs from "node:fs";
 import { compareLabs, bumpType } from "../scripts/check-labs.mjs";
+import { showSlide } from "./helpers.js";
 
 const BASE = "http://localhost:4322";
 const LAB1 = `${BASE}/getting-started/lab-first-session/`;
@@ -16,12 +17,15 @@ test("changed practice: unfinished attempt is reset, best score kept, notice sho
   })), KEY);
   await page.reload();
   const w = page.locator("#lab1-l1");
+  await showSlide(page, "#lab1-l1");
   await expect(w.locator(".notice")).toContainText("best result (80%) is kept");
   await expect(w.getByRole("button", { name: "Start scenario" })).toBeVisible();
   const st = await page.evaluate((k) => JSON.parse(localStorage.getItem(k)), KEY);
   expect(st).toMatchObject({ best: 0.8, carried: true, fp, cv: 1, run: null });
   // the page still counts it as done (grade never drops) and level 2 stays unlocked
+  await showSlide(page, "#lab1-l2");
   await expect(page.locator("#lab1-l2 .locked")).toHaveCount(0);
+  await showSlide(page, "#lab1-l1");
   // any action dismisses the notice
   await w.getByRole("button", { name: "Start scenario" }).click();
   await expect(w.locator(".notice")).toHaveCount(0);
@@ -33,6 +37,7 @@ test("unchanged practice keeps progress; legacy saves (before versioning) are ad
     last: { attempt: 0, step: "done", path: [{ step: "setup", choice: 0, rating: "optimal" }], evidence: [], flags: [], visited: ["setup"], final: 1, dims: { decisions: 1, process: 1, efficiency: 1, investigative: false, critical: false } } })), KEY);
   await page.reload();
   const w = page.locator("#lab1-l1");
+  await showSlide(page, "#lab1-l1");
   await expect(w.locator(".notice")).toHaveCount(0);
   await expect(w.locator(".score b")).toHaveText("100%");
   expect(await page.evaluate((k) => JSON.parse(localStorage.getItem(k)).fp, KEY)).toBe(fp);

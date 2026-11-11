@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { showSlide } from "./helpers.js";
 
 const BASE = "http://localhost:4322";
 const LAB1 = `${BASE}/getting-started/lab-first-session/`;
@@ -10,7 +11,9 @@ const cont = (w) => w.locator(".actions .btn-primary").click();
 test("level 1 scenario: optimal path scores 100% and unlocks level 2", async ({ page }) => {
   await page.goto(LAB1);
   const l1 = page.locator("#lab1-l1"), l2 = page.locator("#lab1-l2");
+  await showSlide(page, "#lab1-l2");
   await expect(l2.locator(".locked")).toBeVisible();
+  await showSlide(page, "#lab1-l1");
   await l1.getByRole("button", { name: "Start scenario" }).click();
   await choose(l1, "Commit or stash my changes");
   await expect(l1.locator(".pending .rating")).toHaveText("optimal"); // level 1 = feedback each step
@@ -21,6 +24,7 @@ test("level 1 scenario: optimal path scores 100% and unlocks level 2", async ({ 
   await cont(l1);
   await l1.getByRole("button", { name: "See results" }).click();
   await expect(l1.locator(".score b")).toHaveText("100%");
+  await showSlide(page, "#lab1-l2");
   await expect(l2.locator(".locked")).toHaveCount(0);
   await expect(l2.getByRole("button", { name: "Start scenario" })).toBeVisible();
 });
@@ -28,6 +32,7 @@ test("level 1 scenario: optimal path scores 100% and unlocks level 2", async ({ 
 test("critical decision caps the score at 30%", async ({ page }) => {
   await page.goto(LAB1);
   const l1 = page.locator("#lab1-l1");
+  await showSlide(page, "#lab1-l1");
   await l1.getByRole("button", { name: "Start scenario" }).click();
   await choose(l1, "Commit or stash my changes");
   await cont(l1);
@@ -35,6 +40,7 @@ test("critical decision caps the score at 30%", async ({ page }) => {
   await cont(l1);
   await expect(l1.locator(".score b")).toHaveText("30%");
   await expect(l1.locator(".cap")).toBeVisible();
+  await showSlide(page, "#lab1-l2");
   await expect(page.locator("#lab1-l2 .locked")).toBeVisible(); // below 70% → still locked
 });
 
@@ -48,6 +54,7 @@ test("level 3: acting without evidence is downgraded; stopping the agent on time
   });
   await page.reload();
   const l3 = page.locator("#lab1-l3");
+  await showSlide(page, "#lab1-l3");
   await l3.getByRole("button", { name: "Start scenario" }).click();
   await l3.locator(".ev-btn", { hasText: "git diff --stat" }).click();
   await expect(l3.locator(".budget")).toContainText("2 left");
@@ -68,6 +75,7 @@ test("spot level 2: severity is required and graded; decoys explained", async ({
   await page.evaluate(() => localStorage.setItem("lx:codex-navigator:0.0:practical-workflows/lab-review:lab2-l1:anon", JSON.stringify({ best: 1, attemptsUsed: 1 })));
   await page.reload();
   const s = page.locator("#lab2-l2");
+  await showSlide(page, "#lab2-l2");
   await s.locator(".ln").nth(3).click(); // line 4
   await s.locator(".ln").nth(10).click(); // line 11 (inside the skipped block)
   await expect(s.getByRole("button", { name: "Submit review" })).toBeDisabled(); // severities missing
@@ -85,7 +93,7 @@ test("lab page reports one combined grade to Moodle", async ({ page }) => {
   await page.goto(`${BASE}/__moodle/?url=/getting-started/lab-first-session/&uid=3&cid=3`);
   const f = page.frameLocator("#extpage-iframe");
   // mark levels 2 and 3 as done via storage, then finish level 1 → page complete
-  await f.locator("#lab1-l1").waitFor();
+  await f.locator("#lab1-l1").waitFor({ state: "attached" });
   await page.evaluate(() => {
     const w = document.getElementById("extpage-iframe").contentWindow;
     const base = "lx:codex-navigator:0.0:getting-started/lab-first-session:";
@@ -94,6 +102,7 @@ test("lab page reports one combined grade to Moodle", async ({ page }) => {
     w.location.reload();
   });
   const l1 = f.locator("#lab1-l1");
+  await showSlide(f, "#lab1-l1");
   await l1.getByRole("button", { name: "Start scenario" }).click();
   await choose(l1, "Commit or stash my changes"); await cont(l1);
   await choose(l1, "approve this one request"); await cont(l1);

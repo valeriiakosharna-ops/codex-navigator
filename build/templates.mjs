@@ -94,13 +94,62 @@ export function topicBody(site, mod, p, prev, next) {
     ${p.summary ? `<p class="lx-lead">${esc(p.summary)}</p>` : ""}
     <div class="lx-meta">${chips}</div>
   </div>
-  ${p.html}
+  ${(p.layout || site.course.layout) === "slides" ? slidesHtml(p.html) : p.html}
   ${p.maxScore ? scorebar() : ""}
   <nav class="lx-pager" aria-label="Pages">
     ${prev ? `<a href="${prev.url}"><small>← Previous</small><strong>${esc(prev.title)}</strong></a>` : ""}
     ${next ? `<a class="lx-pager__next" href="${next.url}"><small>Next →</small><strong>${esc(next.title)}</strong></a>` : ""}
   </nav>
 </article>`;
+}
+
+/*
+ * Split a rendered page into slides so learners don't scroll a long page.
+ * A new slide starts at every "## heading", at a thematic break (---), and at every
+ * scenario / spot block (each lab level gets its own slide).
+ */
+const SLIDE_START = /^(<h2 |<hr>|<lx-scenario |<lx-spot )/;
+const plain = (h) => String(h).replace(/<a class="lx-anchor"[^>]*>.*?<\/a>/g, "").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").trim();
+
+export function splitSlides(html) {
+  const chunks = html.split(/\n(?=<h2 |<hr>|<lx-scenario |<lx-spot )/);
+  const slides = [];
+  for (let chunk of chunks) {
+    let label = null;
+    if (chunk.startsWith("<hr>")) chunk = chunk.slice(4);
+    const h2 = chunk.match(/^<h2[^>]*>(.*?)<\/h2>/s);
+    if (h2) label = plain(h2[1]);
+    const widget = chunk.match(/^<(lx-scenario|lx-spot) [^>]*><script type="application\/json">(.*?)<\/script>/s);
+    if (widget) {
+      try {
+        const cfg = JSON.parse(widget[2]);
+        label = `Level ${cfg.level}${cfg.title ? ": " + plain(cfg.title) : ""}`;
+      } catch { label = "Practice"; }
+    }
+    if (!chunk.trim()) continue;
+    slides.push({ label: label || (slides.length ? `Part ${slides.length + 1}` : "Introduction"), html: chunk });
+  }
+  return slides;
+}
+
+function slidesHtml(html) {
+  const slides = splitSlides(html);
+  if (slides.length < 2) return html;
+  const steps = slides
+    .map((s, i) => `<button type="button" class="lx-step${i === 0 ? " is-active" : ""}" data-step="${i}" aria-controls="lx-slide-${i + 1}"${i === 0 ? ' aria-current="step"' : ""}><span class="lx-step__n">${i + 1}</span><span class="lx-step__label">${esc(s.label)}</span></button>`)
+    .join("");
+  const body = slides
+    .map((s, i) => `<section class="lx-slide${i === 0 ? " is-active" : ""}" id="lx-slide-${i + 1}" data-label="${esc(s.label)}" aria-label="${esc(s.label)}"${i === 0 ? "" : " hidden"}>\n${s.html}\n</section>`)
+    .join("\n");
+  return `<div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page">${steps}</nav>
+  ${body}
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / ${slides.length}</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>`;
 }
 
 export const scorebar = () => `<div class="lx-scorebar" hidden role="status">

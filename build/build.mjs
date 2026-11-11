@@ -29,6 +29,7 @@ const courseSchema = z.object({
   description: z.string().optional(),
   language: z.string().default("en"),
   gradeMode: z.enum(["on-complete", "each-answer"]).default("on-complete"),
+  layout: z.enum(["slides", "scroll"]).default("slides"),
   moodleOrigins: z.array(z.string()).default([]),
   footer: z.string().optional(),
   intro: z.string().optional(),
@@ -45,6 +46,7 @@ const pageSchema = z.object({
   duration: z.string().optional(),
   slug: z.string().regex(/^[a-z0-9-]+$/).optional(),
   gradeMode: z.enum(["on-complete", "each-answer"]).optional(),
+  layout: z.enum(["slides", "scroll"]).optional(),
   draft: z.boolean().default(false),
 }).strict();
 

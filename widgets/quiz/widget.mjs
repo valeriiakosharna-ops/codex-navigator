@@ -3,7 +3,7 @@ import { z } from "zod";
 export default {
   name: "quiz",
   title: "Quiz",
-  version: "1.0.0",
+  version: "1.1.0",
   kind: "interactive",
   graded: true,
   maxScore: (d) => d.questions.length,
@@ -15,6 +15,7 @@ export default {
       title: z.string().optional().describe("Heading above the questions."),
       shuffle: z.boolean().default(false).describe("Shuffle options (stable per learner)."),
       graded: z.boolean().default(true).describe("Set false for a practice-only quiz."),
+      paged: z.boolean().optional().describe("One question at a time. Default: on inside slide pages, off otherwise."),
       questions: z
         .array(
           z.object({
