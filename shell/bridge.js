@@ -122,6 +122,12 @@ if (deck) {
   const last = slides.length - 1;
   const memoKey = `lx:slide:${LX.course}:${(LX.page && LX.page.id) || location.pathname}`;
   let current = 0;
+  // Scroll target sits above the deck so it lands below sticky bars (ours, or Moodle's
+  // fixed top bar when embedded; scroll-margin is ignored when scrolling the parent page).
+  const anchor = document.createElement("span");
+  anchor.setAttribute("aria-hidden", "true");
+  anchor.style.cssText = `position:absolute;left:0;width:1px;height:1px;top:-${inFrame ? 96 : 76}px`;
+  deck.prepend(anchor);
 
   const fromHash = () => { const m = location.hash.match(/^#lx-slide-(\d+)$/); return m ? Number(m[1]) - 1 : null; };
   const remembered = () => { try { return Number(sessionStorage.getItem(memoKey)); } catch { return null; } };
@@ -141,7 +147,7 @@ if (deck) {
     document.documentElement.classList.toggle("lx-slide-later", current > 0);
     try { sessionStorage.setItem(memoKey, String(current)); } catch { /* ignore */ }
     if (!inFrame) history.replaceState(null, "", `#lx-slide-${current + 1}`);
-    if (scroll) deck.scrollIntoView({ block: "start", behavior: "smooth" });
+    if (scroll) anchor.scrollIntoView({ block: "start", behavior: "smooth" });
     if (focus) slides[current].querySelector("h2, [tabindex], button, a")?.focus({ preventScroll: true });
   }
 

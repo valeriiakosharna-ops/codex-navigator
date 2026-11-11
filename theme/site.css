@@ -278,8 +278,6 @@ html.lx-embedded .lx-crumbs a { pointer-events: none; text-decoration: none; }
 html.lx-embedded .lx-footer { display: none; }
 html.lx-embedded .lx-pagehead { padding-bottom: 20px; margin-bottom: 22px; }
 html.lx-embedded .lx-scorebar { bottom: auto; position: relative; margin-top: 24px; }
-/* Moodle has a fixed top bar (~64px): when a slide changes, stop scrolling below it */
-html.lx-embedded .lx-slides { scroll-margin-top: 96px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
