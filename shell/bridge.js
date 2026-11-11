@@ -13,8 +13,11 @@ const LX = window.LX || {};
 const inFrame = document.documentElement.classList.contains("lx-embedded");
 
 function parentOrigin() {
-  // Send only to the page that embeds us when we can tell who it is.
+  // Who embeds us? Moodle may send no referrer, so prefer location.ancestorOrigins
+  // (Chrome, Edge, Safari), then the referrer. Unknown -> "*".
   try {
+    const anc = location.ancestorOrigins;
+    if (anc && anc.length && anc[0] && anc[0] !== "null") return anc[0];
     if (document.referrer) return new URL(document.referrer).origin;
   } catch { /* fall through */ }
   return "*";
@@ -105,7 +108,7 @@ document.addEventListener("lx-progress", (e) => {
 // Links to other topics go to the matching Moodle activity (from moodle.yaml), replacing the
 // whole Moodle page; without a mapping they go to the Moodle course page. Never to this site.
 if (inFrame) {
-  const moodleOrigin = target !== "*" ? target : null;
+  let moodleOrigin = target !== "*" ? target : null;
   const pageLinks = [...document.querySelectorAll("a[data-lx-page]")];
   for (const a of document.querySelectorAll("a[href]")) {
     const href = a.getAttribute("href");
@@ -114,7 +117,7 @@ if (inFrame) {
     a.rel = "noopener";
   }
   if (pageLinks.length) {
-    const courseUrl = moodleOrigin && LX.cid ? `${moodleOrigin}/course/view.php?id=${encodeURIComponent(LX.cid)}` : null;
+    let courseUrl = moodleOrigin && LX.cid ? `${moodleOrigin}/course/view.php?id=${encodeURIComponent(LX.cid)}` : null;
     const point = (map) => {
       for (const a of pageLinks) {
         const cm = map && map[a.dataset.lxPage];
@@ -130,10 +133,20 @@ if (inFrame) {
       }
     };
     point(null);
-    if (moodleOrigin && LX.cid) {
+    if (LX.cid) {
       fetch(`${LX.siteRoot}moodle.json`, { cache: "no-cache" })
         .then((r) => (r.ok ? r.json() : {}))
-        .then((m) => point(m.sites?.[moodleOrigin]?.courses?.[LX.cid] || null))
+        .then((m) => {
+          const sites = m.sites || {};
+          // Origin unknown (e.g. Firefox without a referrer): use the only configured site that has this course.
+          if (!moodleOrigin) {
+            const candidates = Object.keys(sites).filter((o) => sites[o]?.courses?.[LX.cid]);
+            if (candidates.length !== 1) return;
+            moodleOrigin = candidates[0];
+            courseUrl = `${moodleOrigin}/course/view.php?id=${encodeURIComponent(LX.cid)}`;
+          }
+          point(sites[moodleOrigin]?.courses?.[LX.cid] || null);
+        })
         .catch(() => {});
     }
   }

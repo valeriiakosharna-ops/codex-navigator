@@ -34,7 +34,7 @@
 <div class="page">
   <h2 id="title">External page with grades</h2>
   <div id="log">Waiting for messages from the page…</div>
-  <iframe id="extpage-iframe" allowfullscreen></iframe>
+  <!-- referrerpolicy mirrors the real Moodle, which sends no referrer to the course page --><iframe id="extpage-iframe" allowfullscreen referrerpolicy="no-referrer"></iframe>
 </div>
 <div id="toast"></div>
 <script>
