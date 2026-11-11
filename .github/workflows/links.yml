@@ -12,7 +12,7 @@ jobs:
   links:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: lycheeverse/lychee-action@v2
         id: lychee
         with:
@@ -20,7 +20,7 @@ jobs:
           fail: false
       - name: Open an issue if links are broken
         if: steps.lychee.outputs.exit_code != 0
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@v6
         with:
           title: Broken links in course content
           content-filepath: ./lychee/out.md
