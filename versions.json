@@ -14,7 +14,8 @@
         "scenario": "1.0.0",
         "spot": "1.0.0",
         "usecase": "1.0.0"
-      }
+      },
+      "labs": null
     },
     {
       "version": "1.0.0",
@@ -27,7 +28,8 @@
         "quiz": "1.0.0",
         "resource": "1.0.0",
         "usecase": "1.0.0"
-      }
+      },
+      "labs": null
     }
   ]
 }
