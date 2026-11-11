@@ -1,0 +1,13 @@
+<!doctype html><meta charset="utf-8"><title>Page not found</title>
+<script>
+// A page that is missing from an old version (e.g. added later) falls back to the same page on latest.
+(function () {
+  var root = "/codex-navigator/";
+  var m = location.pathname.match(/\/v\/\d+\.\d+\.\d+\/(.*)$/);
+  if (m && !/[?&]nopin=1/.test(location.search)) {
+    var q = location.search ? location.search + "&nopin=1" : "?nopin=1";
+    location.replace(root + "latest/" + m[1] + q + location.hash);
+  }
+})();
+</script>
+<body style="font:16px system-ui;padding:40px;color:#302a40"><h1>Page not found</h1><p><a href="/codex-navigator/latest/">Go to the course</a></p></body>
