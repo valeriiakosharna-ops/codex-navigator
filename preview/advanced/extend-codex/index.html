@@ -7,10 +7,10 @@
 <meta name="description" content="Bring outside context in with MCP; package repeatable work as skills. Know which tool fits which job.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/codex-navigator/preview/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/codex-navigator/preview/assets/lx.css?v=0.0.0-d4df9b4412678b4df23947ae06f86467d7486774-mwc713w6">
-<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"0.0.0-d4df9b4412678b4df23947ae06f86467d7486774","channel":"preview","base":"/codex-navigator/preview/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"advanced/extend-codex"}}</script>
+<link rel="stylesheet" href="/codex-navigator/preview/assets/lx.css?v=0.0.0-c6b26e13ee80e63c6724665e9621c1d214177861-mwc9yytc">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"0.0.0-c6b26e13ee80e63c6724665e9621c1d214177861","channel":"preview","base":"/codex-navigator/preview/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"advanced/extend-codex"}}</script>
 <script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),f=document.documentElement,v=!1;try{v=window.self!==window.top}catch(e){v=!0}(v||/[?&]embed=1/.test(location.search))&&f.classList.add("lx-embedded");function h(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(a){return null}}var l=h("localStorage"),o=h("sessionStorage"),u=new URLSearchParams(location.search),s=u.get("uid")||o&&o.getItem("lx:uid")||"",c=u.get("cid")||o&&o.getItem("lx:cid")||"";o&&(s&&o.setItem("lx:uid",s),c&&o.setItem("lx:cid",c)),n.uid=s,n.cid=c;var g=n.version.split(".").slice(0,2).join("."),m="lx:"+n.course+":pin:"+(c||"-")+":"+(s||"-");n.pinKey=m;function p(e){l&&s&&!l.getItem(m)&&l.setItem(m,e)}if(n.channel==="version"){p(g);return}if(n.channel!=="latest"||u.get("nopin"))return;function w(e,t){for(var a=e.split(".").map(Number),i=t.split(".").map(Number),r=0;r<3;r++)if((a[r]||0)!==(i[r]||0))return(a[r]||0)-(i[r]||0);return 0}function b(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var a=t.filter(function(i){return i===e||i.indexOf(e+".")===0});return a.sort(w),a.length?a[a.length-1]:null}f.classList.add("lx-pinning");var x=function(){f.classList.remove("lx-pinning")},y=setTimeout(x,2500),I=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([I("pins.json"),I("versions.json")]).then(function(e){for(var t=e[0]||{},a=((e[1]||{}).versions||[]).map(function(S){return S.version}),i=[u.get("v"),t.users&&s&&t.users[s],t.courses&&c&&t.courses[c],l&&l.getItem(m),t.default],r=null,d=0;d<i.length&&!r;d++)r=b(i[d],a);if(r&&r!==n.version){var L=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+r+"/"+L+location.search+location.hash);return}p(g),clearTimeout(y),x()})})();</script>
-<script type="module" src="/codex-navigator/preview/assets/lx.js?v=0.0.0-d4df9b4412678b4df23947ae06f86467d7486774-mwc713w6"></script>
+<script type="module" src="/codex-navigator/preview/assets/lx.js?v=0.0.0-c6b26e13ee80e63c6724665e9621c1d214177861-mwc9yytc"></script>
 </head>
 <body>
 <header class="lx-header">
@@ -24,17 +24,17 @@
       <a href="/codex-navigator/preview/widgets/">Widget catalog</a>
       <a href="/codex-navigator/preview/moodle/">Moodle setup</a>
     </nav>
-    <a class="lx-badge-version lx-badge-version--preview" href="/codex-navigator/versions/" title="Course version">preview · 0.0.0-d4df9b4412678b4df23947ae06f86467d7486774</a>
+    <a class="lx-badge-version lx-badge-version--preview" href="/codex-navigator/versions/" title="Course version">preview · 0.0.0-c6b26e13ee80e63c6724665e9621c1d214177861</a>
   </div>
 </header>
 <div class="lx-layout">
   <nav class="lx-sidebar" aria-label="Course contents">
   <h2>1. Get started with Codex</h2>
-  <ol><li><a href="/codex-navigator/preview/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/preview/getting-started/first-session/">Your first session, safely</a></li><li><a href="/codex-navigator/preview/getting-started/prompting-basics/">Asking a coding agent for work</a></li></ol>
+  <ol><li><a href="/codex-navigator/preview/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/preview/getting-started/first-session/">Your first session, safely</a></li><li><a href="/codex-navigator/preview/getting-started/prompting-basics/">Asking a coding agent for work</a></li><li><a href="/codex-navigator/preview/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li></ol>
 <h2>2. Practical workflows</h2>
-  <ol><li><a href="/codex-navigator/preview/practical-workflows/agents-md/">Make guidance durable: AGENTS.md and config</a></li><li><a href="/codex-navigator/preview/practical-workflows/plan-test-review/">The plan → build → test → review loop</a></li></ol>
+  <ol><li><a href="/codex-navigator/preview/practical-workflows/agents-md/">Make guidance durable: AGENTS.md and config</a></li><li><a href="/codex-navigator/preview/practical-workflows/plan-test-review/">The plan → build → test → review loop</a></li><li><a href="/codex-navigator/preview/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
 <h2>3. Advanced workflows and automation</h2>
-  <ol><li><a href="/codex-navigator/preview/advanced/extend-codex/" aria-current="page">Extend Codex with MCP and skills</a></li><li><a href="/codex-navigator/preview/advanced/automate-and-scale/">Automate and scale</a></li></ol>
+  <ol><li><a href="/codex-navigator/preview/advanced/extend-codex/" aria-current="page">Extend Codex with MCP and skills</a></li><li><a href="/codex-navigator/preview/advanced/automate-and-scale/">Automate and scale</a></li><li><a href="/codex-navigator/preview/advanced/lab-automation/">Lab: decisions about automation</a></li></ol>
 </nav>
   <main class="lx-main" id="main">
     <article class="lx-prose">
@@ -144,7 +144,7 @@ Put it in .agents/skills so the whole team gets it.</code></pre></div>
   <span class="lx-scorebar__status"></span>
 </div>
   <nav class="lx-pager" aria-label="Pages">
-    <a href="/codex-navigator/preview/practical-workflows/plan-test-review/"><small>← Previous</small><strong>The plan → build → test → review loop</strong></a>
+    <a href="/codex-navigator/preview/practical-workflows/lab-review/"><small>← Previous</small><strong>Lab: reviewing the agent&#39;s work</strong></a>
     <a class="lx-pager__next" href="/codex-navigator/preview/advanced/automate-and-scale/"><small>Next →</small><strong>Automate and scale</strong></a>
   </nav>
 </article>
@@ -152,7 +152,7 @@ Put it in .agents/skills so the whole team gets it.</code></pre></div>
 </div>
 <footer class="lx-footer">
   <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
-  <p>Codex Navigator preview · 0.0.0-d4df9b4412678b4df23947ae06f86467d7486774 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+  <p>Codex Navigator preview · 0.0.0-c6b26e13ee80e63c6724665e9621c1d214177861 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
 </footer>
 
 </body>

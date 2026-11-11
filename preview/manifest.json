@@ -1,9 +1,9 @@
 {
   "course": "codex-navigator",
   "title": "Codex Navigator",
-  "version": "0.0.0-d4df9b4412678b4df23947ae06f86467d7486774",
+  "version": "0.0.0-c6b26e13ee80e63c6724665e9621c1d214177861",
   "channel": "preview",
-  "builtAt": "2026-11-11T14:07:27.990Z",
+  "builtAt": "2026-11-11T15:29:46.943Z",
   "widgets": {
     "checklist": "1.0.0",
     "compare": "1.0.0",
@@ -11,6 +11,8 @@
     "order": "1.0.0",
     "quiz": "1.0.0",
     "resource": "1.0.0",
+    "scenario": "1.0.0",
+    "spot": "1.0.0",
     "usecase": "1.0.0"
   },
   "pages": [
@@ -45,6 +47,17 @@
       ]
     },
     {
+      "id": "getting-started/lab-first-session",
+      "title": "Lab: decisions in your first sessions",
+      "path": "getting-started/lab-first-session/",
+      "maxScore": 6,
+      "widgets": [
+        "scenario",
+        "scenario",
+        "scenario"
+      ]
+    },
+    {
       "id": "practical-workflows/agents-md",
       "title": "Make guidance durable: AGENTS.md and config",
       "path": "practical-workflows/agents-md/",
@@ -61,6 +74,17 @@
       "widgets": [
         "order",
         "quiz"
+      ]
+    },
+    {
+      "id": "practical-workflows/lab-review",
+      "title": "Lab: reviewing the agent's work",
+      "path": "practical-workflows/lab-review/",
+      "maxScore": 6,
+      "widgets": [
+        "spot",
+        "spot",
+        "scenario"
       ]
     },
     {
@@ -81,6 +105,17 @@
       "widgets": [
         "checklist",
         "quiz"
+      ]
+    },
+    {
+      "id": "advanced/lab-automation",
+      "title": "Lab: decisions about automation",
+      "path": "advanced/lab-automation/",
+      "maxScore": 6,
+      "widgets": [
+        "scenario",
+        "scenario",
+        "scenario"
       ]
     }
   ]
