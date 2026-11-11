@@ -1,6 +1,21 @@
 {
-  "latest": "1.0.0",
+  "latest": "1.1.0",
   "versions": [
+    {
+      "version": "1.1.0",
+      "builtAt": "2026-11-11T15:31:26.574Z",
+      "widgets": {
+        "checklist": "1.0.0",
+        "compare": "1.0.0",
+        "flashcards": "1.0.0",
+        "order": "1.0.0",
+        "quiz": "1.0.0",
+        "resource": "1.0.0",
+        "scenario": "1.0.0",
+        "spot": "1.0.0",
+        "usecase": "1.0.0"
+      }
+    },
     {
       "version": "1.0.0",
       "builtAt": "2026-11-11T14:08:46.561Z",

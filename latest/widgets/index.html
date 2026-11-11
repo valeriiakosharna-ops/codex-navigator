@@ -7,10 +7,10 @@
 
 
 <link rel="icon" href="/codex-navigator/latest/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.0.0-mwc72ski">
-<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.0.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"widgets"}}</script>
+<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.1.0-mwca13rm">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.1.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"widgets"}}</script>
 <script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),f=document.documentElement,v=!1;try{v=window.self!==window.top}catch(e){v=!0}(v||/[?&]embed=1/.test(location.search))&&f.classList.add("lx-embedded");function h(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(a){return null}}var l=h("localStorage"),o=h("sessionStorage"),u=new URLSearchParams(location.search),s=u.get("uid")||o&&o.getItem("lx:uid")||"",c=u.get("cid")||o&&o.getItem("lx:cid")||"";o&&(s&&o.setItem("lx:uid",s),c&&o.setItem("lx:cid",c)),n.uid=s,n.cid=c;var g=n.version.split(".").slice(0,2).join("."),m="lx:"+n.course+":pin:"+(c||"-")+":"+(s||"-");n.pinKey=m;function p(e){l&&s&&!l.getItem(m)&&l.setItem(m,e)}if(n.channel==="version"){p(g);return}if(n.channel!=="latest"||u.get("nopin"))return;function w(e,t){for(var a=e.split(".").map(Number),i=t.split(".").map(Number),r=0;r<3;r++)if((a[r]||0)!==(i[r]||0))return(a[r]||0)-(i[r]||0);return 0}function b(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var a=t.filter(function(i){return i===e||i.indexOf(e+".")===0});return a.sort(w),a.length?a[a.length-1]:null}f.classList.add("lx-pinning");var x=function(){f.classList.remove("lx-pinning")},y=setTimeout(x,2500),I=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([I("pins.json"),I("versions.json")]).then(function(e){for(var t=e[0]||{},a=((e[1]||{}).versions||[]).map(function(S){return S.version}),i=[u.get("v"),t.users&&s&&t.users[s],t.courses&&c&&t.courses[c],l&&l.getItem(m),t.default],r=null,d=0;d<i.length&&!r;d++)r=b(i[d],a);if(r&&r!==n.version){var L=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+r+"/"+L+location.search+location.hash);return}p(g),clearTimeout(y),x()})})();</script>
-<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.0.0-mwc72ski"></script>
+<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.1.0-mwca13rm"></script>
 </head>
 <body>
 <header class="lx-header">
@@ -24,7 +24,7 @@
       <a href="/codex-navigator/latest/widgets/" aria-current="page">Widget catalog</a>
       <a href="/codex-navigator/latest/moodle/">Moodle setup</a>
     </nav>
-    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.0.0</a>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.1.0</a>
   </div>
 </header>
 <div class="lx-layout lx-layout--wide">
@@ -227,6 +227,88 @@ focus:
   <h3>Fields</h3>
   <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>title</code> <strong>*</strong></td><td>Title of the official material.</td></tr><tr><td><code>url</code> <strong>*</strong></td><td>Link to the official page.</td></tr><tr><td><code>provider</code></td><td>Who publishes it, e.g. OpenAI Academy, OpenAI Docs. <span class="muted">Default: <code>&quot;OpenAI&quot;</code></span></td></tr><tr><td><code>format</code></td><td>One of: course, video, docs, live, repo, article. <span class="muted">Default: <code>&quot;docs&quot;</code></span></td></tr><tr><td><code>duration</code></td><td>Rough time, e.g. &quot;45 min&quot;.</td></tr><tr><td><code>level</code></td><td>One of: beginner, intermediate, advanced.</td></tr><tr><td><code>why</code></td><td>One or two sentences: why this resource, for this topic.</td></tr><tr><td><code>focus</code></td><td>While you study, pay attention to… (tips, timestamps, sections).</td></tr><tr><td><code>official</code></td><td>Shows the “Official” badge. <span class="muted">Default: <code>true</code></span></td></tr></tbody></table>
 </section>
+<section class="lx-catalog-item" id="scenario">
+  <h2>Decision scenario <code>scenario</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">interactive web component</span>
+    <span class="lx-chip lx-chip--graded">counts towards the grade</span>
+  </div>
+  <p>A situation that unfolds step by step. The learner decides, investigates with a limited budget, or stops an agent at the right moment. Scoring looks at the <strong>whole path</strong>: decision quality, whether key evidence was checked first, wasted actions, and critical mistakes. A debrief compares the path with an expert&#39;s. Three levels: 1 guided (feedback every step, unlimited attempts), 2 realistic (feedback at the end, 2 attempts), 3 expert (budget, ambiguity, 1 attempt).</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><lx-scenario id="demo-scenario"><script type="application/json">{"id":"demo-scenario","title":"The agent wants network access","level":1,"intro":"You asked Codex to add a date-formatting helper to a client project.","graded":true,"start":"ask","steps":{"ask":{"title":"Network request","situation":"Codex asks for network access to run \u003ccode>npm install dayjs\u003c/code>.","choices":[{"text":"Approve once. The task needs the package and you can review the diff","rating":"optimal","explain":"Approving a single, understood command keeps you in control.","next":"done"},{"text":"Switch to full access so it stops asking","rating":"critical","explain":"That removes the sandbox for everything that follows.","end":true},{"text":"Deny and tell Codex to write the helper without a dependency","rating":"acceptable","explain":"Valid if the project avoids new dependencies. Otherwise you are slowing yourself down.","next":"done"}]},"done":{"situation":"The helper is added. You review the diff and commit.","ending":true}}}</script></lx-scenario>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```scenario
+id: demo-scenario
+title: The agent wants network access
+level: 1
+intro: You asked Codex to add a date-formatting helper to a client project.
+start: ask
+steps:
+  ask:
+    title: Network request
+    situation: Codex asks for network access to run `npm install dayjs`.
+    choices:
+      - text: Approve once. The task needs the package and you can review the diff
+        rating: optimal
+        explain: Approving a single, understood command keeps you in control.
+        next: done
+      - text: Switch to full access so it stops asking
+        rating: critical
+        explain: That removes the sandbox for everything that follows.
+        end: true
+      - text: Deny and tell Codex to write the helper without a dependency
+        rating: acceptable
+        explain: Valid if the project avoids new dependencies. Otherwise you are slowing yourself down.
+        next: done
+  done:
+    ending: true
+    situation: The helper is added. You review the diff and commit.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code> <strong>*</strong></td><td>Required: used for saving progress and unlocking.</td></tr><tr><td><code>title</code> <strong>*</strong></td><td>Scenario name.</td></tr><tr><td><code>level</code> <strong>*</strong></td><td>1 guided · 2 realistic · 3 expert.</td></tr><tr><td><code>intro</code></td><td>Briefing shown before starting.</td></tr><tr><td><code>budget</code></td><td>Investigation budget (number of evidence actions).</td></tr><tr><td><code>attempts</code></td><td>0 = unlimited. Defaults: L1 unlimited, L2 2, L3 1.</td></tr><tr><td><code>feedback</code></td><td>Rating after each step, or only at the end. Default: L1 step, else end.</td></tr><tr><td><code>points</code></td><td>Points in Moodle. Default = level (1/2/3).</td></tr><tr><td><code>unlock</code></td><td>Stay locked until widget `after` reaches `min` (or uses all attempts).</td></tr><tr><td><code>vars</code></td><td>Per-learner variants: `{ file: [a.ts, b.ts] }`, use as `{{file}}` in any text.</td></tr><tr><td><code>graded</code></td><td> <span class="muted">Default: <code>true</code></span></td></tr><tr><td><code>start</code> <strong>*</strong></td><td>Id of the first step.</td></tr><tr><td><code>steps</code> <strong>*</strong></td><td>The steps, by id.</td></tr></tbody></table>
+</section>
+<section class="lx-catalog-item" id="spot">
+  <h2>Spot the problems <code>spot</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">interactive web component</span>
+    <span class="lx-chip lx-chip--graded">counts towards the grade</span>
+  </div>
+  <p>Learners review a diff, log or file and click the lines that are wrong (and, from level 2, rate how serious each problem is). Scoring rewards finding planted problems, correct severity, and penalises false alarms. The debrief explains every problem and every decoy.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><lx-spot id="demo-spot"><script type="application/json">{"id":"demo-spot","title":"Review the agent&#39;s change","level":1,"prompt":"Codex says it \"fixed the login timeout\". Find the problems before you approve.","view":"diff","filename":"src/auth/session.ts","code":" export const SESSION_TTL = 60 * 60;\n-const RETRIES = 3;\n+const RETRIES = 30;\n export function login(user, password) {\n+  console.log(\"login\", user, password);\n   return api.post(\"/login\", { user, password });\n }\n","issues":[{"line":3,"severity":"major","label":"Unexplained retry increase","explain":"30 retries hides the real problem and can hammer the API. Ask why."},{"line":5,"severity":"critical","label":"Password written to logs","explain":"Secrets must never be logged. Reject this change."}],"graded":true}</script></lx-spot>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```spot
+id: demo-spot
+title: Review the agent&#39;s change
+level: 1
+prompt: Codex says it &quot;fixed the login timeout&quot;. Find the problems before you approve.
+view: diff
+filename: src/auth/session.ts
+code: |2
+   export const SESSION_TTL = 60 * 60;
+  -const RETRIES = 3;
+  +const RETRIES = 30;
+   export function login(user, password) {
+  +  console.log(&quot;login&quot;, user, password);
+     return api.post(&quot;/login&quot;, { user, password });
+   }
+issues:
+  - line: 3
+    severity: major
+    label: Unexplained retry increase
+    explain: 30 retries hides the real problem and can hammer the API. Ask why.
+  - line: 5
+    severity: critical
+    label: Password written to logs
+    explain: Secrets must never be logged. Reject this change.
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code> <strong>*</strong></td><td>Required: used for saving progress and unlocking.</td></tr><tr><td><code>title</code> <strong>*</strong></td><td>Task name.</td></tr><tr><td><code>level</code> <strong>*</strong></td><td>1 guided · 2 realistic · 3 expert.</td></tr><tr><td><code>prompt</code> <strong>*</strong></td><td>What the learner should look for.</td></tr><tr><td><code>view</code></td><td>How to display the content (diff colours + / - lines). <span class="muted">Default: <code>&quot;code&quot;</code></span></td></tr><tr><td><code>filename</code></td><td>Shown above the content.</td></tr><tr><td><code>code</code> <strong>*</strong></td><td>The content to review, verbatim. For diffs write `code: |2` so lines starting with a space keep it.</td></tr><tr><td><code>issues</code> <strong>*</strong></td><td>The planted problems.</td></tr><tr><td><code>decoys</code></td><td>Lines that look suspicious but are fine — explained if the learner flags them.</td></tr><tr><td><code>severity</code></td><td>Learner must also rate severity. Default: off on L1, on for L2/L3.</td></tr><tr><td><code>showCount</code></td><td>Tell how many problems there are. Default: only on L1.</td></tr><tr><td><code>attempts</code></td><td>0 = unlimited. Defaults: L1 unlimited, L2 2, L3 1.</td></tr><tr><td><code>points</code></td><td>Points in Moodle. Default = level.</td></tr><tr><td><code>unlock</code></td><td>Stay locked until widget `after` reaches `min`.</td></tr><tr><td><code>graded</code></td><td> <span class="muted">Default: <code>true</code></span></td></tr></tbody></table>
+</section>
 <section class="lx-catalog-item" id="usecase">
   <h2>Use case <code>usecase</code></h2>
   <div class="lx-meta">
@@ -273,7 +355,7 @@ tips:
 </div>
 <footer class="lx-footer">
   <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
-  <p>Codex Navigator v1.0.0 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+  <p>Codex Navigator v1.1.0 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
 </footer>
 
 </body>

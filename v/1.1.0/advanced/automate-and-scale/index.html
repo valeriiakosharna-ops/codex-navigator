@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automate and scale · Codex Navigator</title>
+<meta name="description" content="codex exec in CI, scheduled tasks, worktrees and subagents. Plus the habits that keep it all reliable.">
+
+<link rel="icon" href="/codex-navigator/v/1.1.0/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/1.1.0/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.1.0","channel":"version","base":"/codex-navigator/v/1.1.0/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"advanced/automate-and-scale"}}</script>
+<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),f=document.documentElement,v=!1;try{v=window.self!==window.top}catch(e){v=!0}(v||/[?&]embed=1/.test(location.search))&&f.classList.add("lx-embedded");function h(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(a){return null}}var l=h("localStorage"),o=h("sessionStorage"),u=new URLSearchParams(location.search),s=u.get("uid")||o&&o.getItem("lx:uid")||"",c=u.get("cid")||o&&o.getItem("lx:cid")||"";o&&(s&&o.setItem("lx:uid",s),c&&o.setItem("lx:cid",c)),n.uid=s,n.cid=c;var g=n.version.split(".").slice(0,2).join("."),m="lx:"+n.course+":pin:"+(c||"-")+":"+(s||"-");n.pinKey=m;function p(e){l&&s&&!l.getItem(m)&&l.setItem(m,e)}if(n.channel==="version"){p(g);return}if(n.channel!=="latest"||u.get("nopin"))return;function w(e,t){for(var a=e.split(".").map(Number),i=t.split(".").map(Number),r=0;r<3;r++)if((a[r]||0)!==(i[r]||0))return(a[r]||0)-(i[r]||0);return 0}function b(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var a=t.filter(function(i){return i===e||i.indexOf(e+".")===0});return a.sort(w),a.length?a[a.length-1]:null}f.classList.add("lx-pinning");var x=function(){f.classList.remove("lx-pinning")},y=setTimeout(x,2500),I=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([I("pins.json"),I("versions.json")]).then(function(e){for(var t=e[0]||{},a=((e[1]||{}).versions||[]).map(function(S){return S.version}),i=[u.get("v"),t.users&&s&&t.users[s],t.courses&&c&&t.courses[c],l&&l.getItem(m),t.default],r=null,d=0;d<i.length&&!r;d++)r=b(i[d],a);if(r&&r!==n.version){var L=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+r+"/"+L+location.search+location.hash);return}p(g),clearTimeout(y),x()})})();</script>
+<script type="module" src="/codex-navigator/v/1.1.0/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/1.1.0/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/1.1.0/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/1.1.0/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/1.1.0/">Course</a>
+      <a href="/codex-navigator/v/1.1.0/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/1.1.0/moodle/">Moodle setup</a>
+    </nav>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.1.0</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2>1. Get started with Codex</h2>
+  <ol><li><a href="/codex-navigator/v/1.1.0/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/v/1.1.0/getting-started/first-session/">Your first session, safely</a></li><li><a href="/codex-navigator/v/1.1.0/getting-started/prompting-basics/">Asking a coding agent for work</a></li><li><a href="/codex-navigator/v/1.1.0/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li></ol>
+<h2>2. Practical workflows</h2>
+  <ol><li><a href="/codex-navigator/v/1.1.0/practical-workflows/agents-md/">Make guidance durable: AGENTS.md and config</a></li><li><a href="/codex-navigator/v/1.1.0/practical-workflows/plan-test-review/">The plan → build → test → review loop</a></li><li><a href="/codex-navigator/v/1.1.0/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2>3. Advanced workflows and automation</h2>
+  <ol><li><a href="/codex-navigator/v/1.1.0/advanced/extend-codex/">Extend Codex with MCP and skills</a></li><li><a href="/codex-navigator/v/1.1.0/advanced/automate-and-scale/" aria-current="page">Automate and scale</a></li><li><a href="/codex-navigator/v/1.1.0/advanced/lab-automation/">Lab: decisions about automation</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 3: <a href="/codex-navigator/v/1.1.0/#advanced">Advanced workflows and automation</a></div>
+    <h1>Automate and scale</h1>
+    <p class="lx-lead">codex exec in CI, scheduled tasks, worktrees and subagents. Plus the habits that keep it all reliable.</p>
+    <div class="lx-meta"><span class="lx-chip">⏱ 40 min</span><span class="lx-chip lx-chip--official">Navigates: Codex 103: Advanced Workflows and Automation (OpenAI Academy)</span><span class="lx-chip lx-chip--graded">Graded · 4 pt</span></div>
+  </div>
+  <h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>Once a workflow works reliably by hand, you can stop running it by hand. Codex can run
+<strong>non-interactively</strong> (<code>codex exec</code>), on a <strong>schedule</strong>, and in <strong>parallel</strong>. The official
+guidance has one firm condition: <em>automate only what already works manually</em>.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Academy</div>
+      <div class="lx-resource__title"><a href="https://academy.openai.com/home/videos/codex-bootcamp-301-advanced-automation-2026-10-07" target="_blank" rel="noopener">Codex bootcamp 301: Advanced automation (replay)</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 1 h</span><span class="lx-chip">advanced</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The live session on automation, recorded. Good to watch after Codex 103.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Which tasks they automate first, and which they deliberately keep manual.</li><li>How results of automated runs are reviewed by people.</li></ul></div>
+  <a class="lx-resource__cta" href="https://academy.openai.com/home/videos/codex-bootcamp-301-advanced-automation-2026-10-07" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<h2 id="three-ways-to-scale">Three ways to scale<a class="lx-anchor" href="#three-ways-to-scale" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong><code>codex exec</code></strong> runs Codex from scripts and CI. For CI the docs suggest <code>read-only</code> sandbox with approvals set to <code>never</code>.</li>
+<li><strong>Scheduled tasks</strong> (desktop app → Scheduled): choose a project, prompt, cadence and environment. <em>Skills define the method; scheduled tasks define the timing.</em></li>
+<li><strong>Parallel work</strong>: use Git <strong>worktrees</strong> so live tasks never edit the same files, and <strong>subagents</strong> for bounded side jobs such as exploration, tests or triage.</li>
+</ul>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/automations" target="_blank" rel="noopener">Scheduled tasks (automations)</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span><span class="lx-chip">advanced</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Good first candidates: commit summaries, CI-failure checks, release-note drafts, standup summaries.</li><li>Running a task in a dedicated worktree versus locally.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/automations" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">Nightly CI-failure triage</div>
+    <div class="lx-usecase__who">Platform engineer</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>Every morning someone spends 30 minutes reading red CI runs.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>Using the ci-triage skill, look at last night&#39;s failed runs on main,
+group failures by root cause, link the first failing commit for each,
+and post a summary to docs/triage/&lt;date&gt;.md. Do not change code.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A short report waiting for the team each morning. Humans decide what to fix.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>Run the prompt by hand for a week first. Schedule it only once the output is consistently good.</li><li>Keep automated runs read-only unless there is a strong reason not to.</li></ul></div>
+  </div>
+</article>
+<h2 id="session-hygiene">Session hygiene<a class="lx-anchor" href="#session-hygiene" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>One chat per coherent outcome.</strong> Stay in a chat while you work on the same problem; <code>/fork</code> only when the work truly branches.</li>
+<li><code>/resume</code> continues a saved chat, <code>/compact</code> summarises long context, <code>/status</code> shows the session state.</li>
+<li>Don&#39;t run one chat for the whole project. Context bloats and quality drops.</li>
+</ul>
+<lx-checklist id="automation-ready"><script type="application/json">{"id":"automation-ready","title":"Is this workflow ready to automate?","items":["It has produced good results manually several times in a row","The method lives in a skill (not a long pasted prompt)","Project rules are in AGENTS.md","It runs with the narrowest permissions that work (ideally read-only)","A person reviews the output before anything ships","It runs in its own worktree if it edits files"],"done":"Go ahead and schedule it, and check the first few runs closely."}</script></lx-checklist>
+<div class="lx-callout lx-callout--warning" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>The official &quot;common mistakes&quot; list, in short</div><p>Durable rules kept in prompts · no documented build/test commands · skipping planning ·
+full permissions too early · parallel tasks without worktrees · scheduling before it works
+manually · babysitting instead of working in parallel · one giant chat for everything.</p>
+</div>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="automate"><script type="application/json">{"id":"automate","shuffle":false,"graded":true,"questions":[{"q":"What must be true before you schedule a workflow?","options":["It uses the most powerful model","It already works reliably when run manually","It has full access permissions"],"answer":1,"explain":"Automation multiplies whatever you already have, good or bad."},{"q":"Two Codex tasks need to edit the same repository at the same time. What prevents them from stepping on each other?","options":["Two terminals","Git worktrees","Higher reasoning effort"],"answer":1,"explain":"Each worktree is a separate checkout, so the tasks don&#39;t edit the same files."},{"q":"Which split of responsibilities matches the official guidance?","options":["Scheduled tasks define the method; skills define the timing","Skills define the method; scheduled tasks define the timing"],"answer":1,"explain":"The skill holds the how; the schedule holds the when."},{"q":"Which are signs of good session hygiene?","options":["One chat per coherent outcome","Using \u003ccode>/fork\u003c/code> when work truly branches","One chat for the entire project"],"answer":[0,1],"explain":"Giant chats bloat context. Fork only when the work diverges."}]}</script></lx-quiz>
+
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/v/1.1.0/advanced/extend-codex/"><small>← Previous</small><strong>Extend Codex with MCP and skills</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/v/1.1.0/advanced/lab-automation/"><small>Next →</small><strong>Lab: decisions about automation</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v1.1.0 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>

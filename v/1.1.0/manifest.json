@@ -1,0 +1,122 @@
+{
+  "course": "codex-navigator",
+  "title": "Codex Navigator",
+  "version": "1.1.0",
+  "channel": "version",
+  "builtAt": "2026-11-11T15:31:26.574Z",
+  "widgets": {
+    "checklist": "1.0.0",
+    "compare": "1.0.0",
+    "flashcards": "1.0.0",
+    "order": "1.0.0",
+    "quiz": "1.0.0",
+    "resource": "1.0.0",
+    "scenario": "1.0.0",
+    "spot": "1.0.0",
+    "usecase": "1.0.0"
+  },
+  "pages": [
+    {
+      "id": "getting-started/what-is-codex",
+      "title": "What Codex is and where it runs",
+      "path": "getting-started/what-is-codex/",
+      "maxScore": 3,
+      "widgets": [
+        "flashcards",
+        "quiz"
+      ]
+    },
+    {
+      "id": "getting-started/first-session",
+      "title": "Your first session, safely",
+      "path": "getting-started/first-session/",
+      "maxScore": 4,
+      "widgets": [
+        "checklist",
+        "quiz"
+      ]
+    },
+    {
+      "id": "getting-started/prompting-basics",
+      "title": "Asking a coding agent for work",
+      "path": "getting-started/prompting-basics/",
+      "maxScore": 4,
+      "widgets": [
+        "order",
+        "quiz"
+      ]
+    },
+    {
+      "id": "getting-started/lab-first-session",
+      "title": "Lab: decisions in your first sessions",
+      "path": "getting-started/lab-first-session/",
+      "maxScore": 6,
+      "widgets": [
+        "scenario",
+        "scenario",
+        "scenario"
+      ]
+    },
+    {
+      "id": "practical-workflows/agents-md",
+      "title": "Make guidance durable: AGENTS.md and config",
+      "path": "practical-workflows/agents-md/",
+      "maxScore": 3,
+      "widgets": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "practical-workflows/plan-test-review",
+      "title": "The plan → build → test → review loop",
+      "path": "practical-workflows/plan-test-review/",
+      "maxScore": 4,
+      "widgets": [
+        "order",
+        "quiz"
+      ]
+    },
+    {
+      "id": "practical-workflows/lab-review",
+      "title": "Lab: reviewing the agent's work",
+      "path": "practical-workflows/lab-review/",
+      "maxScore": 6,
+      "widgets": [
+        "spot",
+        "spot",
+        "scenario"
+      ]
+    },
+    {
+      "id": "advanced/extend-codex",
+      "title": "Extend Codex with MCP and skills",
+      "path": "advanced/extend-codex/",
+      "maxScore": 3,
+      "widgets": [
+        "flashcards",
+        "quiz"
+      ]
+    },
+    {
+      "id": "advanced/automate-and-scale",
+      "title": "Automate and scale",
+      "path": "advanced/automate-and-scale/",
+      "maxScore": 4,
+      "widgets": [
+        "checklist",
+        "quiz"
+      ]
+    },
+    {
+      "id": "advanced/lab-automation",
+      "title": "Lab: decisions about automation",
+      "path": "advanced/lab-automation/",
+      "maxScore": 6,
+      "widgets": [
+        "scenario",
+        "scenario",
+        "scenario"
+      ]
+    }
+  ]
+}
