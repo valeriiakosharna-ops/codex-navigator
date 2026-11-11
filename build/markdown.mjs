@@ -1,5 +1,6 @@
 import path from "node:path";
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import * as yaml from "js-yaml";
 import { Marked } from "marked";
 import { esc, slugify, richify, jsonForScript, icons } from "./util.mjs";
@@ -72,6 +73,9 @@ export function renderMarkdown(body, ctx) {
           return "";
         }
         const config = richify(parsed.data);
+        // Fingerprint of the structure saved progress depends on (see widget.structure).
+        const fp = def.structure ? createHash("sha1").update(JSON.stringify(def.structure(parsed.data))).digest("hex").slice(0, 10) : null;
+        if (fp) config._fp = fp;
         if (def.kind === "static") return def.render(config, ctx) + "\n";
 
         let id = parsed.data.id || `${lang}-${(ctx.counters[lang] = (ctx.counters[lang] || 0) + 1)}`;
@@ -82,7 +86,7 @@ export function renderMarkdown(body, ctx) {
         usedIds.add(id);
         const graded = def.graded && parsed.data.graded !== false;
         const max = graded ? (def.maxScore ? def.maxScore(parsed.data) : 1) : 0;
-        widgets.push({ name: lang, id, graded, max });
+        widgets.push({ name: lang, id, graded, max, ...(fp ? { version: parsed.data.version, fp, title: String(parsed.data.title || id) } : {}) });
         return `<lx-${lang} id="${esc(id)}"><script type="application/json">${jsonForScript(config)}</script></lx-${lang}>\n`;
       },
 

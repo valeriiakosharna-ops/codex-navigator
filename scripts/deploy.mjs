@@ -12,6 +12,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { build, printErrors } from "../build/build.mjs";
 import { writeRootFiles } from "./root-files.mjs";
+import { compareLabs, bumpType, report } from "./check-labs.mjs";
 
 const cmp = (a, b) => {
   const x = a.split(".").map(Number), y = b.split(".").map(Number);
@@ -31,6 +32,16 @@ export async function deploy({ site, ref, siteUrl, pins = "pins.yaml", log = con
     if (existing.includes(version)) log(`! v${version} already published: rebuilding it in place`);
     const r = await build({ siteUrl, channel: "version", version, out: path.join(site, "v", version) });
     log(`✓ v${version}: ${r.pages} pages`);
+    // warn about practice changes that reach learners already in progress
+    const prev = existing.filter((v) => v !== version && cmp(v, version) < 0).sort(cmp).pop();
+    if (prev) {
+      try {
+        const oldM = JSON.parse(fs.readFileSync(path.join(vDir, prev, "manifest.json"), "utf8"));
+        report(compareLabs(oldM, r.manifest, bumpType(prev, version)));
+      } catch {
+        log(`· no manifest for v${prev}; practice comparison skipped`);
+      }
+    }
     const highest = [...existing, version].sort(cmp).pop();
     if (highest === version) {
       await build({ siteUrl, channel: "latest", version, out: path.join(site, "latest") });

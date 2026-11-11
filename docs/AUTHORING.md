@@ -142,6 +142,8 @@ Optional tools for harder levels:
 With investigation, the score is 60% decisions + 25% key evidence checked + 15% efficiency (budget not wasted).
 Any critical decision caps the attempt at 30%. The best attempt counts.
 
+Changing the steps, choices, ratings or scoring of a practice that is already live? Add or bump `version: 2` (see docs/VERSIONING.md). Wording fixes need no bump.
+
 The build checks the scenario for you: missing steps, loops, unreachable steps, undefined `{{vars}}`,
 and `needs` that point to non-existent evidence.
 

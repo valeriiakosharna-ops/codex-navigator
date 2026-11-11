@@ -98,3 +98,27 @@ Optional improvements to consider later (not required):
 1. **Server-side pin**: store the version a user started in Moodle and pass it as a URL variable. That makes rule 4 device-independent.
 2. **Origin check**: the plugin accepts messages from any origin. Checking `event.origin` against the course site would harden it.
 3. **Secure grade submission**: scores come from the browser, so a determined learner can fake them. That's acceptable for self-check quizzes, but not for exams.
+
+## Versioning practices (scenario, spot)
+
+Practices are frozen with each course release, like everything else. On top of that, each
+practice has its own `version` (default `1`), and the build records a **structure fingerprint**:
+step ids, choice order and ratings, evidence, stream lines, code line count, issue lines and
+severities. Wording changes don't affect the fingerprint.
+
+| You change… | Do | What learners in progress see |
+|---|---|---|
+| Wording, explanations, typos | patch release, no `version` bump | nothing, progress continues |
+| Steps, choices, ratings, issues, scoring | bump `version: 2`, **minor** release | new cohorts get v2; pinned cohorts keep v1 |
+| Structure, but you forgot to bump | — | safety net: the unfinished attempt restarts with a notice, best score is kept |
+
+Saved progress remembers the version and fingerprint it was made with. If they no longer match,
+the unfinished attempt is dropped (step ids or choice numbers may now mean something else). The
+best score is kept and still counts as done, so the page grade never drops and the next levels
+stay unlocked.
+
+**Checks:**
+
+- **Pull requests**: CI compares practices with the live `latest/` release and adds a warning to the run if a structure changed without a `version` bump.
+- **Release tags**: the deploy compares with the previous release. Structural changes, added or removed practices in a **patch** release produce a warning, because they reach learners who are already in progress.
+- **History**: `/versions/` has a *Practices by release* table showing which practice version shipped in which release. ● marks a change.

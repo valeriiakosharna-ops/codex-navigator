@@ -27,18 +27,41 @@ export const pinsSchema = z.object({
   users: z.record(z.string(), pinValue).default({}),
 }).strict();
 
+// Which version of each practice shipped in which course release (oldest -> newest).
+function practicesTable(entries) {
+  const withLabs = entries.filter((e) => e.labs).slice().reverse();
+  if (!withLabs.length) return "";
+  const ids = [...new Set(withLabs.flatMap((e) => e.labs.map((l) => l.id)))];
+  const title = (id) => withLabs.flatMap((e) => e.labs).find((l) => l.id === id)?.title || id;
+  const head = withLabs.map((e) => `<th>v${e.version}</th>`).join("");
+  const rows = ids.map((id) => {
+    let prev = null;
+    const cells = withLabs.map((e) => {
+      const l = e.labs.find((x) => x.id === id);
+      if (!l) { prev = null; return "<td>—</td>"; }
+      const changed = prev && (prev.fp !== l.fp || prev.version !== l.version);
+      prev = l;
+      return `<td${changed ? ' class="ch"' : ""} title="structure ${l.fp}">v${l.version}${changed ? " ●" : ""}</td>`;
+    }).join("");
+    return `<tr><td><code>${id}</code><br><small>${String(title(id)).replace(/</g, "&lt;")}</small></td>${cells}</tr>`;
+  }).join("");
+  return `<h2>Practices by release</h2><p>● = changed compared to the previous release.</p>
+<table class="pr"><thead><tr><th>Practice</th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+
 export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot } = {}) {
   const vDir = path.join(siteDir, "v");
   const versions = fs.existsSync(vDir) ? fs.readdirSync(vDir).filter((v) => semver.test(v)).sort(cmp).reverse() : [];
   const latest = versions[0] || null;
   const entries = versions.map((v) => {
-    let builtAt = null, widgets = null;
+    let builtAt = null, widgets = null, labs = null;
     try {
       const m = JSON.parse(fs.readFileSync(path.join(vDir, v, "manifest.json"), "utf8"));
       builtAt = m.builtAt;
       widgets = m.widgets;
+      labs = m.labs || null;
     } catch { /* old build without manifest */ }
-    return { version: v, builtAt, widgets };
+    return { version: v, builtAt, widgets, labs };
   });
   fs.writeFileSync(path.join(siteDir, "versions.json"), JSON.stringify({ latest, versions: entries }, null, 2));
 
@@ -62,10 +85,11 @@ export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot } = {
     `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Versions</title>
 <style>body{font:16px/1.6 system-ui,sans-serif;color:#302a40;background:#f0f2f5;margin:0;padding:32px 16px}main{max-width:900px;margin:auto;background:#fff;border-radius:16px;padding:28px 32px}
 h1{margin-top:0}table{width:100%;border-collapse:collapse;font-size:15px}td,th{padding:8px 10px;border-bottom:1px solid #e1e4e8;text-align:left}a{color:#0079b0}b{color:#e60036;font-size:12px;text-transform:uppercase}
-.p{background:#f7f9fb;border-radius:10px;padding:10px 14px;font-size:14px}</style>
+.pr td.ch{background:#fff7e8;font-weight:700}.pr small{color:#5f6c7b}.p{background:#f7f9fb;border-radius:10px;padding:10px 14px;font-size:14px}</style>
 <main><h1>Course versions</h1>
 <p>Moodle activities point to <a href="${root}latest/">latest/</a>. Each learner is then routed to the version of their cohort (or the one they started on).</p>
 <table><thead><tr><th>Version</th><th>Published</th><th>Widgets</th></tr></thead><tbody>${rows || '<tr><td colspan="3">No releases yet.</td></tr>'}</tbody></table>
+${practicesTable(entries)}
 <h2>Pins in force</h2><pre class="p">${JSON.stringify(pins, null, 2).replace(/</g, "&lt;")}</pre>
 <p><a href="${root}preview/">Preview of the main branch</a> (unreleased).</p></main></html>`,
   );

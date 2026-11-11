@@ -32,7 +32,7 @@ export class LxElement extends LitElement {
       const script = this.querySelector('script[type="application/json"]');
       this.config = script ? JSON.parse(script.textContent) : {};
       this._key = stateKey(this.id || this.localName);
-      this.state = { ...this.initialState(), ...(load(this._key) || {}) };
+      this.state = this.migrate(load(this._key));
     } catch (err) {
       this._fail("LX-R201", err);
     }
@@ -60,16 +60,57 @@ export class LxElement extends LitElement {
   result() { return { score: 0, complete: false }; }
   renderWidget() { return html``; }
 
+  // ---- versioned practices --------------------------------------------------
+  /**
+   * Practices (scenario, spot) carry `version` and a build-time structure fingerprint `_fp`.
+   * If either differs from what the saved progress was made with, the unfinished attempt is
+   * dropped (choice indices / step ids may no longer match) but the best score is kept,
+   * so the page grade never goes down.
+   */
+  migrate(saved) {
+    const fresh = this.initialState();
+    const fp = this.config._fp, cv = this.config.version;
+    if (!fp) return { ...fresh, ...(saved || {}) };
+    if (!saved) return { ...fresh, fp, cv };
+    const legacy = saved.fp === undefined && saved.cv === undefined; // saved before practices were versioned
+    if (saved.fp === fp && saved.cv === cv) return { ...fresh, ...saved };
+    if (legacy) {
+      // adopt and stamp it, so a later structural change is detected for this save too
+      const adopted = { ...fresh, ...saved, fp, cv };
+      save(this._key, adopted);
+      return adopted;
+    }
+    const migrated = {
+      ...fresh,
+      best: saved.best || 0,
+      carried: (saved.attemptsUsed || 0) > 0 || !!saved.carried,
+      fp,
+      cv,
+      notice: saved.cv !== cv ? "version" : "changed",
+    };
+    save(this._key, migrated);
+    return migrated;
+  }
+
+  renderNotice() {
+    if (!this.state?.notice) return "";
+    return html`<div class="notice" role="status">
+      <strong>This practice was updated${this.config.version > 1 ? ` (version ${this.config.version})` : ""}.</strong>
+      Your unfinished attempt was reset; your best result (${Math.round((this.state.best || 0) * 100)}%) is kept.
+    </div>`;
+  }
+
   // ---- helpers ------------------------------------------------------------
   setState(patch) {
-    this.state = { ...this.state, ...patch };
+    const { notice, ...rest } = this.state || {};
+    this.state = { ...rest, ...patch }; // any action dismisses the "updated" notice
     save(this._key, this.state);
     this.report();
   }
 
   resetState() {
     remove(this._key);
-    this.state = this.initialState();
+    this.state = { ...this.initialState(), ...(this.config._fp ? { fp: this.config._fp, cv: this.config.version } : {}) };
     this.report();
   }
 
@@ -187,6 +228,7 @@ export const baseStyles = css`
   .muted { color: var(--lx-text-muted); font-size: 14px; }
   .progress { height: 8px; background: #edf0f4; border-radius: 999px; overflow: hidden; }
   .progress > span { display: block; height: 100%; background: linear-gradient(90deg, var(--lx-blue), var(--lx-sky)); transition: width .3s; }
+  .notice { background: #fff7e8; border: 1px solid #f3d9a6; color: #6b4300; border-radius: var(--lx-radius); padding: 10px 14px; margin: 10px 0; font-size: 14px; }
   .locked { display: flex; gap: 16px; align-items: center; background: var(--lx-surface-2); border-style: dashed; }
   .locked h3 { margin: 6px 0 4px; }
   .lock { font-size: 28px; opacity: .7; }

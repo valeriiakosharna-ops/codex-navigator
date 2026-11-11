@@ -70,7 +70,7 @@ class LxSpot extends LxElement {
   maxScore() { return this.config.points ?? this.level; }
   initialState() { return { attemptsUsed: 0, best: 0, exhausted: false, marks: {}, submitted: null }; }
   result() {
-    return { score: r2(this.state.best * this.maxScore()), complete: this.state.attemptsUsed > 0, exhausted: this.state.exhausted };
+    return { score: r2(this.state.best * this.maxScore()), complete: this.state.attemptsUsed > 0 || !!this.state.carried, exhausted: this.state.exhausted };
   }
 
   issueAt(line) {
@@ -190,6 +190,7 @@ class LxSpot extends LxElement {
         <span class="eyebrow" style="margin:0">Spot the problems ${this.graded ? html`<span class="graded">· ${this.maxScore()} pt</span>` : nothing}</span>
       </div>
       <h3>${unsafeHTML(this.config.title || "")}</h3>
+      ${this.renderNotice()}
       <p>${unsafeHTML(this.config.prompt || "")}</p>
       <p class="muted">
         Click every line that is a problem${severity ? ", then rate how serious it is" : ""}.

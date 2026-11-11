@@ -91,6 +91,8 @@ export const scenarioSchema = z
     vars: z.record(z.string(), z.array(z.string()).min(1)).optional()
       .describe("Per-learner variants: `{ file: [a.ts, b.ts] }`, use as `{{file}}` in any text."),
     graded: z.boolean().default(true),
+    version: z.number().int().min(1).default(1)
+      .describe("Practice version. Bump it when you change steps, choices, ratings or scoring; saved attempts restart, best score is kept."),
     start: stepId.describe("Id of the first step."),
     steps: z.record(stepId, step).describe("The steps, by id."),
   })
@@ -147,10 +149,21 @@ export const scenarioSchema = z
 export default {
   name: "scenario",
   title: "Decision scenario",
-  version: "1.0.0",
+  version: "1.1.0",
   kind: "interactive",
   graded: true,
   maxScore: (d) => d.points ?? d.level,
+  /** What saved progress depends on. Wording changes don't count; structure changes do. */
+  structure: (d) => ({
+    level: d.level, points: d.points ?? null, budget: d.budget ?? null, start: d.start,
+    vars: Object.fromEntries(Object.entries(d.vars || {}).map(([k, v]) => [k, v.length])),
+    steps: Object.fromEntries(Object.entries(d.steps).map(([k, s]) => [k, {
+      c: (s.choices || []).map((c) => [c.rating, c.next ?? null, !!c.end, c.needs || [], c.sets || []]),
+      e: (s.evidence || []).map((e) => [e.id, e.key, e.cost]),
+      s: s.stream ? [s.stream.lines.length, s.stream.lines.findIndex((l) => l.red), s.stream.next ?? null, s.stream.missRating] : null,
+      end: !!s.ending,
+    }])),
+  }),
   description:
     "A situation that unfolds step by step. The learner decides, investigates with a limited budget, or stops an agent at the right moment. Scoring looks at the **whole path**: decision quality, whether key evidence was checked first, wasted actions, and critical mistakes. A debrief compares the path with an expert's. Three levels: 1 guided (feedback every step, unlimited attempts), 2 realistic (feedback at the end, 2 attempts), 3 expert (budget, ambiguity, 1 attempt).",
   schema: scenarioSchema,

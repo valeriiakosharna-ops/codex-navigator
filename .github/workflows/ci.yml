@@ -22,6 +22,8 @@ jobs:
       - run: npm ci
       - name: Validate & build content
         run: npm run build
+      - name: Practice changes vs. latest release
+        run: node scripts/check-labs.mjs "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/latest/manifest.json" dist/manifest.json
       - name: Browser tests
         run: npx playwright test
         env:

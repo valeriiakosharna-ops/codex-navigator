@@ -31,6 +31,8 @@ export const spotSchema = z
     unlock: z.object({ after: z.string(), min: z.number().min(0).max(1).default(0.7) }).strict().optional()
       .describe("Stay locked until widget `after` reaches `min`."),
     graded: z.boolean().default(true),
+    version: z.number().int().min(1).default(1)
+      .describe("Practice version. Bump it when you change the code lines, issues or scoring; saved attempts restart, best score is kept."),
   })
   .strict()
   .superRefine((s, ctx) => {
@@ -54,10 +56,16 @@ export const spotSchema = z
 export default {
   name: "spot",
   title: "Spot the problems",
-  version: "1.0.0",
+  version: "1.1.0",
   kind: "interactive",
   graded: true,
   maxScore: (d) => d.points ?? d.level,
+  structure: (d) => ({
+    level: d.level, points: d.points ?? null, severity: d.severity ?? null,
+    lines: d.code.replace(/\n$/, "").split("\n").length,
+    issues: d.issues.map((i) => [i.line, i.to ?? null, i.severity]),
+    decoys: (d.decoys || []).map((x) => x.line),
+  }),
   description:
     "Learners review a diff, log or file and click the lines that are wrong (and, from level 2, rate how serious each problem is). Scoring rewards finding planted problems, correct severity, and penalises false alarms. The debrief explains every problem and every decoy.",
   schema: spotSchema,

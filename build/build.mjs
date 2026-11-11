@@ -221,6 +221,8 @@ export async function build(opts = {}) {
     builtAt,
     widgets: Object.fromEntries(Object.values(registry).map((d) => [d.name, d.version])),
     pages: allPages.map((p) => ({ id: p.id, title: p.title, path: p.path, maxScore: p.maxScore, widgets: p.widgets.map((w) => w.name) })),
+    // versioned practices: used for history on /versions/ and the patch-vs-minor check
+    labs: allPages.flatMap((p) => p.widgets.filter((w) => w.fp).map((w) => ({ id: w.id, page: p.id, widget: w.name, title: w.title, version: w.version, fp: w.fp }))),
   };
   write("manifest.json", JSON.stringify(manifest, null, 2));
   if (channel === "dev") {

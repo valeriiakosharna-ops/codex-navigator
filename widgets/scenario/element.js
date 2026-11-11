@@ -95,7 +95,7 @@ class LxScenario extends LxElement {
 
   result() {
     const s = this.state;
-    return { score: r2(s.best * this.maxScore()), complete: s.attemptsUsed > 0, exhausted: s.exhausted };
+    return { score: r2(s.best * this.maxScore()), complete: s.attemptsUsed > 0 || !!s.carried, exhausted: s.exhausted };
   }
 
   // ---- variants -----------------------------------------------------------------
@@ -401,6 +401,7 @@ class LxScenario extends LxElement {
     this._vars = this.computeVars(attempt);
     return html`<section class="card" aria-label=${strip(this.config.title || "Scenario")}>
       ${this.renderHead()}
+      ${this.renderNotice()}
       ${s.run ? this.renderStep() : s.last ? this.renderDebrief() : this.renderIntro()}
     </section>`;
   }
