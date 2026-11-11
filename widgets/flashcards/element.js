@@ -17,9 +17,9 @@ class LxFlashcards extends LxElement {
         position: absolute; inset: 0; display: grid; place-items: center; padding: 22px 28px; border-radius: var(--lx-radius-lg);
         backface-visibility: hidden; -webkit-backface-visibility: hidden;
       }
-      .front { background: var(--lx-ink); color: #fff; font-family: var(--lx-font-heading); font-size: 24px; font-weight: 600; }
-      .front code { background: rgba(255,255,255,.12); color: var(--lx-sky); font-size: .9em; }
-      .backface { background: #f2f8fc; border: 1px solid #cfe9f7; transform: rotateY(180deg); font-size: 16px; text-align: left; }
+      .front { background: linear-gradient(135deg, #12a6ef, #0b62b8 70%, #2a3f7a); color: #fff; font-family: var(--lx-font-heading); font-size: 24px; font-weight: 800; letter-spacing: -.01em; }
+      .front code { background: rgba(255,255,255,.18); color: #fff; font-size: .9em; }
+      .backface { background: var(--lx-surface-2); border: 1px solid var(--lx-border); color: var(--lx-text); transform: rotateY(180deg); font-size: 16px; text-align: left; }
       .tag { position: absolute; top: 10px; left: 14px; font: 800 11px var(--lx-font-body); letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
       .nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
       .count { margin-right: auto; }

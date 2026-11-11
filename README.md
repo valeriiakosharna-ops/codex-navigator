@@ -10,6 +10,7 @@ Moodle as a graded activity.
 | **Write content** | [docs/AUTHORING.md](docs/AUTHORING.md) |
 | **Versions & Moodle** | [docs/VERSIONING.md](docs/VERSIONING.md) |
 | **How it works** | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| **Light / dark theme & Moodle sync** | [docs/MOODLE-THEME-SYNC.md](docs/MOODLE-THEME-SYNC.md) |
 
 ## Quick start
 

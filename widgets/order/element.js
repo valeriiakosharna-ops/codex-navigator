@@ -15,19 +15,19 @@ class LxOrder extends LxElement {
         background: var(--lx-surface-2); border: 1px solid var(--lx-border); border-radius: var(--lx-radius);
         cursor: grab; touch-action: none; user-select: none; transition: border-color .15s, background .15s, transform .15s;
       }
-      li::before { content: counter(step); font: 600 13px var(--lx-font-mono); color: #fff; background: var(--lx-steel); border-radius: 50%; width: 24px; height: 24px; display: grid; place-items: center; flex: none; }
+      li::before { content: counter(step); font: 600 13px var(--lx-font-mono); color: var(--lx-accent-ink); background: var(--lx-accent-soft); border-radius: 8px; width: 24px; height: 24px; display: grid; place-items: center; flex: none; }
       li.dragging { opacity: .6; transform: scale(.99); border-style: dashed; }
-      li.over { border-color: var(--lx-blue); }
-      li.correct { border-color: var(--lx-success); background: var(--lx-success-bg); }
+      li.over { border-color: var(--lx-accent); }
+      li.correct { border-color: var(--lx-success); background: var(--lx-success-soft); }
       li.correct::before { background: var(--lx-success); }
-      li.wrong { border-color: var(--lx-error); background: var(--lx-error-bg); }
+      li.wrong { border-color: var(--lx-error); background: var(--lx-error-soft); }
       li.wrong::before { background: var(--lx-error); }
       li.locked { cursor: default; }
       .text { flex: 1; }
       .move { display: flex; gap: 4px; }
-      .move button { padding: 2px 9px; font-size: 14px; background: #fff; border-color: var(--lx-border); color: var(--lx-steel); }
-      .move button:hover:not(:disabled) { border-color: var(--lx-blue); }
-      .grip { color: #a6adb8; font-size: 18px; line-height: 1; }
+      .move button { padding: 3px 10px; font-size: 14px; background: var(--lx-surface); border-color: var(--lx-border); color: var(--lx-heading); border-radius: 8px; }
+      .move button:hover:not(:disabled) { border-color: var(--lx-accent); }
+      .grip { color: var(--lx-text-muted); font-size: 18px; line-height: 1; }
     `,
   ];
 

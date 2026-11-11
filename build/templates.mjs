@@ -47,6 +47,9 @@ ${channel === "preview" ? '<meta name="robots" content="noindex">' : ""}
       <a href="${base}widgets/"${page.current === "widgets" ? ' aria-current="page"' : ""}>Widget catalog</a>
       <a href="${base}moodle/"${page.current === "moodle" ? ' aria-current="page"' : ""}>Moodle setup</a>
     </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
     <a class="lx-badge-version${channel === "preview" || channel === "dev" ? " lx-badge-version--preview" : ""}" href="${versionsHref}" title="Course version">${esc(versionLabel)}</a>
   </div>
 </header>
@@ -69,7 +72,7 @@ function sidebar(site, page) {
   return `<nav class="lx-sidebar" aria-label="Course contents">
   ${site.nav
     .map(
-      (m, mi) => `<h2>${mi + 1}. ${esc(m.title)}</h2>
+      (m, mi) => `<h2><span class="n">${mi + 1}</span>${esc(m.title)}</h2>
   <ol>${m.pages
     .map((p) => `<li><a href="${p.url}"${p.id === page.id ? ' aria-current="page"' : ""}>${esc(p.title)}</a></li>`)
     .join("")}</ol>`,
@@ -86,7 +89,7 @@ export function topicBody(site, mod, p, prev, next) {
   ].join("");
   return `<article class="lx-prose">
   <div class="lx-pagehead">
-    <div class="lx-crumbs">Module ${mod.index}: <a href="${site.base}#${mod.slug}">${esc(mod.title)}</a></div>
+    <div class="lx-crumbs">Module ${mod.index} · <a href="${site.base}#${mod.slug}">${esc(mod.title)}</a></div>
     <h1>${esc(p.title)}</h1>
     ${p.summary ? `<p class="lx-lead">${esc(p.summary)}</p>` : ""}
     <div class="lx-meta">${chips}</div>

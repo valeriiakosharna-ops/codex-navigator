@@ -240,16 +240,16 @@ function homeBody(site, modules, course) {
   <h1>${esc(course.title)}</h1>
   ${course.tagline ? `<p>${esc(course.tagline)}</p>` : ""}
 </section>
-${course.intro ? `<div class="lx-prose" style="margin-bottom:28px">${renderIntro(course.intro)}</div>` : ""}
+${course.intro ? `<div class="lx-prose lx-intro">${renderIntro(course.intro)}</div>` : ""}
 <div class="lx-modules">
 ${modules
   .map(
     (m) => `<section class="lx-module" id="${m.slug}">
-  <div class="lx-module__num">MODULE ${String(m.index).padStart(2, "0")}</div>
+  <div class="lx-module__num" aria-hidden="true">${m.index}</div>
   <h2>${esc(m.title)}</h2>
   ${m.summary ? `<p>${esc(m.summary)}</p>` : ""}
   ${m.official ? `<p><span class="lx-chip lx-chip--official">Official course</span> <a href="${esc(m.official.url)}" target="_blank" rel="noopener">${esc(m.official.title)}</a></p>` : ""}
-  <ol>${m.pages.map((p) => `<li><a href="${p.url}">${esc(p.title)}</a>${p.duration ? ` <span class="muted">· ${esc(p.duration)}</span>` : ""}</li>`).join("")}</ol>
+  <ol>${m.pages.map((p) => `<li><a href="${p.url}"><span>${esc(p.title)}</span>${p.duration ? `<span class="muted">${esc(p.duration)}</span>` : ""}</a></li>`).join("")}</ol>
 </section>`,
   )
   .join("\n")}

@@ -1,6 +1,7 @@
-/* Design tokens — the single source of truth for colours, type and spacing.
-   Widgets read these through CSS custom properties (they pierce Shadow DOM),
-   so changing a value here re-themes the whole course. */
+/* Design tokens — single source of truth for colour, type and shape.
+   Widgets read them through CSS custom properties (they pierce Shadow DOM).
+   Two themes, matched to the NIX Learn Moodle theme. <html data-theme="light|dark"> is set
+   before first paint by shell/pin.js (Moodle → ?theme= / message, otherwise system / saved choice). */
 
 @font-face { font-family: "Manrope"; src: url("../fonts/manrope-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Manrope"; src: url("../fonts/manrope-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
@@ -10,51 +11,122 @@
 @font-face { font-family: "JetBrains Mono"; src: url("../fonts/jetbrains-mono-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
 
 :root {
-  /* NIX palette */
+  color-scheme: light;
+  /* brand */
   --lx-red: #e60036;
   --lx-blue: #00a6eb;
   --lx-sky: #81d0f4;
   --lx-steel: #2a668e;
-  --lx-wine: #951b3c;
   --lx-ink: #302a40;
-  --lx-mauve: #937c8a;
-  --lx-salmon: #ef958c;
 
-  /* Semantic roles */
-  --lx-text: var(--lx-ink);
-  --lx-text-muted: #5f6c7b;
-  --lx-heading: var(--lx-steel);
-  --lx-link: #0079b0;
-  --lx-accent: var(--lx-red);
-  --lx-primary: var(--lx-blue);
-  --lx-bg: #f0f2f5;
+  /* surfaces (Moodle light: page #F4F8FC, cards #F8FBFE) */
+  --lx-bg: #f4f8fc;
   --lx-surface: #ffffff;
-  --lx-surface-2: #f7f9fb;
-  --lx-border: #e1e4e8;
-  --lx-code-bg: #282c34;
-  --lx-code-text: #e6e9ef;
-  --lx-success: #1f8a5b;
-  --lx-success-bg: #e7f6ee;
-  --lx-error: #c0002d;
-  --lx-error-bg: #fdecef;
-  --lx-focus: #00a6eb;
+  --lx-surface-2: #f8fbfe;
+  --lx-surface-3: #edf5fb;
+  --lx-hover: #eef7fd;
+  --lx-border: #e2e9f1;
+  --lx-border-strong: #cfdbe7;
 
-  /* Callouts */
-  --lx-note: #2a668e;
-  --lx-tip: #1f8a5b;
-  --lx-important: #6b4fbb;
+  /* text */
+  --lx-heading: #302a40;
+  --lx-text: #463e58;
+  --lx-text-muted: #7a7290;
+  --lx-link: #0a7fc2;
+
+  /* actions (Moodle primary button) */
+  --lx-primary: #2a668e;
+  --lx-primary-hover: #21557a;
+  --lx-on-primary: #ffffff;
+  --lx-accent: #00a6eb;
+  --lx-accent-soft: #e3f4fd;
+  --lx-accent-ink: #0b6a9a;
+  --lx-danger: #e60036;
+  --lx-danger-soft: #fdebef;
+  --lx-danger-ink: #a3002a;
+
+  /* feedback */
+  --lx-success: #17885a;
+  --lx-success-soft: #e5f6ee;
+  --lx-success-ink: #116a46;
   --lx-warning: #b26a00;
-  --lx-caution: #c0002d;
+  --lx-warning-soft: #fff4e2;
+  --lx-warning-ink: #7a4800;
+  --lx-error: #d0103f;
+  --lx-error-soft: #fdebef;
+  --lx-error-ink: #9e0a30;
+  --lx-info-soft: #e8f4fc;
 
-  /* Type */
+  /* callouts */
+  --lx-note: #2a668e;
+  --lx-tip: #17885a;
+  --lx-important: #6b4fbb;
+  --lx-warn: #b26a00;
+  --lx-caution: #d0103f;
+
+  /* code is dark in both themes */
+  --lx-code-bg: #1b1f33;
+  --lx-code-border: #262b45;
+  --lx-code-text: #e3e7f0;
+  --lx-inline-code-bg: #eef2f8;
+  --lx-inline-code-text: #8a1a3e;
+
+  --lx-focus: #00a6eb;
+  --lx-shadow-sm: 0 1px 2px rgba(48, 42, 64, .06);
+  --lx-shadow: 0 1px 2px rgba(48, 42, 64, .05), 0 10px 30px -12px rgba(48, 42, 64, .14);
+  --lx-shadow-lg: 0 24px 60px -20px rgba(42, 102, 142, .35);
+
+  /* type & shape */
   --lx-font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --lx-font-heading: "Manrope", system-ui, sans-serif; /* swap in a licensed brand font here if needed */
+  --lx-font-heading: "Manrope", system-ui, sans-serif;
   --lx-font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --lx-radius-xl: 24px;
+  --lx-radius-lg: 18px;
+  --lx-radius: 14px;
+  --lx-radius-sm: 10px;
+}
 
-  /* Shape */
-  --lx-radius-lg: 16px;
-  --lx-radius: 10px;
-  --lx-radius-sm: 6px;
-  --lx-shadow: 0 12px 40px -15px rgba(48, 42, 64, 0.12);
-  --lx-shadow-hover: 0 15px 50px -10px rgba(0, 166, 235, 0.2);
+/* Dark (Moodle dark: page #0F1220, cards #1D2134, primary #81D0F4) */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --lx-bg: #0f1220;
+  --lx-surface: #171b2c;
+  --lx-surface-2: #1d2134;
+  --lx-surface-3: #232842;
+  --lx-hover: #222844;
+  --lx-border: #2a3050;
+  --lx-border-strong: #39406a;
+  --lx-heading: #f3f1f6;
+  --lx-text: #d9d4e0;
+  --lx-text-muted: #9c95b0;
+  --lx-link: #81d0f4;
+  --lx-primary: #81d0f4;
+  --lx-primary-hover: #a6dff8;
+  --lx-on-primary: #1a1830;
+  --lx-accent-soft: rgba(0, 166, 235, .16);
+  --lx-accent-ink: #8fd8f8;
+  --lx-danger-soft: rgba(255, 92, 122, .16);
+  --lx-danger-ink: #ff9bb0;
+  --lx-success: #3ccf8e;
+  --lx-success-soft: rgba(60, 207, 142, .14);
+  --lx-success-ink: #7fe3b4;
+  --lx-warning: #f2b04a;
+  --lx-warning-soft: rgba(242, 176, 74, .14);
+  --lx-warning-ink: #f6c97f;
+  --lx-error: #ff5c7a;
+  --lx-error-soft: rgba(255, 92, 122, .15);
+  --lx-error-ink: #ff9bb0;
+  --lx-info-soft: rgba(129, 208, 244, .12);
+  --lx-note: #81d0f4;
+  --lx-tip: #3ccf8e;
+  --lx-important: #b49cff;
+  --lx-warn: #f2b04a;
+  --lx-caution: #ff5c7a;
+  --lx-code-bg: #0b0e1a;
+  --lx-code-border: #232842;
+  --lx-inline-code-bg: #232842;
+  --lx-inline-code-text: #ffb3c4;
+  --lx-shadow-sm: none;
+  --lx-shadow: 0 1px 0 rgba(255, 255, 255, .03), 0 12px 30px -14px rgba(0, 0, 0, .6);
+  --lx-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, .7);
 }

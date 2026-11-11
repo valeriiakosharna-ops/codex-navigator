@@ -40,7 +40,7 @@ class LxSpot extends LxElement {
       .ln.missed { background: rgba(255, 176, 32, .25); box-shadow: inset 3px 0 0 #ffb020; }
       .ln[disabled] { cursor: default; opacity: 1; }
       .tag { font: 800 10px var(--lx-font-body); letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; margin-left: 8px; }
-      .tag.flag { background: var(--lx-sky); color: var(--lx-ink); }
+      .tag.flag { background: var(--lx-sky); color: var(--lx-heading); }
       .tag.ok { background: #3ccf8e; color: #08331f; }
       .tag.bad { background: #ff5c7a; color: #3d0010; }
       .tag.miss { background: #ffb020; color: #3d2600; }
@@ -53,7 +53,7 @@ class LxSpot extends LxElement {
       .report li { border-top: 1px solid var(--lx-border); padding: 10px 0; font-size: 15px; }
       .report .muted { display: block; }
       .score { display: flex; align-items: baseline; gap: 10px; margin: 14px 0 4px; }
-      .score b { font: 700 34px var(--lx-font-heading); color: var(--lx-ink); }
+      .score b { font: 700 34px var(--lx-font-heading); color: var(--lx-heading); }
     `,
   ];
 

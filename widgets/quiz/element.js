@@ -18,12 +18,12 @@ class LxQuiz extends LxElement {
         display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; margin: 6px 0;
         border: 1px solid var(--lx-border); border-radius: var(--lx-radius); cursor: pointer; transition: border-color .15s, background .15s;
       }
-      label.opt:hover { border-color: var(--lx-blue); }
-      label.opt.selected { border-color: var(--lx-steel); background: #f2f8fc; }
-      label.opt.correct { border-color: var(--lx-success); background: var(--lx-success-bg); }
-      label.opt.wrong { border-color: var(--lx-error); background: var(--lx-error-bg); }
+      label.opt:hover { border-color: var(--lx-accent); }
+      label.opt.selected { border-color: var(--lx-accent); background: var(--lx-accent-soft); }
+      label.opt.correct { border-color: var(--lx-success); background: var(--lx-success-soft); }
+      label.opt.wrong { border-color: var(--lx-error); background: var(--lx-error-soft); }
       label.opt.locked { cursor: default; }
-      input { margin-top: 5px; accent-color: var(--lx-steel); }
+      input { margin-top: 5px; accent-color: var(--lx-accent-ink); }
       .mark { margin-left: auto; font-weight: 800; }
       .correct .mark { color: var(--lx-success); }
       .wrong .mark { color: var(--lx-error); }

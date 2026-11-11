@@ -35,6 +35,41 @@
   if (session) { if (uid) session.setItem("lx:uid", uid); if (cid) session.setItem("lx:cid", cid); }
   LX.uid = uid; LX.cid = cid;
 
+  // ---- colour theme (before first paint) ----------------------------------------------
+  // Modes: light | dark | auto. Resolution: ?theme= > Moodle (message, remembered for the
+  // session) > the learner's choice on the standalone site > auto (system preference).
+  // Moodle in "System" mode and these pages both follow the OS, so they always match.
+  var mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  var validMode = function (m) { return m === "light" || m === "dark" || m === "auto"; };
+  var themeMode = "auto";
+  function applyTheme(mode) {
+    themeMode = validMode(mode) ? mode : "auto";
+    var dark = themeMode === "dark" || (themeMode === "auto" && mq && mq.matches);
+    html.setAttribute("data-theme", dark ? "dark" : "light");
+    html.setAttribute("data-theme-mode", themeMode);
+    try { document.dispatchEvent(new CustomEvent("lx-theme", { detail: { mode: themeMode, theme: dark ? "dark" : "light" } })); } catch (e) {}
+  }
+  var paramTheme = params.get("theme");
+  var startMode = validMode(paramTheme) ? paramTheme
+    : inFrame ? (session && session.getItem("lx:moodle-theme")) || "auto"
+    : (local && local.getItem("lx:theme")) || "auto";
+  applyTheme(startMode);
+  if (mq) {
+    var onSystem = function () { if (themeMode === "auto") applyTheme("auto"); };
+    mq.addEventListener ? mq.addEventListener("change", onSystem) : mq.addListener(onSystem);
+  }
+  // Moodle → page: { type: "moodleTheme", theme: "light" | "dark" | "auto" }
+  window.addEventListener("message", function (e) {
+    var d = e.data || {};
+    if (e.source !== window.parent || d.type !== "moodleTheme" || !validMode(d.theme) || validMode(paramTheme)) return;
+    if (session) session.setItem("lx:moodle-theme", d.theme);
+    applyTheme(d.theme);
+  });
+  window.LXTheme = {
+    get mode() { return themeMode; },
+    set: function (mode) { if (local && !inFrame) local.setItem("lx:theme", mode); applyTheme(mode); },
+  };
+
   var minor = LX.version.split(".").slice(0, 2).join(".");
   var pinKey = "lx:" + LX.course + ":pin:" + (cid || "-") + ":" + (uid || "-");
   LX.pinKey = pinKey;

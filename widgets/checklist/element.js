@@ -12,7 +12,7 @@ class LxChecklist extends LxElement {
       li:last-child { border-bottom: 0; }
       label { display: flex; gap: 12px; padding: 10px 2px; cursor: pointer; align-items: flex-start; }
       input { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--lx-success); flex: none; }
-      .done .t { color: var(--lx-text-muted); text-decoration: line-through; text-decoration-color: #b9c0ca; }
+      .done .t { color: var(--lx-text-muted); text-decoration: line-through; text-decoration-color: var(--lx-border-strong); }
       .hint { display: block; font-size: 14px; color: var(--lx-text-muted); text-decoration: none; }
       .top { display: flex; gap: 12px; align-items: center; margin-bottom: 6px; }
       .top .progress { flex: 1; }

@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Moodle simulator</title>
 <style>
-  body { margin: 0; font: 15px/1.5 system-ui, sans-serif; background: #f5f5f5; color: #1d2125; }
+  body { margin: 0; font: 15px/1.5 system-ui, sans-serif; background: #f4f8fc; color: #1d2125; }
+  body.dark { background: #0f1220; color: #d9d4e0; }
+  body.dark .bar, body.dark .page { background: #171b2c; border-color: #2a3050; }
   .bar { background: #fff; border-bottom: 1px solid #dee2e6; padding: 10px 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .bar strong { color: #0f6cbf; }
   input { font: inherit; padding: 5px 8px; border: 1px solid #ced4da; border-radius: 4px; }
   #url { flex: 1; min-width: 280px; }
   button { font: inherit; padding: 5px 12px; border-radius: 4px; border: 1px solid #0f6cbf; background: #0f6cbf; color: #fff; cursor: pointer; }
-  .page { max-width: 1000px; margin: 20px auto; background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 20px; }
+  .page { max-width: 1000px; margin: 20px auto; background: transparent; border: 1px solid #dee2e6; border-radius: 6px; padding: 20px; }
   h2 { margin: 0 0 12px; font-size: 22px; }
   #log { font: 13px/1.5 ui-monospace, Consolas, monospace; background: #1d2125; color: #c8e6c9; padding: 10px 14px; border-radius: 6px; max-height: 160px; overflow: auto; white-space: pre-wrap; }
   #toast { position: fixed; top: 70px; right: 20px; background: #dff0d8; color: #3c763d; padding: 12px 18px; border: 1px solid #d6e9c6; border-radius: 4px; display: none; font-weight: bold; }
@@ -24,6 +26,8 @@
   <strong>Moodle simulator</strong>
   <label>uid <input id="uid" value="42" size="4"></label>
   <label>cid <input id="cid" value="7" size="4"></label>
+  <label>Moodle theme <select id="theme"><option value="auto">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+  <label title="Simulates the optional plugin update that forwards the Moodle colour mode"><input type="checkbox" id="sync" checked> theme sync</label>
   <input id="url" placeholder="/getting-started/what-is-codex/">
   <button id="go">Open</button>
 </div>
@@ -49,6 +53,16 @@
     history.replaceState(null, "", `?url=${encodeURIComponent($("url").value)}&uid=${$("uid").value}&cid=${$("cid").value}`);
   }
   $("go").onclick = open;
+  // Mirrors the optional plugin snippet (docs/MOODLE-THEME-SYNC.md): forward the colour mode to the iframe.
+  const mq = matchMedia("(prefers-color-scheme: dark)");
+  function resolved() { const m = $("theme").value; return m === "auto" ? (mq.matches ? "dark" : "light") : m; }
+  function sendTheme() {
+    document.body.classList.toggle("dark", resolved() === "dark");
+    if ($("sync").checked) $("extpage-iframe").contentWindow?.postMessage({ type: "moodleTheme", theme: resolved() }, "*");
+  }
+  $("theme").onchange = sendTheme; $("sync").onchange = sendTheme; mq.addEventListener("change", sendTheme);
+  $("extpage-iframe").addEventListener("load", sendTheme);
+  window.__setMoodleTheme = (m) => { $("theme").value = m; sendTheme(); };
   window.addEventListener("message", (event) => {
     const d = event.data || {};
     window.__messages.push(d);
