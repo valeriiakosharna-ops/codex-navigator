@@ -53,6 +53,10 @@ new laptop or in private mode falls through to latest. **So pin every cohort.**
    ```
 3. Commit. Within ~2 minutes `pins.json` is live. No release is needed.
 
+**Describing versions:** add a line to `releases.yaml` on `main` for every release (`"2.0.3": { title, description }`)
+and for every version line (`"2.0"`). The text appears in Moodle on the *Content versions* page and on
+`/versions/`. No release is needed; it goes live with the next deploy.
+
 **Publishing a release:**
 
 ```bash

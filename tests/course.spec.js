@@ -124,3 +124,18 @@ test.describe("version pinning", () => {
     await expect.poll(() => page.evaluate(() => window.LX && window.LX.version).catch(() => null)).toBe("1.0.1");
   });
 });
+
+test("releases.yaml: versions and lines get titles in versions.json", async () => {
+  const fs = await import("node:fs"); const os = await import("node:os"); const path = await import("node:path");
+  const { writeRootFiles, releasesSchema } = await import("../scripts/root-files.mjs");
+  expect(() => releasesSchema.parse({ "two": { title: "x" } })).toThrow();
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "lx-rel-"));
+  for (const v of ["1.5.1", "2.0.0", "2.0.1"]) fs.mkdirSync(path.join(dir, "site", "v", v), { recursive: true });
+  fs.writeFileSync(path.join(dir, "releases.yaml"), '"2.0": { title: Line two }\n"2.0.1": { title: Fix, description: Small fix. }\n');
+  fs.writeFileSync(path.join(dir, "pins.yaml"), "courses: {}\n");
+  writeRootFiles(path.join(dir, "site"), path.join(dir, "pins.yaml"), { siteRoot: "/x/" });
+  const out = JSON.parse(fs.readFileSync(path.join(dir, "site", "versions.json"), "utf8"));
+  expect(out.lines["2.0"]).toEqual({ newest: "2.0.1", title: "Line two", description: "" });
+  expect(out.lines["1.5"]).toEqual({ newest: "1.5.1" });
+  expect(out.versions.find((v) => v.version === "2.0.1")).toMatchObject({ title: "Fix", description: "Small fix." });
+});

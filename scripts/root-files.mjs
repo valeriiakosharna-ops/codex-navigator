@@ -68,7 +68,13 @@ export const moodleSchema = z.object({
   }).strict()).default({}),
 }).strict();
 
-export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot, moodleFile } = {}) {
+// What each version (line "2.0" or release "2.0.1") contains, from releases.yaml.
+export const releasesSchema = z.record(
+  z.string().regex(/^\d+\.\d+(\.\d+)?$/, "key must be a version line like 2.0 or a release like 2.0.1"),
+  z.object({ title: z.string().min(1), description: z.string().optional() }).strict(),
+).default({});
+
+export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot, moodleFile, releasesFile } = {}) {
   const vDir = path.join(siteDir, "v");
   const versions = fs.existsSync(vDir) ? fs.readdirSync(vDir).filter((v) => semver.test(v)).sort(cmp).reverse() : [];
   const latest = versions[0] || null;
@@ -82,7 +88,18 @@ export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot, mood
     } catch { /* old build without manifest */ }
     return { version: v, builtAt, widgets, labs };
   });
-  fs.writeFileSync(path.join(siteDir, "versions.json"), JSON.stringify({ latest, versions: entries }, null, 2));
+  const rFile = releasesFile || path.join(path.dirname(pinsFile), "releases.yaml");
+  const releases = releasesSchema.parse(fs.existsSync(rFile) ? yaml.load(fs.readFileSync(rFile, "utf8")) || {} : {});
+  for (const e of entries) {
+    if (releases[e.version]) Object.assign(e, { title: releases[e.version].title, description: releases[e.version].description || "" });
+  }
+  // Version lines (2.0, 1.5): newest release and description, for "pin to the newest 2.0.x".
+  const lines = {};
+  for (const v of versions) {
+    const line = v.split(".").slice(0, 2).join(".");
+    if (!lines[line]) lines[line] = { newest: v, ...(releases[line] ? { title: releases[line].title, description: releases[line].description || "" } : {}) };
+  }
+  fs.writeFileSync(path.join(siteDir, "versions.json"), JSON.stringify({ latest, lines, versions: entries }, null, 2));
 
   const raw = fs.existsSync(pinsFile) ? yaml.load(fs.readFileSync(pinsFile, "utf8")) || {} : {};
   const pins = pinsSchema.parse(raw);
@@ -103,7 +120,7 @@ export function writeRootFiles(siteDir, pinsFile = "pins.yaml", { siteRoot, mood
     `<!doctype html><meta charset="utf-8"><title>Redirecting…</title><meta http-equiv="refresh" content="0; url=latest/"><link rel="canonical" href="latest/"><a href="latest/">Open the course</a>`,
   );
   const rows = entries
-    .map((e) => `<tr><td><a href="${root}v/${e.version}/">v${e.version}</a>${e.version === latest ? " <b>latest</b>" : ""}</td><td>${e.builtAt ? e.builtAt.slice(0, 10) : ""}</td><td>${e.widgets ? Object.entries(e.widgets).map(([k, v]) => `${k}@${v}`).join(", ") : ""}</td></tr>`)
+    .map((e) => `<tr><td><a href="${root}v/${e.version}/">v${e.version}</a>${e.version === latest ? " <b>latest</b>" : ""}</td><td>${e.builtAt ? e.builtAt.slice(0, 10) : ""}</td><td>${e.title ? `<b>${e.title.replace(/</g, "&lt;")}</b>${e.description ? `<br>${e.description.replace(/</g, "&lt;")}` : ""}` : ""}</td><td>${e.widgets ? Object.entries(e.widgets).map(([k, v]) => `${k}@${v}`).join(", ") : ""}</td></tr>`)
     .join("");
   fs.mkdirSync(path.join(siteDir, "versions"), { recursive: true });
   fs.writeFileSync(
@@ -114,7 +131,7 @@ h1{margin-top:0}table{width:100%;border-collapse:collapse;font-size:15px}td,th{p
 .pr td.ch{background:#fff7e8;font-weight:700}.pr small{color:#5f6c7b}.p{background:#f7f9fb;border-radius:10px;padding:10px 14px;font-size:14px}</style>
 <main><h1>Course versions</h1>
 <p>Moodle activities point to <a href="${root}latest/">latest/</a>. Each learner is then routed to the version of their cohort (or the one they started on).</p>
-<table><thead><tr><th>Version</th><th>Published</th><th>Widgets</th></tr></thead><tbody>${rows || '<tr><td colspan="3">No releases yet.</td></tr>'}</tbody></table>
+<table><thead><tr><th>Version</th><th>Published</th><th>What's in it</th><th>Widgets</th></tr></thead><tbody>${rows || '<tr><td colspan="4">No releases yet.</td></tr>'}</tbody></table>
 ${practicesTable(entries)}
 <h2>Pins in force</h2><pre class="p">${JSON.stringify(pins, null, 2).replace(/</g, "&lt;")}</pre>
 <p><a href="${root}preview/">Preview of the main branch</a> (unreleased).</p></main></html>`,

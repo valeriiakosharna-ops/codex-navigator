@@ -36,10 +36,11 @@ jobs:
           else
             git worktree add --orphan -b gh-pages site
           fi
-      - name: Take pins and Moodle activity map from main
+      - name: Take pins, Moodle activity map and release notes from main
         run: |
           git show origin/main:pins.yaml > "$RUNNER_TEMP/pins.yaml" 2>/dev/null || cp pins.yaml "$RUNNER_TEMP/pins.yaml"
           git show origin/main:moodle.yaml > "$RUNNER_TEMP/moodle.yaml" 2>/dev/null || cp moodle.yaml "$RUNNER_TEMP/moodle.yaml"
+          git show origin/main:releases.yaml > "$RUNNER_TEMP/releases.yaml" 2>/dev/null || cp releases.yaml "$RUNNER_TEMP/releases.yaml"
       - name: Build
         env:
           LX_PREVIEW_VERSION: 0.0.0-${{ github.sha }}

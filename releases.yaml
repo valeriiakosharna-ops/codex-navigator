@@ -1,0 +1,59 @@
+# What each published version contains, in plain words.
+# Shown in Moodle on the "Content versions" page (Embedded Course Page plugin) and on /versions/.
+# Edit on main; it takes effect on the next deploy (no release needed).
+#
+# Two kinds of keys:
+#   "2.0"    a version line: what a cohort pinned to "2.0" gets (newest 2.0.x)
+#   "2.0.1"  one release: what changed in it
+# title: one short line (shown in the dropdown). description: one or two sentences (shown in the table).
+
+"2.0":
+  title: Course 2.0, built on OpenAI's official Codex training
+  description: >-
+    6 modules, 27 topics, 4 practice labs and 7 OpenAI Academy badge checkpoints graded automatically.
+    Every topic is labelled for everyone, technical or non-technical specialists. Recommended for new cohorts.
+"2.0.2":
+  title: Works with the Embedded Course Page plugin
+  description: Links between topics open the right activity whichever Moodle plugin the course uses; Firefox support for the Moodle site address.
+"2.0.1":
+  title: Audience labels and time estimates
+  description: Three audience labels without job titles, and the required and full time estimates at the top of the course.
+"2.0.0":
+  title: Course 2.0 released
+  description: Rebuilt from the Codex OpenAI plan with Academy courses, official videos and docs, badge checkpoints and audience labels.
+
+"1.5":
+  title: Course 1.x, the first pilot (3 modules)
+  description: >-
+    3 modules, 10 topics and 3 practice labs based on the Codex bootcamp recordings.
+    Keep it only for learners who started on it.
+"1.5.1":
+  title: Fix for links between topics inside Moodle
+  description: Topic links open the matching Moodle activity instead of the website.
+"1.5.0":
+  title: Audited content, unlimited retakes
+  description: Every official link and duration checked, retakes for all practices, links between topics stay inside Moodle.
+"1.4.2":
+  title: Fix for the slide stepper inside Moodle
+  description: The section stepper stays below Moodle's top bar after Next.
+"1.4.1":
+  title: Fix for the slide stepper inside Moodle
+  description: The section stepper is no longer hidden under Moodle's top bar.
+"1.4.0":
+  title: Slides layout
+  description: Pages shown as slides, one quiz question at a time, more room when embedded in Moodle.
+"1.3.0":
+  title: Redesign with light and dark themes
+  description: New look matched to the NIX Learn Moodle theme, in light and dark.
+"1.2.1":
+  title: Fix for internal links inside Moodle
+  description: Internal links open in a new tab and keep the activity intact.
+"1.2.0":
+  title: Versioned practices
+  description: Each practice has its own version; progress moves safely when a practice changes.
+"1.1.0":
+  title: Practice labs
+  description: Decision scenarios and spot-the-problem tasks at three levels per module.
+"1.0.0":
+  title: First release
+  description: 3 modules and 7 topics linking to official OpenAI materials.
