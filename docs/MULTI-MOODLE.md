@@ -6,7 +6,7 @@ deployed per Moodle. Two activity plugins work, because they speak the same mess
 
 | Plugin | What you get |
 |---|---|
-| **Embedded Course Page** (`mod_embedcourse`, recommended) | Everything below: content versions assigned in Moodle, theme sync, the Moodle site address, origin checks on grade messages. Source: `~/moodle-mod-embedcourse`. |
+| **Embedded Course Page** (`mod_embedcourse`, recommended) | Everything below: content versions assigned in Moodle, theme sync, the Moodle site address, origin checks on grade messages. Source: private repo [valeriiakosharna-ops/moodle-mod-embedcourse](https://github.com/valeriiakosharna-ops/moodle-mod-embedcourse). |
 | **External Web Page with Grades** (`mod_extpagewithgrades`) | Pages, grades and links between topics. Versions come from `pins.yaml`, and the theme follows the OS. |
 
 They are separate plugins and can be installed side by side.
@@ -80,7 +80,7 @@ Moodle user id. Two Moodles that share a user id in one browser would share prog
 
 ## Installing Embedded Course Page
 
-1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.0.zip` (top folder
+1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.2.0.zip` (from the plugin repo's releases) (top folder
    `embedcourse/`) and confirm. It's a new plugin: External Web Page with Grades and its activities
    are not touched.
 2. Build the course with *Embedded Course Page* activities (URLs from `/moodle/`), add their ids to
