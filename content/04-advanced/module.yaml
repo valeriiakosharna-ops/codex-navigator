@@ -1,0 +1,5 @@
+title: Advanced configuration and extensibility
+summary: Steer the agent with AGENTS.md and rules, package team processes as skills and plugins, connect outside systems through MCP and split work across subagents.
+courses:
+  - title: Extend Codex Workflows
+    url: https://academy.openai.com/public/courses/extend-codex-workflows-4e61p

@@ -1,7 +1,9 @@
 ---
-title: Automate and scale
-summary: codex exec in CI, scheduled tasks, worktrees and subagents. Plus the habits that keep it all reliable.
-duration: ~1.5 h (incl. a 1-h recording)
+title: Automation and CI/CD
+summary: Run Codex with nobody at the keyboard using codex exec, the Codex GitHub Action and scheduled tasks. Lock down privileges and secrets, and automate only what already works by hand.
+duration: ~55 min
+audience: [technical]
+slug: automate-and-scale
 ---
 
 ## Why this matters
@@ -11,24 +13,26 @@ Once a workflow works reliably by hand, you can stop running it by hand. Codex c
 guidance has one firm condition: *automate only what already works manually*.
 
 ```resource
-title: "Codex bootcamp 301: Advanced automation (recording)"
-url: https://academy.openai.com/public/videos/codex-bootcamp-301-advanced-automation-2026-10-07
-provider: OpenAI Academy
+title: Automate tasks with the Codex app
+url: https://www.youtube.com/watch?v=xHnlzAPD9QI
+provider: OpenAI · YouTube
 format: video
-duration: ~1 h
-level: advanced
-access: Free OpenAI Academy account
-why: The recording of OpenAI's live session on automation with Codex.
+duration: 4.5 min
+level: beginner
 focus:
-  - Which tasks the presenters automate first, and which they deliberately keep manual.
-  - How people review the results of automated runs.
+  - Which tasks are scheduled, and how their results come back for review.
 ```
+
+> [!NOTE] Optional recording
+> [Codex bootcamp 301: Advanced automation](https://academy.openai.com/public/videos/codex-bootcamp-301-advanced-automation-2026-10-07)
+> (OpenAI Academy, ~1 h, free account). Watch which tasks the presenters automate first, and which they deliberately keep manual.
 
 ## Three ways to scale
 
 - **`codex exec`** runs Codex from scripts and CI. By default it runs in a **read-only** sandbox; give it `--sandbox workspace-write` only when it has to edit files.
 - **Scheduled tasks** live on the **Scheduled** page of the desktop app (or on the web). *Skills define the method; scheduled tasks define the timing.*
-- **Parallel work**: use Git **worktrees** so tasks never edit the same files, and **subagents** for bounded side jobs such as exploration, tests or triage.
+- **The Codex GitHub Action** (`openai/codex-action@v1`) runs `codex exec` inside a GitHub Actions workflow, to review PRs, gate changes or prepare releases.
+- **Parallel work**: use Git **worktrees** so tasks never edit the same files, and **subagents** for bounded side jobs (module 4).
 
 ```resource
 title: Non-interactive mode (codex exec)
@@ -55,6 +59,37 @@ focus:
   - "Worktree vs. local: worktrees keep scheduled changes away from your unfinished work."
   - Tasks run unattended, so give them the narrowest access that lets them succeed.
 ```
+
+## Codex in GitHub Actions
+
+```resource
+title: Codex GitHub Action
+url: https://learn.chatgpt.com/docs/github-action
+provider: OpenAI Docs
+format: docs
+duration: 15 min
+level: advanced
+why: The official action installs the Codex CLI and runs `codex exec` with the permissions you choose. The page has an example workflow that reviews new PRs and posts the result.
+focus:
+  - "Inputs that map to `codex exec`: `prompt` or `prompt-file` (keep prompts in `.github/codex/prompts/`), `sandbox`, `model`, `effort`, `output-file`, `codex-version`."
+  - "**Manage privileges**: `safety-strategy` defaults to `drop-sudo`. The docs warn that `read-only` alone does **not** protect secrets, because Codex still runs with elevated privileges."
+  - "The **security checklist** at the end. Go through it before the workflow runs on pull requests from forks."
+  - Pin `codex-version` so a CLI update can't change your pipeline overnight.
+```
+
+```resource
+title: openai/codex-action
+url: https://github.com/openai/codex-action
+provider: OpenAI · GitHub
+format: repo
+duration: browse
+why: The action's source and examples, including running Codex as an unprivileged user.
+```
+
+> [!WARNING] Secrets in CI
+> Store the API key as a GitHub secret and pass it only to the step that needs it, not as a job-wide
+> environment variable. Prefer a read-only Codex step that *produces* a patch or a comment, and a
+> separate step or job, with its own permissions, that *applies* it.
 
 ```usecase
 title: Nightly CI-failure triage
@@ -115,6 +150,22 @@ questions:
       - Lint fixes need the `--review` flag
     answer: 1
     explain: "`codex exec` defaults to read-only. Use `--sandbox workspace-write` when it needs to edit, ideally in an isolated job."
+  - q: "Your workflow runs the Codex action with `sandbox: read-only`, and you conclude the API key in the job can't leak. What do the docs say?"
+    options:
+      - Correct, because read-only blocks everything
+      - Wrong. Read-only stops file changes and network use, but Codex still runs with elevated privileges, so use `safety-strategy` (such as `drop-sudo` or an unprivileged user) and scope secrets to the step
+      - Secrets are always safe in GitHub Actions
+      - Read-only is only for Windows runners
+    answer: 1
+    explain: The *Manage privileges* section says not to rely on `read-only` alone to protect secrets.
+  - q: Why pin `codex-version` in the action?
+    options:
+      - Newer versions are slower
+      - So a CLI release can't change the pipeline's behaviour without a reviewed change
+      - The action requires it
+      - Pinning makes runs cheaper
+    answer: 1
+    explain: Left blank, the action uses the latest CLI. Pinning makes upgrades a deliberate, reviewed change, the same idea as pinning this course's versions.
   - q: Two Codex tasks have to change the same repository at the same time. What keeps them from interfering?
     options: [Running them in two terminals, Separate Git worktrees, Separate chats in the desktop app, Higher reasoning effort]
     answer: 1

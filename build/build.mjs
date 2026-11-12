@@ -19,6 +19,7 @@ import { layout, topicBody } from "./templates.mjs";
 import { esc, stripOrder, jsonForScript } from "./util.mjs";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+import { AUDIENCES, audienceText } from "./audience.mjs";
 const P = (...p) => path.join(ROOT, ...p);
 
 // ------------------------------------------------------------------ schemas for course files
@@ -39,11 +40,13 @@ const moduleSchema = z.object({
   summary: z.string().optional(),
   slug: z.string().regex(/^[a-z0-9-]+$/).optional(),
   official: z.object({ title: z.string(), url: z.url() }).optional(),
+  courses: z.array(z.object({ title: z.string(), url: z.url(), badge: z.boolean().default(true) })).optional(),
 }).strict();
 const pageSchema = z.object({
   title: z.string(),
   summary: z.string().optional(),
   duration: z.string().optional(),
+  audience: z.array(z.enum(AUDIENCES)).min(1).optional(),
   slug: z.string().regex(/^[a-z0-9-]+$/).optional(),
   gradeMode: z.enum(["on-complete", "each-answer"]).optional(),
   layout: z.enum(["slides", "scroll"]).optional(),
@@ -253,7 +256,8 @@ ${modules
   <h2>${esc(m.title)}</h2>
   ${m.summary ? `<p>${esc(m.summary)}</p>` : ""}
   ${m.official ? `<p><span class="lx-chip lx-chip--official">Official course</span> <a href="${esc(m.official.url)}" target="_blank" rel="noopener">${esc(m.official.title)}</a></p>` : ""}
-  <ol>${m.pages.map((p) => `<li><a href="${p.url}"><span>${esc(p.title)}</span>${p.duration ? `<span class="muted">${esc(p.duration)}</span>` : ""}</a></li>`).join("")}</ol>
+  ${m.courses?.length ? `<p class="lx-module__courses"><span class="lx-chip lx-chip--official">Official course${m.courses.length > 1 ? "s" : ""}</span> ${m.courses.map((c) => `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a>${c.badge ? " 🏅" : ""}`).join(" · ")}</p>` : ""}
+  <ol>${m.pages.map((p) => `<li><a href="${p.url}"><span>${esc(p.title)}</span><span class="muted">${p.audience ? `${esc(audienceText(p.audience))} · ` : ""}${p.duration ? esc(p.duration) : ""}</span></a></li>`).join("")}</ol>
 </section>`,
   )
   .join("\n")}
@@ -306,7 +310,7 @@ function moodleBody(site, pages, latestUrl) {
   const rows = pages
     .map(
       (p, i) => `<tr><td>${p.mod.index}.${p.mod.pages.indexOf(p.mod.pages.find((x) => x.id === p.id)) + 1}</td><td>${esc(p.title)}</td>
-<td><code>${esc(latestUrl + p.path)}</code></td><td>${p.maxScore || "—"}</td></tr>`,
+<td>${esc(audienceText(p.audience)) || "—"}</td><td><code>${esc(latestUrl + p.path)}</code></td><td>${p.maxScore || "—"}</td></tr>`,
     )
     .join("");
   return `<article class="lx-prose">
@@ -315,18 +319,19 @@ function moodleBody(site, pages, latestUrl) {
   <h2>Activity settings</h2>
   <ol>
     <li><strong>External page URL</strong>: the URL from the table below.</li>
-    <li><strong>URL variables</strong>: <code>uid</code> = <em>User ID</em>, <code>cid</code> = <em>Course ID</em>. Nothing else is needed — do not pass names or e-mails.</li>
+    <li><strong>URL variables</strong>: <code>uid</code> = <em>User ID</em>, <code>cid</code> = <em>Course ID</em>. On <strong>badge checkpoint</strong> pages also add <code>name</code> = <em>Full name</em>: the page compares it with the name on the badge and doesn't store it. Don't pass e-mails.</li>
+    <li><strong>Description</strong>: start with "For whom: …" from the table, so learners see in the course page which topics are theirs.</li>
     <li><strong>Maximum grade</strong>: any value (e.g. 100). The page sends <em>score / max</em>, Moodle scales it.</li>
     <li><strong>Grading method</strong>: <em>Highest</em> is recommended (retries never lower the grade).</li>
   </ol>
   <h2>Pages</h2>
-  <table><thead><tr><th>#</th><th>Activity name</th><th>URL to paste</th><th>Points on page</th></tr></thead><tbody>${rows}</tbody></table>
+  <table><thead><tr><th>#</th><th>Activity name</th><th>For whom</th><th>URL to paste</th><th>Points on page</th></tr></thead><tbody>${rows}</tbody></table>
   <p class="muted">Page ids for <code>moodle.yaml</code>: ${pages.map((p) => `<code>${esc(p.id)}</code>`).join(", ")}</p>
   <h2>Links between topics</h2>
   <p>Inside Moodle, a link from one topic to another opens the matching <em>Moodle activity</em>, not this website. After creating the activities, add their ids to <code>moodle.yaml</code> in the repository (page id → activity id from <code>view.php?id=…</code>). Without an entry, such links open the Moodle course page.</p>
   <h2>Which version does a learner see?</h2>
   <p>Cohorts are pinned in <code>pins.yaml</code> by Moodle course id (see the repository docs, <em>docs/VERSIONING.md</em>). Without a cohort pin, each learner stays on the version they opened first.</p>
-  <script type="application/json" id="lx-pages">${jsonForScript(pages.map((p) => ({ id: p.id, url: latestUrl + p.path, max: p.maxScore })))}</script>
+  <script type="application/json" id="lx-pages">${jsonForScript(pages.map((p) => ({ id: p.id, title: p.title, summary: p.summary || "", audience: audienceText(p.audience), url: latestUrl + p.path, max: p.maxScore, badge: p.widgets.some((w) => w.name === "badge") })))}</script>
 </article>`;
 }
 

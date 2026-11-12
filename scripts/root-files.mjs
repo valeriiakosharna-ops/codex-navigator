@@ -21,10 +21,17 @@ const cmp = (a, b) => {
   return x[0] - y[0] || x[1] - y[1] || x[2] - y[2];
 };
 const pinValue = z.union([z.string(), z.number()]).transform(String).refine((v) => /^v?\d+(\.\d+){0,2}$/.test(v), "pin must look like 1, 1.2 or 1.2.3");
+const scope = z.object({
+  courses: z.record(z.string(), pinValue).default({}),
+  users: z.record(z.string(), pinValue).default({}),
+}).strict();
 export const pinsSchema = z.object({
   default: pinValue.optional(),
   courses: z.record(z.string(), pinValue).default({}),
   users: z.record(z.string(), pinValue).default({}),
+  // Per Moodle site (origin, e.g. https://moodle.example.com): course and user ids are only
+  // unique within one Moodle, so several Moodles sharing this course pin under their own origin.
+  sites: z.record(z.string().regex(/^https?:\/\/[^/]+$/, "site must be an origin like https://moodle.example.com"), scope).default({}),
 }).strict();
 
 // Which version of each practice shipped in which course release (oldest -> newest).

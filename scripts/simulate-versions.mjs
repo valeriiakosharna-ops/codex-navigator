@@ -18,7 +18,7 @@ const site = path.join(sim, repo);
 fs.rmSync(sim, { recursive: true, force: true });
 const pins = path.join(sim, "pins.yaml");
 fs.mkdirSync(sim, { recursive: true });
-fs.writeFileSync(pins, `# demo pins\ncourses:\n  "7": "1.0"     # Moodle course 7 = spring cohort, stays on 1.0.x\nusers:\n  "99": "1.0.0"  # one learner pinned to an exact version\n`);
+fs.writeFileSync(pins, `# demo pins\ncourses:\n  "7": "1.0"     # Moodle course 7 = spring cohort, stays on 1.0.x\nusers:\n  "99": "1.0.0"  # one learner pinned to an exact version\nsites:\n  https://moodle-b.example:\n    courses:\n      "7": "1.1"   # course 7 on ANOTHER Moodle is a different cohort\n`);
 
 const siteUrl = `http://localhost:${port}/${repo}/`;
 const quiet = () => {};

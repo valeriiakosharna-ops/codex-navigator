@@ -26,6 +26,7 @@
   <strong>Moodle simulator</strong>
   <label>uid <input id="uid" value="42" size="4"></label>
   <label>cid <input id="cid" value="7" size="4"></label>
+  <label title="Plugin variable Full name, passed as name= (badge pages only)">name <input id="name" value="" size="12" placeholder="(not passed)"></label>
   <label>Moodle theme <select id="theme"><option value="auto">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
   <label title="Simulates the optional plugin update that forwards the Moodle colour mode"><input type="checkbox" id="sync" checked> theme sync</label>
   <input id="url" placeholder="/getting-started/what-is-codex/">
@@ -43,14 +44,16 @@
   $("url").value = qs.get("url") || "/";
   if (qs.get("uid")) $("uid").value = qs.get("uid");
   if (qs.get("cid")) $("cid").value = qs.get("cid");
+  if (qs.get("name")) $("name").value = qs.get("name");
   window.__messages = [];
   function log(line) { const l = $("log"); l.textContent = (l.textContent.startsWith("Waiting") ? "" : l.textContent + "\n") + line; l.scrollTop = 1e9; }
   function open() {
     const u = new URL($("url").value, location.origin);
     u.searchParams.set("uid", $("uid").value);
     u.searchParams.set("cid", $("cid").value);
+    if ($("name").value) u.searchParams.set("name", $("name").value);
     $("extpage-iframe").src = u.pathname + u.search;
-    history.replaceState(null, "", `?url=${encodeURIComponent($("url").value)}&uid=${$("uid").value}&cid=${$("cid").value}`);
+    history.replaceState(null, "", `?url=${encodeURIComponent($("url").value)}&uid=${$("uid").value}&cid=${$("cid").value}${$("name").value ? "&name=" + encodeURIComponent($("name").value) : ""}`);
   }
   $("go").onclick = open;
   // Mirrors the optional plugin snippet (docs/MOODLE-THEME-SYNC.md): forward the colour mode to the iframe.

@@ -1,0 +1,5 @@
+title: Core agentic capabilities
+summary: Work in large codebases, let Codex test and fix its own changes, and review its work, including with security scans, before anything is merged.
+courses:
+  - title: Get Started with Codex
+    url: https://academy.openai.com/public/courses/get-started-with-codex-jkhsq

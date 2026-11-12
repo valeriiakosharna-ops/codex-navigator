@@ -1,10 +1,24 @@
 ---
-title: "Make guidance durable: AGENTS.md and config"
-summary: Stop repeating yourself. Put project rules in AGENTS.md and preferences in config.toml.
-duration: ~1.5 h (incl. a 1-h recording)
+title: Steering the agent with AGENTS.md and rules
+summary: Put project rules, test procedures and review checks in layered AGENTS.md files, control commands outside the sandbox with rules, and keep personal defaults in config.toml.
+duration: ~60 min
+audience: [technical]
 ---
 
 ## Why this matters
+
+```resource
+title: Extend Codex Workflows
+url: https://academy.openai.com/public/courses/extend-codex-workflows-4e61p
+provider: OpenAI Academy
+format: course
+duration: ~90 min + assessment
+level: intermediate
+access: Free OpenAI Academy account · badge
+why: The official learning path this module follows. It's for developers and tech leads who already use Codex and want team practices that everyone can follow and review. Its lab builds shared guidance and a reusable skill. The badge is the checkpoint at the end of this module.
+focus:
+  - The phrase "put shared guidance where Codex can use it and keep the evidence reviewers need". That's this topic in one line.
+```
 
 If you type the same instruction twice ("use pnpm", "run lint before you finish", "never touch
 `migrations/`"), it belongs in a file, not in a prompt. **AGENTS.md** is an open format, a
@@ -80,19 +94,74 @@ focus:
   - "Profiles: `--profile name` loads `~/.codex/name.config.toml`. Keep only the differences there."
 ```
 
-```resource
-title: "Codex bootcamp 201: Team workflows (recording)"
-url: https://academy.openai.com/public/videos/september-30-codex-bootcamp-201-2026-10-01
-provider: OpenAI Academy
-format: video
-duration: ~1 h
-level: intermediate
-access: Free OpenAI Academy account
-why: OpenAI's live session on using Codex in team workflows. Watch it with this module open.
-focus:
-  - Which rules the presenters keep in files rather than in prompts.
-  - Any moment where the agent repeats a mistake. That's exactly what AGENTS.md should prevent.
+> [!NOTE] Optional recording
+> [Codex bootcamp 201: Team workflows](https://academy.openai.com/public/videos/september-30-codex-bootcamp-201-2026-10-01)
+> (OpenAI Academy, ~1 h, free account). Watch for the moments when the agent repeats a mistake.
+> That's exactly what AGENTS.md should prevent.
+
+## Review rules in AGENTS.md
+
+Code review by Codex reads a `## Code Review Rules` section from the AGENTS.md **closest to the code
+it governs**. Put repository-wide checks at the root and service-specific ones in nested files. The
+docs advise keeping each rule short, explaining what to flag **and the safe path**, and leaving
+formatting and lint to CI.
+
+```compare
+title: A review rule
+weak:
+  prompt: "- Be careful with SQL."
+  note: Nobody, human or agent, can act on this. What exactly should be flagged?
+strong:
+  prompt: |
+    ## Code Review Rules
+    ### Database access
+    - Flag SQL built with string concatenation or f-strings.
+      Safe path: parameterised queries via db.query(sql, params).
+  note: Says what to flag and what to do instead, and it sits next to the code it governs.
 ```
+
+## Rules: which commands may leave the sandbox
+
+AGENTS.md is guidance. **Rules** are enforcement. A `.rules` file under `~/.codex/rules/` (or next to
+any active config layer) matches command prefixes and decides what happens when Codex wants to run
+that command **outside the sandbox**: `allow`, `prompt` or `forbidden`. When several rules match, the
+strictest one wins. Rules are marked **experimental** in the docs.
+
+```python
+# ~/.codex/rules/default.rules
+prefix_rule(
+    pattern = ["gh", "pr", "view"],
+    decision = "prompt",
+    justification = "Viewing PRs needs network; confirm first.",
+)
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "forbidden",
+    justification = "Never push from an agent session. Open a PR from your own terminal.",
+)
+```
+
+```resource
+title: Rules
+url: https://learn.chatgpt.com/docs/agent-configuration/rules
+provider: OpenAI Docs
+format: docs
+duration: 10 min
+why: The rule fields, how compound shell commands are split and matched, and how to test a rule file before it takes effect.
+focus:
+  - "`match` / `not_match` examples, which Codex checks when it loads the rules. They catch a typo before it opens a hole."
+  - When you allow a command in the TUI, Codex writes it to `~/.codex/rules/default.rules`. Review that file now and then.
+  - Admins can enforce restrictive rules centrally (module 5).
+```
+
+## Community examples
+
+Real-world AGENTS.md files, skills and workflows collected by the community. They're **not
+official**: read them for ideas, and don't copy anything you haven't understood.
+
+- [awesome-codex-skills](https://github.com/composio-community/awesome-codex-skills)
+- [awesome-codex-workflows](https://github.com/shinpr/awesome-codex-workflows)
+- [codex-cli-best-practice](https://github.com/shanraisshan/codex-cli-best-practice)
 
 ## Check yourself
 
@@ -123,4 +192,20 @@ questions:
       - The file must be called `codex.toml`
     answer: 1
     explain: Codex loads project `.codex/` layers only for trusted projects. Project config actually takes precedence over personal config.
+  - q: One rule says `allow` for `git` and another says `forbidden` for `git push`. Codex wants to run `git push` outside the sandbox. What happens?
+    options:
+      - It runs, because the first rule allows git
+      - It's blocked, because the strictest matching decision wins
+      - Codex asks you which rule to apply
+      - Rules don't apply to git
+    answer: 1
+    explain: When several rules match, Codex applies the most restrictive decision. The order is forbidden, then prompt, then allow.
+  - q: Where should a review rule for the payments service live?
+    options:
+      - In the root AGENTS.md only
+      - In a `## Code Review Rules` section of the AGENTS.md closest to the payments code
+      - In your personal `~/.codex/config.toml`
+      - In the PR description
+    answer: 1
+    explain: Review rules belong next to the code they govern. Repository-wide checks go in the root file.
 ```

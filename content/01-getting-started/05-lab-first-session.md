@@ -2,6 +2,7 @@
 title: "Lab: decisions in your first sessions"
 summary: Three situations, three levels. No right buttons to memorise. Show how you think when working with an agent.
 duration: 30 min
+audience: [everyone]
 ---
 
 ## How this lab works
@@ -18,8 +19,8 @@ Retake any level as often as you like. Your best result counts, and every try ge
 Each level unlocks after you score at least 70% on the previous one, or after two tries.
 
 > [!TIP] Before you start
-> Have the topics [Your first session, safely](02-first-session.md) and
-> [Asking a coding agent for work](03-prompting-basics.md) fresh in mind.
+> Have the topics [The Codex CLI, sandbox and approvals](03-first-session.md) and
+> [Giving Codex context and completion criteria](04-prompting-basics.md) fresh in mind.
 
 ```scenario
 id: lab1-l1

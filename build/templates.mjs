@@ -1,3 +1,4 @@
+import { audienceText } from "./audience.mjs";
 import { esc, jsonForScript } from "./util.mjs";
 
 /**
@@ -83,6 +84,7 @@ function sidebar(site, page) {
 
 export function topicBody(site, mod, p, prev, next) {
   const chips = [
+    p.audience ? `<span class="lx-chip lx-chip--audience">👥 For: ${esc(audienceText(p.audience))}</span>` : "",
     p.duration ? `<span class="lx-chip">⏱ ${esc(p.duration)}</span>` : "",
     mod.official ? `<span class="lx-chip lx-chip--official">Navigates: ${esc(mod.official.title)}</span>` : "",
     p.maxScore ? `<span class="lx-chip lx-chip--graded">Graded · ${p.maxScore} pt</span>` : "",

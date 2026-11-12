@@ -66,11 +66,11 @@ test("inside Moodle, links to other topics open the matching Moodle activity", a
   await page.route("**/moodle.json", (route) => route.fulfill({ json: { sites: { [BASE]: { courses: { "7": { "getting-started/first-session": 153 } } } } } }));
   await page.goto(`${BASE}/__moodle/?url=/getting-started/lab-first-session/&uid=1&cid=7`);
   const frame = page.frameLocator("#extpage-iframe");
-  const mapped = frame.locator(".lx-callout a", { hasText: "Your first session, safely" });
+  const mapped = frame.locator(".lx-callout a", { hasText: "The Codex CLI, sandbox and approvals" });
   await expect(mapped).toHaveAttribute("href", `${BASE}/mod/extpagewithgrades/view.php?id=153`);
   await expect(mapped).toHaveAttribute("target", "_top");
   // no mapping for this page -> the Moodle course page, never the standalone site
-  const unmapped = frame.locator(".lx-callout a", { hasText: "Asking a coding agent for work" });
+  const unmapped = frame.locator(".lx-callout a", { hasText: "Giving Codex context and completion criteria" });
   await expect(unmapped).toHaveAttribute("href", `${BASE}/course/view.php?id=7`);
 });
 
@@ -91,11 +91,14 @@ test.describe("version pinning", () => {
     ["learner pin (user 99 → 1.0.0)", "?uid=99&cid=7", "1.0.0"],
     ["no pin stays on latest", "?uid=5&cid=8", "1.1.0"],
     ["explicit ?v= override", "?uid=5&cid=8&v=1.0.0", "1.0.0"],
+    ["same course id on another Moodle uses that site's pin", "?uid=42&cid=7&site=https://moodle-b.example", "1.1.0"],
+    ["a Moodle without its own pins falls back to the shared course pin", "?uid=42&cid=7&site=https://moodle-c.example", "1.0.1"],
   ];
   for (const [name, q, want] of cases) {
     test(name, async ({ page }) => {
       await page.goto(SIM + P + q);
-      await expect.poll(() => page.evaluate(() => window.LX && window.LX.version).catch(() => null)).toBe(want);
+      // read the version only once the pin decision is made (no redirect pending)
+      await expect.poll(() => page.evaluate(() => (document.documentElement.classList.contains("lx-pinning") ? "deciding" : window.LX && window.LX.version)).catch(() => null)).toBe(want);
     });
   }
 

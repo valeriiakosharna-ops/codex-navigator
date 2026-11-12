@@ -1,0 +1,5 @@
+title: Governance, safety and enterprise rollout
+summary: Who reviews what, how automation runs in CI/CD, how a workspace is administered and audited, and how to coordinate Codex across several teams without collisions.
+courses:
+  - title: Scale Codex Across Teams and Systems
+    url: https://academy.openai.com/public/courses/scale-codex-across-teams-and-systems-jr83a

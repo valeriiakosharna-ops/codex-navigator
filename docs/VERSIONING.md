@@ -29,14 +29,15 @@ structural changes don't.
 
 The first matching rule wins:
 
-1. `?v=1.0` in the URL: manual override for support or testing.
-2. `users:` in `pins.yaml` (Moodle user id): an exception for one learner.
-3. `courses:` in `pins.yaml` (Moodle course id): **the cohort pin. This is the main mechanism.**
-4. The version the learner first opened, remembered in their browser.
-5. `default:` in `pins.yaml`, if set.
-6. Otherwise: latest.
+1. `?v=1.0` in the URL: manual override for support or testing, or set by the Moodle plugin (see `docs/MULTI-MOODLE.md`).
+2. `sites: <moodle origin>: users:` / `courses:` in `pins.yaml`: pins for one specific Moodle site.
+3. `users:` in `pins.yaml` (Moodle user id): an exception for one learner.
+4. `courses:` in `pins.yaml` (Moodle course id): **the cohort pin. This is the main mechanism.**
+5. The version the learner first opened, remembered in their browser.
+6. `default:` in `pins.yaml`, if set.
+7. Otherwise: latest.
 
-Rule 3 is reliable across devices and browsers, because the course id comes from Moodle. Rule 4
+Rule 4 is reliable across devices and browsers, because the course id comes from Moodle. Rule 5
 is a safety net for when nobody pinned the cohort, but it lives in the browser: a learner on a
 new laptop or in private mode falls through to latest. **So pin every cohort.**
 
@@ -126,3 +127,11 @@ stay unlocked.
 - **Pull requests**: CI compares practices with the live `latest/` release and adds a warning to the run if a structure changed without a `version` bump.
 - **Release tags**: the deploy compares with the previous release. Structural changes, added or removed practices in a **patch** release produce a warning, because they reach learners who are already in progress.
 - **History**: `/versions/` has a *Practices by release* table showing which practice version shipped in which release. ● marks a change.
+
+## 2.0: the restructured course
+
+2.0 follows the *Codex OpenAI* plan (`docs/COURSE-PLAN.md`): six modules, badge checkpoints, and an
+audience label on every page. Some pages moved between modules, so their URLs changed (for example
+`practical-workflows/agents-md` → `advanced/agents-md`). That's allowed only in a **major** version.
+Cohorts pinned to `1.x` keep their old URLs, because `/v/1.5.x/` stays published. Before you re-pin a
+Moodle course to `2.0`, point its activities at the 2.0 URLs listed on `/moodle/`.

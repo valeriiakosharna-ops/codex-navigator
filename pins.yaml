@@ -12,6 +12,13 @@
 # users:
 #   "4711": "1.0"
 #
+# Several Moodle sites? Course and user ids are only unique within one Moodle, so pin per site.
+# A site entry wins over the plain courses:/users: above (those act as "any Moodle").
+# sites:
+#   https://moodle.other-client.com:
+#     courses:
+#       "10": "2.0"
+#
 # Optional fallback for learners with no pin at all (otherwise: latest):
 # default: "1.1"
 courses:

@@ -34,6 +34,11 @@
   var cid = params.get("cid") || (session && session.getItem("lx:cid")) || "";
   if (session) { if (uid) session.setItem("lx:uid", uid); if (cid) session.setItem("lx:cid", cid); }
   LX.uid = uid; LX.cid = cid;
+  // Optional: the learner's full name (plugin variable "fullname" -> param "name"), used only
+  // by the badge widget to check that a badge was issued to this learner. Never stored long-term.
+  var uname = params.get("name") || (session && session.getItem("lx:name")) || "";
+  if (session && params.get("name")) session.setItem("lx:name", uname);
+  LX.uname = uname;
 
   // ---- colour theme (before first paint) ----------------------------------------------
   // Modes: light | dark | auto. Resolution: ?theme= > Moodle (message, remembered for the
@@ -104,8 +109,22 @@
 
   Promise.all([get("pins.json"), get("versions.json")]).then(function (res) {
     var pins = res[0] || {}, published = ((res[1] || {}).versions || []).map(function (v) { return v.version; });
+    // Which Moodle embeds us: ?site= (plugin variable), else ancestorOrigins/referrer.
+    var site = params.get("site") || (session && session.getItem("lx:site")) || "";
+    if (!site) {
+      try {
+        var anc = location.ancestorOrigins;
+        if (anc && anc.length && anc[0] !== "null") site = anc[0];
+        else if (document.referrer) site = new URL(document.referrer).origin;
+      } catch (e) {}
+    }
+    if (site) { try { site = new URL(site).origin; } catch (e) { site = ""; } }
+    if (session && site) session.setItem("lx:site", site);
+    var scoped = (pins.sites && site && pins.sites[site]) || {};
     var candidates = [
       params.get("v"),
+      scoped.users && uid && scoped.users[uid],
+      scoped.courses && cid && scoped.courses[cid],
       pins.users && uid && pins.users[uid],
       pins.courses && cid && pins.courses[cid],
       local && local.getItem(pinKey),

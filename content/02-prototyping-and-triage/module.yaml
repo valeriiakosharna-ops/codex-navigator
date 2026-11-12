@@ -1,0 +1,11 @@
+title: Natural-language prototyping and requirement analysis
+summary: For PMs, BAs and designers. Turn a plain-English idea into a prototype you can click, and use Codex to triage issues and draft estimates that the team then reviews.
+courses:
+  - title: Agents and Workflows
+    url: https://academy.openai.com/public/courses/agents-and-workflows-y0qoc
+  - title: AI Foundations
+    url: https://academy.openai.com/public/courses/ai-foundations-dnq5w
+    badge: false
+  - title: Applied AI Foundations
+    url: https://academy.openai.com/public/courses/applied-ai-foundations-szsmv
+    badge: false

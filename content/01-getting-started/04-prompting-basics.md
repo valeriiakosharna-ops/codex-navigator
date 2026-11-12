@@ -1,7 +1,9 @@
 ---
-title: Asking a coding agent for work
-summary: "The four parts of a good task: goal, context, constraints, done-when. Plus when to plan first."
-duration: 35 min
+title: Giving Codex context and completion criteria
+summary: "Brief the agent like a new colleague: goal, context, constraints, done-when. Then plan, steer, and ask for the evidence a reviewer needs."
+duration: ~50 min
+audience: [everyone]
+slug: prompting-basics
 ---
 
 ## Why this matters
@@ -22,6 +24,19 @@ focus:
   - The **four elements** of a good prompt.
   - When to raise or lower reasoning effort.
   - "Plan mode: `/plan` or Shift+Tab, or asking Codex to interview you first."
+```
+
+```resource
+title: Codex prompting guide
+url: https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide
+provider: OpenAI Cookbook
+format: article
+duration: 20 min
+level: intermediate
+why: OpenAI's own guide to prompting Codex models, written for people who build their own agents on top of them. Read it for the reasoning behind the advice, not as a checklist.
+focus:
+  - How much autonomy to give, and why the guide warns against over-prompting a capable model.
+  - What it says about asking the model to plan and to report what it verified.
 ```
 
 ## The four elements
@@ -46,9 +61,10 @@ strong:
   note: Every element is there, and "done when" lets Codex verify its own work.
 ```
 
-> [!TIP] While you watch the bootcamp recording
-> Each time a presenter writes a prompt, label its parts: goal, context, constraints, done-when.
-> Note which parts are missing. The finish line is the one people skip most.
+> [!TIP] In the Academy lab
+> The hands-on lab in *Get Started with Codex* asks you to give Codex "the right repository context"
+> and "completion criteria". Write those four headings into your first lab prompt. The finish line is
+> the part people skip most.
 
 ## Plan first for difficult tasks
 
@@ -83,6 +99,49 @@ items:
 explain: Goal first, then the context it needs, the rules it must keep, and how to know it's finished.
 ```
 
+## Steer while it works
+
+You don't have to wait for a run to finish to correct it. The **Prompting** docs describe two moves:
+
+- **Steer** adds your message to the *current* run: a change of direction, a missing detail, new information.
+- **Queue** saves the message for the *next* run: a follow-up that should wait until this work is done.
+
+For long tasks, `/goal` turns the prompt into an explicit goal (outcome, constraints, verification)
+that you can pause, edit or clear while it runs. Module 3 uses it on a large refactor.
+
+```resource
+title: Prompting
+url: https://learn.chatgpt.com/docs/prompting
+provider: OpenAI Docs
+format: docs
+duration: 15 min
+why: The official prompting page for Chat, ChatGPT Work and Codex. Skim the general sections, then read **Prompting Codex** closely.
+focus:
+  - "\"Set boundaries that prevent real problems\": what to forbid explicitly."
+  - "\"Make the result ready to use\": ask for the format the next person needs."
+  - Steering and queuing.
+```
+
+## Ask for evidence, not reassurance
+
+"Done" from an agent is a claim. The official path calls the cure **evidence a reviewer can check**.
+End every non-trivial task by asking for it:
+
+```compare
+title: Closing a task
+weak:
+  prompt: Looks good? Then we're done.
+  note: You get "Yes, all done!" whether or not anything was verified.
+strong:
+  prompt: |
+    Before you finish, report:
+    - which commands you ran and their results (tests, lint, build);
+    - what you did NOT verify and why;
+    - files changed, with one line on each;
+    - any assumption you made that I should confirm.
+  note: The reviewer can check the claims in minutes, and the gaps are stated, not hidden.
+```
+
 ## Check yourself
 
 ```quiz
@@ -108,4 +167,20 @@ questions:
       - A link to the issue describing the expected behaviour
     answer: [0, 1, 3]
     explain: Context is concrete material Codex can use. "Be careful" is a mood, not information. Turn it into a constraint, for example "don't change the public API".
+  - q: Codex is halfway through a task when you remember the API must stay backwards-compatible. What do you do?
+    options:
+      - Wait until it finishes, then start a new chat with the full prompt
+      - Steer the current run with the extra constraint
+      - Queue the constraint for the next run
+      - Stop the task and delete the branch
+    answer: 1
+    explain: Steering adds information to the run in progress, which is exactly what a forgotten constraint is. Queuing would apply it only after the work is already done.
+  - q: Codex reports "All done, everything works." What is the most useful follow-up?
+    options:
+      - '"Great, thanks!"'
+      - '"Are you sure?"'
+      - '"List the commands you ran with their results, and what you did not verify."'
+      - '"Run it again to be safe."'
+    answer: 2
+    explain: Ask for evidence the reviewer can check, including the gaps. "Are you sure?" just invites more reassurance.
 ```

@@ -1,7 +1,7 @@
 # Course settings. Authors rarely touch this file.
 id: codex-navigator            # never change after launch: progress & pins are keyed by it
 title: Codex Navigator
-tagline: A guided path through OpenAI's official Codex training — with use cases, best practices and the tips you wish someone had told you.
+tagline: A guided path through OpenAI's official Codex training, with use cases, practice labs and badge checkpoints for every role.
 description: Navigator course for OpenAI Codex that links to official OpenAI training and adds practical guidance.
 language: en
 gradeMode: on-complete         # on-complete: send the page score when all graded activities are done
@@ -10,10 +10,15 @@ footer: >-
   This course is a navigator: it links to official OpenAI materials and adds NIX recommendations.
   Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.
 intro: |
-  **How this navigator works.** Each page sends you to an official OpenAI resource and tells you
-  *why* it matters, *what to watch for* while studying it, and how teams actually use it.
-  Then you check yourself. Typical rhythm per page: read the brief → open the official material →
-  come back for the use cases and the quiz.
+  **How this navigator works.** The course follows OpenAI's official Codex training: the
+  OpenAI Academy learning paths, the Codex docs, OpenAI's videos and the Cookbook. Each page tells
+  you *why* a resource matters and *what to watch for*, adds use cases from real teams, and ends
+  with a quiz or a lab. Typical rhythm: read the brief → open the official material → come back
+  for the practice.
 
-  Most materials are public. The OpenAI Academy bootcamp recordings need a free Academy account,
-  and each card says so with a 🔑 badge.
+  **Find your topics.** Every page says who it's for: **Everyone**, **Non-technical** (PM, BA,
+  design, delivery), **Technical** (dev, QA, DevOps) or **Leads & admins**. Skip what isn't yours.
+
+  **Badges.** Modules end with a 🏅 checkpoint. Finish the OpenAI Academy course, pass its
+  assessment (80% or more), and paste the badge link from Accredible's email. The page checks it and
+  records your grade automatically. Academy is free; cards that need an account show a 🔑 badge.

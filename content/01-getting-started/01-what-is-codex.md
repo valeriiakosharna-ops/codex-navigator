@@ -1,7 +1,8 @@
 ---
 title: What Codex is and where it runs
 summary: Codex is OpenAI's coding agent. Learn the surfaces it runs on and pick the right one for each kind of task.
-duration: ~70 min (incl. a 53-min video)
+duration: ~35 min (+ an optional 53-min video)
+audience: [everyone]
 ---
 
 ## Why this matters
@@ -13,18 +14,58 @@ running a long task in a place you then need to close, like a terminal on a lapt
 to shut.
 
 ```resource
-title: Getting started with Codex
-url: https://www.youtube.com/watch?v=px7XlbYgk7I
+title: Get Started with Codex
+url: https://academy.openai.com/public/courses/get-started-with-codex-jkhsq
+provider: OpenAI Academy
+format: course
+duration: ~80 min + assessment
+level: intermediate
+access: Free OpenAI Academy account · badge
+why: The official learning path this module follows. Short lessons, then a guided hands-on lab in a real repository, then an assessment. Pass it with 80% or more and you get a badge, which you'll submit at the end of this module.
+focus:
+  - You don't have to do it in one go, because your progress is saved. Start the first lessons now and come back to them as you work through this module.
+  - The idea that runs through the whole path is *repository context + completion criteria + evidence for the reviewer*. Topic 1.4 is built on it.
+```
+
+Three short official videos show each surface in a few minutes:
+
+```resource
+title: Introducing the Codex app
+url: https://www.youtube.com/watch?v=HFM3se4lNiw
 provider: OpenAI · YouTube
 format: video
-duration: 53 min
+duration: 4 min
 level: beginner
-why: OpenAI's own walkthrough of working with Codex. It's the best single starting point, and it's public, so no sign-in is needed.
 focus:
-  - Each place you see Codex run (terminal, editor, desktop app, cloud). You'll need this list for the table below.
-  - When the presenters **ask** Codex a question and when they **hand it a whole task**.
-  - How each result comes back to them, whether as an answer, a diff or a pull request.
+  - Several chats running side by side, and how a result comes back as a diff you review.
 ```
+
+```resource
+title: Meet the new Codex CLI
+url: https://www.youtube.com/watch?v=PUBc2G0Tj5E
+provider: OpenAI · YouTube
+format: video
+duration: 3 min
+level: beginner
+focus:
+  - The same agent in a terminal. Topic 1.3 sets it up properly.
+```
+
+```resource
+title: Meet the all new Codex Cloud
+url: https://www.youtube.com/watch?v=7Bv68f5szSU
+provider: OpenAI · YouTube
+format: video
+duration: 3 min
+level: beginner
+focus:
+  - Work that keeps running while your laptop is closed, and how you pick it up again.
+```
+
+> [!TIP] Want the long version?
+> [Getting started with Codex](https://www.youtube.com/watch?v=px7XlbYgk7I) (OpenAI, 53 min) is a full
+> walkthrough by the Codex team. It's optional. Watch it if you like to see a whole working session
+> before you try one yourself.
 
 ## The surfaces at a glance
 
@@ -34,6 +75,7 @@ focus:
 | **IDE extension** | Inside your editor | Working next to the code you're already editing |
 | **CLI** (`codex`) | Your terminal | Keyboard-driven work, scripting, CI via `codex exec` |
 | **Cloud / web** | OpenAI's cloud environment | Tasks that run on their own while you do something else |
+| **Mobile** | Your phone, connected to the app or cloud | Checking on, steering and approving running work away from your desk |
 
 > [!TIP] Rule of thumb
 > Pair-programming on code in front of you: use the **IDE**. Scripts and automation: use the **CLI**.

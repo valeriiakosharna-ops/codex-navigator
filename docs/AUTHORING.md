@@ -56,6 +56,7 @@ Pages are shown as **slides**: a new slide starts at every `## heading`, at a `-
 title: Your first session, safely          # required
 summary: One sentence shown under the title.
 duration: 40 min
+audience: [technical]                      # everyone | non-technical | technical | leads (one or more)
 ---
 
 ## Why this matters
@@ -88,6 +89,7 @@ there.
 | `flashcards` | Flip cards for commands and terms | – |
 | `scenario` | Decision scenario: branching story, investigation budget, "stop the agent in time" | ✓ (1/2/3 pt by level) |
 | `spot` | Spot the problems in a diff, log or file, with severity from level 2 | ✓ (1/2/3 pt by level) |
+| `badge` | OpenAI Academy badge checkpoint: the learner pastes the Accredible badge link, and the page checks issuer, course, validity and name | ✓ (1 pt) |
 
 Callouts: `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]`, with an optional title
 after the marker.
@@ -202,3 +204,14 @@ Before adding or updating a `resource` card:
 4. **Use case**: how a real team uses it.
 5. **Pitfall / tip** callouts.
 6. **Check yourself**: 3–4 questions, each with an `explain`.
+
+## Audience and badges
+
+- **`audience:`** in the front matter says who a page is for. It's shown on the page, on the overview and on
+  the `/moodle/` setup page, which also suggests the "For whom: …" line for the Moodle activity description.
+- **Module `courses:`** in `module.yaml` lists the official OpenAI Academy courses the module follows
+  (`badge: false` for recommended courses without a checkpoint). They're shown on the overview.
+- **`badge` block**: one per checkpoint page. `course` and `url` are required. If Accredible names the badge
+  differently from the course (for example "Scale Codex"), add the names to `accept:`. The Moodle
+  activity for a badge page must pass `name` = *Full name* so the page can compare it with the name on
+  the badge. Without it, the badge still counts, but the name isn't checked.

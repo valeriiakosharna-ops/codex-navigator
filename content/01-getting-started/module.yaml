@@ -1,5 +1,5 @@
-title: Get started with Codex
-summary: What Codex is, where it runs, how to run your first task safely, and how to ask a coding agent for work.
-official:
-  title: "Codex bootcamp 101: Agentic coding (OpenAI Academy recording)"
-  url: https://academy.openai.com/public/videos/september-23-codex-bootcamp-101-2026-09-24
+title: "Get started: the agent, models and a safe setup"
+summary: What Codex is and where it runs, how to pick a model without burning your limits, how to set the sandbox and approvals, and how to brief an agent so it knows when it's done.
+courses:
+  - title: Get Started with Codex
+    url: https://academy.openai.com/public/courses/get-started-with-codex-jkhsq
