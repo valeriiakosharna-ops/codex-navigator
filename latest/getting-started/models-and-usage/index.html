@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choosing models and managing usage · Codex Navigator</title>
+<meta name="description" content="Match the model and reasoning effort to the task, tell plan limits apart from credits, and keep repeated or long-running work affordable.">
+
+<link rel="icon" href="/codex-navigator/latest/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=2.0.0-mwd9xed9">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"2.0.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"getting-started/models-and-usage"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/latest/assets/lx.js?v=2.0.0-mwd9xed9"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/latest/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/latest/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/latest/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/latest/">Course</a>
+      <a href="/codex-navigator/latest/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/latest/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v2.0.0</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/latest/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/latest/getting-started/models-and-usage/" aria-current="page">Choosing models and managing usage</a></li><li><a href="/codex-navigator/latest/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/latest/getting-started/prompting-basics/">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/latest/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/latest/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/latest/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/issue-triage/">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/badge-agents-and-workflows/">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/latest/practical-workflows/large-codebases/">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/latest/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/latest/practical-workflows/code-review-security/">Code review and security scans</a></li><li><a href="/codex-navigator/latest/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/latest/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/latest/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/latest/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/latest/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/latest/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/latest/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/latest/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/latest/governance/scale-across-teams/">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/latest/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/latest/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/latest/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/latest/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/latest/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 1 · <a href="/codex-navigator/latest/#getting-started">Get started: the agent, models and a safe setup</a></div>
+    <h1>Choosing models and managing usage</h1>
+    <p class="lx-lead">Match the model and reasoning effort to the task, tell plan limits apart from credits, and keep repeated or long-running work affordable.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience">👥 For: Everyone</span><span class="lx-chip">⏱ ~40 min</span><span class="lx-chip lx-chip--graded">Graded · 5 pt</span></div>
+  </div>
+  <div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">Two dials: model and reasoning effort</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Limits, credits and where to check them</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Check yourself</span></button></nav>
+  <section class="lx-slide is-active" id="lx-slide-1" data-label="Why this matters" aria-label="Why this matters">
+<h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>Every Codex task spends something: your plan&#39;s included usage or, after that, credits. The most
+powerful model at the highest effort is rarely the right default. It&#39;s slower, it uses more, and
+for a well-scoped fix it isn&#39;t better. Teams that pick deliberately get more done within the same
+plan, and they don&#39;t hit the limit on Thursday afternoon.</p>
+<div class="lx-callout lx-callout--note" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>Model names change. The approach doesn&#39;t.</div><p>The line-up below is from <strong>November 2026</strong>. OpenAI releases and retires models often (GPT-5.5 is
+being retired right now), so the <strong>Models</strong> page is always the source of truth. What lasts is the
+method: decide what you need, try the lightest setting that meets it, and compare on the same inputs.</p>
+</div>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The current models for Codex and ChatGPT Work, where each one does well, and how to switch model and reasoning effort in the app, CLI and IDE.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Where each model shines: the most capable one, the near-equal that costs less, the fast one, the efficient one.</li><li>What <strong>reasoning effort</strong> changes, and the advice to start at the default and raise it only when a task needs more planning.</li><li>When <strong>Max</strong> and <strong>Ultra</strong> are worth it. The page says most tasks need neither.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-2" data-label="Two dials: model and reasoning effort" aria-label="Two dials: model and reasoning effort" hidden>
+<h2 id="two-dials-model-and-reasoning-effort">Two dials: model and reasoning effort<a class="lx-anchor" href="#two-dials-model-and-reasoning-effort" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>You choose</th>
+<th>What it changes</th>
+<th>Start with</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Model</strong></td>
+<td>How capable, how fast and how costly each step is</td>
+<td>The default your workspace offers</td>
+</tr>
+<tr>
+<td><strong>Reasoning effort</strong> (Light/Low → Medium → High → Extra high)</td>
+<td>How long the model thinks before acting</td>
+<td>The default; raise it for multi-step work with trade-offs</td>
+</tr>
+<tr>
+<td><strong>Max</strong></td>
+<td>Even more thinking time for a single, very hard task</td>
+<td>Only for the hardest problems</td>
+</tr>
+<tr>
+<td><strong>Ultra</strong></td>
+<td>Splits the task across <strong>subagents</strong> working in parallel</td>
+<td>Only when the work really divides into parts. It uses more tokens.</td>
+</tr>
+<tr>
+<td><strong>Fast mode</strong> (<code>/fast</code>)</td>
+<td>Same model, faster output, at a <strong>higher usage rate</strong></td>
+<td>When you&#39;re waiting on the result and usage isn&#39;t tight</td>
+</tr>
+</tbody></table>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/model-selection" target="_blank" rel="noopener">Model selection</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">A short guide to matching model and effort to the kind of work, with an interactive recommender.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The ladder from &quot;efficient model, low effort&quot; for fine-grained edits up to &quot;most capable model, extra high effort&quot; for demanding analysis.</li><li>The four questions before you choose: how often the workflow runs, how fast you need it, how the output will be used, and how much quality matters.</li><li>The advice to set <strong>acceptance criteria first</strong>, then keep the lightest setting that meets them.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/model-selection" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<section class="lx-block">
+  <div class="lx-compare__title">Choosing a setting for a recurring task</div>
+  <div class="lx-compare"><div class="lx-compare__col lx-compare__col--weak">
+      <div class="lx-compare__label">✗ Vague</div>
+      <pre><code>Always use the strongest model on Extra high. Quality first.</code></pre>
+      <p class="lx-compare__note">Fine for a one-off, hard decision. For a nightly job or a stream of small fixes, it burns the plan&#39;s limit and adds nothing to quality.</p>
+    </div><div class="lx-compare__col lx-compare__col--strong">
+      <div class="lx-compare__label">✓ Specific</div>
+      <pre><code>Nightly changelog draft from merged PRs.
+Acceptance: every PR listed, grouped by area, no invented items.
+Try: efficient model, Medium → compare 3 nights with the default.
+Keep the lightest setting that passes the acceptance check.</code></pre>
+      <p class="lx-compare__note">Acceptance criteria first, a like-for-like comparison, then the cheapest setting that passes.</p>
+    </div></div>
+</section>
+</section>
+<section class="lx-slide" id="lx-slide-3" data-label="Limits, credits and where to check them" aria-label="Limits, credits and where to check them" hidden>
+<h2 id="limits-credits-and-where-to-check-them">Limits, credits and where to check them<a class="lx-anchor" href="#limits-credits-and-where-to-check-them" aria-hidden="true">#</a></h2>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/pricing" target="_blank" rel="noopener">Pricing, usage limits and credits</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">How included plan usage, credits and API-key usage fit together, plus OpenAI&#39;s own tips for making your limits last.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li><strong>What happens at the limit</strong>: a turn that is already running is allowed to finish. After that, Plus/Pro users can buy credits, and Business/Edu/Enterprise workspaces with flexible pricing can buy workspace credits.</li><li><strong>Tokens vs credits</strong>: tokens are what the model reads and writes; credits are what eligible usage costs once your included limits run out.</li><li><strong>Where to look</strong>: the usage dashboard, and <code>/status</code> inside a CLI session. The docs suggest checking every week or two.</li><li>Which <strong>Code Review</strong> usage is counted separately (reviews run through GitHub) and which counts towards your general limit.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/pricing" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>OpenAI&#39;s tips for making limits last, in short</div><p>Be precise and leave out unnecessary context. Give only the relevant files. Ask for the format and
+length you actually need. Keep <code>AGENTS.md</code> small: in a large repo, nest several short files instead
+of one big one.</p>
+</div>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">The team that ran out by Wednesday</div>
+    <div class="lx-usecase__who">Delivery manager of a 6-person team</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>Since the team started using Codex, most people hit their limit mid-week. Everyone uses the top model on Extra high &quot;to be safe&quot;, and a 900-line AGENTS.md is loaded into every task.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>Look at how our team uses Codex over a typical week (task types, models,
+effort, AGENTS.md size). Propose a default model and effort for each task type,
+and three changes that reduce usage without lowering the quality of reviewed results.
+Mark every assumption you make.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A short policy, for example light settings for scoped fixes and the strong model only for design reviews, plus a plan to split AGENTS.md by directory.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>Decide on the quality bar per task type <strong>before</strong> changing settings, then compare like for like.</li><li>Fast mode and Ultra are opt-in tools for specific moments, not defaults.</li></ul></div>
+  </div>
+</article>
+</section>
+<section class="lx-slide" id="lx-slide-4" data-label="Check yourself" aria-label="Check yourself" hidden>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="models-usage"><script type="application/json">{"id":"models-usage","shuffle":false,"graded":true,"questions":[{"q":"A developer runs dozens of small, well-scoped fixes a day and keeps hitting the limit. What&#39;s the best first change?","options":["Switch every task to Ultra so the work finishes sooner","Use a lighter model or effort for the scoped fixes and check results against the same acceptance criteria","Turn on Fast mode so each task uses less","Paste more context into each prompt so the agent needs fewer turns"],"answer":1,"explain":"Scoped fixes rarely need the heaviest setting. Fast mode \u003cstrong>raises\u003c/strong> the usage rate, Ultra spreads work across subagents and uses more tokens, and extra context costs tokens too."},{"q":"Your limit runs out while Codex is in the middle of a turn. What happens, according to the pricing docs?","options":["The turn stops immediately and the changes are rolled back","The running turn is allowed to finish, subject to fair use","The task automatically moves to an API key","Codex switches to the cheapest model for the rest of the turn"],"answer":1,"explain":"OpenAI lets work already in progress finish. After that, credits (or a plan or workspace change) are how you continue."},{"q":"When is Ultra a sensible choice?","options":["For any important task","When the task splits into meaningful parts that can run in parallel, and the extra usage is acceptable","When you want the model to think longer about one hard problem","When you need the answer faster on a small task"],"answer":1,"explain":"Ultra delegates parts to subagents. &quot;Think longer about one problem&quot; is Max. Small tasks need neither."},{"q":"A PM asks: &#39;Where do I see how much Codex usage I have left?&#39; Which answers are correct?","options":["In the usage dashboard","With \u003ccode>/status\u003c/code> inside a Codex CLI session","Only your workspace admin can see it","In the AGENTS.md file"],"answer":[0,1],"explain":"Both are in the pricing docs. Admins also have workspace analytics, but individuals can check their own usage."},{"q":"Before comparing two models for a recurring report, what should you decide first?","options":["Which model is newer","The acceptance criteria the report must meet","The highest reasoning effort you can afford","Whether to enable Fast mode"],"answer":1,"explain":"Without acceptance criteria you can&#39;t tell whether the cheaper setting is &quot;good enough&quot;. The model-selection guide puts that step first."}]}</script></lx-quiz>
+
+</section>
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 4</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/latest/getting-started/what-is-codex/"><small>← Previous</small><strong>What Codex is and where it runs</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/latest/getting-started/first-session/"><small>Next →</small><strong>The Codex CLI, sandbox and approvals</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v2.0.0 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>

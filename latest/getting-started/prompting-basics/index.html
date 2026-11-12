@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Asking a coding agent for work · Codex Navigator</title>
-<meta name="description" content="The four parts of a good task: goal, context, constraints, done-when. Plus when to plan first.">
+<title>Giving Codex context and completion criteria · Codex Navigator</title>
+<meta name="description" content="Brief the agent like a new colleague: goal, context, constraints, done-when. Then plan, steer, and ask for the evidence a reviewer needs.">
 
 <link rel="icon" href="/codex-navigator/latest/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.5.1-mwcefjzl">
-<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.5.1","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"getting-started/prompting-basics"}}</script>
-<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),m=document.documentElement,h=!1;try{h=window.self!==window.top}catch(e){h=!0}(h||/[?&]embed=1/.test(location.search))&&m.classList.add("lx-embedded");function I(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(o){return null}}var i=I("localStorage"),r=I("sessionStorage"),v=new URLSearchParams(location.search),l=v.get("uid")||r&&r.getItem("lx:uid")||"",u=v.get("cid")||r&&r.getItem("lx:cid")||"";r&&(l&&r.setItem("lx:uid",l),u&&r.setItem("lx:cid",u)),n.uid=l,n.cid=u;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,f=function(e){return e==="light"||e==="dark"||e==="auto"},c="auto";function g(e){c=f(e)?e:"auto";var t=c==="dark"||c==="auto"&&d&&d.matches;m.setAttribute("data-theme",t?"dark":"light"),m.setAttribute("data-theme-mode",c);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:c,theme:t?"dark":"light"}}))}catch(o){}}var w=v.get("theme"),T=f(w)?w:h?r&&r.getItem("lx:moodle-theme")||"auto":i&&i.getItem("lx:theme")||"auto";if(g(T),d){var L=function(){c==="auto"&&g("auto")};d.addEventListener?d.addEventListener("change",L):d.addListener(L)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!f(t.theme)||f(w)||(r&&r.setItem("lx:moodle-theme",t.theme),g(t.theme))}),window.LXTheme={get mode(){return c},set:function(e){i&&!h&&i.setItem("lx:theme",e),g(e)}};var b=n.version.split(".").slice(0,2).join("."),p="lx:"+n.course+":pin:"+(u||"-")+":"+(l||"-");n.pinKey=p;function y(e){i&&l&&!i.getItem(p)&&i.setItem(p,e)}if(n.channel==="version"){y(b);return}if(n.channel!=="latest"||v.get("nopin"))return;function M(e,t){for(var o=e.split(".").map(Number),s=t.split(".").map(Number),a=0;a<3;a++)if((o[a]||0)!==(s[a]||0))return(o[a]||0)-(s[a]||0);return 0}function j(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var o=t.filter(function(s){return s===e||s.indexOf(e+".")===0});return o.sort(M),o.length?o[o.length-1]:null}m.classList.add("lx-pinning");var k=function(){m.classList.remove("lx-pinning")},P=setTimeout(k,2500),E=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([E("pins.json"),E("versions.json")]).then(function(e){for(var t=e[0]||{},o=((e[1]||{}).versions||[]).map(function(N){return N.version}),s=[v.get("v"),t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],i&&i.getItem(p),t.default],a=null,x=0;x<s.length&&!a;x++)a=j(s[x],o);if(a&&a!==n.version){var S=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+a+"/"+S+location.search+location.hash);return}y(b),clearTimeout(P),k()})})();</script>
-<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.5.1-mwcefjzl"></script>
+<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=2.0.0-mwd9xed9">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"2.0.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"getting-started/prompting-basics"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/latest/assets/lx.js?v=2.0.0-mwd9xed9"></script>
 </head>
 <body>
 <header class="lx-header">
@@ -27,28 +27,34 @@
     <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
     </button>
-    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.5.1</a>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v2.0.0</a>
   </div>
 </header>
 <div class="lx-layout">
   <nav class="lx-sidebar" aria-label="Course contents">
-  <h2><span class="n">1</span>Get started with Codex</h2>
-  <ol><li><a href="/codex-navigator/latest/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/latest/getting-started/first-session/">Your first session, safely</a></li><li><a href="/codex-navigator/latest/getting-started/prompting-basics/" aria-current="page">Asking a coding agent for work</a></li><li><a href="/codex-navigator/latest/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li></ol>
-<h2><span class="n">2</span>Practical workflows</h2>
-  <ol><li><a href="/codex-navigator/latest/practical-workflows/agents-md/">Make guidance durable: AGENTS.md and config</a></li><li><a href="/codex-navigator/latest/practical-workflows/plan-test-review/">The plan → build → test → review loop</a></li><li><a href="/codex-navigator/latest/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
-<h2><span class="n">3</span>Advanced workflows and automation</h2>
-  <ol><li><a href="/codex-navigator/latest/advanced/extend-codex/">Extend Codex with MCP and skills</a></li><li><a href="/codex-navigator/latest/advanced/automate-and-scale/">Automate and scale</a></li><li><a href="/codex-navigator/latest/advanced/lab-automation/">Lab: decisions about automation</a></li></ol>
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/latest/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/latest/getting-started/models-and-usage/">Choosing models and managing usage</a></li><li><a href="/codex-navigator/latest/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/latest/getting-started/prompting-basics/" aria-current="page">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/latest/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/latest/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/latest/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/issue-triage/">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/badge-agents-and-workflows/">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/latest/practical-workflows/large-codebases/">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/latest/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/latest/practical-workflows/code-review-security/">Code review and security scans</a></li><li><a href="/codex-navigator/latest/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/latest/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/latest/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/latest/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/latest/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/latest/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/latest/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/latest/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/latest/governance/scale-across-teams/">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/latest/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/latest/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/latest/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/latest/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/latest/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
 </nav>
   <main class="lx-main" id="main">
     <article class="lx-prose">
   <div class="lx-pagehead">
-    <div class="lx-crumbs">Module 1 · <a href="/codex-navigator/latest/#getting-started">Get started with Codex</a></div>
-    <h1>Asking a coding agent for work</h1>
-    <p class="lx-lead">The four parts of a good task: goal, context, constraints, done-when. Plus when to plan first.</p>
-    <div class="lx-meta"><span class="lx-chip">⏱ 35 min</span><span class="lx-chip lx-chip--official">Navigates: Codex bootcamp 101: Agentic coding (OpenAI Academy recording)</span><span class="lx-chip lx-chip--graded">Graded · 4 pt</span></div>
+    <div class="lx-crumbs">Module 1 · <a href="/codex-navigator/latest/#getting-started">Get started: the agent, models and a safe setup</a></div>
+    <h1>Giving Codex context and completion criteria</h1>
+    <p class="lx-lead">Brief the agent like a new colleague: goal, context, constraints, done-when. Then plan, steer, and ask for the evidence a reviewer needs.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience">👥 For: Everyone</span><span class="lx-chip">⏱ ~50 min</span><span class="lx-chip lx-chip--graded">Graded · 6 pt</span></div>
   </div>
   <div class="lx-slides" data-slides>
-  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">The four elements</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Plan first for difficult tasks</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Check yourself</span></button></nav>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">The four elements</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Plan first for difficult tasks</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Steer while it works</span></button><button type="button" class="lx-step" data-step="4" aria-controls="lx-slide-5"><span class="lx-step__n">5</span><span class="lx-step__label">Ask for evidence, not reassurance</span></button><button type="button" class="lx-step" data-step="5" aria-controls="lx-slide-6"><span class="lx-step__n">6</span><span class="lx-step__label">Check yourself</span></button></nav>
   <section class="lx-slide is-active" id="lx-slide-1" data-label="Why this matters" aria-label="Why this matters">
 <h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
 <p>Codex copes with imperfect prompts, but on large repos and high-stakes changes the quality of
@@ -66,6 +72,19 @@ to a capable colleague who joined yesterday.</p>
   <p class="lx-resource__why">The official guide. This topic covers its first two sections, “Strong first use: Context and prompts” and “Plan first for difficult tasks”. Later topics come back to the rest.</p>
   <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The <strong>four elements</strong> of a good prompt.</li><li>When to raise or lower reasoning effort.</li><li>Plan mode: <code>/plan</code> or Shift+Tab, or asking Codex to interview you first.</li></ul></div>
   <a class="lx-resource__cta" href="https://learn.chatgpt.com/guides/best-practices" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Cookbook</div>
+      <div class="lx-resource__title"><a href="https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide" target="_blank" rel="noopener">Codex prompting guide</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">article</span><span class="lx-chip">⏱ 20 min</span><span class="lx-chip">intermediate</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">OpenAI&#39;s own guide to prompting Codex models, written for people who build their own agents on top of them. Read it for the reasoning behind the advice, not as a checklist.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>How much autonomy to give, and why the guide warns against over-prompting a capable model.</li><li>What it says about asking the model to plan and to report what it verified.</li></ul></div>
+  <a class="lx-resource__cta" href="https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
 </aside>
 </section>
 <section class="lx-slide" id="lx-slide-2" data-label="The four elements" aria-label="The four elements" hidden>
@@ -92,8 +111,9 @@ scripts/bench_export.py reports under 10 s.</code></pre>
       <p class="lx-compare__note">Every element is there, and &quot;done when&quot; lets Codex verify its own work.</p>
     </div></div>
 </section>
-<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>While you watch the bootcamp recording</div><p>Each time a presenter writes a prompt, label its parts: goal, context, constraints, done-when.
-Note which parts are missing. The finish line is the one people skip most.</p>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>In the Academy lab</div><p>The hands-on lab in <em>Get Started with Codex</em> asks you to give Codex &quot;the right repository context&quot;
+and &quot;completion criteria&quot;. Write those four headings into your first lab prompt. The finish line is
+the part people skip most.</p>
 </div>
 </section>
 <section class="lx-slide" id="lx-slide-3" data-label="Plan first for difficult tasks" aria-label="Plan first for difficult tasks" hidden>
@@ -119,14 +139,58 @@ you would touch. Wait for my approval.</code></pre></div>
 </article>
 <lx-order id="prompt-anatomy"><script type="application/json">{"id":"prompt-anatomy","title":"Build the prompt","prompt":"Arrange these fragments so the prompt reads goal → context → constraints → done when.","items":["Add rate limiting to the public /search endpoint.","The handler is in api/search.ts; we already use Redis (see lib/redis.ts).","Don&#39;t add new dependencies; return HTTP 429 with a Retry-After header.","Done when the new tests in api/search.test.ts pass and npm run lint is clean."],"explain":"Goal first, then the context it needs, the rules it must keep, and how to know it&#39;s finished.","graded":true}</script></lx-order>
 </section>
-<section class="lx-slide" id="lx-slide-4" data-label="Check yourself" aria-label="Check yourself" hidden>
+<section class="lx-slide" id="lx-slide-4" data-label="Steer while it works" aria-label="Steer while it works" hidden>
+<h2 id="steer-while-it-works">Steer while it works<a class="lx-anchor" href="#steer-while-it-works" aria-hidden="true">#</a></h2>
+<p>You don&#39;t have to wait for a run to finish to correct it. The <strong>Prompting</strong> docs describe two moves:</p>
+<ul>
+<li><strong>Steer</strong> adds your message to the <em>current</em> run: a change of direction, a missing detail, new information.</li>
+<li><strong>Queue</strong> saves the message for the <em>next</em> run: a follow-up that should wait until this work is done.</li>
+</ul>
+<p>For long tasks, <code>/goal</code> turns the prompt into an explicit goal (outcome, constraints, verification)
+that you can pause, edit or clear while it runs. Module 3 uses it on a large refactor.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/prompting" target="_blank" rel="noopener">Prompting</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The official prompting page for Chat, ChatGPT Work and Codex. Skim the general sections, then read <strong>Prompting Codex</strong> closely.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>&quot;Set boundaries that prevent real problems&quot;: what to forbid explicitly.</li><li>&quot;Make the result ready to use&quot;: ask for the format the next person needs.</li><li>Steering and queuing.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/prompting" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-5" data-label="Ask for evidence, not reassurance" aria-label="Ask for evidence, not reassurance" hidden>
+<h2 id="ask-for-evidence-not-reassurance">Ask for evidence, not reassurance<a class="lx-anchor" href="#ask-for-evidence-not-reassurance" aria-hidden="true">#</a></h2>
+<p>&quot;Done&quot; from an agent is a claim. The official path calls the cure <strong>evidence a reviewer can check</strong>.
+End every non-trivial task by asking for it:</p>
+<section class="lx-block">
+  <div class="lx-compare__title">Closing a task</div>
+  <div class="lx-compare"><div class="lx-compare__col lx-compare__col--weak">
+      <div class="lx-compare__label">✗ Vague</div>
+      <pre><code>Looks good? Then we&#39;re done.</code></pre>
+      <p class="lx-compare__note">You get &quot;Yes, all done!&quot; whether or not anything was verified.</p>
+    </div><div class="lx-compare__col lx-compare__col--strong">
+      <div class="lx-compare__label">✓ Specific</div>
+      <pre><code>Before you finish, report:
+- which commands you ran and their results (tests, lint, build);
+- what you did NOT verify and why;
+- files changed, with one line on each;
+- any assumption you made that I should confirm.</code></pre>
+      <p class="lx-compare__note">The reviewer can check the claims in minutes, and the gaps are stated, not hidden.</p>
+    </div></div>
+</section>
+</section>
+<section class="lx-slide" id="lx-slide-6" data-label="Check yourself" aria-label="Check yourself" hidden>
 <h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
-<lx-quiz id="prompting"><script type="application/json">{"id":"prompting","shuffle":false,"graded":true,"questions":[{"q":"A prompt says: &quot;Refactor \u003ccode>billing/\u003c/code> to use the new money type. Keep the public API unchanged.&quot; What is missing for Codex to verify its own work?","options":["A goal","Context","A constraint","A done-when criterion"],"answer":3,"explain":"The goal and a constraint are there, and the folder is context. Nothing says how to know it&#39;s finished, for example &quot;all billing tests pass&quot;."},{"q":"Which task benefits most from asking for a plan before any code?","options":["Renaming a variable across one file","Adding audit logging to a service with no spec yet","Fixing a typo in an error message","Running the test suite and reporting failures"],"answer":1,"explain":"Plan mode, or an interview, pays off when a task is multi-step or ambiguous. Small, well-defined edits don&#39;t need it."},{"q":"Which of these count as useful \u003cem>context\u003c/em> for a bug fix?","options":["The failing test&#39;s output and stack trace","@-mentions of the files involved","&quot;Be careful, this is production code&quot;","A link to the issue describing the expected behaviour"],"answer":[0,1,3],"explain":"Context is concrete material Codex can use. &quot;Be careful&quot; is a mood, not information. Turn it into a constraint, for example &quot;don&#39;t change the public API&quot;."}]}</script></lx-quiz>
+<lx-quiz id="prompting"><script type="application/json">{"id":"prompting","shuffle":false,"graded":true,"questions":[{"q":"A prompt says: &quot;Refactor \u003ccode>billing/\u003c/code> to use the new money type. Keep the public API unchanged.&quot; What is missing for Codex to verify its own work?","options":["A goal","Context","A constraint","A done-when criterion"],"answer":3,"explain":"The goal and a constraint are there, and the folder is context. Nothing says how to know it&#39;s finished, for example &quot;all billing tests pass&quot;."},{"q":"Which task benefits most from asking for a plan before any code?","options":["Renaming a variable across one file","Adding audit logging to a service with no spec yet","Fixing a typo in an error message","Running the test suite and reporting failures"],"answer":1,"explain":"Plan mode, or an interview, pays off when a task is multi-step or ambiguous. Small, well-defined edits don&#39;t need it."},{"q":"Which of these count as useful \u003cem>context\u003c/em> for a bug fix?","options":["The failing test&#39;s output and stack trace","@-mentions of the files involved","&quot;Be careful, this is production code&quot;","A link to the issue describing the expected behaviour"],"answer":[0,1,3],"explain":"Context is concrete material Codex can use. &quot;Be careful&quot; is a mood, not information. Turn it into a constraint, for example &quot;don&#39;t change the public API&quot;."},{"q":"Codex is halfway through a task when you remember the API must stay backwards-compatible. What do you do?","options":["Wait until it finishes, then start a new chat with the full prompt","Steer the current run with the extra constraint","Queue the constraint for the next run","Stop the task and delete the branch"],"answer":1,"explain":"Steering adds information to the run in progress, which is exactly what a forgotten constraint is. Queuing would apply it only after the work is already done."},{"q":"Codex reports &quot;All done, everything works.&quot; What is the most useful follow-up?","options":["&quot;Great, thanks!&quot;","&quot;Are you sure?&quot;","&quot;List the commands you ran with their results, and what you did not verify.&quot;","&quot;Run it again to be safe.&quot;"],"answer":2,"explain":"Ask for evidence the reviewer can check, including the gaps. &quot;Are you sure?&quot; just invites more reassurance."}]}</script></lx-quiz>
 
 </section>
   <div class="lx-slidenav">
     <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
-    <span class="lx-slidenav__count" aria-live="polite">1 / 4</span>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 6</span>
     <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
   </div>
 </div>
@@ -136,7 +200,7 @@ you would touch. Wait for my approval.</code></pre></div>
   <span class="lx-scorebar__status"></span>
 </div>
   <nav class="lx-pager" aria-label="Pages">
-    <a href="/codex-navigator/latest/getting-started/first-session/"><small>← Previous</small><strong>Your first session, safely</strong></a>
+    <a href="/codex-navigator/latest/getting-started/first-session/"><small>← Previous</small><strong>The Codex CLI, sandbox and approvals</strong></a>
     <a class="lx-pager__next" href="/codex-navigator/latest/getting-started/lab-first-session/"><small>Next →</small><strong>Lab: decisions in your first sessions</strong></a>
   </nav>
 </article>
@@ -144,7 +208,7 @@ you would touch. Wait for my approval.</code></pre></div>
 </div>
 <footer class="lx-footer">
   <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
-  <p>Codex Navigator v1.5.1 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+  <p>Codex Navigator v2.0.0 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
 </footer>
 
 </body>

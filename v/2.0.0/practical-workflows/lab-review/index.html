@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab: reviewing the agent&#39;s work · Codex Navigator</title>
+<meta name="description" content="Find what the agent got wrong before it ships, then investigate a bug the agent introduced.">
+
+<link rel="icon" href="/codex-navigator/v/2.0.0/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/2.0.0/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"2.0.0","channel":"version","base":"/codex-navigator/v/2.0.0/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"practical-workflows/lab-review"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/v/2.0.0/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/2.0.0/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/2.0.0/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/2.0.0/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/2.0.0/">Course</a>
+      <a href="/codex-navigator/v/2.0.0/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/2.0.0/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v2.0.0</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/models-and-usage/">Choosing models and managing usage</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/prompting-basics/">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/v/2.0.0/prototyping-and-triage/issue-triage/">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/v/2.0.0/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/v/2.0.0/prototyping-and-triage/badge-agents-and-workflows/">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/practical-workflows/large-codebases/">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/v/2.0.0/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/v/2.0.0/practical-workflows/code-review-security/">Code review and security scans</a></li><li><a href="/codex-navigator/v/2.0.0/practical-workflows/lab-review/" aria-current="page">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/v/2.0.0/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/v/2.0.0/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/v/2.0.0/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/v/2.0.0/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/v/2.0.0/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/v/2.0.0/governance/scale-across-teams/">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/v/2.0.0/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/v/2.0.0/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/v/2.0.0/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/v/2.0.0/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 3 · <a href="/codex-navigator/v/2.0.0/#practical-workflows">Core agentic capabilities</a></div>
+    <h1>Lab: reviewing the agent&#39;s work</h1>
+    <p class="lx-lead">Find what the agent got wrong before it ships, then investigate a bug the agent introduced.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience">👥 For: Technical</span><span class="lx-chip">⏱ 35 min</span><span class="lx-chip lx-chip--graded">Graded · 6 pt</span></div>
+  </div>
+  <div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">How this lab works</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">Level 1: &quot;Refactored the profile loader&quot;</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Level 2: &quot;Fixed the failing tests&quot;</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Level 3: Flaky after the agent&#39;s refactor</span></button></nav>
+  <section class="lx-slide is-active" id="lx-slide-1" data-label="How this lab works" aria-label="How this lab works">
+<h2 id="how-this-lab-works">How this lab works<a class="lx-anchor" href="#how-this-lab-works" aria-hidden="true">#</a></h2>
+<p>The agent writes code fast. Your value is in <strong>noticing</strong> what is wrong. Three levels:</p>
+<ul>
+<li><strong>Level 1</strong>: a short diff. You are told how many problems there are.</li>
+<li><strong>Level 2</strong>: you aren&#39;t told how many, you must rate how serious each one is, and some lines only <em>look</em> wrong.</li>
+<li><strong>Level 3</strong>: an investigation with a limited budget. What do you check, and what do you ask Codex to do?</li>
+</ul>
+<p>False alarms cost points. Flagging everything isn&#39;t a strategy.</p>
+</section>
+<section class="lx-slide" id="lx-slide-2" data-label="Level 1: &quot;Refactored the profile loader&quot;" aria-label="Level 1: &quot;Refactored the profile loader&quot;" hidden>
+<lx-spot id="lab2-l1"><script type="application/json">{"id":"lab2-l1","title":"&quot;Refactored the profile loader&quot;","level":1,"prompt":"Codex says it \"simplified the profile loader\". Review the diff before approving.","view":"diff","filename":"src/profile/load.ts","code":" import { fetchUser } from \"./api\";\n-const API_KEY = process.env.API_KEY;\n+const API_KEY = \"sk-live-51Hx9QeLx2Vb7\";\n\n export async function getProfile(id) {\n-  if (!id) throw new Error(\"id required\");\n   const user = await fetchUser(id, API_KEY);\n   return { name: user.name, email: user.email };\n }\n","issues":[{"line":3,"severity":"critical","label":"Secret hard-coded in source","explain":"A live API key is now committed to the repository. Reject, rotate the key, and keep reading it from the environment."},{"line":6,"severity":"major","label":"Input validation removed","explain":"The guard against a missing id was deleted without a reason. &quot;Simplify&quot; must not change behaviour."}],"graded":true,"version":1,"_fp":"224ba32694"}</script></lx-spot>
+</section>
+<section class="lx-slide" id="lx-slide-3" data-label="Level 2: &quot;Fixed the failing tests&quot;" aria-label="Level 2: &quot;Fixed the failing tests&quot;" hidden>
+<lx-spot id="lab2-l2"><script type="application/json">{"id":"lab2-l2","title":"&quot;Fixed the failing tests&quot;","level":2,"prompt":"The discount tests were red. Codex says \"all tests pass now\". Review what it changed. Some changes are fine.","view":"diff","filename":"tests/total.test.ts","code":" describe(\"calculateTotal\", () => {\n   it(\"applies 10% discount over 100\", () => {\n-    expect(calculateTotal(200)).toBe(180);\n+    expect(calculateTotal(200)).toBe(200);\n   });\n\n-  it(\"rejects negative amounts\", () => {\n-    expect(() => calculateTotal(-5)).toThrow();\n-  });\n+  it.skip(\"rejects negative amounts\", () => {\n+    expect(() => calculateTotal(-5)).toThrow();\n+  });\n\n   it(\"handles zero\", () => {\n-    expect(calculateTotal(0)).toBe(0);\n+    expect(calculateTotal(0)).toEqual(0);\n   });\n });\n","issues":[{"line":4,"severity":"critical","label":"Assertion changed to match the bug","explain":"The test now expects \u003cem>no\u003c/em> discount. The code is wrong and the test was bent to agree with it. This is the classic way agents &quot;make tests pass&quot;."},{"line":10,"to":12,"severity":"major","label":"Test skipped instead of fixed","explain":"\u003ccode>it.skip\u003c/code> silently removes a safety check. Skips need an explicit reason and a ticket. Ask the agent to fix the behaviour instead."}],"decoys":[{"line":16,"explain":"\u003ccode>toEqual(0)\u003c/code> and \u003ccode>toBe(0)\u003c/code> behave the same for numbers. It&#39;s a harmless style change."},{"line":3,"explain":"That&#39;s the removed old line. The problem is what replaced it on line 4."}],"unlock":{"after":"lab2-l1","min":0.7},"graded":true,"version":1,"_fp":"2044a7ae88"}</script></lx-spot>
+</section>
+<section class="lx-slide" id="lx-slide-4" data-label="Level 3: Flaky after the agent&#39;s refactor" aria-label="Level 3: Flaky after the agent&#39;s refactor" hidden>
+<lx-scenario id="lab2-l3"><script type="application/json">{"id":"lab2-l3","title":"Flaky after the agent&#39;s refactor","level":3,"intro":"Last week Codex refactored the pricing cache. Since then \u003ccode>{{test}}\u003c/code> fails in roughly one of five CI runs.\nThe release is tomorrow. You have 4 investigation actions; some cost more than others.\n","budget":4,"unlock":{"after":"lab2-l2","min":0.7},"vars":{"test":["test_checkout_total","test_cart_total","test_invoice_sum"]},"graded":true,"version":1,"start":"investigate","steps":{"investigate":{"title":"Diagnose before you act","situation":"What do you ask Codex to do?","evidence":[{"id":"ci-log","label":"Open the failed CI log","output":"FAILED tests/test_pricing.py::{{test}}\nAssertionError: expected total 120.00, got 100.00\n[pricing] cache HIT key=product:42 age=2.1s\n","key":true,"cost":1},{"id":"history","label":"git log -3 -- src/pricing/","output":"9f2a1d3 refactor: unify pricing cache (codex)\n41bb0e2 add product bundles\nc0ffee1 typo in docstring\n","key":true,"cost":1},{"id":"loop","label":"Run the test 50 times locally","output":"50 runs: 41 passed, 9 failed   (fails only when the price update test runs first)\n","key":true,"cost":2},{"id":"once","label":"Run the test once locally","output":"1 passed in 0.84s\n","key":false,"cost":1},{"id":"agents","label":"cat AGENTS.md","output":"- run `pytest -q` before finishing\n- never change assertions to make tests pass\n","key":false,"cost":1}],"choices":[{"text":"Ask Codex to reproduce it in a loop, find the root cause in the cache refactor, and fix it without touching assertions. Done when 50 consecutive runs pass","rating":"optimal","explain":"Reproduce, root cause, a fix that keeps the assertions, and a measurable finish line. The evidence points at stale cache entries after a price update.","next":"fix","needs":["loop","ci-log"]},{"text":"&quot;Make {{test}} pass&quot;","rating":"risky","explain":"Without the root cause or constraints, the cheapest way to &quot;pass&quot; is to weaken the test.","next":"agent-shortcut"},{"text":"Skip the test so the release isn&#39;t blocked","rating":"critical","explain":"This is a money calculation. Skipping it ships a real pricing bug to customers.","end":true},{"text":"Revert the refactor commit and release without it","rating":"acceptable","explain":"A reasonable emergency move if the release is critical, but the bug comes back the moment the refactor returns. Pair the revert with a root-cause task.","next":"fix","needs":["history"]}]},"agent-shortcut":{"title":"The agent&#39;s &quot;fix&quot;","situation":"Codex replies &quot;Fixed&quot; and the diff adds \u003ccode>@retry(times=3)\u003c/code> to the test function.","choices":[{"text":"Accept. The test is green now","rating":"critical","explain":"The retry hides a real stale-price bug. Customers will occasionally pay the old price.","end":true},{"text":"Reject it, share the CI log, and ask for the root cause with &quot;no retries, no assertion changes&quot;","rating":"acceptable","explain":"You recovered, but one round-trip was wasted because the first request had no constraints.","next":"fix"}]},"fix":{"title":"Choosing the fix","situation":"Codex found it: price updates don&#39;t invalidate the cache entry. It proposes three fixes.","choices":[{"text":"Invalidate the product&#39;s cache entry whenever its price changes, and add a regression test for update→read","rating":"optimal","explain":"It fixes the cause and locks it in with a test.","next":"end"},{"text":"Add \u003ccode>sleep(3)\u003c/code> in the test before reading the price","rating":"risky","explain":"Timing hacks make tests slower and still flaky. Production stays broken.","next":"end"},{"text":"Lower the cache TTL from 60 s to 1 s","rating":"risky","explain":"It shrinks the window but doesn&#39;t close it, and it hurts performance. That&#39;s a symptom fix.","next":"end"}]},"end":{"situation":"The fix is merged. Open the debrief.","ending":true}},"_fp":"34ecb289c7"}</script></lx-scenario>
+
+</section>
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 4</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/v/2.0.0/practical-workflows/code-review-security/"><small>← Previous</small><strong>Code review and security scans</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/v/2.0.0/advanced/agents-md/"><small>Next →</small><strong>Steering the agent with AGENTS.md and rules</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v2.0.0 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>

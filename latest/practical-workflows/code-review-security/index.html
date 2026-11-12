@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code review and security scans · Codex Navigator</title>
+<meta name="description" content="Use Codex to review pull requests and local changes, then the Codex Security plugin to catch vulnerabilities before production, and read the results critically, without blind trust.">
+
+<link rel="icon" href="/codex-navigator/latest/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=2.0.0-mwd9xed9">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"2.0.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"practical-workflows/code-review-security"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/latest/assets/lx.js?v=2.0.0-mwd9xed9"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/latest/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/latest/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/latest/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/latest/">Course</a>
+      <a href="/codex-navigator/latest/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/latest/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v2.0.0</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/latest/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/latest/getting-started/models-and-usage/">Choosing models and managing usage</a></li><li><a href="/codex-navigator/latest/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/latest/getting-started/prompting-basics/">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/latest/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/latest/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/latest/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/issue-triage/">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/latest/prototyping-and-triage/badge-agents-and-workflows/">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/latest/practical-workflows/large-codebases/">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/latest/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/latest/practical-workflows/code-review-security/" aria-current="page">Code review and security scans</a></li><li><a href="/codex-navigator/latest/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/latest/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/latest/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/latest/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/latest/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/latest/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/latest/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/latest/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/latest/governance/scale-across-teams/">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/latest/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/latest/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/latest/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/latest/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/latest/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 3 · <a href="/codex-navigator/latest/#practical-workflows">Core agentic capabilities</a></div>
+    <h1>Code review and security scans</h1>
+    <p class="lx-lead">Use Codex to review pull requests and local changes, then the Codex Security plugin to catch vulnerabilities before production, and read the results critically, without blind trust.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience">👥 For: Everyone</span><span class="lx-chip">⏱ ~60 min</span><span class="lx-chip lx-chip--graded">Graded · 4 pt</span></div>
+  </div>
+  <div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">Reviewing with Codex</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Security scans</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Reading findings without blind trust</span></button><button type="button" class="lx-step" data-step="4" aria-controls="lx-slide-5"><span class="lx-step__n">5</span><span class="lx-step__label">Check yourself</span></button></nav>
+  <section class="lx-slide is-active" id="lx-slide-1" data-label="Why this matters" aria-label="Why this matters">
+<h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>When an agent writes code faster than people can read it, review becomes the bottleneck. Codex
+helps on both sides. It can review a pull request, a branch or your uncommitted changes, and
+<strong>Codex Security</strong> goes looking specifically for vulnerabilities such as injection, broken access
+checks or leaked resources.</p>
+<p>This topic is for everyone. Developers run the reviews and scans. PMs, leads and QA need to know
+what a review or a &quot;no findings&quot; report does and doesn&#39;t prove.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=IZXv6a78NDw" target="_blank" rel="noopener">Code review is no longer the bottleneck</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 2.5 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Where automated review fits next to human reviewers. It doesn&#39;t replace them.</li></ul></div>
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=IZXv6a78NDw" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-2" data-label="Reviewing with Codex" aria-label="Reviewing with Codex" hidden>
+<h2 id="reviewing-with-codex">Reviewing with Codex<a class="lx-anchor" href="#reviewing-with-codex" aria-hidden="true">#</a></h2>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/code-review" target="_blank" rel="noopener">Code review</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span><span class="lx-chip">intermediate</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The Code Review plugin in the desktop app (pull requests, comments, checks), local reviews of your own changes, and how to work with the results.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li><em>Choose a review scope</em>: uncommitted changes, a branch against its base, a specific commit.</li><li><em>Customize your review</em>: telling the reviewer what to focus on, for example security, performance or the team&#39;s conventions.</li><li>Inline comments as feedback, and continuing in a chat to fix what the review found.</li><li>GitHub review is generally available; GitLab merge requests are in preview.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/code-review" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>Make the reviewer know your rules</div><p>A review is better when it knows what <em>your</em> team cares about. Module 4 shows how review rules in
+<code>AGENTS.md</code> steer every review automatically.</p>
+</div>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">Second pair of eyes before a PR</div>
+    <div class="lx-usecase__who">Developer</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>You&#39;ve finished a feature branch with Codex&#39;s help. Before you ask a colleague to review, you want the obvious issues gone.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>Review my branch against main. Focus on: behaviour changes not mentioned in the
+PR description, missing tests for new branches of logic, error handling,
+and anything that touches authentication or personal data.
+Report findings by severity with file:line. Don&#39;t change any code.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A prioritised list of findings with locations. You fix the real ones before a human spends time on the PR.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>Keep the review read-only, then fix in a separate step so you can see what changed and why.</li><li>Your colleague still reviews. Codex removes the noise so they can focus on design and intent.</li></ul></div>
+  </div>
+</article>
+</section>
+<section class="lx-slide" id="lx-slide-3" data-label="Security scans" aria-label="Security scans" hidden>
+<h2 id="security-scans">Security scans<a class="lx-anchor" href="#security-scans" aria-hidden="true">#</a></h2>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=hUhr0JiVZZs" target="_blank" rel="noopener">How to run your first Codex Security scan</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 7 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Installing the plugin, choosing the scope and reading the first report.</li></ul></div>
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=hUhr0JiVZZs" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/security/plugin" target="_blank" rel="noopener">Codex Security plugin quickstart</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span><span class="lx-chip">intermediate</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">Install the Codex Security plugin in the desktop app or CLI, run a standard <strong>read-only</strong> scan of a local repository, and review the findings. Your source isn&#39;t changed. The scan saves a report with evidence and remediation guidance.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li><em>Interpret the result</em>: check the target and revision first, then which areas were reviewed and which were <strong>deferred</strong>.</li><li>&quot;A review that reports no findings hasn&#39;t necessarily ruled out every vulnerability.&quot; Remember this sentence.</li><li><em>What the scan creates</em>: <code>report.md</code> for people; <code>findings.json</code> and <code>coverage.json</code> for tools.</li><li>In a managed workspace the plugin may show &quot;Disabled by admin&quot;. That&#39;s a policy decision, not a bug.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/security/plugin" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Standard scan</th>
+<th>Deep scan</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>What it does</td>
+<td>One review of the repository or folder</td>
+<td>Several independent standard scans, with findings combined</td>
+</tr>
+<tr>
+<td>Use it for</td>
+<td>A first scan, or a defined scope</td>
+<td>Extra independent reviews when you can afford more time and tokens</td>
+</tr>
+<tr>
+<td>Guarantees</td>
+<td>No guarantee of complete detection</td>
+<td>Still none, and results can differ between runs</td>
+</tr>
+</tbody></table>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/security/plugin/deep-scans" target="_blank" rel="noopener">Run a deep security scan</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 8 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">When repeated review is worth the extra runtime and token use, and how to handle an interrupted scan.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The advice to start with a <strong>standard</strong> scan to check that the scope and security context are right before you spend a deep scan.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/security/plugin/deep-scans" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=vdBDMj2UhDg" target="_blank" rel="noopener">How to enable PR security reviews with Codex Security</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 6.5 min</span><span class="lx-chip">intermediate</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">Moving from one-off scans to security review of every pull request.</p>
+  
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=vdBDMj2UhDg" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/security/plugin/code-changes" target="_blank" rel="noopener">Review code changes for security</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">Reviewing a pull request or local changes for security regressions, by hand or in CI/CD, and acting on the findings.</p>
+  
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/security/plugin/code-changes" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/security" target="_blank" rel="noopener">Codex Security overview</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 5 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">Picking the right entry point. The plugin is for local, interactive work, the CLI for repeatable scans and CI, the SDK for your own tools, and Daybreak Defense Factory for connected GitHub repos in the cloud.</p>
+  
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/security" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-4" data-label="Reading findings without blind trust" aria-label="Reading findings without blind trust" hidden>
+<h2 id="reading-findings-without-blind-trust">Reading findings without blind trust<a class="lx-anchor" href="#reading-findings-without-blind-trust" aria-hidden="true">#</a></h2>
+<div class="lx-callout lx-callout--warning" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>Two opposite mistakes</div><p><strong>Trusting &quot;no findings&quot;</strong>: the docs say coverage can have gaps, and some areas get deferred.
+<strong>Trusting every finding</strong>: each one comes with source evidence, the attacker&#39;s prerequisites,
+how it was validated and what remains uncertain. Use that to decide whether it really applies to
+your system before anyone spends a day fixing it.</p>
+</div>
+<lx-checklist id="finding-triage"><script type="application/json">{"id":"finding-triage","title":"Before you act on a security finding","items":[{"text":"Check the target and revision the scan ran on","hint":"An old revision or the wrong folder makes the whole report irrelevant."},{"text":"Read the source evidence and the attacker&#39;s prerequisites","hint":"&quot;Requires admin access to the server&quot; changes the priority a lot."},{"text":"Note the stated uncertainty"},{"text":"Decide whether it applies to your deployment, and write down why"},{"text":"Fix in a separate, reviewed change, and re-run the scan on that change"}],"done":"That&#39;s a finding handled with evidence, not on faith."}</script></lx-checklist>
+</section>
+<section class="lx-slide" id="lx-slide-5" data-label="Check yourself" aria-label="Check yourself" hidden>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="review-security"><script type="application/json">{"id":"review-security","shuffle":false,"graded":true,"questions":[{"q":"A Codex Security scan of your repo reports no findings. What can you conclude?","options":["The code has no vulnerabilities","Nothing was found in the areas reviewed. Check the coverage and deferred areas before saying more","The scan failed","You should immediately run a deep scan"],"answer":1,"explain":"The quickstart says it directly. A completed scan can have coverage gaps, and &quot;no findings&quot; doesn&#39;t rule out every vulnerability."},{"q":"When does a deep scan make sense?","options":["As the very first scan of a new repository","When a standard scan has confirmed the scope is right and you want extra independent review, accepting more time and tokens","Whenever a pull request is opened","When you need guaranteed complete detection"],"answer":1,"explain":"Start standard to validate the scope. A deep scan adds repeated review, but there&#39;s still no guarantee of completeness."},{"q":"A finding says &quot;SQL injection in the report export, requires an authenticated admin session&quot;. What&#39;s the best next step?","options":["Ignore it, because only admins can reach it","Read the evidence and prerequisites, judge the real exposure for your deployment, then prioritise and fix in a reviewed change","Let Codex patch it directly on main","Disable the export feature for everyone"],"answer":1,"explain":"The prerequisites lower the urgency but don&#39;t remove the risk. Decide based on evidence, and fix through review."},{"q":"Which review scopes does Codex support for your own work?","options":["Uncommitted changes","A branch compared with its base","A specific commit","Only pull requests already on GitHub"],"answer":[0,1,2],"explain":"You can review locally before anything is pushed. GitHub pull requests are one more option, not the only one."}]}</script></lx-quiz>
+
+</section>
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 5</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/latest/practical-workflows/plan-test-review/"><small>← Previous</small><strong>Closed-loop testing and debugging</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/latest/practical-workflows/lab-review/"><small>Next →</small><strong>Lab: reviewing the agent&#39;s work</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v2.0.0 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>

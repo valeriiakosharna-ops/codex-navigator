@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Codex is and where it runs · Codex Navigator</title>
+<meta name="description" content="Codex is OpenAI&#39;s coding agent. Learn the surfaces it runs on and pick the right one for each kind of task.">
+
+<link rel="icon" href="/codex-navigator/v/2.0.0/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/2.0.0/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"2.0.0","channel":"version","base":"/codex-navigator/v/2.0.0/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"getting-started/what-is-codex"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/v/2.0.0/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/2.0.0/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/2.0.0/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/2.0.0/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/2.0.0/">Course</a>
+      <a href="/codex-navigator/v/2.0.0/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/2.0.0/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v2.0.0</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/getting-started/what-is-codex/" aria-current="page">What Codex is and where it runs</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/models-and-usage/">Choosing models and managing usage</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/prompting-basics/">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/v/2.0.0/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/v/2.0.0/prototyping-and-triage/issue-triage/">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/v/2.0.0/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/v/2.0.0/prototyping-and-triage/badge-agents-and-workflows/">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/practical-workflows/large-codebases/">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/v/2.0.0/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/v/2.0.0/practical-workflows/code-review-security/">Code review and security scans</a></li><li><a href="/codex-navigator/v/2.0.0/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/v/2.0.0/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/v/2.0.0/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/v/2.0.0/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/v/2.0.0/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/v/2.0.0/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/v/2.0.0/governance/scale-across-teams/">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/v/2.0.0/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/v/2.0.0/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.0/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/v/2.0.0/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/v/2.0.0/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 1 · <a href="/codex-navigator/v/2.0.0/#getting-started">Get started: the agent, models and a safe setup</a></div>
+    <h1>What Codex is and where it runs</h1>
+    <p class="lx-lead">Codex is OpenAI&#39;s coding agent. Learn the surfaces it runs on and pick the right one for each kind of task.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience">👥 For: Everyone</span><span class="lx-chip">⏱ ~35 min (+ an optional 53-min video)</span><span class="lx-chip lx-chip--graded">Graded · 3 pt</span></div>
+  </div>
+  <div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">The surfaces at a glance</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">How teams actually use it</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Check yourself</span></button></nav>
+  <section class="lx-slide is-active" id="lx-slide-1" data-label="Why this matters" aria-label="Why this matters">
+<h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>Codex is a <em>coding agent</em>. It doesn&#39;t just suggest the next line: it reads your repository,
+runs commands, edits files and reports back. You can reach the same agent from several
+<strong>surfaces</strong>, and choosing the right one saves a lot of friction. A common early mistake is
+running a long task in a place you then need to close, like a terminal on a laptop you&#39;re about
+to shut.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Academy</div>
+      <div class="lx-resource__title"><a href="https://academy.openai.com/public/courses/get-started-with-codex-jkhsq" target="_blank" rel="noopener">Get Started with Codex</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">course</span><span class="lx-chip">⏱ ~80 min + assessment</span><span class="lx-chip">intermediate</span><span class="lx-chip lx-chip--access">🔑 Free OpenAI Academy account · badge</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The official learning path this module follows. Short lessons, then a guided hands-on lab in a real repository, then an assessment. Pass it with 80% or more and you get a badge, which you&#39;ll submit at the end of this module.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>You don&#39;t have to do it in one go, because your progress is saved. Start the first lessons now and come back to them as you work through this module.</li><li>The idea that runs through the whole path is <em>repository context + completion criteria + evidence for the reviewer</em>. Topic 1.4 is built on it.</li></ul></div>
+  <a class="lx-resource__cta" href="https://academy.openai.com/public/courses/get-started-with-codex-jkhsq" target="_blank" rel="noopener">Open the course <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<p>Three short official videos show each surface in a few minutes:</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=HFM3se4lNiw" target="_blank" rel="noopener">Introducing the Codex app</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 4 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Several chats running side by side, and how a result comes back as a diff you review.</li></ul></div>
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=HFM3se4lNiw" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=PUBc2G0Tj5E" target="_blank" rel="noopener">Meet the new Codex CLI</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 3 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The same agent in a terminal. Topic 1.3 sets it up properly.</li></ul></div>
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=PUBc2G0Tj5E" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=7Bv68f5szSU" target="_blank" rel="noopener">Meet the all new Codex Cloud</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 3 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Work that keeps running while your laptop is closed, and how you pick it up again.</li></ul></div>
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=7Bv68f5szSU" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>Want the long version?</div><p><a href="https://www.youtube.com/watch?v=px7XlbYgk7I" target="_blank" rel="noopener">Getting started with Codex</a> (OpenAI, 53 min) is a full
+walkthrough by the Codex team. It&#39;s optional. Watch it if you like to see a whole working session
+before you try one yourself.</p>
+</div>
+</section>
+<section class="lx-slide" id="lx-slide-2" data-label="The surfaces at a glance" aria-label="The surfaces at a glance" hidden>
+<h2 id="the-surfaces-at-a-glance">The surfaces at a glance<a class="lx-anchor" href="#the-surfaces-at-a-glance" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Where it runs</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Desktop app</strong></td>
+<td>Your machine, with a project folder</td>
+<td>Longer tasks, reviewing diffs visually, several chats in parallel</td>
+</tr>
+<tr>
+<td><strong>IDE extension</strong></td>
+<td>Inside your editor</td>
+<td>Working next to the code you&#39;re already editing</td>
+</tr>
+<tr>
+<td><strong>CLI</strong> (<code>codex</code>)</td>
+<td>Your terminal</td>
+<td>Keyboard-driven work, scripting, CI via <code>codex exec</code></td>
+</tr>
+<tr>
+<td><strong>Cloud / web</strong></td>
+<td>OpenAI&#39;s cloud environment</td>
+<td>Tasks that run on their own while you do something else</td>
+</tr>
+<tr>
+<td><strong>Mobile</strong></td>
+<td>Your phone, connected to the app or cloud</td>
+<td>Checking on, steering and approving running work away from your desk</td>
+</tr>
+</tbody></table>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>Rule of thumb</div><p>Pair-programming on code in front of you: use the <strong>IDE</strong>. Scripts and automation: use the <strong>CLI</strong>.
+&quot;Go do this and come back with a PR&quot;: use <strong>cloud</strong>.</p>
+</div>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/quickstart" target="_blank" rel="noopener">Quickstart</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 5 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">The official first-steps page for the ChatGPT desktop app and the web. From there the docs point developers to the Codex CLI, the IDE extension and Codex Cloud.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The sign-in options. The default is a ChatGPT account; an API key also works, but some features may be unavailable.</li><li>Where the page sends developers next. The CLI is covered in the next topic.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/quickstart" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-3" data-label="How teams actually use it" aria-label="How teams actually use it" hidden>
+<h2 id="how-teams-actually-use-it">How teams actually use it<a class="lx-anchor" href="#how-teams-actually-use-it" aria-hidden="true">#</a></h2>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">Onboarding into an unfamiliar repository</div>
+    <div class="lx-usecase__who">Developer joining a new project</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>You&#39;ve just cloned a service you&#39;ve never seen, and you need to fix a bug in it tomorrow.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>Explain this repository to me: the main modules, how a request flows
+from the HTTP layer to the database, and how to run the tests locally.
+Don&#39;t change any files.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A map of the codebase with file references and the exact test command. Nothing is modified.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>&quot;Don&#39;t change any files&quot; (or read-only mode) makes exploration safe.</li><li>Ask your follow-ups in the same chat. The context you built up is what makes the answers good.</li></ul></div>
+  </div>
+</article>
+<lx-flashcards id="surfaces"><script type="application/json">{"id":"surfaces","title":"Which surface would you pick?","cards":[{"front":"Refactor a module while you keep coding in your editor","back":"\u003cstrong>IDE extension.\u003c/strong> The agent works next to the files you have open."},{"front":"Summarise test failures automatically in a CI pipeline","back":"\u003cstrong>CLI\u003c/strong> with \u003ccode>codex exec\u003c/code>, the non-interactive mode for scripts and CI."},{"front":"Start a task, close your laptop, review the result later","back":"\u003cstrong>Cloud.\u003c/strong> The task runs in a cloud environment, not on your machine."},{"front":"Compare diffs from three parallel attempts","back":"\u003cstrong>Desktop app.\u003c/strong> Parallel chats and a visual diff panel."}]}</script></lx-flashcards>
+</section>
+<section class="lx-slide" id="lx-slide-4" data-label="Check yourself" aria-label="Check yourself" hidden>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="what-is-codex"><script type="application/json">{"id":"what-is-codex","shuffle":false,"graded":true,"questions":[{"q":"A colleague says &quot;Codex is just a smarter autocomplete.&quot; Which capability best shows why that&#39;s wrong?","options":["It suggests longer completions that span several functions","It can run commands and edit files to finish a task, then report back","It understands more programming languages than editor autocomplete","It keeps your chat history between sessions"],"answer":1,"explain":"Acting on the repo (running commands, changing files, verifying) is what makes it an agent. The other options are just &quot;better suggestions&quot;."},{"q":"You want Codex to keep working on a refactor overnight while your laptop is shut. Where should you start the task?","options":["In the CLI on your laptop","In the IDE extension","In Codex Cloud","In the desktop app on your laptop"],"answer":2,"explain":"CLI, IDE and the desktop app all run on your machine. Cloud tasks run in OpenAI&#39;s environment, independent of it."},{"q":"Your CI job should ask Codex to summarise failing tests without anyone typing in a terminal. What do you use?","options":["\u003ccode>codex exec\u003c/code>","\u003ccode>codex resume\u003c/code>","The IDE extension&#39;s chat","\u003ccode>codex cloud\u003c/code>"],"answer":0,"explain":"\u003ccode>codex exec\u003c/code> is the non-interactive mode built for scripts and CI. \u003ccode>codex resume\u003c/code> reopens an interactive chat."}]}</script></lx-quiz>
+
+</section>
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 4</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    
+    <a class="lx-pager__next" href="/codex-navigator/v/2.0.0/getting-started/models-and-usage/"><small>Next →</small><strong>Choosing models and managing usage</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v2.0.0 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>

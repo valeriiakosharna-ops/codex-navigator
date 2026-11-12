@@ -7,10 +7,10 @@
 
 
 <link rel="icon" href="/codex-navigator/latest/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=1.5.1-mwcefjzl">
-<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"1.5.1","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"widgets"}}</script>
-<script>(function(){var n=window.LX=JSON.parse(document.getElementById("lx-config").textContent),m=document.documentElement,h=!1;try{h=window.self!==window.top}catch(e){h=!0}(h||/[?&]embed=1/.test(location.search))&&m.classList.add("lx-embedded");function I(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(o){return null}}var i=I("localStorage"),r=I("sessionStorage"),v=new URLSearchParams(location.search),l=v.get("uid")||r&&r.getItem("lx:uid")||"",u=v.get("cid")||r&&r.getItem("lx:cid")||"";r&&(l&&r.setItem("lx:uid",l),u&&r.setItem("lx:cid",u)),n.uid=l,n.cid=u;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,f=function(e){return e==="light"||e==="dark"||e==="auto"},c="auto";function g(e){c=f(e)?e:"auto";var t=c==="dark"||c==="auto"&&d&&d.matches;m.setAttribute("data-theme",t?"dark":"light"),m.setAttribute("data-theme-mode",c);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:c,theme:t?"dark":"light"}}))}catch(o){}}var w=v.get("theme"),T=f(w)?w:h?r&&r.getItem("lx:moodle-theme")||"auto":i&&i.getItem("lx:theme")||"auto";if(g(T),d){var L=function(){c==="auto"&&g("auto")};d.addEventListener?d.addEventListener("change",L):d.addListener(L)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!f(t.theme)||f(w)||(r&&r.setItem("lx:moodle-theme",t.theme),g(t.theme))}),window.LXTheme={get mode(){return c},set:function(e){i&&!h&&i.setItem("lx:theme",e),g(e)}};var b=n.version.split(".").slice(0,2).join("."),p="lx:"+n.course+":pin:"+(u||"-")+":"+(l||"-");n.pinKey=p;function y(e){i&&l&&!i.getItem(p)&&i.setItem(p,e)}if(n.channel==="version"){y(b);return}if(n.channel!=="latest"||v.get("nopin"))return;function M(e,t){for(var o=e.split(".").map(Number),s=t.split(".").map(Number),a=0;a<3;a++)if((o[a]||0)!==(s[a]||0))return(o[a]||0)-(s[a]||0);return 0}function j(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var o=t.filter(function(s){return s===e||s.indexOf(e+".")===0});return o.sort(M),o.length?o[o.length-1]:null}m.classList.add("lx-pinning");var k=function(){m.classList.remove("lx-pinning")},P=setTimeout(k,2500),E=function(e){return fetch(n.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([E("pins.json"),E("versions.json")]).then(function(e){for(var t=e[0]||{},o=((e[1]||{}).versions||[]).map(function(N){return N.version}),s=[v.get("v"),t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],i&&i.getItem(p),t.default],a=null,x=0;x<s.length&&!a;x++)a=j(s[x],o);if(a&&a!==n.version){var S=location.pathname.indexOf(n.base)===0?location.pathname.slice(n.base.length):"";location.replace(n.siteRoot+"v/"+a+"/"+S+location.search+location.hash);return}y(b),clearTimeout(P),k()})})();</script>
-<script type="module" src="/codex-navigator/latest/assets/lx.js?v=1.5.1-mwcefjzl"></script>
+<link rel="stylesheet" href="/codex-navigator/latest/assets/lx.css?v=2.0.0-mwd9xed9">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"2.0.0","channel":"latest","base":"/codex-navigator/latest/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"widgets"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/latest/assets/lx.js?v=2.0.0-mwd9xed9"></script>
 </head>
 <body>
 <header class="lx-header">
@@ -27,7 +27,7 @@
     <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
     </button>
-    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v1.5.1</a>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v2.0.0</a>
   </div>
 </header>
 <div class="lx-layout lx-layout--wide">
@@ -51,7 +51,27 @@
 <div class="lx-callout lx-callout--caution" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.9 2 16.1 2 22 7.9 22 16.1 16.1 22 7.9 22 2 16.1 2 7.9"/><path d="M12 8v4M12 16h.01"/></svg>Caution</div><p>Never paste secrets into a prompt.</p>
 </div>
 
-  <section class="lx-catalog-item" id="checklist">
+  <section class="lx-catalog-item" id="badge">
+  <h2>Badge checkpoint (OpenAI Academy) <code>badge</code></h2>
+  <div class="lx-meta">
+    <span class="lx-chip">v1.0.0</span>
+    <span class="lx-chip">interactive web component</span>
+    <span class="lx-chip lx-chip--graded">counts towards the grade</span>
+  </div>
+  <p>The learner pastes the link to an OpenAI Academy badge (issued by Accredible after the course <strong>and</strong> its assessment, passed with at least 80%). The widget looks up Accredible&#39;s public record and checks the issuer, the course, that the badge isn&#39;t revoked or expired, and that it was issued to the learner. When everything matches, the page gets full points and Moodle records the grade on its own. For the name check, the Moodle activity passes <code>name</code> = <em>Full name</em>. Without it, the name isn&#39;t checked.</p>
+  <h3>Live example</h3>
+  <div class="lx-catalog-demo"><lx-badge id="badge-get-started"><script type="application/json">{"id":"badge-get-started","course":"Get Started with Codex","url":"https://academy.openai.com/public/courses/get-started-with-codex-jkhsq","issuer":"OpenAI","checkName":true,"graded":true}</script></lx-badge>
+</div>
+  <h3>Copy this into your page</h3>
+  <pre><code>```badge
+id: badge-get-started
+course: Get Started with Codex
+url: https://academy.openai.com/public/courses/get-started-with-codex-jkhsq
+```</code></pre>
+  <h3>Fields</h3>
+  <table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code> <strong>*</strong></td><td>Stable id, e.g. `badge-get-started`.</td></tr><tr><td><code>course</code> <strong>*</strong></td><td>Course title as learners see it in OpenAI Academy.</td></tr><tr><td><code>url</code> <strong>*</strong></td><td>Link to the course in OpenAI Academy.</td></tr><tr><td><code>accept</code></td><td>Badge names accepted (case-insensitive, partial match). Default: the course title.</td></tr><tr><td><code>issuer</code></td><td>Text that must appear in the issuer&#39;s name. <span class="muted">Default: <code>&quot;OpenAI&quot;</code></span></td></tr><tr><td><code>checkName</code></td><td>Compare the name on the badge with the learner&#39;s Moodle name (when Moodle passes it). <span class="muted">Default: <code>true</code></span></td></tr><tr><td><code>graded</code></td><td>Set false to show the checker without grading. <span class="muted">Default: <code>true</code></span></td></tr></tbody></table>
+</section>
+<section class="lx-catalog-item" id="checklist">
   <h2>Checklist <code>checklist</code></h2>
   <div class="lx-meta">
     <span class="lx-chip">v1.0.0</span>
@@ -358,7 +378,7 @@ tips:
 </div>
 <footer class="lx-footer">
   <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
-  <p>Codex Navigator v1.5.1 · built 2026-11-11 · <a href="/codex-navigator/versions/">all versions</a></p>
+  <p>Codex Navigator v2.0.0 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
 </footer>
 
 </body>
