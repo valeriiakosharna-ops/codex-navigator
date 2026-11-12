@@ -2,7 +2,7 @@
 title: Optimize AI application performance
 summary: Judge how a deployed AI system behaves under real traffic, compare versions, spot regressions, and trade quality off deliberately against latency, throughput, reliability and cost. Confirmed with the official badge.
 duration: ~45 min in Academy + assessment
-audience: [technical]
+audience: technical
 ---
 
 ## Why this matters

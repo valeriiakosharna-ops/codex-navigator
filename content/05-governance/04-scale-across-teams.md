@@ -2,7 +2,7 @@
 title: Coordinating Codex across teams and systems
 summary: Split a large change into workstreams, give each one a verification contract (the evidence it must produce and what happens if it fails), and bring parallel outputs back together safely.
 duration: ~55 min
-audience: [leads, technical]
+audience: technical
 ---
 
 ## Why this matters
@@ -23,7 +23,7 @@ format: course
 duration: ~100 min + assessment
 level: advanced
 access: Free OpenAI Academy account · badge
-why: For experienced developers, platform engineers and tech leads who already have repeatable Codex team workflows. You leave with a method for splitting a complex change, a **verification contract** for each workstream, and a way to track evidence in longer-running, connected systems.
+why: For experienced technical specialists who already have repeatable Codex team workflows. You leave with a method for splitting a complex change, a **verification contract** for each workstream, and a way to track evidence in longer-running, connected systems.
 focus:
   - "The three outcomes on the course page. Use them as the structure of your notes: split, verification contract, tracking evidence."
   - This path assumes you've done *Extend Codex Workflows* or something equivalent.

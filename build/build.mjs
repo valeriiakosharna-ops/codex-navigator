@@ -19,7 +19,7 @@ import { layout, topicBody } from "./templates.mjs";
 import { esc, stripOrder, jsonForScript } from "./util.mjs";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-import { AUDIENCES, audienceText } from "./audience.mjs";
+import { AUDIENCES, audienceText, audienceShort, audienceKey } from "./audience.mjs";
 const P = (...p) => path.join(ROOT, ...p);
 
 // ------------------------------------------------------------------ schemas for course files
@@ -46,7 +46,7 @@ const pageSchema = z.object({
   title: z.string(),
   summary: z.string().optional(),
   duration: z.string().optional(),
-  audience: z.array(z.enum(AUDIENCES)).min(1).optional(),
+  audience: z.union([z.enum(AUDIENCES), z.array(z.enum(AUDIENCES)).length(1)]).optional(),
   slug: z.string().regex(/^[a-z0-9-]+$/).optional(),
   gradeMode: z.enum(["on-complete", "each-answer"]).optional(),
   layout: z.enum(["slides", "scroll"]).optional(),
@@ -257,7 +257,7 @@ ${modules
   ${m.summary ? `<p>${esc(m.summary)}</p>` : ""}
   ${m.official ? `<p><span class="lx-chip lx-chip--official">Official course</span> <a href="${esc(m.official.url)}" target="_blank" rel="noopener">${esc(m.official.title)}</a></p>` : ""}
   ${m.courses?.length ? `<p class="lx-module__courses"><span class="lx-chip lx-chip--official">Official course${m.courses.length > 1 ? "s" : ""}</span> ${m.courses.map((c) => `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a>${c.badge ? " 🏅" : ""}`).join(" · ")}</p>` : ""}
-  <ol>${m.pages.map((p) => `<li><a href="${p.url}"><span>${esc(p.title)}</span><span class="muted">${p.audience ? `${esc(audienceText(p.audience))} · ` : ""}${p.duration ? esc(p.duration) : ""}</span></a></li>`).join("")}</ol>
+  <ol>${m.pages.map((p) => `<li><a href="${p.url}"><span>${esc(p.title)}</span><span class="muted">${p.audience ? `<span class="lx-aud lx-aud--${audienceKey(p.audience)}">${esc(audienceShort(p.audience))}</span> ` : ""}${p.duration ? esc(p.duration) : ""}</span></a></li>`).join("")}</ol>
 </section>`,
   )
   .join("\n")}
@@ -331,7 +331,7 @@ function moodleBody(site, pages, latestUrl) {
   <p>Inside Moodle, a link from one topic to another opens the matching <em>Moodle activity</em>, not this website. After creating the activities, add their ids to <code>moodle.yaml</code> in the repository (page id → activity id from <code>view.php?id=…</code>). Without an entry, such links open the Moodle course page.</p>
   <h2>Which version does a learner see?</h2>
   <p>Cohorts are pinned in <code>pins.yaml</code> by Moodle course id (see the repository docs, <em>docs/VERSIONING.md</em>). Without a cohort pin, each learner stays on the version they opened first.</p>
-  <script type="application/json" id="lx-pages">${jsonForScript(pages.map((p) => ({ id: p.id, title: p.title, summary: p.summary || "", audience: audienceText(p.audience), url: latestUrl + p.path, max: p.maxScore, badge: p.widgets.some((w) => w.name === "badge") })))}</script>
+  <script type="application/json" id="lx-pages">${jsonForScript(pages.map((p) => ({ id: p.id, title: p.title, summary: p.summary || "", audience: audienceText(p.audience), audienceKey: audienceKey(p.audience) || "", audienceShort: audienceShort(p.audience), url: latestUrl + p.path, max: p.maxScore, badge: p.widgets.some((w) => w.name === "badge") })))}</script>
 </article>`;
 }
 

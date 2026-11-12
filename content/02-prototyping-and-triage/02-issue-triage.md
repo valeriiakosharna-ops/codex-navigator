@@ -2,7 +2,7 @@
 title: Issue triage and human-reviewed estimates
 summary: Let Codex sweep the backlog, group duplicates, suggest priorities and flag missing information, then turn its estimates into proposals the team reviews.
 duration: ~45 min
-audience: [non-technical]
+audience: non-technical
 ---
 
 ## Why this matters

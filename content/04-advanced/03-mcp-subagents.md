@@ -2,7 +2,7 @@
 title: MCP and subagents
 summary: Connect Codex to databases, APIs and company tools through the Model Context Protocol, and split parallel work across subagents and custom agents, keeping their outputs reviewable.
 duration: ~55 min
-audience: [technical]
+audience: technical
 ---
 
 ## Why this matters

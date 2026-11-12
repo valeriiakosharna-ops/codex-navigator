@@ -2,7 +2,7 @@
 title: "Lab: decisions about automation"
 summary: When to automate, how to run agents in parallel, and how to notice an automation that quietly went wrong.
 duration: 35 min
-audience: [technical, leads]
+audience: technical
 ---
 
 ## How this lab works

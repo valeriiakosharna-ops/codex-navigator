@@ -2,7 +2,7 @@
 title: "Lab: triage with judgement"
 summary: Three AI-made reports, three levels. Find the invented facts, the missing information and the estimates that hide their assumptions before they reach the team.
 duration: 30 min
-audience: [non-technical]
+audience: non-technical
 ---
 
 ## How this lab works

@@ -2,7 +2,7 @@
 title: Automation and CI/CD
 summary: Run Codex with nobody at the keyboard using codex exec, the Codex GitHub Action and scheduled tasks. Lock down privileges and secrets, and automate only what already works by hand.
 duration: ~55 min
-audience: [technical]
+audience: technical
 slug: automate-and-scale
 ---
 

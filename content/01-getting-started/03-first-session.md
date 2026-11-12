@@ -2,7 +2,7 @@
 title: "The Codex CLI, sandbox and approvals"
 summary: Install and sign in to the CLI, choose a sandbox and an approval policy for a repository task, and check that the boundary really holds.
 duration: ~45 min
-audience: [technical]
+audience: technical
 slug: first-session
 ---
 

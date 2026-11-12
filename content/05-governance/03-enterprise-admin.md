@@ -2,7 +2,7 @@
 title: Enterprise administration
 summary: How a workspace rolls Codex out, step by step. Owners, identity and roles, enforced runtime requirements, plugin controls, analytics, the Compliance API and the HIPAA setup, plus what each control can and can't prove.
 duration: ~50 min
-audience: [leads]
+audience: technical
 ---
 
 ## Why this matters
@@ -12,7 +12,7 @@ the agent may do on a laptop, what it may do in the cloud, which plugins and com
 reach, and what gets recorded. Each one is set in a different place. A rollout goes smoothly when
 someone owns each boundary and every change is tested.
 
-This topic is for workspace admins, IT, security and engineering managers. You won't configure
+This topic is for technical specialists who plan or run a workspace rollout. You won't configure
 anything here. The goal is to know the map well enough to plan a rollout and ask the right questions.
 
 ## The rollout in eight steps

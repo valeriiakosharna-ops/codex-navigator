@@ -2,7 +2,7 @@
 title: Code review and security scans
 summary: Use Codex to review pull requests and local changes, then the Codex Security plugin to catch vulnerabilities before production, and read the results critically, without blind trust.
 duration: ~60 min
-audience: [everyone]
+audience: everyone
 ---
 
 ## Why this matters
@@ -12,8 +12,8 @@ helps on both sides. It can review a pull request, a branch or your uncommitted 
 **Codex Security** goes looking specifically for vulnerabilities such as injection, broken access
 checks or leaked resources.
 
-This topic is for everyone. Developers run the reviews and scans. PMs, leads and QA need to know
-what a review or a "no findings" report does and doesn't prove.
+This topic is for everyone. Technical specialists run the reviews and scans. Everyone else needs to
+know what a review or a "no findings" report does and doesn't prove.
 
 ```resource
 title: Code review is no longer the bottleneck

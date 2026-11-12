@@ -79,6 +79,10 @@ a:hover { color: var(--lx-accent); }
 .lx-chip--access { background: var(--lx-warning-soft); color: var(--lx-warning-ink); }
 .lx-chip--graded { background: var(--lx-danger-soft); color: var(--lx-danger-ink); }
 .lx-chip--audience { background: var(--lx-info-soft); color: var(--lx-heading); }
+.lx-aud { display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: .02em; padding: 3px 9px; border-radius: 999px; margin-right: 6px; }
+.lx-aud--everyone, .lx-chip--audience.lx-aud--everyone { background: var(--lx-success-soft); color: var(--lx-success-ink); }
+.lx-aud--technical, .lx-chip--audience.lx-aud--technical { background: var(--lx-accent-soft); color: var(--lx-accent-ink); }
+.lx-aud--non-technical, .lx-chip--audience.lx-aud--non-technical { background: var(--lx-warning-soft); color: var(--lx-warning-ink); }
 .lx-module__courses a { font-weight: 700; }
 
 /* ---------- Prose ---------- */

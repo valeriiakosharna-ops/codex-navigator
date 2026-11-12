@@ -2,7 +2,7 @@
 title: "Badge: Extend Codex Workflows"
 summary: Finish OpenAI's official path, pass its assessment and submit your badge. The grade is recorded automatically.
 duration: ~90 min in Academy + assessment
-audience: [technical]
+audience: technical
 layout: scroll
 ---
 
@@ -19,7 +19,7 @@ format: course
 duration: ~90 min + assessment
 level: intermediate
 access: Free OpenAI Academy account · badge
-why: Written for developers and tech leads who already use Codex in a repository and know their team's review conventions. The lab has you build a skill. Pick a real process from your own team.
+why: Written for technical specialists who already use Codex in a repository and know their team's review conventions. The lab has you build a skill. Pick a real process from your own team.
 focus:
   - Use the AGENTS.md and skill you drafted in this module as a starting point for the lab.
 ```

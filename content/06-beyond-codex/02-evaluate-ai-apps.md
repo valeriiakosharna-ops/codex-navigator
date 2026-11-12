@@ -2,7 +2,7 @@
 title: Evaluate AI applications
 summary: Build representative test cases, choose an evaluation approach, diagnose failures and prevent regressions. Confirmed with the official badge.
 duration: ~70 min in Academy + assessment
-audience: [technical]
+audience: technical
 ---
 
 ## Why this matters

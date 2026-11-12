@@ -2,7 +2,7 @@
 title: Giving Codex context and completion criteria
 summary: "Brief the agent like a new colleague: goal, context, constraints, done-when. Then plan, steer, and ask for the evidence a reviewer needs."
 duration: ~50 min
-audience: [everyone]
+audience: everyone
 slug: prompting-basics
 ---
 

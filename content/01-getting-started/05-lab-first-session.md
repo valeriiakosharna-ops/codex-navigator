@@ -2,7 +2,7 @@
 title: "Lab: decisions in your first sessions"
 summary: Three situations, three levels. No right buttons to memorise. Show how you think when working with an agent.
 duration: 30 min
-audience: [everyone]
+audience: everyone
 ---
 
 ## How this lab works

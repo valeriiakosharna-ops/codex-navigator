@@ -2,7 +2,7 @@
 title: "Badge: Agents and Workflows"
 summary: OpenAI's official course on directing agents in everyday work. Finish it, pass the assessment and submit your badge. The grade is recorded automatically.
 duration: ~90 min in Academy + assessment
-audience: [non-technical]
+audience: non-technical
 layout: scroll
 ---
 

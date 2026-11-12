@@ -2,7 +2,7 @@
 title: "Lab: reviewing the agent's work"
 summary: Find what the agent got wrong before it ships, then investigate a bug the agent introduced.
 duration: 35 min
-audience: [technical]
+audience: technical
 ---
 
 ## How this lab works

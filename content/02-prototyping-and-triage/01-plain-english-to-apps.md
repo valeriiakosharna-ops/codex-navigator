@@ -2,14 +2,14 @@
 title: From plain English to a working prototype
 summary: Describe an app in plain language and get something people can click. Then decide what the prototype is for, and what it isn't, before it reaches engineering.
 duration: ~45 min
-audience: [non-technical]
+audience: non-technical
 ---
 
 ## Why this matters
 
 A clickable prototype answers questions that a document can't: "Is this the flow we meant?",
 "Which fields are actually needed?", "Will customers understand this screen?" With the Codex app,
-a PM, BA or designer can build one in an afternoon by **describing** it. There's no hand-off and
+a non-technical specialist can build one in an afternoon by **describing** it. There's no hand-off and
 no waiting for a sprint.
 
 The risk is the opposite one. A prototype that looks finished gets treated as if it were finished.

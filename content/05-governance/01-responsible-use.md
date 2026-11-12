@@ -2,7 +2,7 @@
 title: Governance, security and responsible use
 summary: The organisational risks of coding agents, and the decisions that contain them. Which actions need human review, how security findings are handled, and what evidence is kept for oversight.
 duration: ~45 min
-audience: [non-technical, leads]
+audience: non-technical
 ---
 
 ## Why this matters
@@ -12,8 +12,8 @@ run into aren't technical. They're unclear answers to simple questions. Who appr
 Who decided the agent could reach that system? Who checked the security finding? Where is the
 record?
 
-This topic is for managers, delivery leads, security and anyone who signs off on how a team works.
-It needs no coding. Developers will recognise the controls from modules 1, 3 and 4.
+This topic is for non-technical specialists who decide or sign off on how a team works. It needs no
+coding. Technical specialists will recognise the controls from modules 1, 3 and 4.
 
 ```resource
 title: Scale Codex Across Teams and Systems
@@ -23,7 +23,7 @@ format: course
 duration: ~100 min + assessment
 level: advanced
 access: Free OpenAI Academy account · badge
-why: The official path this module follows. It's about coordinating Codex across complex work "with appropriate controls and oversight". Its assessment is the module badge. The lab is hands-on and technical, but the overview and lessons are worth reading for leads.
+why: The official path this module follows. It's about coordinating Codex across complex work "with appropriate controls and oversight". Its assessment is the module badge. The lab is hands-on and technical, but the overview and lessons are worth reading for everyone.
 ```
 
 ## Four organisational risks
@@ -109,7 +109,7 @@ focus:
   - Analytics dashboards are **not** audit logs. For "who did what, when", you need the Compliance API (topic 5.3).
 ```
 
-> [!NOTE] For security teams only: Trusted Access for Cyber
+> [!NOTE] Only for authorised security work: Trusted Access for Cyber
 > Defensive security work (vulnerability research, red teaming) can trigger safety refusals. OpenAI
 > offers approved access to specialised cyber models through **Trusted Access for Cyber**. See
 > [Models and Trusted Access](https://learn.chatgpt.com/docs/cyber-safety). It requires approval for

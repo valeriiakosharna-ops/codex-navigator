@@ -2,7 +2,7 @@
 title: Steering the agent with AGENTS.md and rules
 summary: Put project rules, test procedures and review checks in layered AGENTS.md files, control commands outside the sandbox with rules, and keep personal defaults in config.toml.
 duration: ~60 min
-audience: [technical]
+audience: technical
 ---
 
 ## Why this matters
@@ -15,7 +15,7 @@ format: course
 duration: ~90 min + assessment
 level: intermediate
 access: Free OpenAI Academy account · badge
-why: The official learning path this module follows. It's for developers and tech leads who already use Codex and want team practices that everyone can follow and review. Its lab builds shared guidance and a reusable skill. The badge is the checkpoint at the end of this module.
+why: The official learning path this module follows. It's for technical specialists who already use Codex and want team practices that everyone can follow and review. Its lab builds shared guidance and a reusable skill. The badge is the checkpoint at the end of this module.
 focus:
   - The phrase "put shared guidance where Codex can use it and keep the evidence reviewers need". That's this topic in one line.
 ```

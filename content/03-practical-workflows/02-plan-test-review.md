@@ -2,7 +2,7 @@
 title: Closed-loop testing and debugging
 summary: Let Codex run builds, linters and tests, read the failures and fix its own work, locally and in the cloud, and recognise when "tests pass" proves nothing.
 duration: ~50 min
-audience: [technical]
+audience: technical
 slug: plan-test-review
 ---
 

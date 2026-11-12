@@ -2,7 +2,7 @@
 title: "Badge: Get Started with Codex"
 summary: Finish OpenAI's official path, pass its assessment, and submit your badge. The grade is recorded automatically.
 duration: ~80 min in Academy + assessment
-audience: [everyone]
+audience: everyone
 layout: scroll
 ---
 

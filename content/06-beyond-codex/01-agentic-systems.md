@@ -2,7 +2,7 @@
 title: Design and build agentic systems
 summary: Agents with clear roles, controlled tool access and reliable handoffs, tested against defined outcome and safety requirements. Confirmed with the official badge.
 duration: ~110 min in Academy + assessment
-audience: [technical]
+audience: technical
 ---
 
 ## Why this matters

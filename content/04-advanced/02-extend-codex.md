@@ -2,7 +2,7 @@
 title: "Reusable workflows: skills, plugins and hooks"
 summary: Turn a recurring team process into a skill people can read and maintain, share it as a plugin, and use hooks for checks that must always run.
 duration: ~55 min
-audience: [technical]
+audience: technical
 slug: extend-codex
 ---
 

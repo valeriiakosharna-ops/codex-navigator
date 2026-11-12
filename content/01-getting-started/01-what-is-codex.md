@@ -2,7 +2,7 @@
 title: What Codex is and where it runs
 summary: Codex is OpenAI's coding agent. Learn the surfaces it runs on and pick the right one for each kind of task.
 duration: ~35 min (+ an optional 53-min video)
-audience: [everyone]
+audience: everyone
 ---
 
 ## Why this matters

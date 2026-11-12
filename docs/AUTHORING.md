@@ -56,7 +56,7 @@ Pages are shown as **slides**: a new slide starts at every `## heading`, at a `-
 title: Your first session, safely          # required
 summary: One sentence shown under the title.
 duration: 40 min
-audience: [technical]                      # everyone | non-technical | technical | leads (one or more)
+audience: technical                        # everyone | technical | non-technical (exactly one)
 ---
 
 ## Why this matters

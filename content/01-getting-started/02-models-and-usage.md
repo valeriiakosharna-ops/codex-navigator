@@ -2,7 +2,7 @@
 title: Choosing models and managing usage
 summary: Match the model and reasoning effort to the task, tell plan limits apart from credits, and keep repeated or long-running work affordable.
 duration: ~40 min
-audience: [everyone]
+audience: everyone
 ---
 
 ## Why this matters

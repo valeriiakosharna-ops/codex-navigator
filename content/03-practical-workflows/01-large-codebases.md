@@ -2,7 +2,7 @@
 title: Navigating and refactoring large codebases
 summary: Map the relevant part of a big repository, trace dependencies, plan a bounded refactor and carry it out in reviewable steps, keeping the architectural context where Codex and your team can find it.
 duration: ~60 min
-audience: [technical]
+audience: technical
 ---
 
 ## Why this matters
