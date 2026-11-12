@@ -7,14 +7,31 @@
 sites:
   https://mdls.nixdev.co:
     courses:
-      "10":                       # Codex Lab
+      "10":                       # Codex Lab (course 2.0 layout)
         getting-started/what-is-codex: 152
+        getting-started/models-and-usage: 162
         getting-started/first-session: 153
         getting-started/prompting-basics: 154
         getting-started/lab-first-session: 155
-        practical-workflows/agents-md: 156
+        getting-started/badge-get-started: 163
+        prototyping-and-triage/plain-english-to-apps: 164
+        prototyping-and-triage/issue-triage: 165
+        prototyping-and-triage/lab-triage: 166
+        prototyping-and-triage/badge-agents-and-workflows: 167
+        practical-workflows/large-codebases: 168
         practical-workflows/plan-test-review: 157
+        practical-workflows/code-review-security: 169
         practical-workflows/lab-review: 158
+        advanced/agents-md: 156
         advanced/extend-codex: 159
-        advanced/automate-and-scale: 160
-        advanced/lab-automation: 161
+        advanced/mcp-subagents: 170
+        advanced/badge-extend-codex: 171
+        governance/responsible-use: 172
+        governance/automate-and-scale: 160
+        governance/enterprise-admin: 173
+        governance/scale-across-teams: 174
+        governance/lab-automation: 161
+        governance/badge-scale-codex: 175
+        beyond-codex/agentic-systems: 176
+        beyond-codex/evaluate-ai-apps: 177
+        beyond-codex/optimize-ai-apps: 178
