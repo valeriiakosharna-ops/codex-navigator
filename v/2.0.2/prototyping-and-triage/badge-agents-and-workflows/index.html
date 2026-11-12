@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Badge: Agents and Workflows · Codex Navigator</title>
+<meta name="description" content="OpenAI&#39;s official course on directing agents in everyday work. Finish it, pass the assessment and submit your badge. The grade is recorded automatically.">
+
+<link rel="icon" href="/codex-navigator/v/2.0.2/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/2.0.2/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"2.0.2","channel":"version","base":"/codex-navigator/v/2.0.2/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"prototyping-and-triage/badge-agents-and-workflows"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),l=new URLSearchParams(location.search),c=l.get("uid")||n&&n.getItem("lx:uid")||"",u=l.get("cid")||n&&n.getItem("lx:cid")||"";n&&(c&&n.setItem("lx:uid",c),u&&n.setItem("lx:cid",u)),a.uid=c,a.cid=u;var k=l.get("name")||n&&n.getItem("lx:name")||"";n&&l.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var L=l.get("theme"),P=g(L)?L:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(L)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(c||"-");a.pinKey=x;function M(e){s&&c&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||l.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(I){return I.version}),r="";try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"&&(r=o[0])}catch(I){}if(r||(r=l.get("site")||n&&n.getItem("lx:site")||""),!r&&document.referrer)try{r=new URL(document.referrer).origin}catch(I){}if(r)try{r=new URL(r).origin}catch(I){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[l.get("v"),w.users&&c&&w.users[c],w.courses&&u&&w.courses[u],t.users&&c&&t.users[c],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,y=0;y<O.length&&!v;y++)v=N(O[y],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/v/2.0.2/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/2.0.2/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/2.0.2/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/2.0.2/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/2.0.2/">Course</a>
+      <a href="/codex-navigator/v/2.0.2/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/2.0.2/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v2.0.2</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.2/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/v/2.0.2/getting-started/models-and-usage/">Choosing models and managing usage</a></li><li><a href="/codex-navigator/v/2.0.2/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/v/2.0.2/getting-started/prompting-basics/">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/v/2.0.2/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/v/2.0.2/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.2/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/v/2.0.2/prototyping-and-triage/issue-triage/">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/v/2.0.2/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/v/2.0.2/prototyping-and-triage/badge-agents-and-workflows/" aria-current="page">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.2/practical-workflows/large-codebases/">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/v/2.0.2/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/v/2.0.2/practical-workflows/code-review-security/">Code review and security scans</a></li><li><a href="/codex-navigator/v/2.0.2/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.2/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/v/2.0.2/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/v/2.0.2/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/v/2.0.2/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.2/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/v/2.0.2/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/v/2.0.2/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/v/2.0.2/governance/scale-across-teams/">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/v/2.0.2/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/v/2.0.2/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.2/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/v/2.0.2/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/v/2.0.2/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 2 · <a href="/codex-navigator/v/2.0.2/#prototyping-and-triage">Natural-language prototyping and requirement analysis</a></div>
+    <h1>Badge: Agents and Workflows</h1>
+    <p class="lx-lead">OpenAI&#39;s official course on directing agents in everyday work. Finish it, pass the assessment and submit your badge. The grade is recorded automatically.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience lx-aud--non-technical">For non-technical specialists</span><span class="lx-chip">⏱ ~90 min in Academy + assessment</span><span class="lx-chip lx-chip--graded">Graded · 1 pt</span></div>
+  </div>
+  <p>This module&#39;s official course is <strong>Agents and Workflows</strong>. It&#39;s about directing agents in
+everyday work: giving context, defining outputs, setting boundaries, reviewing results and
+improving the workflow over time. You&#39;ll practise on a real task of your own.
+Pass the assessment with <strong>80% or more</strong> and Accredible emails you a badge. Paste the link below.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Academy</div>
+      <div class="lx-resource__title"><a href="https://academy.openai.com/public/courses/agents-and-workflows-y0qoc" target="_blank" rel="noopener">Agents and Workflows</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">course</span><span class="lx-chip">⏱ ~90 min + assessment</span><span class="lx-chip">intermediate</span><span class="lx-chip lx-chip--access">🔑 Free OpenAI Academy account · badge</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">Written for people who are comfortable using AI for single tasks and want to move to structured, agent-assisted work. No coding required. You&#39;ll need a ChatGPT account with agent capabilities and a real work task to practise on.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Download the worksheet linked at the start of the course and use it as you go.</li><li>Bring a task from this module: a triage sweep or a prototype brief works well as your practice task.</li></ul></div>
+  <a class="lx-resource__cta" href="https://academy.openai.com/public/courses/agents-and-workflows-y0qoc" target="_blank" rel="noopener">Open the course <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>New to AI at work?</div><p>OpenAI recommends two shorter courses before this one:
+<a href="https://academy.openai.com/public/courses/ai-foundations-dnq5w" target="_blank" rel="noopener">AI Foundations</a> (~70 min) and
+<a href="https://academy.openai.com/public/courses/applied-ai-foundations-szsmv" target="_blank" rel="noopener">Applied AI Foundations</a> (~80 min).
+Both have their own badges. They&#39;re optional here, but they make this course much easier.</p>
+</div>
+<lx-badge id="badge-agents-workflows"><script type="application/json">{"id":"badge-agents-workflows","course":"Agents and Workflows","url":"https://academy.openai.com/public/courses/agents-and-workflows-y0qoc","issuer":"OpenAI","checkName":true,"graded":true}</script></lx-badge>
+<div class="lx-callout lx-callout--note" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>What is checked</div><p>Only the badge&#39;s public record at Accredible: who issued it (OpenAI), which course, that it isn&#39;t
+revoked or expired, and the name it was issued to. If the name on your badge is spelled differently
+from your Moodle profile, send the link to your instructor.</p>
+</div>
+
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/v/2.0.2/prototyping-and-triage/lab-triage/"><small>← Previous</small><strong>Lab: triage with judgement</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/v/2.0.2/practical-workflows/large-codebases/"><small>Next →</small><strong>Navigating and refactoring large codebases</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v2.0.2 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>
