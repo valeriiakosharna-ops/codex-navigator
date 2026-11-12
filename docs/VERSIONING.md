@@ -29,7 +29,7 @@ structural changes don't.
 
 The first matching rule wins:
 
-1. `?v=1.0` in the URL: manual override for support or testing, or set by the Moodle plugin (see `docs/MULTI-MOODLE.md`).
+1. `?v=1.0` in the URL. The Embedded Course Page plugin (`mod_embedcourse`) sends it from the **Content versions** page in Moodle (course default or a single learner), see `docs/MULTI-MOODLE.md`. Also usable by hand for support or testing.
 2. `sites: <moodle origin>: users:` / `courses:` in `pins.yaml`: pins for one specific Moodle site.
 3. `users:` in `pins.yaml` (Moodle user id): an exception for one learner.
 4. `courses:` in `pins.yaml` (Moodle course id): **the cohort pin. This is the main mechanism.**
@@ -92,17 +92,16 @@ simulator. Watch the version badge in the header switch.
 
 ## The Moodle plugin
 
-Nothing in `mod_extpagewithgrades` needs to change. The plugin already:
+Two plugins work with the course, because both speak the same messages:
 
-- passes Moodle data as URL variables (configure `uid` = User ID and `cid` = Course ID);
-- resizes the iframe on `{type: "moodleIframeResize", height}`;
-- saves a grade on `{type: "moodleSubmitGrade", score, maxScore}`, using Highest / First / Last.
+- **Embedded Course Page** (`mod_embedcourse`, recommended) also sends `v=` from its *Content versions*
+  page, Moodle's light/dark mode, and the Moodle site address (see `docs/MULTI-MOODLE.md`).
+- **External Web Page with Grades** (`mod_extpagewithgrades`) needs no changes. It passes URL
+  variables (`uid` = User ID, `cid` = Course ID), resizes the iframe on `moodleIframeResize`, and
+  saves grades on `moodleSubmitGrade` (Highest / First / Last).
 
-Optional improvements to consider later (not required):
-
-1. **Server-side pin**: store the version a user started in Moodle and pass it as a URL variable. That makes rule 4 device-independent.
-2. **Origin check**: the plugin accepts messages from any origin. Checking `event.origin` against the course site would harden it.
-3. **Secure grade submission**: scores come from the browser, so a determined learner can fake them. That's acceptable for self-check quizzes, but not for exams.
+Still open for both plugins: scores come from the browser, so a determined learner can fake them.
+That's acceptable for self-check quizzes and labs, but not for exams.
 
 ## Versioning practices (scenario, spot)
 

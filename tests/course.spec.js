@@ -74,6 +74,21 @@ test("inside Moodle, links to other topics open the matching Moodle activity", a
   await expect(unmapped).toHaveAttribute("href", `${BASE}/course/view.php?id=7`);
 });
 
+test("a course built with mod_embedcourse links to that plugin's activities", async ({ page }) => {
+  await page.route("**/moodle.json", (route) => route.fulfill({ json: { sites: { [BASE]: { plugin: "extpagewithgrades", courses: { "7": { plugin: "embedcourse", "getting-started/first-session": 201 } } } } } }));
+  await page.goto(`${BASE}/__moodle/?url=/getting-started/lab-first-session/&uid=1&cid=7`);
+  const frame = page.frameLocator("#extpage-iframe");
+  const mapped = frame.locator(".lx-callout a", { hasText: "The Codex CLI, sandbox and approvals" });
+  await expect(mapped).toHaveAttribute("href", `${BASE}/mod/embedcourse/view.php?id=201`);
+});
+
+test("moodle.yaml: only the key plugin takes a module name", async () => {
+  const { moodleSchema } = await import("../scripts/root-files.mjs");
+  const ok = moodleSchema.parse({ sites: { "https://m.example": { courses: { "10": { plugin: "embedcourse", "a/b": 5 } } } } });
+  expect(ok.sites["https://m.example"].plugin).toBe("extpagewithgrades");
+  expect(() => moodleSchema.parse({ sites: { "https://m.example": { courses: { "10": { "a/b": "embedcourse" } } } } })).toThrow();
+});
+
 test("answers survive a reload", async ({ page }) => {
   await page.goto(`${BASE}/getting-started/what-is-codex/`);
   await showSlide(page, "lx-quiz");

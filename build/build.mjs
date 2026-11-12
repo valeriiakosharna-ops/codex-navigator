@@ -319,8 +319,9 @@ function moodleBody(site, pages, latestUrl) {
   <h2>Activity settings</h2>
   <ol>
     <li><strong>External page URL</strong>: the URL from the table below.</li>
-    <li><strong>URL variables</strong>: <code>uid</code> = <em>User ID</em>, <code>cid</code> = <em>Course ID</em>. On <strong>badge checkpoint</strong> pages also add <code>name</code> = <em>Full name</em>: the page compares it with the name on the badge and doesn't store it. Don't pass e-mails.</li>
-    <li><strong>Description</strong>: start with "For whom: …" from the table, so learners see in the course page which topics are theirs.</li>
+    <li><strong>URL variables</strong>: <code>uid</code> = <em>User ID</em>, <code>cid</code> = <em>Course ID</em>, <code>site</code> = <em>Moodle site address</em> (Embedded Course Page only; it sets uid, cid and site by default). On <strong>badge checkpoint</strong> pages also add <code>name</code> = <em>Full name</em>: the page compares it with the name on the badge and doesn't store it. Don't pass e-mails.</li>
+    <li><strong>Sync light/dark mode</strong> (Embedded Course Page): on.</li>
+    <li><strong>Description</strong>: start with the audience from the table ("For everyone.", "For technical specialists." or "For non-technical specialists.").</li>
     <li><strong>Maximum grade</strong>: any value (e.g. 100). The page sends <em>score / max</em>, Moodle scales it.</li>
     <li><strong>Grading method</strong>: <em>Highest</em> is recommended (retries never lower the grade).</li>
   </ol>
@@ -330,7 +331,7 @@ function moodleBody(site, pages, latestUrl) {
   <h2>Links between topics</h2>
   <p>Inside Moodle, a link from one topic to another opens the matching <em>Moodle activity</em>, not this website. After creating the activities, add their ids to <code>moodle.yaml</code> in the repository (page id → activity id from <code>view.php?id=…</code>). Without an entry, such links open the Moodle course page.</p>
   <h2>Which version does a learner see?</h2>
-  <p>Cohorts are pinned in <code>pins.yaml</code> by Moodle course id (see the repository docs, <em>docs/VERSIONING.md</em>). Without a cohort pin, each learner stays on the version they opened first.</p>
+  <p>With the Embedded Course Page plugin, set it in Moodle: activity menu → <strong>Content versions</strong> (a course default plus exceptions for single learners). The plugin sends it as <code>v=</code>, which wins over everything else. With External Web Page with Grades, cohorts are pinned in <code>pins.yaml</code> by Moodle course id (see <em>docs/VERSIONING.md</em> and <em>docs/MULTI-MOODLE.md</em>). With no pin at all, each learner stays on the version they opened first.</p>
   <script type="application/json" id="lx-pages">${jsonForScript(pages.map((p) => ({ id: p.id, title: p.title, summary: p.summary || "", audience: audienceText(p.audience), audienceKey: audienceKey(p.audience) || "", audienceShort: audienceShort(p.audience), url: latestUrl + p.path, max: p.maxScore, badge: p.widgets.some((w) => w.name === "badge") })))}</script>
 </article>`;
 }

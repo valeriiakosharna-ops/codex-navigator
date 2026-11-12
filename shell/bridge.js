@@ -1,7 +1,7 @@
 /*
  * Bridge — the ONLY place that knows about Moodle.
  *
- * Talks to the existing Moodle plugin (mod_extpagewithgrades) with the two messages it
+ * Talks to the Moodle plugin (mod_extpagewithgrades or mod_embedcourse) with the two messages it
  * already understands, so the plugin does not need to change:
  *   { type: "moodleIframeResize", height }
  *   { type: "moodleSubmitGrade",  score, maxScore }
@@ -13,11 +13,14 @@ const LX = window.LX || {};
 const inFrame = document.documentElement.classList.contains("lx-embedded");
 
 function parentOrigin() {
-  // Who embeds us? Moodle may send no referrer, so prefer location.ancestorOrigins
-  // (Chrome, Edge, Safari), then the referrer. Unknown -> "*".
+  // Who embeds us? Moodle sends no referrer, so: location.ancestorOrigins (Chrome, Edge, Safari),
+  // then ?site= (mod_embedcourse variable "Moodle site address", needed for Firefox), then the referrer.
+  // Unknown -> "*".
   try {
     const anc = location.ancestorOrigins;
     if (anc && anc.length && anc[0] && anc[0] !== "null") return anc[0];
+    const site = new URLSearchParams(location.search).get("site") || sessionStorage.getItem("lx:site");
+    if (site) return new URL(site).origin;
     if (document.referrer) return new URL(document.referrer).origin;
   } catch { /* fall through */ }
   return "*";
@@ -118,10 +121,10 @@ if (inFrame) {
   }
   if (pageLinks.length) {
     let courseUrl = moodleOrigin && LX.cid ? `${moodleOrigin}/course/view.php?id=${encodeURIComponent(LX.cid)}` : null;
-    const point = (map) => {
+    const point = (map, plugin = "extpagewithgrades") => {
       for (const a of pageLinks) {
         const cm = map && map[a.dataset.lxPage];
-        const url = cm ? `${moodleOrigin}/mod/extpagewithgrades/view.php?id=${cm}` : courseUrl;
+        const url = cm ? `${moodleOrigin}/mod/${plugin}/view.php?id=${cm}` : courseUrl;
         if (url) {
           a.href = url;
           a.target = "_top";
@@ -145,7 +148,8 @@ if (inFrame) {
             moodleOrigin = candidates[0];
             courseUrl = `${moodleOrigin}/course/view.php?id=${encodeURIComponent(LX.cid)}`;
           }
-          point(sites[moodleOrigin]?.courses?.[LX.cid] || null);
+          const course = sites[moodleOrigin]?.courses?.[LX.cid] || null;
+          point(course, course?.plugin || sites[moodleOrigin]?.plugin || "extpagewithgrades");
         })
         .catch(() => {});
     }

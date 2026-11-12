@@ -56,9 +56,15 @@ function practicesTable(entries) {
 <table class="pr"><thead><tr><th>Practice</th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
 }
 
+// Activity module the course is built with in Moodle: its links are /mod/<plugin>/view.php?id=<cmid>.
+const modName = z.string().regex(/^[a-z][a-z0-9]*$/, "plugin must be a Moodle module name like embedcourse");
 export const moodleSchema = z.object({
   sites: z.record(z.string().url(), z.object({
-    courses: z.record(z.string(), z.record(z.string(), z.number().int().positive())).default({}),
+    plugin: modName.default("extpagewithgrades"),
+    // page id -> activity id; the optional key "plugin" overrides the site's plugin for this course
+    courses: z.record(z.string(), z.record(z.string(), z.union([z.number().int().positive(), modName]))
+      .refine((m) => Object.entries(m).every(([k, v]) => (k === "plugin") === (typeof v === "string")),
+        "only the key \"plugin\" takes a module name; page ids take activity ids")).default({}),
   }).strict()).default({}),
 }).strict();
 

@@ -109,15 +109,14 @@
 
   Promise.all([get("pins.json"), get("versions.json")]).then(function (res) {
     var pins = res[0] || {}, published = ((res[1] || {}).versions || []).map(function (v) { return v.version; });
-    // Which Moodle embeds us: ?site= (plugin variable), else ancestorOrigins/referrer.
-    var site = params.get("site") || (session && session.getItem("lx:site")) || "";
-    if (!site) {
-      try {
-        var anc = location.ancestorOrigins;
-        if (anc && anc.length && anc[0] !== "null") site = anc[0];
-        else if (document.referrer) site = new URL(document.referrer).origin;
-      } catch (e) {}
-    }
+    // Which Moodle embeds us: ancestorOrigins (authoritative), then ?site= from the plugin, then the referrer.
+    var site = "";
+    try {
+      var anc = location.ancestorOrigins;
+      if (anc && anc.length && anc[0] !== "null") site = anc[0];
+    } catch (e) {}
+    if (!site) site = params.get("site") || (session && session.getItem("lx:site")) || "";
+    if (!site && document.referrer) { try { site = new URL(document.referrer).origin; } catch (e) {} }
     if (site) { try { site = new URL(site).origin; } catch (e) { site = ""; } }
     if (session && site) session.setItem("lx:site", site);
     var scoped = (pins.sites && site && pins.sites[site]) || {};
