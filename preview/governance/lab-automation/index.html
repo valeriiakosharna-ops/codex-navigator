@@ -7,10 +7,10 @@
 <meta name="description" content="When to automate, how to run agents in parallel, and how to notice an automation that quietly went wrong.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/codex-navigator/preview/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/codex-navigator/preview/assets/lx.css?v=0.0.0-c3499d31f781995ca795d36c8f15a8fa5de9e455-mwdeou9f">
-<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"0.0.0-c3499d31f781995ca795d36c8f15a8fa5de9e455","channel":"preview","base":"/codex-navigator/preview/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"governance/lab-automation"}}</script>
+<link rel="stylesheet" href="/codex-navigator/preview/assets/lx.css?v=0.0.0-96bf32479a136d2728958e25d74806a6d5ad6fbd-mwdfe4ux">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"0.0.0-96bf32479a136d2728958e25d74806a6d5ad6fbd","channel":"preview","base":"/codex-navigator/preview/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"governance/lab-automation"}}</script>
 <script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),l=new URLSearchParams(location.search),c=l.get("uid")||n&&n.getItem("lx:uid")||"",u=l.get("cid")||n&&n.getItem("lx:cid")||"";n&&(c&&n.setItem("lx:uid",c),u&&n.setItem("lx:cid",u)),a.uid=c,a.cid=u;var k=l.get("name")||n&&n.getItem("lx:name")||"";n&&l.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var L=l.get("theme"),P=g(L)?L:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(L)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(c||"-");a.pinKey=x;function M(e){s&&c&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||l.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(I){return I.version}),r="";try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"&&(r=o[0])}catch(I){}if(r||(r=l.get("site")||n&&n.getItem("lx:site")||""),!r&&document.referrer)try{r=new URL(document.referrer).origin}catch(I){}if(r)try{r=new URL(r).origin}catch(I){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[l.get("v"),w.users&&c&&w.users[c],w.courses&&u&&w.courses[u],t.users&&c&&t.users[c],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,y=0;y<O.length&&!v;y++)v=N(O[y],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
-<script type="module" src="/codex-navigator/preview/assets/lx.js?v=0.0.0-c3499d31f781995ca795d36c8f15a8fa5de9e455-mwdeou9f"></script>
+<script type="module" src="/codex-navigator/preview/assets/lx.js?v=0.0.0-96bf32479a136d2728958e25d74806a6d5ad6fbd-mwdfe4ux"></script>
 </head>
 <body>
 <header class="lx-header">
@@ -27,7 +27,7 @@
     <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
     </button>
-    <a class="lx-badge-version lx-badge-version--preview" href="/codex-navigator/versions/" title="Course version">preview · 0.0.0-c3499d31f781995ca795d36c8f15a8fa5de9e455</a>
+    <a class="lx-badge-version lx-badge-version--preview" href="/codex-navigator/versions/" title="Course version">preview · 0.0.0-96bf32479a136d2728958e25d74806a6d5ad6fbd</a>
   </div>
 </header>
 <div class="lx-layout">
@@ -93,7 +93,7 @@ show its cost later.</p>
 </div>
 <footer class="lx-footer">
   <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
-  <p>Codex Navigator preview · 0.0.0-c3499d31f781995ca795d36c8f15a8fa5de9e455 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+  <p>Codex Navigator preview · 0.0.0-96bf32479a136d2728958e25d74806a6d5ad6fbd · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
 </footer>
 
 </body>
