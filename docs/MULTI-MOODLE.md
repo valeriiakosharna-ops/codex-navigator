@@ -32,11 +32,14 @@ They are separate plugins and can be installed side by side.
 
 ## Assigning versions in Moodle
 
-Open any activity of the course → activity menu → **Content versions**. Available to editing
-teachers and managers (capability `mod/embedcourse:manageversions`).
+Course → **More** → **Content versions** (or any activity → activity menu → *Content versions*, same
+page). The settings belong to the course: every Embedded Course Page activity in it uses them, so
+nothing is set per activity. Available to editing teachers and managers (capability
+`mod/embedcourse:manageversions`).
 
 - **Course default**, for example `2.0`: every learner in this course gets the newest 2.0.x.
 - **Version for this learner**: an exception for one person, for example someone who started on `1.5`.
+- **Several learners at once**: tick them (or pick a Moodle group), choose a version, *Apply*, then save and confirm.
 - An empty field means "not set".
 
 The plugin sends the result as `v=` to every activity of this type in the course. The order of
@@ -80,7 +83,7 @@ Moodle user id. Two Moodles that share a user id in one browser would share prog
 
 ## Installing Embedded Course Page
 
-1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.2.1.zip` (from the plugin repo's releases) (top folder
+1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.3.0.zip` (from the plugin repo's releases) (top folder
    `embedcourse/`) and confirm. It's a new plugin: External Web Page with Grades and its activities
    are not touched.
 2. Build the course with *Embedded Course Page* activities (URLs from `/moodle/`), add their ids to
