@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coordinating Codex across teams and systems · Codex Navigator</title>
+<meta name="description" content="Split a large change into workstreams, give each one a verification contract (the evidence it must produce and what happens if it fails), and bring parallel outputs back together safely.">
+
+<link rel="icon" href="/codex-navigator/v/2.0.1/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/v/2.0.1/assets/lx.css">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"2.0.1","channel":"version","base":"/codex-navigator/v/2.0.1/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"governance/scale-across-teams"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/v/2.0.1/assets/lx.js"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/v/2.0.1/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/v/2.0.1/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/v/2.0.1/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/v/2.0.1/">Course</a>
+      <a href="/codex-navigator/v/2.0.1/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/v/2.0.1/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version" href="/codex-navigator/versions/" title="Course version">v2.0.1</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.1/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/v/2.0.1/getting-started/models-and-usage/">Choosing models and managing usage</a></li><li><a href="/codex-navigator/v/2.0.1/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/v/2.0.1/getting-started/prompting-basics/">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/v/2.0.1/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/v/2.0.1/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.1/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/v/2.0.1/prototyping-and-triage/issue-triage/">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/v/2.0.1/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/v/2.0.1/prototyping-and-triage/badge-agents-and-workflows/">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.1/practical-workflows/large-codebases/">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/v/2.0.1/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/v/2.0.1/practical-workflows/code-review-security/">Code review and security scans</a></li><li><a href="/codex-navigator/v/2.0.1/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.1/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/v/2.0.1/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/v/2.0.1/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/v/2.0.1/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.1/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/v/2.0.1/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/v/2.0.1/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/v/2.0.1/governance/scale-across-teams/" aria-current="page">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/v/2.0.1/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/v/2.0.1/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/v/2.0.1/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/v/2.0.1/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/v/2.0.1/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 5 · <a href="/codex-navigator/v/2.0.1/#governance">Governance, safety and enterprise rollout</a></div>
+    <h1>Coordinating Codex across teams and systems</h1>
+    <p class="lx-lead">Split a large change into workstreams, give each one a verification contract (the evidence it must produce and what happens if it fails), and bring parallel outputs back together safely.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience lx-aud--technical">For technical specialists</span><span class="lx-chip">⏱ ~55 min</span><span class="lx-chip lx-chip--graded">Graded · 4 pt</span></div>
+  </div>
+  <div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">Split the change into workstreams</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">A verification contract for each workstream</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Run parallel work without collisions</span></button><button type="button" class="lx-step" data-step="4" aria-controls="lx-slide-5"><span class="lx-step__n">5</span><span class="lx-step__label">Check yourself</span></button></nav>
+  <section class="lx-slide is-active" id="lx-slide-1" data-label="Why this matters" aria-label="Why this matters">
+<h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>One developer with one agent is easy to keep on track. Five teams, each running several agents on
+one platform migration, is a different problem. The work rarely fails inside a workstream. It fails
+<strong>at integration</strong>: two streams changed the same interface differently, one stream&#39;s &quot;done&quot; meant
+&quot;compiles&quot;, and nobody can tell which output can be trusted.</p>
+<p>The <em>Scale Codex Across Teams and Systems</em> path is about exactly this: dividing complex work into
+workstreams your team can verify and bring back together.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Academy</div>
+      <div class="lx-resource__title"><a href="https://academy.openai.com/public/courses/scale-codex-across-teams-and-systems-jr83a" target="_blank" rel="noopener">Scale Codex Across Teams and Systems</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">course</span><span class="lx-chip">⏱ ~100 min + assessment</span><span class="lx-chip">advanced</span><span class="lx-chip lx-chip--access">🔑 Free OpenAI Academy account · badge</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">For experienced technical specialists who already have repeatable Codex team workflows. You leave with a method for splitting a complex change, a <strong>verification contract</strong> for each workstream, and a way to track evidence in longer-running, connected systems.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The three outcomes on the course page. Use them as the structure of your notes: split, verification contract, tracking evidence.</li><li>This path assumes you&#39;ve done <em>Extend Codex Workflows</em> or something equivalent.</li></ul></div>
+  <a class="lx-resource__cta" href="https://academy.openai.com/public/courses/scale-codex-across-teams-and-systems-jr83a" target="_blank" rel="noopener">Open the course <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=aDTPTwnrRyA" target="_blank" rel="noopener">From Single Player to Multiplayer with Codex (DevDay 2026)</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 23 min</span><span class="lx-chip">advanced</span></div>
+    </div>
+  </div>
+  
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>What changes when Codex goes from one person&#39;s tool to a team&#39;s shared workflow.</li><li>Where the speakers put the human checkpoints.</li></ul></div>
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=aDTPTwnrRyA" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-2" data-label="Split the change into workstreams" aria-label="Split the change into workstreams" hidden>
+<h2 id="split-the-change-into-workstreams">Split the change into workstreams<a class="lx-anchor" href="#split-the-change-into-workstreams" aria-hidden="true">#</a></h2>
+<p>A good split has workstreams that are <strong>independent to build</strong> and <strong>cheap to integrate</strong>: the
+boundaries between them are interfaces that are agreed <em>before</em> anyone starts.</p>
+<section class="lx-block">
+  <div class="lx-compare__title">Splitting a migration</div>
+  <div class="lx-compare"><div class="lx-compare__col lx-compare__col--weak">
+      <div class="lx-compare__label">✗ Vague</div>
+      <pre><code>Team A does the backend, team B the frontend, team C the rest. Everyone uses Codex.</code></pre>
+      <p class="lx-compare__note">The boundaries are org-chart lines, not interfaces. Nobody owns &quot;the rest&quot;, and integration is left to luck.</p>
+    </div><div class="lx-compare__col lx-compare__col--strong">
+      <div class="lx-compare__label">✓ Specific</div>
+      <pre><code>Interface first: the new Orders API schema (orders.v2.yaml) is frozen by the platform team.
+WS1 Orders service implements v2 behind a flag. Owner: Platform. Writes: services/orders/
+WS2 Web checkout consumes v2 via the generated client. Owner: Web. Writes: web/checkout/
+WS3 Data migration script + dry run on a copy. Owner: Data. Writes: tools/migrate/
+Integration: Platform lead merges in order WS1 → WS3 → WS2, behind the flag.</code></pre>
+      <p class="lx-compare__note">A frozen interface, one owner and one write area per stream, and an explicit order of integration.</p>
+    </div></div>
+</section>
+</section>
+<section class="lx-slide" id="lx-slide-3" data-label="A verification contract for each workstream" aria-label="A verification contract for each workstream" hidden>
+<h2 id="a-verification-contract-for-each-workstream">A verification contract for each workstream<a class="lx-anchor" href="#a-verification-contract-for-each-workstream" aria-hidden="true">#</a></h2>
+<p>The contract answers three questions <strong>before</strong> the work starts. What evidence must this stream
+produce? Who checks it? What happens if a check fails?</p>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">Verification contract for a workstream</div>
+    <div class="lx-usecase__who">Tech lead coordinating a migration</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>Three workstreams run in parallel with Codex. Last time, &quot;done&quot; from one team meant &quot;unit tests pass&quot;, and the integration broke in staging.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>For workstream WS3 (data migration), draft a verification contract:
+- required evidence: dry-run report on a production-size copy (row counts before/after,
+  checksums per table, duration), rollback tested, idempotency test output;
+- who verifies it and how;
+- failure handling: what blocks integration, what can ship behind the flag;
+- what the stream must NOT change (other streams&#39; write areas, the frozen schema).
+Save it as docs/migration/ws3-contract.md for review.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A one-page contract the stream&#39;s agents and people work against. Integration accepts evidence, not assurances.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>Put the contract in the repo and reference it from AGENTS.md in that stream&#39;s folder, so every Codex session sees it.</li><li>&quot;Done&quot; = the evidence in the contract exists and has been checked. Nothing less.</li></ul></div>
+  </div>
+</article>
+</section>
+<section class="lx-slide" id="lx-slide-4" data-label="Run parallel work without collisions" aria-label="Run parallel work without collisions" hidden>
+<h2 id="run-parallel-work-without-collisions">Run parallel work without collisions<a class="lx-anchor" href="#run-parallel-work-without-collisions" aria-hidden="true">#</a></h2>
+<lx-checklist id="parallel-ready"><script type="application/json">{"id":"parallel-ready","title":"Before parallel workstreams start","items":[{"text":"Interfaces between streams are written down and frozen (or versioned)"},{"text":"Each stream has one owner and its own write area","hint":"Separate directories, branches or worktrees. Two agents never write to the same files."},{"text":"Each stream has a verification contract in the repo"},{"text":"AGENTS.md in each area points to its contract and its boundaries"},{"text":"The integration order and the integration owner are agreed"},{"text":"Long-running agents have goals with explicit verification, and someone reviews their progress"}],"done":"Parallel work can start. Integration will check evidence, not hope."}</script></lx-checklist>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/guides/build-ai-native-engineering-team" target="_blank" rel="noopener">Building an AI-native engineering team</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">article</span><span class="lx-chip">⏱ 25 min</span><span class="lx-chip">intermediate</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">OpenAI&#39;s guide for engineering leaders on how coding agents change each phase of the lifecycle (planning, design, build, test, review, deploy), with real examples and what to change in team process.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>For each phase, what the guide says the agent does and what stays with engineers.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/guides/build-ai-native-engineering-team" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>Tools you already know, at team scale</div><p><strong>Worktrees</strong> keep parallel agents out of each other&#39;s files (module 3). <strong>Subagents</strong> split one
+person&#39;s task (module 4). <strong>AGENTS.md per directory</strong> carries each stream&#39;s rules and contract
+(module 4). <strong>Goals</strong> keep long-running work verifiable (module 3). Scaling is mostly about using
+these deliberately, with owners.</p>
+</div>
+</section>
+<section class="lx-slide" id="lx-slide-5" data-label="Check yourself" aria-label="Check yourself" hidden>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="scale-teams"><script type="application/json">{"id":"scale-teams","shuffle":false,"graded":true,"questions":[{"q":"Three workstreams each report &quot;done&quot;, yet the integration fails. What was most likely missing?","options":["A more powerful model","Agreed interfaces and verification contracts defining what &quot;done&quot; must prove","More subagents per stream","A longer AGENTS.md"],"answer":1,"explain":"Integration fails at the boundaries. Freeze interfaces first, and define done as &quot;the agreed evidence exists and was checked&quot;."},{"q":"Which belongs in a workstream&#39;s verification contract?","options":["The evidence it must produce","Who verifies that evidence","What happens if a check fails","The model each developer prefers"],"answer":[0,1,2],"explain":"The contract is about evidence, verification and failure handling. Model choice is an implementation detail inside the stream."},{"q":"Two workstreams both need to change a shared configuration file. What&#39;s the safest arrangement?","options":["Let both agents edit it and resolve conflicts at the end","Give the file one owner. The other stream requests changes through that owner, or the change is split into a separate, sequenced step","Ask each agent to be careful","Run both agents with higher reasoning effort"],"answer":1,"explain":"One writer per area. Shared files need an owner or an explicit sequence."},{"q":"Where should each workstream&#39;s contract live so Codex follows it in every session?","options":["In the project manager&#39;s notes","In the repo, referenced from the AGENTS.md in that stream&#39;s directory","In each developer&#39;s personal config","In a chat message at the start of each session"],"answer":1,"explain":"AGENTS.md is read automatically, and the contract in the repo is reviewable and versioned with the code."}]}</script></lx-quiz>
+
+</section>
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 5</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/v/2.0.1/governance/enterprise-admin/"><small>← Previous</small><strong>Enterprise administration</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/v/2.0.1/governance/lab-automation/"><small>Next →</small><strong>Lab: decisions about automation</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator v2.0.1 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>
