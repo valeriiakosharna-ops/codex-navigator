@@ -1,9 +1,9 @@
 {
   "course": "codex-navigator",
   "title": "Codex Navigator",
-  "version": "0.0.0-dac25e2d314262f8093545283c4dc77f0586d771",
+  "version": "0.0.0-a5dda83a69187e216acd1b9f2f519735c137e061",
   "channel": "preview",
-  "builtAt": "2026-11-12T08:07:56.268Z",
+  "builtAt": "2026-11-12T08:25:50.465Z",
   "widgets": {
     "badge": "1.0.0",
     "checklist": "1.0.0",
