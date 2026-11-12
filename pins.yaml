@@ -22,5 +22,5 @@
 # Optional fallback for learners with no pin at all (otherwise: latest):
 # default: "1.1"
 courses:
-  "10": "2.0"      # Codex Lab on mdls.nixdev.co (2.0 layout since 2026-11-12)
+  "10": "2.0"      # Codex Lab on mdls.nixdev.co. Fallback only: the course default is set in Moodle (Content versions)
 users: {}
