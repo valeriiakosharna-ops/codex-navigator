@@ -1,6 +1,7 @@
 {
   "sites": {
     "https://mdls.nixdev.co": {
+      "plugin": "extpagewithgrades",
       "courses": {
         "10": {
           "getting-started/what-is-codex": 152,
