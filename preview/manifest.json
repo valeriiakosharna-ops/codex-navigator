@@ -1,10 +1,11 @@
 {
   "course": "codex-navigator",
   "title": "Codex Navigator",
-  "version": "0.0.0-049c706f97f32210ba07c2b0fee9c04bdcb70741",
+  "version": "0.0.0-dac25e2d314262f8093545283c4dc77f0586d771",
   "channel": "preview",
-  "builtAt": "2026-11-11T17:33:18.584Z",
+  "builtAt": "2026-11-12T08:07:56.268Z",
   "widgets": {
+    "badge": "1.0.0",
     "checklist": "1.0.0",
     "compare": "1.0.0",
     "flashcards": "1.0.0",
@@ -27,10 +28,19 @@
       ]
     },
     {
+      "id": "getting-started/models-and-usage",
+      "title": "Choosing models and managing usage",
+      "path": "getting-started/models-and-usage/",
+      "maxScore": 5,
+      "widgets": [
+        "quiz"
+      ]
+    },
+    {
       "id": "getting-started/first-session",
-      "title": "Your first session, safely",
+      "title": "The Codex CLI, sandbox and approvals",
       "path": "getting-started/first-session/",
-      "maxScore": 4,
+      "maxScore": 6,
       "widgets": [
         "checklist",
         "quiz"
@@ -38,9 +48,9 @@
     },
     {
       "id": "getting-started/prompting-basics",
-      "title": "Asking a coding agent for work",
+      "title": "Giving Codex context and completion criteria",
       "path": "getting-started/prompting-basics/",
-      "maxScore": 4,
+      "maxScore": 6,
       "widgets": [
         "order",
         "quiz"
@@ -58,21 +68,78 @@
       ]
     },
     {
-      "id": "practical-workflows/agents-md",
-      "title": "Make guidance durable: AGENTS.md and config",
-      "path": "practical-workflows/agents-md/",
-      "maxScore": 3,
+      "id": "getting-started/badge-get-started",
+      "title": "Badge: Get Started with Codex",
+      "path": "getting-started/badge-get-started/",
+      "maxScore": 1,
+      "widgets": [
+        "badge"
+      ]
+    },
+    {
+      "id": "prototyping-and-triage/plain-english-to-apps",
+      "title": "From plain English to a working prototype",
+      "path": "prototyping-and-triage/plain-english-to-apps/",
+      "maxScore": 4,
+      "widgets": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "prototyping-and-triage/issue-triage",
+      "title": "Issue triage and human-reviewed estimates",
+      "path": "prototyping-and-triage/issue-triage/",
+      "maxScore": 4,
+      "widgets": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "prototyping-and-triage/lab-triage",
+      "title": "Lab: triage with judgement",
+      "path": "prototyping-and-triage/lab-triage/",
+      "maxScore": 6,
+      "widgets": [
+        "spot",
+        "spot",
+        "spot"
+      ]
+    },
+    {
+      "id": "prototyping-and-triage/badge-agents-and-workflows",
+      "title": "Badge: Agents and Workflows",
+      "path": "prototyping-and-triage/badge-agents-and-workflows/",
+      "maxScore": 1,
+      "widgets": [
+        "badge"
+      ]
+    },
+    {
+      "id": "practical-workflows/large-codebases",
+      "title": "Navigating and refactoring large codebases",
+      "path": "practical-workflows/large-codebases/",
+      "maxScore": 4,
       "widgets": [
         "quiz"
       ]
     },
     {
       "id": "practical-workflows/plan-test-review",
-      "title": "The plan → build → test → review loop",
+      "title": "Closed-loop testing and debugging",
       "path": "practical-workflows/plan-test-review/",
-      "maxScore": 4,
+      "maxScore": 5,
       "widgets": [
         "order",
+        "quiz"
+      ]
+    },
+    {
+      "id": "practical-workflows/code-review-security",
+      "title": "Code review and security scans",
+      "path": "practical-workflows/code-review-security/",
+      "maxScore": 4,
+      "widgets": [
+        "checklist",
         "quiz"
       ]
     },
@@ -88,19 +155,77 @@
       ]
     },
     {
+      "id": "advanced/agents-md",
+      "title": "Steering the agent with AGENTS.md and rules",
+      "path": "advanced/agents-md/",
+      "maxScore": 5,
+      "widgets": [
+        "quiz"
+      ]
+    },
+    {
       "id": "advanced/extend-codex",
-      "title": "Extend Codex with MCP and skills",
+      "title": "Reusable workflows: skills, plugins and hooks",
       "path": "advanced/extend-codex/",
-      "maxScore": 3,
+      "maxScore": 5,
       "widgets": [
         "flashcards",
         "quiz"
       ]
     },
     {
-      "id": "advanced/automate-and-scale",
-      "title": "Automate and scale",
-      "path": "advanced/automate-and-scale/",
+      "id": "advanced/mcp-subagents",
+      "title": "MCP and subagents",
+      "path": "advanced/mcp-subagents/",
+      "maxScore": 4,
+      "widgets": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "advanced/badge-extend-codex",
+      "title": "Badge: Extend Codex Workflows",
+      "path": "advanced/badge-extend-codex/",
+      "maxScore": 1,
+      "widgets": [
+        "badge"
+      ]
+    },
+    {
+      "id": "governance/responsible-use",
+      "title": "Governance, security and responsible use",
+      "path": "governance/responsible-use/",
+      "maxScore": 4,
+      "widgets": [
+        "flashcards",
+        "checklist",
+        "quiz"
+      ]
+    },
+    {
+      "id": "governance/automate-and-scale",
+      "title": "Automation and CI/CD",
+      "path": "governance/automate-and-scale/",
+      "maxScore": 6,
+      "widgets": [
+        "checklist",
+        "quiz"
+      ]
+    },
+    {
+      "id": "governance/enterprise-admin",
+      "title": "Enterprise administration",
+      "path": "governance/enterprise-admin/",
+      "maxScore": 5,
+      "widgets": [
+        "order",
+        "quiz"
+      ]
+    },
+    {
+      "id": "governance/scale-across-teams",
+      "title": "Coordinating Codex across teams and systems",
+      "path": "governance/scale-across-teams/",
       "maxScore": 4,
       "widgets": [
         "checklist",
@@ -108,14 +233,50 @@
       ]
     },
     {
-      "id": "advanced/lab-automation",
+      "id": "governance/lab-automation",
       "title": "Lab: decisions about automation",
-      "path": "advanced/lab-automation/",
+      "path": "governance/lab-automation/",
       "maxScore": 6,
       "widgets": [
         "scenario",
         "scenario",
         "scenario"
+      ]
+    },
+    {
+      "id": "governance/badge-scale-codex",
+      "title": "Badge: Scale Codex Across Teams and Systems",
+      "path": "governance/badge-scale-codex/",
+      "maxScore": 1,
+      "widgets": [
+        "badge"
+      ]
+    },
+    {
+      "id": "beyond-codex/agentic-systems",
+      "title": "Design and build agentic systems",
+      "path": "beyond-codex/agentic-systems/",
+      "maxScore": 1,
+      "widgets": [
+        "badge"
+      ]
+    },
+    {
+      "id": "beyond-codex/evaluate-ai-apps",
+      "title": "Evaluate AI applications",
+      "path": "beyond-codex/evaluate-ai-apps/",
+      "maxScore": 1,
+      "widgets": [
+        "badge"
+      ]
+    },
+    {
+      "id": "beyond-codex/optimize-ai-apps",
+      "title": "Optimize AI application performance",
+      "path": "beyond-codex/optimize-ai-apps/",
+      "maxScore": 1,
+      "widgets": [
+        "badge"
       ]
     }
   ],
@@ -145,6 +306,30 @@
       "fp": "f26d4a4ecf"
     },
     {
+      "id": "lab-triage-l1",
+      "page": "prototyping-and-triage/lab-triage",
+      "widget": "spot",
+      "title": "Monday's bug sweep",
+      "version": 1,
+      "fp": "e55837ecaf"
+    },
+    {
+      "id": "lab-triage-l2",
+      "page": "prototyping-and-triage/lab-triage",
+      "widget": "spot",
+      "title": "Estimates for refinement",
+      "version": 1,
+      "fp": "52c6b233b3"
+    },
+    {
+      "id": "lab-triage-l3",
+      "page": "prototyping-and-triage/lab-triage",
+      "widget": "spot",
+      "title": "The weekly triage digest",
+      "version": 1,
+      "fp": "564f837d7a"
+    },
+    {
       "id": "lab2-l1",
       "page": "practical-workflows/lab-review",
       "widget": "spot",
@@ -170,7 +355,7 @@
     },
     {
       "id": "lab3-l1",
-      "page": "advanced/lab-automation",
+      "page": "governance/lab-automation",
       "widget": "scenario",
       "title": "\"Let Codex fix lint every night\"",
       "version": 1,
@@ -178,7 +363,7 @@
     },
     {
       "id": "lab3-l2",
-      "page": "advanced/lab-automation",
+      "page": "governance/lab-automation",
       "widget": "scenario",
       "title": "Two agents, one deadline",
       "version": 1,
@@ -186,7 +371,7 @@
     },
     {
       "id": "lab3-l3",
-      "page": "advanced/lab-automation",
+      "page": "governance/lab-automation",
       "widget": "scenario",
       "title": "The triage bot that saw nothing",
       "version": 1,

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Issue triage and human-reviewed estimates · Codex Navigator</title>
+<meta name="description" content="Let Codex sweep the backlog, group duplicates, suggest priorities and flag missing information, then turn its estimates into proposals the team reviews.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/codex-navigator/preview/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/preview/assets/lx.css?v=0.0.0-dac25e2d314262f8093545283c4dc77f0586d771-mwd9mlpo">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"0.0.0-dac25e2d314262f8093545283c4dc77f0586d771","channel":"preview","base":"/codex-navigator/preview/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"prototyping-and-triage/issue-triage"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/preview/assets/lx.js?v=0.0.0-dac25e2d314262f8093545283c4dc77f0586d771-mwd9mlpo"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/preview/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/preview/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/preview/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/preview/">Course</a>
+      <a href="/codex-navigator/preview/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/preview/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version lx-badge-version--preview" href="/codex-navigator/versions/" title="Course version">preview · 0.0.0-dac25e2d314262f8093545283c4dc77f0586d771</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/preview/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/preview/getting-started/models-and-usage/">Choosing models and managing usage</a></li><li><a href="/codex-navigator/preview/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/preview/getting-started/prompting-basics/">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/preview/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/preview/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/preview/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/preview/prototyping-and-triage/issue-triage/" aria-current="page">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/preview/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/preview/prototyping-and-triage/badge-agents-and-workflows/">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/preview/practical-workflows/large-codebases/">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/preview/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/preview/practical-workflows/code-review-security/">Code review and security scans</a></li><li><a href="/codex-navigator/preview/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/preview/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/preview/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/preview/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/preview/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/preview/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/preview/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/preview/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/preview/governance/scale-across-teams/">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/preview/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/preview/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/preview/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/preview/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/preview/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 2 · <a href="/codex-navigator/preview/#prototyping-and-triage">Natural-language prototyping and requirement analysis</a></div>
+    <h1>Issue triage and human-reviewed estimates</h1>
+    <p class="lx-lead">Let Codex sweep the backlog, group duplicates, suggest priorities and flag missing information, then turn its estimates into proposals the team reviews.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience">👥 For: Non-technical</span><span class="lx-chip">⏱ ~45 min</span><span class="lx-chip lx-chip--graded">Graded · 4 pt</span></div>
+  </div>
+  <div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">A triage report you can trust</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Estimates: provisional, with assumptions</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">From one sweep to a routine</span></button><button type="button" class="lx-step" data-step="4" aria-controls="lx-slide-5"><span class="lx-step__n">5</span><span class="lx-step__label">Check yourself</span></button></nav>
+  <section class="lx-slide is-active" id="lx-slide-1" data-label="Why this matters" aria-label="Why this matters">
+<h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>Triage is the part of delivery that everyone needs and nobody enjoys. Reports come in from support,
+Slack threads, alerts and failed checks. Half of them are duplicates and the other half lack the one
+detail an engineer needs. Codex is good at the sweep: reading everything, grouping it, and pointing
+out what&#39;s missing.</p>
+<p>It isn&#39;t the one who decides. Priorities, commitments and estimates affect people and contracts, so
+they stay <strong>proposals</strong> until a person on the team has reviewed them.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/use-cases/automation-bug-triage" target="_blank" rel="noopener">Use case: Automate bug triage</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 15 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">OpenAI&#39;s own step-by-step recipe. Run one sweep by hand, tune the report in the same chat, then schedule it. It comes with a starter prompt you can adapt.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The <strong>rules</strong> in the starter prompt: don&#39;t post, assign, label or close anything; group duplicates; <strong>keep observed evidence separate from guesses</strong>.</li><li>Phase 2, <em>Make the report useful</em>: what a good first report contains before you automate anything.</li><li>Which plugins connect your sources (GitHub, Linear, Slack, Sentry), and the order the recipe recommends.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/use-cases/automation-bug-triage" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-2" data-label="A triage report you can trust" aria-label="A triage report you can trust" hidden>
+<h2 id="a-triage-report-you-can-trust">A triage report you can trust<a class="lx-anchor" href="#a-triage-report-you-can-trust" aria-hidden="true">#</a></h2>
+<p>The official recipe asks for a report in which every item has the same parts. Use it as your quality bar:</p>
+<table>
+<thead>
+<tr>
+<th>Each item has</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Priority</strong> (P0–P3)</td>
+<td>A suggestion you can accept or change</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong>: links or short quotes</td>
+<td>So you can check it in seconds</td>
+</tr>
+<tr>
+<td><strong>Facts and guesses kept apart</strong></td>
+<td>So a guess never reaches the backlog dressed up as a fact</td>
+</tr>
+<tr>
+<td><strong>Recommended next action</strong></td>
+<td>So the report leads to a decision, not a discussion</td>
+</tr>
+<tr>
+<td>Duplicates <strong>grouped</strong> under one item</td>
+<td>So three reports of one bug don&#39;t look like three bugs</td>
+</tr>
+</tbody></table>
+<section class="lx-block">
+  <div class="lx-compare__title">Asking for triage</div>
+  <div class="lx-compare"><div class="lx-compare__col lx-compare__col--weak">
+      <div class="lx-compare__label">✗ Vague</div>
+      <pre><code>Go through the backlog and prioritise everything. Update the tickets.</code></pre>
+      <p class="lx-compare__note">Codex is allowed to change shared tickets, there&#39;s no evidence requirement, and guesses look the same as facts.</p>
+    </div><div class="lx-compare__col lx-compare__col--strong">
+      <div class="lx-compare__label">✓ Specific</div>
+      <pre><code>Triage issues opened in [project] in the last 7 days.
+For each issue: suggested priority P0–P3, a category, evidence (link or quote),
+missing information an engineer would need, and dependencies on other issues.
+Group duplicates. Mark anything you infer as &quot;assumption&quot;.
+Do not edit, label, assign or close anything. Return a report only.</code></pre>
+      <p class="lx-compare__note">Read-only, evidence-based, with assumptions marked. A person decides what changes in the tracker.</p>
+    </div></div>
+</section>
+</section>
+<section class="lx-slide" id="lx-slide-3" data-label="Estimates: provisional, with assumptions" aria-label="Estimates: provisional, with assumptions" hidden>
+<h2 id="estimates-provisional-with-assumptions">Estimates: provisional, with assumptions<a class="lx-anchor" href="#estimates-provisional-with-assumptions" aria-hidden="true">#</a></h2>
+<p>An estimate from Codex is useful as a <strong>first draft that shows its reasoning</strong>. It&#39;s dangerous as a
+number on its own. Ask for ranges and assumptions, and let the people doing the work adjust it.</p>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">First-pass estimates for a refinement session</div>
+    <div class="lx-usecase__who">Project manager</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>Twenty new backlog items need rough sizes before Thursday&#39;s refinement. Engineers have no time to read them all in advance.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>For each item in this list, give a provisional size (S / M / L / XL) and:
+- the assumptions behind it;
+- what information is missing that could change the size;
+- dependencies on other items or teams;
+- your confidence (low / medium / high).
+Don&#39;t present any size as a commitment. Sort the items with low confidence first.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A refinement agenda that starts with the items most likely to be wrong, with questions ready for the engineers.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>The low-confidence items are where the team&#39;s time goes. The draft tells you where to look.</li><li>Record which sizes the team changed and why. That feedback improves the next prompt.</li></ul></div>
+  </div>
+</article>
+<div class="lx-callout lx-callout--warning" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>Decisions that stay human</div><p>Commitments to clients, priority calls that affect someone&#39;s work, closing or rejecting a
+customer&#39;s report, and anything about people&#39;s performance. Codex can prepare these. A person
+on the team makes them and owns them.</p>
+</div>
+</section>
+<section class="lx-slide" id="lx-slide-4" data-label="From one sweep to a routine" aria-label="From one sweep to a routine" hidden>
+<h2 id="from-one-sweep-to-a-routine">From one sweep to a routine<a class="lx-anchor" href="#from-one-sweep-to-a-routine" aria-hidden="true">#</a></h2>
+<p>Once a hand-run report is consistently useful, you can schedule it. The use case shows how to turn
+a chat into a scheduled task. Module 5 covers the governance side of automation.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank" rel="noopener">Get started with ChatGPT Work</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">For non-developers, ChatGPT Work is where this kind of multi-source, repeatable task runs. The page explains when to use it and how to set up a recurring update.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The list of tasks that suit it. Triage ticks every box: many sources, takes time by hand, the output gets reviewed, and it repeats.</li><li><em>Set up a recurring update</em>: the step after your manual sweep works.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/automations" target="_blank" rel="noopener">Scheduled tasks</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">How to run a task on a schedule or from an app event, test it, and what permissions a scheduled task runs with.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li><em>Test scheduled tasks</em>: run the schedule once by hand before trusting it.</li><li><em>Permissions and security model</em>: a scheduled task can&#39;t ask you for approval at 3 a.m., so decide in advance what it is allowed to do.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/automations" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-5" data-label="Check yourself" aria-label="Check yourself" hidden>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="issue-triage"><script type="application/json">{"id":"issue-triage","shuffle":false,"graded":true,"questions":[{"q":"Codex&#39;s triage report says &quot;Login fails for SSO users, P0, probably caused by the last release&quot;. Which part should be marked as an assumption?","options":["Login fails for SSO users","P0","Probably caused by the last release","None of it, because it reads as a single finding"],"answer":2,"explain":"The failure is observed (there should be evidence). P0 is a suggestion. &quot;Probably caused by&quot; is a guess, and the recipe insists on keeping guesses apart from evidence."},{"q":"What should a triage sweep be allowed to do the first few times it runs?","options":["Close duplicates automatically","Only produce a report, without editing, labelling, assigning or closing anything","Reassign issues to the right team","Post the report to the client channel"],"answer":1,"explain":"The official starter prompt forbids changing anything. Allow write actions only once the reports have proved reliable, and even then, deliberately."},{"q":"Codex sizes a backlog item as &quot;M, high confidence&quot;, but the description doesn&#39;t say which payment provider is involved. What&#39;s the best response?","options":["Accept it, because high confidence means it&#39;s reliable","Ask Codex to list missing information and treat the size as provisional until the team clarifies","Make it XL to be safe","Delete the item until someone writes a better description"],"answer":1,"explain":"Missing information that could change the size means the estimate is provisional, whatever confidence label it carries."},{"q":"Which decisions should stay with a person even when Codex prepared everything?","options":["A delivery date promised to a client","Rejecting a customer&#39;s bug report as &quot;won&#39;t fix&quot;","Grouping three duplicate reports into one item","The final priority of an item that affects another team&#39;s plans"],"answer":[0,1,3],"explain":"Grouping duplicates is mechanical and easy to check. Commitments, rejections and cross-team priorities affect people and need an owner."}]}</script></lx-quiz>
+
+</section>
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 5</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/preview/prototyping-and-triage/plain-english-to-apps/"><small>← Previous</small><strong>From plain English to a working prototype</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/preview/prototyping-and-triage/lab-triage/"><small>Next →</small><strong>Lab: triage with judgement</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator preview · 0.0.0-dac25e2d314262f8093545283c4dc77f0586d771 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>

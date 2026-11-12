@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navigating and refactoring large codebases · Codex Navigator</title>
+<meta name="description" content="Map the relevant part of a big repository, trace dependencies, plan a bounded refactor and carry it out in reviewable steps, keeping the architectural context where Codex and your team can find it.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/codex-navigator/preview/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/codex-navigator/preview/assets/lx.css?v=0.0.0-dac25e2d314262f8093545283c4dc77f0586d771-mwd9mlpo">
+<script id="lx-config" type="application/json">{"course":"codex-navigator","version":"0.0.0-dac25e2d314262f8093545283c4dc77f0586d771","channel":"preview","base":"/codex-navigator/preview/","siteRoot":"/codex-navigator/","gradeMode":"on-complete","moodleOrigins":[],"page":{"id":"practical-workflows/large-codebases"}}</script>
+<script>(function(){var a=window.LX=JSON.parse(document.getElementById("lx-config").textContent),h=document.documentElement,f=!1;try{f=window.self!==window.top}catch(e){f=!0}(f||/[?&]embed=1/.test(location.search))&&h.classList.add("lx-embedded");function b(e){try{var t=window[e];return t.setItem("lx:t","1"),t.removeItem("lx:t"),t}catch(i){return null}}var s=b("localStorage"),n=b("sessionStorage"),c=new URLSearchParams(location.search),l=c.get("uid")||n&&n.getItem("lx:uid")||"",u=c.get("cid")||n&&n.getItem("lx:cid")||"";n&&(l&&n.setItem("lx:uid",l),u&&n.setItem("lx:cid",u)),a.uid=l,a.cid=u;var k=c.get("name")||n&&n.getItem("lx:name")||"";n&&c.get("name")&&n.setItem("lx:name",k),a.uname=k;var d=window.matchMedia?window.matchMedia("(prefers-color-scheme: dark)"):null,g=function(e){return e==="light"||e==="dark"||e==="auto"},m="auto";function p(e){m=g(e)?e:"auto";var t=m==="dark"||m==="auto"&&d&&d.matches;h.setAttribute("data-theme",t?"dark":"light"),h.setAttribute("data-theme-mode",m);try{document.dispatchEvent(new CustomEvent("lx-theme",{detail:{mode:m,theme:t?"dark":"light"}}))}catch(i){}}var I=c.get("theme"),P=g(I)?I:f?n&&n.getItem("lx:moodle-theme")||"auto":s&&s.getItem("lx:theme")||"auto";if(p(P),d){var E=function(){m==="auto"&&p("auto")};d.addEventListener?d.addEventListener("change",E):d.addListener(E)}window.addEventListener("message",function(e){var t=e.data||{};e.source!==window.parent||t.type!=="moodleTheme"||!g(t.theme)||g(I)||(n&&n.setItem("lx:moodle-theme",t.theme),p(t.theme))}),window.LXTheme={get mode(){return m},set:function(e){s&&!f&&s.setItem("lx:theme",e),p(e)}};var T=a.version.split(".").slice(0,2).join("."),x="lx:"+a.course+":pin:"+(u||"-")+":"+(l||"-");a.pinKey=x;function M(e){s&&l&&!s.getItem(x)&&s.setItem(x,e)}if(a.channel==="version"){M(T);return}if(a.channel!=="latest"||c.get("nopin"))return;function S(e,t){for(var i=e.split(".").map(Number),r=t.split(".").map(Number),o=0;o<3;o++)if((i[o]||0)!==(r[o]||0))return(i[o]||0)-(r[o]||0);return 0}function N(e,t){if(!e)return null;e=String(e).replace(/^v/,"");var i=t.filter(function(r){return r===e||r.indexOf(e+".")===0});return i.sort(S),i.length?i[i.length-1]:null}h.classList.add("lx-pinning");var R=function(){h.classList.remove("lx-pinning")},U=setTimeout(R,2500),j=function(e){return fetch(a.siteRoot+e,{cache:"no-cache"}).then(function(t){return t.ok?t.json():{}}).catch(function(){return{}})};Promise.all([j("pins.json"),j("versions.json")]).then(function(e){var t=e[0]||{},i=((e[1]||{}).versions||[]).map(function(y){return y.version}),r=c.get("site")||n&&n.getItem("lx:site")||"";if(!r)try{var o=location.ancestorOrigins;o&&o.length&&o[0]!=="null"?r=o[0]:document.referrer&&(r=new URL(document.referrer).origin)}catch(y){}if(r)try{r=new URL(r).origin}catch(y){r=""}n&&r&&n.setItem("lx:site",r);for(var w=t.sites&&r&&t.sites[r]||{},O=[c.get("v"),w.users&&l&&w.users[l],w.courses&&u&&w.courses[u],t.users&&l&&t.users[l],t.courses&&u&&t.courses[u],s&&s.getItem(x),t.default],v=null,L=0;L<O.length&&!v;L++)v=N(O[L],i);if(v&&v!==a.version){var X=location.pathname.indexOf(a.base)===0?location.pathname.slice(a.base.length):"";location.replace(a.siteRoot+"v/"+v+"/"+X+location.search+location.hash);return}M(T),clearTimeout(U),R()})})();</script>
+<script type="module" src="/codex-navigator/preview/assets/lx.js?v=0.0.0-dac25e2d314262f8093545283c4dc77f0586d771-mwd9mlpo"></script>
+</head>
+<body>
+<header class="lx-header">
+  <div class="lx-header__inner">
+    <a href="/codex-navigator/preview/" aria-label="Codex Navigator home"><img class="lx-header__logo" src="/codex-navigator/preview/img/nix-logo.svg" alt="NIX"></a>
+    <span class="lx-header__sep" aria-hidden="true"></span>
+    <a class="lx-header__title" href="/codex-navigator/preview/">Codex Navigator</a>
+    <span class="lx-header__spacer"></span>
+    <nav class="lx-header__nav" aria-label="Site">
+      <a href="/codex-navigator/preview/">Course</a>
+      <a href="/codex-navigator/preview/widgets/">Widget catalog</a>
+      <a href="/codex-navigator/preview/moodle/">Moodle setup</a>
+    </nav>
+    <button class="lx-theme-toggle" type="button" data-lx-theme-toggle aria-label="Colour theme: system" title="Colour theme: system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="lx-badge-version lx-badge-version--preview" href="/codex-navigator/versions/" title="Course version">preview · 0.0.0-dac25e2d314262f8093545283c4dc77f0586d771</a>
+  </div>
+</header>
+<div class="lx-layout">
+  <nav class="lx-sidebar" aria-label="Course contents">
+  <h2><span class="n">1</span>Get started: the agent, models and a safe setup</h2>
+  <ol><li><a href="/codex-navigator/preview/getting-started/what-is-codex/">What Codex is and where it runs</a></li><li><a href="/codex-navigator/preview/getting-started/models-and-usage/">Choosing models and managing usage</a></li><li><a href="/codex-navigator/preview/getting-started/first-session/">The Codex CLI, sandbox and approvals</a></li><li><a href="/codex-navigator/preview/getting-started/prompting-basics/">Giving Codex context and completion criteria</a></li><li><a href="/codex-navigator/preview/getting-started/lab-first-session/">Lab: decisions in your first sessions</a></li><li><a href="/codex-navigator/preview/getting-started/badge-get-started/">Badge: Get Started with Codex</a></li></ol>
+<h2><span class="n">2</span>Natural-language prototyping and requirement analysis</h2>
+  <ol><li><a href="/codex-navigator/preview/prototyping-and-triage/plain-english-to-apps/">From plain English to a working prototype</a></li><li><a href="/codex-navigator/preview/prototyping-and-triage/issue-triage/">Issue triage and human-reviewed estimates</a></li><li><a href="/codex-navigator/preview/prototyping-and-triage/lab-triage/">Lab: triage with judgement</a></li><li><a href="/codex-navigator/preview/prototyping-and-triage/badge-agents-and-workflows/">Badge: Agents and Workflows</a></li></ol>
+<h2><span class="n">3</span>Core agentic capabilities</h2>
+  <ol><li><a href="/codex-navigator/preview/practical-workflows/large-codebases/" aria-current="page">Navigating and refactoring large codebases</a></li><li><a href="/codex-navigator/preview/practical-workflows/plan-test-review/">Closed-loop testing and debugging</a></li><li><a href="/codex-navigator/preview/practical-workflows/code-review-security/">Code review and security scans</a></li><li><a href="/codex-navigator/preview/practical-workflows/lab-review/">Lab: reviewing the agent&#39;s work</a></li></ol>
+<h2><span class="n">4</span>Advanced configuration and extensibility</h2>
+  <ol><li><a href="/codex-navigator/preview/advanced/agents-md/">Steering the agent with AGENTS.md and rules</a></li><li><a href="/codex-navigator/preview/advanced/extend-codex/">Reusable workflows: skills, plugins and hooks</a></li><li><a href="/codex-navigator/preview/advanced/mcp-subagents/">MCP and subagents</a></li><li><a href="/codex-navigator/preview/advanced/badge-extend-codex/">Badge: Extend Codex Workflows</a></li></ol>
+<h2><span class="n">5</span>Governance, safety and enterprise rollout</h2>
+  <ol><li><a href="/codex-navigator/preview/governance/responsible-use/">Governance, security and responsible use</a></li><li><a href="/codex-navigator/preview/governance/automate-and-scale/">Automation and CI/CD</a></li><li><a href="/codex-navigator/preview/governance/enterprise-admin/">Enterprise administration</a></li><li><a href="/codex-navigator/preview/governance/scale-across-teams/">Coordinating Codex across teams and systems</a></li><li><a href="/codex-navigator/preview/governance/lab-automation/">Lab: decisions about automation</a></li><li><a href="/codex-navigator/preview/governance/badge-scale-codex/">Badge: Scale Codex Across Teams and Systems</a></li></ol>
+<h2><span class="n">6</span>Elective: building agentic systems and AI applications</h2>
+  <ol><li><a href="/codex-navigator/preview/beyond-codex/agentic-systems/">Design and build agentic systems</a></li><li><a href="/codex-navigator/preview/beyond-codex/evaluate-ai-apps/">Evaluate AI applications</a></li><li><a href="/codex-navigator/preview/beyond-codex/optimize-ai-apps/">Optimize AI application performance</a></li></ol>
+</nav>
+  <main class="lx-main" id="main">
+    <article class="lx-prose">
+  <div class="lx-pagehead">
+    <div class="lx-crumbs">Module 3 · <a href="/codex-navigator/preview/#practical-workflows">Core agentic capabilities</a></div>
+    <h1>Navigating and refactoring large codebases</h1>
+    <p class="lx-lead">Map the relevant part of a big repository, trace dependencies, plan a bounded refactor and carry it out in reviewable steps, keeping the architectural context where Codex and your team can find it.</p>
+    <div class="lx-meta"><span class="lx-chip lx-chip--audience">👥 For: Technical</span><span class="lx-chip">⏱ ~60 min</span><span class="lx-chip lx-chip--graded">Graded · 4 pt</span></div>
+  </div>
+  <div class="lx-slides" data-slides>
+  <nav class="lx-stepper" aria-label="Sections of this page"><button type="button" class="lx-step is-active" data-step="0" aria-controls="lx-slide-1" aria-current="step"><span class="lx-step__n">1</span><span class="lx-step__label">Why this matters</span></button><button type="button" class="lx-step" data-step="1" aria-controls="lx-slide-2"><span class="lx-step__n">2</span><span class="lx-step__label">Step 1: map before you change</span></button><button type="button" class="lx-step" data-step="2" aria-controls="lx-slide-3"><span class="lx-step__n">3</span><span class="lx-step__label">Step 2: plan a bounded slice</span></button><button type="button" class="lx-step" data-step="3" aria-controls="lx-slide-4"><span class="lx-step__n">4</span><span class="lx-step__label">Step 3: execute in reviewable steps, with goals</span></button><button type="button" class="lx-step" data-step="4" aria-controls="lx-slide-5"><span class="lx-step__n">5</span><span class="lx-step__label">Keep context and parallel work organised</span></button><button type="button" class="lx-step" data-step="5" aria-controls="lx-slide-6"><span class="lx-step__n">6</span><span class="lx-step__label">Check yourself</span></button></nav>
+  <section class="lx-slide is-active" id="lx-slide-1" data-label="Why this matters" aria-label="Why this matters">
+<h2 id="why-this-matters">Why this matters<a class="lx-anchor" href="#why-this-matters" aria-hidden="true">#</a></h2>
+<p>In a small repo, Codex can read everything. In a large one it can&#39;t, and neither can you. Large
+refactors fail in two familiar ways. The agent changes far more than you asked for, or it changes
+the right files but breaks a caller three directories away that nobody mentioned.</p>
+<p>The fix is the same as for a human team: <strong>map first, plan a bounded slice, execute in reviewable
+steps, and write the context down</strong> so it survives the next session.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Cookbook</div>
+      <div class="lx-resource__title"><a href="https://developers.openai.com/cookbook/examples/codex/code_modernization" target="_blank" rel="noopener">Modernizing your codebase with Codex</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">article</span><span class="lx-chip">⏱ 30 min</span><span class="lx-chip">advanced</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">OpenAI&#39;s worked example of modernising a legacy system with the Codex CLI. It uses COBOL, but the method applies to any monolith. Everything revolves around an <strong>ExecPlan</strong>, a design document the agent follows and updates.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The four documents per pilot flow: an ExecPlan (scope, steps, done), an overview of the legacy flow, the target design, and a <strong>validation</strong> plan that defines what parity means.</li><li>Phase 0, which sets up AGENTS.md and a PLANS.md <em>before</em> touching any code.</li><li>Why the cookbook picks <strong>one bounded pilot flow</strong> instead of &quot;modernise the system&quot;.</li></ul></div>
+  <a class="lx-resource__cta" href="https://developers.openai.com/cookbook/examples/codex/code_modernization" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-2" data-label="Step 1: map before you change" aria-label="Step 1: map before you change" hidden>
+<h2 id="step-1-map-before-you-change">Step 1: map before you change<a class="lx-anchor" href="#step-1-map-before-you-change" aria-hidden="true">#</a></h2>
+<p>Start read-only. Ask for a map of the part you care about, with file references you can check:</p>
+<article class="lx-block lx-usecase">
+  <div class="lx-usecase__head">
+    <div class="lx-usecase__label">Use case</div>
+    <div class="lx-usecase__title">Mapping a payments module before a refactor</div>
+    <div class="lx-usecase__who">Backend developer</div>
+  </div>
+  <div class="lx-usecase__body">
+    <div class="lx-usecase__step"><h4>Situation</h4><p>You need to replace a hand-rolled currency type with the shared Money library across the billing code. Nobody knows how far the old type spreads.</p></div>
+    <div class="lx-usecase__step"><h4>Prompt</h4><pre><code>Read-only task, don&#39;t edit anything.
+Map every use of `LegacyAmount` in this repo: which modules create it, which only pass it
+through, which serialise it (DB, API, queues). Group the call sites by module, with file:line.
+List public APIs and stored formats that would change if the type changed.
+Finish with the 3 riskiest places and why.</code></pre></div>
+    <div class="lx-usecase__step"><h4>Good outcome</h4><p>A dependency map with file references, grouped by module, including the serialisation boundaries that make the refactor risky.</p></div>
+    <div class="lx-usecase__step"><h4>Tips</h4><ul><li>&quot;Don&#39;t edit anything&quot; (or read-only mode) makes exploration safe.</li><li>Save the map to a file in the repo (for example <code>docs/refactor-money/map.md</code>) so the next session and your reviewers can use it.</li></ul></div>
+  </div>
+</article>
+</section>
+<section class="lx-slide" id="lx-slide-3" data-label="Step 2: plan a bounded slice" aria-label="Step 2: plan a bounded slice" hidden>
+<h2 id="step-2-plan-a-bounded-slice">Step 2: plan a bounded slice<a class="lx-anchor" href="#step-2-plan-a-bounded-slice" aria-hidden="true">#</a></h2>
+<p>A good refactor plan names <strong>what&#39;s in scope, what isn&#39;t, the order of steps, and how each step is
+verified</strong>. That&#39;s what the cookbook&#39;s ExecPlan is. Put it in the repo, not only in the chat.</p>
+<section class="lx-block">
+  <div class="lx-compare__title">Asking for the refactor</div>
+  <div class="lx-compare"><div class="lx-compare__col lx-compare__col--weak">
+      <div class="lx-compare__label">✗ Vague</div>
+      <pre><code>Migrate billing to the Money library.</code></pre>
+      <p class="lx-compare__note">An unbounded change touching dozens of files, with no order of steps, no stopping points and no definition of done. The result is one giant diff nobody can review.</p>
+    </div><div class="lx-compare__col lx-compare__col--strong">
+      <div class="lx-compare__label">✓ Specific</div>
+      <pre><code>Using docs/refactor-money/map.md, write an ExecPlan in docs/refactor-money/plan.md:
+scope = the invoices module only; out of scope = API and DB formats.
+Split it into steps that each leave the build green and can be reviewed separately.
+For each step: files, verification command, rollback.
+Stop after writing the plan and wait for my review.</code></pre>
+      <p class="lx-compare__note">A bounded scope, steps that keep the build green, and a check for each one. The plan is a file the team can review and Codex can follow.</p>
+    </div></div>
+</section>
+</section>
+<section class="lx-slide" id="lx-slide-4" data-label="Step 3: execute in reviewable steps, with goals" aria-label="Step 3: execute in reviewable steps, with goals" hidden>
+<h2 id="step-3-execute-in-reviewable-steps-with-goals">Step 3: execute in reviewable steps, with goals<a class="lx-anchor" href="#step-3-execute-in-reviewable-steps-with-goals" aria-hidden="true">#</a></h2>
+<p>For multi-step work, give Codex a <strong>goal</strong> it can verify itself against.</p>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/long-running-work" target="_blank" rel="noopener">Long-running work</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">How <code>/goal</code> works in the desktop app, the CLI and the IDE extension, and how to write a goal Codex can check its own progress against.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>The three goal elements: <strong>outcome</strong> (the result, not the activity), <strong>constraints</strong>, and <strong>verification</strong>.</li><li>Start with <code>/plan</code> when the outcome isn&#39;t clear yet, then turn the refined plan into a <code>/goal</code>.</li><li>Steering a running goal: pause, edit, use a side chat for a status recap, and don&#39;t give two parallel tasks write access to the same thing.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/long-running-work" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=rgh0hMYPcd0" target="_blank" rel="noopener">Run long tasks in Codex using goals</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 2 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  
+  
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=rgh0hMYPcd0" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+</section>
+<section class="lx-slide" id="lx-slide-5" data-label="Keep context and parallel work organised" aria-label="Keep context and parallel work organised" hidden>
+<h2 id="keep-context-and-parallel-work-organised">Keep context and parallel work organised<a class="lx-anchor" href="#keep-context-and-parallel-work-organised" aria-hidden="true">#</a></h2>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/projects" target="_blank" rel="noopener">Projects and chats</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">How a project keeps related chats and files together, and when to use a local project folder for a codebase. Long refactors span many chats, and this is where they live.</p>
+  
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/projects" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI Docs</div>
+      <div class="lx-resource__title"><a href="https://learn.chatgpt.com/docs/environments/git-worktrees" target="_blank" rel="noopener">Worktrees</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">docs</span><span class="lx-chip">⏱ 10 min</span></div>
+    </div>
+  </div>
+  <p class="lx-resource__why">Worktrees give each chat its own Git checkout, so several tasks can run in parallel without touching your working copy. &quot;Handoff&quot; moves a chat and its code back to your local checkout when you&#39;re ready to test.</p>
+  <div class="lx-resource__focus"><h4>While you study, pay attention to</h4><ul><li>Local is the foreground, Worktree the background: queue background work while you keep coding.</li><li>What <code>.worktreeinclude</code> is for, namely copying ignored local files such as <code>.env</code> samples into managed worktrees.</li></ul></div>
+  <a class="lx-resource__cta" href="https://learn.chatgpt.com/docs/environments/git-worktrees" target="_blank" rel="noopener">Open the material <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<aside class="lx-block lx-resource" aria-label="Official resource">
+  <div class="lx-resource__top">
+    <div class="lx-resource__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+    <div>
+      <div class="lx-resource__provider">OpenAI · YouTube</div>
+      <div class="lx-resource__title"><a href="https://www.youtube.com/watch?v=9ohXlkbXiM4" target="_blank" rel="noopener">Multitasking with the Codex app</a></div>
+      <div class="lx-resource__facts"><span class="lx-chip lx-chip--official">Official</span><span class="lx-chip">video</span><span class="lx-chip">⏱ 3 min</span><span class="lx-chip">beginner</span></div>
+    </div>
+  </div>
+  
+  
+  <a class="lx-resource__cta" href="https://www.youtube.com/watch?v=9ohXlkbXiM4" target="_blank" rel="noopener">Open the video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</aside>
+<div class="lx-callout lx-callout--tip" role="note"><div class="lx-callout__title"><svg class="lx-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>Where the architectural context lives</div><ul>
+<li><strong>In the task brief</strong>: scope, out-of-scope, constraints. These change per task.</li>
+<li><strong>In the repo docs</strong> (plan, map, ADRs): decisions and findings that should outlive the chat.</li>
+<li><strong>In AGENTS.md</strong>: durable rules for <em>every</em> task, such as &quot;never change public API types without an ADR&quot;. Module 4 covers it.</li>
+</ul>
+</div>
+</section>
+<section class="lx-slide" id="lx-slide-6" data-label="Check yourself" aria-label="Check yourself" hidden>
+<h2 id="check-yourself">Check yourself<a class="lx-anchor" href="#check-yourself" aria-hidden="true">#</a></h2>
+<lx-quiz id="large-codebases"><script type="application/json">{"id":"large-codebases","shuffle":false,"graded":true,"questions":[{"q":"You&#39;re about to refactor a type used across a large monorepo. What should Codex&#39;s first task be?","options":["Make the change everywhere and run the tests","A read-only map of where the type is used, including serialisation boundaries, saved to a file","Rewrite AGENTS.md","Increase reasoning effort to Max and ask for the whole migration"],"answer":1,"explain":"Map first. You can&#39;t bound a change you can&#39;t see, and a saved map makes the plan reviewable."},{"q":"Which plan step is best for a large refactor?","options":["&quot;Migrate all modules in one commit so the codebase is never half-migrated&quot;","&quot;Step 2: invoices module. Build stays green. Verify with \u003ccode>make test-invoices\u003c/code>. Roll back by reverting the step&#39;s commit.&quot;","&quot;Step 2: fix whatever breaks&quot;","&quot;Step 2: let Codex decide&quot;"],"answer":1,"explain":"Each step is bounded, keeps the build green, and has a verification command and a rollback."},{"q":"Your goal says &quot;Refactor the invoices module&quot;. What does it lack, according to the long-running-work guide?","options":["Nothing, because it&#39;s short and clear","An outcome (rather than an activity), constraints and a way to verify","A deadline","The name of the model to use"],"answer":1,"explain":"&quot;Refactor&quot; is an activity. A goal names the result, the boundaries and the checks that prove it&#39;s done, so Codex can verify its own progress."},{"q":"You want Codex to explore a risky alternative design while you keep working on your branch. What fits best?","options":["Run it in your local checkout and stash your changes","Start the chat in a worktree, then hand it off to local only if you want to keep it","Give two chats write access to the same branch","Wait until your own work is merged"],"answer":1,"explain":"A worktree is a separate checkout for background work. Handoff brings it into the foreground only when you choose to."}]}</script></lx-quiz>
+
+</section>
+  <div class="lx-slidenav">
+    <button type="button" class="lx-slidenav__prev" data-slide-prev disabled>← Back</button>
+    <span class="lx-slidenav__count" aria-live="polite">1 / 6</span>
+    <button type="button" class="lx-slidenav__next" data-slide-next>Next →</button>
+  </div>
+</div>
+  <div class="lx-scorebar" hidden role="status">
+  <span class="lx-scorebar__label">Score</span>
+  <div class="lx-scorebar__track" aria-hidden="true"><div class="lx-scorebar__fill"></div></div>
+  <span class="lx-scorebar__status"></span>
+</div>
+  <nav class="lx-pager" aria-label="Pages">
+    <a href="/codex-navigator/preview/prototyping-and-triage/badge-agents-and-workflows/"><small>← Previous</small><strong>Badge: Agents and Workflows</strong></a>
+    <a class="lx-pager__next" href="/codex-navigator/preview/practical-workflows/plan-test-review/"><small>Next →</small><strong>Closed-loop testing and debugging</strong></a>
+  </nav>
+</article>
+  </main>
+</div>
+<footer class="lx-footer">
+  <p>This course is a navigator: it links to official OpenAI materials and adds NIX recommendations. Codex and OpenAI are trademarks of OpenAI; official content belongs to its owners.</p>
+  <p>Codex Navigator preview · 0.0.0-dac25e2d314262f8093545283c4dc77f0586d771 · built 2026-11-12 · <a href="/codex-navigator/versions/">all versions</a></p>
+</footer>
+
+</body>
+</html>
