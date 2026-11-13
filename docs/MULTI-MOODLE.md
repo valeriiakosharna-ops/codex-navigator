@@ -91,7 +91,7 @@ Moodle user id. Two Moodles that share a user id in one browser would share prog
 
 ## Installing Embedded Course Page
 
-1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.5.0.zip` (from the plugin repo's releases) (top folder
+1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.5.1.zip` (from the plugin repo's releases) (top folder
    `embedcourse/`) and confirm. It's a new plugin: External Web Page with Grades and its activities
    are not touched.
 2. Build the course with *Embedded Course Page* activities (URLs from `/moodle/`), add their ids to
