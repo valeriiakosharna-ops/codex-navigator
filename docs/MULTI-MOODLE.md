@@ -50,6 +50,7 @@ reach learners by themselves (see *What the version numbers mean* in `docs/VERSI
   from which line, what the new line contains and which course topics it lacks; nothing is saved
   until you confirm. If the list changed in the meantime, the preview is shown again.
 - **History tab**: every change, who made it and how (fixed at start, by hand, to several, by an upgrade).
+- **Download**: on either tab, as CSV, Excel, ODS, JSON or HTML. Learners: everyone found by the current filters (not just the page shown), with user ID, name, email, line, status, start and completion dates, how and by whom the line was set. History: every change. For Excel pick the Excel format: a CSV opened in Excel may garble Cyrillic names.
 
 The plugin sends the learner's line as `v=`. If neither the learner nor the course has one, nothing is
 sent, and the course's own rules apply (`pins.yaml`, then the version the learner first opened, then
@@ -91,7 +92,7 @@ Moodle user id. Two Moodles that share a user id in one browser would share prog
 
 ## Installing Embedded Course Page
 
-1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.5.1.zip` (from the plugin repo's releases) (top folder
+1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.6.0.zip` (from the plugin repo's releases) (top folder
    `embedcourse/`) and confirm. It's a new plugin: External Web Page with Grades and its activities
    are not touched.
 2. Build the course with *Embedded Course Page* activities (URLs from `/moodle/`), add their ids to
