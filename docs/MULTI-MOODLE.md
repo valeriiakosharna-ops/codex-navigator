@@ -27,25 +27,33 @@ They are separate plugins and can be installed side by side.
 |---|---|
 | External page URL | The `latest/` URL from the course's `/moodle/` page |
 | URL variables | Preset for new activities: `uid` = User ID · `cid` = Course ID · `site` = **Moodle site address**. On badge pages add `name` = Full name |
-| Content version | Usually empty. Versions are set per course on the *Content versions* page (below) |
 | Sync light/dark mode | On |
 
 ## Assigning versions in Moodle
 
-Course → **More** → **Content versions** (or any activity → activity menu → *Content versions*, same
-page). The settings belong to the course: every Embedded Course Page activity in it uses them, so
-nothing is set per activity. Available to editing teachers and managers (capability
-`mod/embedcourse:manageversions`).
+Course → **More** → **Content versions**. The settings belong to the course: every Embedded Course
+Page activity in it uses them; activities have no version setting of their own. Available to editing
+teachers and managers (capability `mod/embedcourse:manageversions`).
 
-- **Course default**, for example `2.0`: every learner in this course gets the newest 2.0.x.
-- **Version for this learner**: an exception for one person, for example someone who started on `1.5`.
-- **Several learners at once**: tick them (or pick a Moodle group), choose a version, *Apply*, then save and confirm.
-- An empty field means "not set".
+Only **version lines** are assigned (`2.0`, `1.5`): a line always opens its newest release, so fixes
+reach learners by themselves (see *What the version numbers mean* in `docs/VERSIONING.md`).
 
-The plugin sends the result as `v=` to every activity of this type in the course. The order of
-precedence is: learner's version → course default → the activity's own *Content version* field.
-If none is set, nothing is sent, and the course's own rules apply (`pins.yaml`, then the version the
-learner first opened, then latest).
+- **Course default**, for example `2.0`: the line a learner gets when they **first open** the course.
+  Their line is fixed at that moment, so changing the default later only affects learners who
+  haven't started.
+- **Learners tab**: everyone enrolled, 50/100/200 per page, with filters: name, surname or email;
+  version line (or "not started"); status (not started, in progress, completed); group; started
+  from/until; completed from/until. Completion comes from Moodle's *Course completion*, so turn it on
+  and set its conditions for the course.
+- **Assign a version line**: to the learners ticked on the page, or to **all found** by the filters
+  (for example everyone who completed more than a year ago). A preview shows how many people move
+  from which line, what the new line contains and which course topics it lacks; nothing is saved
+  until you confirm. If the list changed in the meantime, the preview is shown again.
+- **History tab**: every change, who made it and how (fixed at start, by hand, to several, by an upgrade).
+
+The plugin sends the learner's line as `v=`. If neither the learner nor the course has one, nothing is
+sent, and the course's own rules apply (`pins.yaml`, then the version the learner first opened, then
+latest).
 
 On the course side, `?v=` has the highest priority, so **Moodle is the source of truth** for every
 course that uses the Content versions page. `pins.yaml` stays as a fallback for courses built with
@@ -83,7 +91,7 @@ Moodle user id. Two Moodles that share a user id in one browser would share prog
 
 ## Installing Embedded Course Page
 
-1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.3.0.zip` (from the plugin repo's releases) (top folder
+1. *Site administration → Plugins → Install plugins*, upload `mod_embedcourse-1.5.0.zip` (from the plugin repo's releases) (top folder
    `embedcourse/`) and confirm. It's a new plugin: External Web Page with Grades and its activities
    are not touched.
 2. Build the course with *Embedded Course Page* activities (URLs from `/moodle/`), add their ids to

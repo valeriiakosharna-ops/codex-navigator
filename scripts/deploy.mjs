@@ -13,6 +13,7 @@ import path from "node:path";
 import { build, printErrors } from "../build/build.mjs";
 import { writeRootFiles } from "./root-files.mjs";
 import { compareLabs, bumpType, report } from "./check-labs.mjs";
+import { compareRelease, fixReleaseError } from "./check-release.mjs";
 
 const cmp = (a, b) => {
   const x = a.split(".").map(Number), y = b.split(".").map(Number);
@@ -32,6 +33,15 @@ export async function deploy({ site, ref, siteUrl, pins = "pins.yaml", moodle, l
     if (existing.includes(version)) log(`! v${version} already published: rebuilding it in place`);
     const r = await build({ siteUrl, channel: "version", version, out: path.join(site, "v", version) });
     log(`✓ v${version}: ${r.pages} pages`);
+    // A fix (X.Y.Z, Z > 0) reaches learners on X.Y by itself: it must not change points or progress.
+    const line = version.split(".").slice(0, 2).join(".");
+    const prevInLine = existing.filter((v) => v !== version && v.startsWith(line + ".") && cmp(v, version) < 0).sort(cmp).pop();
+    if (prevInLine && !version.endsWith(".0")) {
+      const oldM = JSON.parse(fs.readFileSync(path.join(vDir, prevInLine, "manifest.json"), "utf8"));
+      const problems = compareRelease(oldM, r.manifest);
+      if (problems.length) throw new Error(fixReleaseError(prevInLine, version, problems)); // nothing is published
+      log(`✓ v${version}: a fix of v${prevInLine}, no change to points or progress`);
+    }
     // warn about practice changes that reach learners already in progress
     const prev = existing.filter((v) => v !== version && cmp(v, version) < 0).sort(cmp).pop();
     if (prev) {

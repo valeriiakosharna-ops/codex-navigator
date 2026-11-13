@@ -139,3 +139,42 @@ test("releases.yaml: versions and lines get titles in versions.json", async () =
   expect(out.lines["1.5"]).toEqual({ newest: "1.5.1" });
   expect(out.versions.find((v) => v.version === "2.0.1")).toMatchObject({ title: "Fix", description: "Small fix." });
 });
+
+test("a fix release may not change topics, points, interactive blocks or practices", async () => {
+  const { compareRelease, fixReleaseError } = await import("../scripts/check-release.mjs");
+  const page = (id, maxScore, widgets) => ({ id, title: id, path: id + "/", maxScore, widgets });
+  const old = { version: "1.5.1", pages: [page("a", 3, ["quiz"]), page("b", 0, [])], labs: [{ id: "l1", title: "L1", fp: "x", version: 1 }] };
+  // text-only fix: nothing to report
+  expect(compareRelease(old, { ...old, version: "1.5.2" })).toEqual([]);
+  // every kind of change that needs a new line
+  const changed = {
+    version: "1.5.2",
+    pages: [page("a", 4, ["quiz", "order"]), page("c", 0, [])],
+    labs: [{ id: "l1", title: "L1", fp: "y", version: 2 }],
+  };
+  const all = compareRelease(old, changed).join(" | ");
+  expect(all).toMatch(/maximum points 3 → 4/);
+  expect(all).toMatch(/interactive blocks \[quiz\] → \[order, quiz\]/);
+  expect(all).toMatch(/"c" \(c\) is new/);
+  expect(all).toMatch(/"b" \(b\) was removed/);
+  expect(all).toMatch(/Practice "L1" changed its structure \(version 1 → 2\)/);
+  const problems = compareRelease(old, changed);
+  expect(fixReleaseError("1.5.1", "1.5.2", problems)).toMatch(/Release it as v1\.6\.0/);
+});
+
+test("deploy refuses a fix tag that changes points, and publishes a text-only fix", async () => {
+  test.setTimeout(180000); // builds the course twice
+  const fs = await import("node:fs"); const os = await import("node:os"); const path = await import("node:path");
+  const { deploy } = await import("../scripts/deploy.mjs");
+  const site = fs.mkdtempSync(path.join(os.tmpdir(), "lx-fix-"));
+  const real = JSON.parse(fs.readFileSync("dist/manifest.json", "utf8"));
+  fs.mkdirSync(path.join(site, "v", "9.0.0"), { recursive: true });
+  // previous release of line 9.0: same as the current content except one topic's points
+  const prev = { ...real, version: "9.0.0", pages: real.pages.map((p, i) => (i === 0 ? { ...p, maxScore: (p.maxScore || 0) + 1 } : p)) };
+  fs.writeFileSync(path.join(site, "v", "9.0.0", "manifest.json"), JSON.stringify(prev));
+  const opts = { site, siteUrl: "https://example.org/x/", pins: "pins.yaml", moodle: "moodle.yaml", log: () => {} };
+  await expect(deploy({ ...opts, ref: "refs/tags/v9.0.1" })).rejects.toThrow(/maximum points .*Release it as v9\.1\.0/s);
+  // same content as the previous release: a valid fix
+  fs.writeFileSync(path.join(site, "v", "9.0.0", "manifest.json"), JSON.stringify({ ...real, version: "9.0.0" }));
+  await expect(deploy({ ...opts, ref: "refs/tags/v9.0.1" })).resolves.toBeTruthy();
+});

@@ -18,12 +18,18 @@ Moodle activity ──► /latest/getting-started/what-is-codex/?uid=42&cid=7
 
 | Bump | Example | Use for | Learners already in progress |
 |---|---|---|---|
-| **PATCH** `1.0.0 → 1.0.1` | typos, broken link, clearer explanation | always safe | **get it automatically** |
-| **MINOR** `1.0.x → 1.1.0` | new or rewritten topics, changed quizzes | content changes | stay on 1.0.x |
-| **MAJOR** `1.x → 2.0.0` | restructured course | big redesign | stay on 1.x |
+| **PATCH** `1.0.0 → 1.0.1` | typos, broken link, a clearer explanation, an extra paragraph, a fixed answer explanation | a fix | **get it automatically** |
+| **MINOR** `1.0.x → 1.1.0` | a topic added, removed or moved; interactive blocks added, removed or changed; points changed; a practice changed | anything that can change points or progress | stay on 1.0.x until assigned by hand |
+| **MAJOR** `1.x → 2.0.0` | restructured course | big redesign | stay on 1.x until assigned by hand |
 
-Pins are written as `"1.0"` (meaning "newest 1.0.x"), so patch fixes reach everybody but
-structural changes don't.
+Learners are assigned **version lines** (`"1.0"`, meaning "newest 1.0.x"), never single releases.
+So a fix reaches everybody on that line by itself, and a new line is a decision made in Moodle
+(*More → Content versions*).
+
+**The deploy enforces it.** A fix tag (`vX.Y.Z`, Z > 0) is compared with the previous release of the
+same line (`scripts/check-release.mjs`). If it adds, removes or moves a topic, changes a topic's
+maximum points or its interactive blocks, or changes a practice, nothing is published and the run
+says what to release instead (`vX.Y+1.0`).
 
 ## How a learner's version is chosen
 
@@ -98,8 +104,9 @@ simulator. Watch the version badge in the header switch.
 
 Two plugins work with the course, because both speak the same messages:
 
-- **Embedded Course Page** (`mod_embedcourse`, recommended) also sends `v=` from its *Content versions*
-  page, Moodle's light/dark mode, and the Moodle site address (see `docs/MULTI-MOODLE.md`).
+- **Embedded Course Page** (`mod_embedcourse`, recommended) also sends the learner's version line as
+  `v=` (course *More → Content versions*), Moodle's light/dark mode, and the Moodle site address
+  (see `docs/MULTI-MOODLE.md`).
 - **External Web Page with Grades** (`mod_extpagewithgrades`) needs no changes. It passes URL
   variables (`uid` = User ID, `cid` = Course ID), resizes the iframe on `moodleIframeResize`, and
   saves grades on `moodleSubmitGrade` (Highest / First / Last).
@@ -128,7 +135,7 @@ stay unlocked.
 **Checks:**
 
 - **Pull requests**: CI compares practices with the live `latest/` release and adds a warning to the run if a structure changed without a `version` bump.
-- **Release tags**: the deploy compares with the previous release. Structural changes, added or removed practices in a **patch** release produce a warning, because they reach learners who are already in progress.
+- **Release tags**: a **patch** tag that changes topics, points, interactive blocks or practices is refused and not published (`scripts/check-release.mjs`), because it would reach learners who are already in progress. Minor and major tags only get the warnings above.
 - **History**: `/versions/` has a *Practices by release* table showing which practice version shipped in which release. ● marks a change.
 
 ## 2.0: the restructured course
